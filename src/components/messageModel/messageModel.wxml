@@ -1,0 +1,9 @@
+<view class="model-page" wx:if="{{showModel}}">
+    <view class="model-content">
+        <view class="model-title">{{title}}</view>
+        <view class="bottom-btn">
+            <view class="model-btn cancel" bindtap="cancel">取消</view>
+            <view class="model-btn sure" bindtap="sure">确定</view>
+        </view>
+    </view>
+</view>

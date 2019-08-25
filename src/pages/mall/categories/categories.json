@@ -1,0 +1,8 @@
+{
+	"navigationBarTitleText": "分类",
+	"usingComponents": {
+		"top-bar": "../../../components/topbar/topbar",
+		"empty-page": "../../../components/emptyPage/emptyPage",
+		"image-show": "../../../components/imageShow/imageShow"
+	}
+}

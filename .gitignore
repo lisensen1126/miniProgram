@@ -1,0 +1,17 @@
+.git
+*.log
+node_modules/
+dist/
+test/
+build/
+package-lock.json
+.idea/
+yarn.lock
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

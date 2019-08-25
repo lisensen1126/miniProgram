@@ -1,0 +1,75 @@
+<view class="page-confirm-order" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="确认订单" home="{{showHome}}"></top-bar>
+  <view class="order-info">
+    <view class="order-title">订单详情</view>
+    <view class="order-list">
+      <view class="order-item" wx:for="{{orderItem.item}}" wx:key="index">
+        <view class="item-image">
+          <image-show src="{{item.listItem.image_url}}" quality="95"></image-show>
+        </view>
+        <view class="item-info">
+          <view class="item-info-left">
+            <view class="info">{{item.listItem.item_title}} </view>
+            <view class="info attribute">{{item.listItem.sku_detail}} </view>
+          </view>
+          <view class="item-other">
+            <view class="item-price">¥{{item.listItem.unit_price}}
+              <image class="order-spike-label" wx:if="{{orderItem.offered == 1}}" src="https://oss1.chedianai.com/images/assets/order-spike-label.png"/>
+              <image class="order-spike-label" wx:if="{{orderItem.offered == 2}}" src="https://oss1.chedianai.com/images/assets/order-group-label.png"/>
+            </view>
+            <view class="item-quantity">x  {{item.quantity}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="coupon" bindtap="goCouponList" wx:if="{{!orderItem.offered}}">
+    <image class="item-icon" src="/images/personal/first-icon01.png" />
+    <view class="item-coupon">优惠券</view>
+    <view class="coupon-quantity" wx:if="{{myCouponList.data_allow_count>0}}">{{myCouponList.data_allow_count}}张可用</view>
+    <view class="coupon-quantity default" wx:if="{{myCouponList.data_allow_count<=0}}">暂无优惠券可用</view>
+    <view class="coupon-price">
+      <text wx:if="{{myCouponList.data_allow_count>0}}">- ¥{{data_allow_count}}</text>
+      <text class="arrow-icon"></text>
+    </view>
+  </view>
+  <view class="payment-block-info">
+    <view class="payment-title">支付信息</view>
+    <view class="payment-info-item">
+      <view class="pay-item-left"> {{orderItem.type === 1 ? '商品' : '服务'}}原价 </view>
+      <view class="pay-item-right">¥{{original_amount}}</view>
+    </view>
+    <view class="payment-info-item" wx:if="{{data_allow_count>0 && !orderItem.offered}}">
+      <view class="pay-item-left"> 优惠券 </view>
+      <view class="pay-item-right">- ¥{{data_allow_count}}</view>
+    </view>
+    <view class="payment-info-item">
+      <view class="pay-item-left payment-actual font-semibold"> 实际金额 </view>
+      <view class="pay-item-right real-price font-semibold">¥{{(order_total)>0?(order_total):'0.01'}}</view>
+    </view>
+  </view>
+  <!--底部按钮-->
+  <!--全部上架-->
+  <view class="bottom-button" wx:if="{{is_sale === 1}}">
+    <view class="payment-info">
+      <view class="pay-price">
+        <text class="payment-demand">需付款</text>
+        <text class="font-medium">¥{{(order_total)>0?(order_total):'0.01'}}</text>
+      </view>
+      <view class="coupon-price" wx:if="{{data_allow_count>0}}">
+        已优惠¥{{(order_total)>0?data_allow_count:((couponTotal_amount>0)?couponTotal_amount:'0')}}
+      </view>
+    </view>
+    <form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+      <button formType="submit" class="payment-button font-medium" bindtap="confirmOrder">
+      提交订单
+      </button>
+    </form>
+  </view>
+  <!--包含下架商品-->
+  <view class="bottom-button" wx:if="{{is_sale === 2}}">
+  </view>
+  <group-tips bindtriggercancel='couponCancel' wx:if="{{is_show_tips}}" slogan="你来晚了，名额已满～" icon="offered-quota"></group-tips>
+  <group-tips bindtriggercancel='couponCancelOver' wx:if="{{is_show_overdue}}" slogan="你来晚了，拼团已结束～" icon="offered-end"></group-tips>
+</view>

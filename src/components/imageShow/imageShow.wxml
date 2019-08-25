@@ -1,0 +1,2 @@
+<!-- 次组件只做图片展示 model 写死 scaleToFill 图片展示全 -->
+<image class="img" src="{{src}}" mode="{{mode}}"></image>

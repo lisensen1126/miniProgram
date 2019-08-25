@@ -1,0 +1,21 @@
+<view style="padding-top: {{top_height}}px">
+  <!-- topbar -->
+	<top-bar title="施工录像" home="{{showHome}}"></top-bar>
+  <video class="video-screen" src="{{liveInfo.video_url}}" danmu-list="{{danmuList}}" show-progress="true" poster="{{liveInfo.image_url}}" controls></video>
+  <view class="video-info">
+    <image src="{{liveInfo.image_url}}" class="store-image" mode="aspectFill" />
+    <view>
+      <view class="store-name">
+        <view class="name">{{liveInfo.store_name}}</view>
+        <view class="living finish">已完成</view>
+      </view>
+      <view class="construction-time">施工时间：{{liveInfo.arrived_at}}</view>
+    </view>
+  </view>
+
+  <view class="bottom-wrapper">
+    <navigator class="back-button" open-type="navigateBack" hover-class="back-button-hover">
+      返回
+    </navigator>
+  </view>
+</view>

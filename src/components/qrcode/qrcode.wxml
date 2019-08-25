@@ -1,0 +1,14 @@
+<view class="coupon-model">
+  <view class="welfare_center">
+    <view class="hexiao">
+      核销码  {{code}}
+    </view>
+    <view class="welfare_center_text">
+      <image class="welfare_center_img" src="{{qrcode}}"></image>
+    </view>
+    <button class="welfare_center_btn" data-id="{{order_id}}" open-type="share">分享给好友</button>
+    <view class="welfare_center_close" catchtap='cancel'>
+      <image src='/images/index_close.png'></image>
+    </view>
+  </view>
+</view>

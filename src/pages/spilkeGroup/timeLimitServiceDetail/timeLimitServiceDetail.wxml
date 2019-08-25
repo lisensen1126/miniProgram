@@ -1,0 +1,148 @@
+<view class="page-itemDetail" wx:if="{{pageShow}}" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="秒杀详情" home="{{showHome}}"></top-bar>
+	<view wx:if="{{!isShowDefault}}">
+		<view class="content-box">
+			<!--商品基础信息-->
+			<view class="content-info">
+				<!--商品主图轮播-->
+				<block>
+					<swiper class="swiper-box" indicator-dots="{{false}}"
+							autoplay="{{true}}" interval="5000" duration="1000">
+						<block wx:for="{{goodsInfo.goods_imgs}}" wx:key="index">
+							<swiper-item>
+								<view class="slide-image">
+									<image-show src="{{item}}" quality="95"></image-show>
+								</view>
+							</swiper-item>
+						</block>
+					</swiper>
+				</block>
+				<!-- 秒杀倒计时 -->
+				<view class="count-down {{isOpen === 1 ? 'begin-minute' : 'already-minute'}}">
+					<view class="count-left">
+						{{isOpen === 1?'限时抢购':'限时抢购中'}}
+					</view>
+					<view class="count-right" wx:if="{{isOpen === 1 && count_down}}">
+						<text class="count-word">距开始还有</text>
+						<text class="count-time" wx:if="{{seckill_time_line_day>0}}">{{seckill_time_line_day}}</text>
+						<text class="time-default-color" wx:if="{{seckill_time_line_day>0}}">天</text>
+						<text class="count-time">{{seckill_time_line[0]}}</text>
+						<text class="count-time">:</text>
+						<text class="count-time">{{seckill_time_line[1]}}</text>
+						<text class="count-time">:</text>
+						<text class="count-time">{{seckill_time_line[2]}}</text>
+					</view>
+					<view class="count-right" wx:elif="{{isOpen === 2 && count_down}}">
+						<text class="count-word">距结束仅剩</text>
+						<text class="count-time" wx:if="{{seckill_time_line_day>0}}">{{seckill_time_line_day}}</text>
+						<text class="time-default-color" wx:if="{{seckill_time_line_day>0}}">天</text>
+						<text class="count-time">{{seckill_time_line[0]}}</text>
+						<text class="count-time">:</text>
+						<text class="count-time">{{seckill_time_line[1]}}</text>
+						<text class="count-time">:</text>
+						<text class="count-time">{{seckill_time_line[2]}}</text>
+					</view>
+					<view class="count-right" wx:elif="{{isOpen === 2 && count_down && goodsInfo.inventory_total <= 0}}">
+						<text class="count-word">距结束仅剩</text>
+						<text class="count-time" wx:if="{{seckill_time_line_day>0}}">{{seckill_time_line_day}}</text>
+						<text class="time-default-color" wx:if="{{seckill_time_line_day>0}}">天</text>
+						<text class="count-time">{{seckill_time_line[0]}}</text>
+						<text class="count-time">:</text>
+						<text class="count-time">{{seckill_time_line[1]}}</text>
+						<text class="count-time">:</text>
+						<text class="count-time">{{seckill_time_line[2]}}</text>
+					</view>
+					<view class="count-right" wx:else>
+						<text class="count-word">活动已结束</text>
+					</view>
+				</view>
+				<!--商品介绍-->
+				<block>
+					<view class="info">
+						<view class="goods-title">
+							<view class="title">{{goodsInfo.goods_name}}</view>
+							<view class="share-btn" bindtap="goShare">
+								<image class="share-icon-img" src="/images/mall/share.png"></image>
+								<view>分享</view>
+							</view>
+						</view>
+						<view class="goods-price">
+							<text class="price">¥{{goodsInfo.limit_price}}</text>
+							<text class="original">¥{{goodsInfo.goods_price}}</text>
+						</view>
+					</view>
+				</block>
+				<!--数量-->
+				<block>
+					<view class="content-detail content-detail-num">
+						<view class="info-title">数量<text class="sku-num-limit" wx:if="{{num_limit !== 0}}">限购{{goodsInfo.limit_number}}件</text>
+						</view>
+						<view class="btn-block">
+							<view class="labels" data-number="-1" bindtap="changeItemNum">
+								<image class="num-btn-reduce {{quantity == 1 ? 'disable-num' : ''}}" src="https://oss2.chedianai.com/images/assets/service-reduce-btn.png"></image>
+							</view>
+							<view class="num">{{quantity}}</view>
+							<view class="labels"  data-number="1" bindtap="changeItemNum">
+								<image class="num-btn-add {{quantity == limit_number ? 'disable-num' : ''}}" src="/images/default/light-add-btn.png"></image>
+							</view>
+						</view>
+					</view>
+				</block>
+				<!--品牌-->
+				<block>
+					<!--商品详情-->
+					<view class="content-detail">
+						<view class="info-title">服务描述
+						</view>
+						<view class="service-info">
+							<text>{{goodsInfo.summary}}</text>
+						</view>
+					</view>
+				</block>
+			</view>
+			<!--商品详情-->
+			<view class="content-detail">
+				<view class="detail-title">服务详情
+				</view>
+				<view class="detail-pic-list">
+					<view class="description rich-content">
+						<block wx:for="{{goodsInfo.contents}}" wx:for-item="contentItem" wx:key="index">
+							<image src="{{contentItem}}" mode="widthFix" class="rich-content-img" lazy-load="true"/>
+						</block>
+					</view>
+				</view>
+			</view>
+			<!--底部文案-->
+			<view class="detail-list-bottom">
+				<view class="line-left"></view>
+				智慧门店，每天爱车多一点
+				<view class="line-right"></view>
+			</view>
+		</view>
+		<view class="content-button">
+			<view class="create-order loot-all" wx:if="{{isOpen === 1 && count_down && goodsInfo.inventory_total>0}}">
+				即将开始
+			</view>
+			<form class="form-btn" bindsubmit="sendFormId" wx:elif="{{isOpen === 2 && count_down && goodsInfo.inventory_total>0}}" report-submit="true">
+				<button formType="submit" class="create-order" bindtap="createOrder">
+					立即下单
+				</button>
+			</form>
+			<view class="create-order loot-all" wx:elif="{{isOpen === 2 && count_down && goodsInfo.inventory_total <= 0}}">
+				抢光啦
+			</view>
+			<view class="create-order loot-all" wx:else>
+				活动已结束
+			</view>
+		</view>
+	</view>	
+	<!-- 分享弹框 -->
+	<share-model wx:if="{{go_share}}" 
+							bindclose="closeShare" 
+							bindposter="goPoster"></share-model>
+	<!--缺省-->
+	<!-- <empty-page wx:if="{{isShowDefault === true}}" icon="nosearch" slogan="该服务暂未上架！"/> -->
+	<!--缺省-->
+	<empty-page wx:if="{{isShowDefault}}" icon="{{err_icon}}" slogan="{{err_tip}}"/>
+</view>

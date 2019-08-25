@@ -1,0 +1,343 @@
+@import "~@/style/vw"
+
+.page-personal
+  .text-gray
+    color: #7F7F7F 
+  view,form,scroll-view
+    box-sizing: border-box
+    -moz-box-sizing: border-box
+    -webkit-box-sizing: border-box 
+  // 背景
+  .personal-top-bg
+    width: 100%
+    background-size: cover
+  // 用户信息模块
+  .personal-box
+    .share-icon
+      position: absolute
+      top: vw(15)
+      right: vw(15)
+      width: vw(30)
+      height: vw(30)
+    .btn
+      opacity: 0
+      z-index: 555 
+      width: vw(35)
+      height: vw(35)
+    position: relative
+    margin: vw(-53) auto vw(15) auto
+    width: vw(345)
+    height: vw(161)
+    background: #fff
+    .personal-info-box
+      width: 100%
+      height: vw(86)
+      overflow: hidden
+      border-bottom: vw(1) solid #EEEEEE
+      .personal-avatar
+        width: vw(56)  
+        height: vw(56)
+        border-radius: 50%
+        float: left
+        margin-top: vw(15)
+        margin-left: vw(25)
+      .user-info
+        float: left
+        margin-top: vw(22)
+        padding-left: vw(15)
+      .personal-name
+        font-size: vw(16)
+        font-weight: 600
+        color: #000
+        padding-right: vw(12)
+        background: url('https://oss1.chedianai.com/images/assets/personal-right-arrow.png') no-repeat
+        background-size: vw(6) vw(10)
+        background-position: right center
+        width: auto
+        display: inline-block
+      .personal-phone
+        font-size: vw(13)
+        color: #A6A6A6
+    .personal-moudel-box
+      padding-bottom: vw(20)
+      position: absolute
+      left: vw(30)
+      bottom: 0
+      width: vw(285)
+      height: vw(62)
+      display: flex
+      justify-content: space-between
+      .personal-item-moudel
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        text-align: center
+        .image-new
+          width: vw(24)
+          height: vw(14)
+          margin: 0 auto
+          margin-top: vw(6)
+        .item-num
+          font-size: vw(18)
+          font-weight: 600
+          color: #000
+          line-height: vw(24)
+        .item-text
+          line-height: vw(17)
+          font-size: vw(12)
+          color: #332E2E
+      .line
+        align-self: center
+        width: vw(1)
+        height: vw(18)
+        background: #eee
+  // 爱车模块
+  .car-box
+    width: 100%
+    min-height: vw(113)
+    background: white
+    position: relative
+    box-sizing: border-box
+    padding: vw(15) vw(13) vw(20) vw(14)
+    margin-bottom: vw(17)
+    .bg-car
+      width: vw(131)
+      height: vw(56)
+      position: absolute
+      bottom: 0
+      right: 0
+    .top-item
+      display: flex
+      justify-content: space-between
+      line-height: vw(20)
+      .left-title
+        font-weight: bolder
+      .edit-car
+        width: vw(100)
+        text-align: right
+        color: #7F7F7F
+        font-size: vw(12)
+        padding-right: vw(17)
+        background: url('https://oss1.chedianai.com/wechat/my-edit-icon.png')
+        background-repeat: no-repeat
+        background-size: vw(12) vw(12)
+        background-position: vw(86) vw(4)
+    .car-info
+      width: 100%
+      display: flex
+      justify-content: start
+      box-sizing: border-box
+      padding-right: vw(103)
+      margin-top: vw(14)
+      .brand-icon
+        width: vw(41)
+        height: vw(41)
+        margin-right: vw(15)
+      .bottom-left
+        width: vw(185)
+        font-size: vw(12)
+        color: #A6A6A6
+        line-height: vw(17)
+        .vehicle-num
+          color: #404040
+          font-size: vw(16)
+          font-weight: bold
+          height: vw(22)
+          margin-bottom: vw(2)
+          display: flex
+          justify-content: start
+          align-items: center
+          .province
+            padding-right: vw(8)
+          .text
+            margin-left: vw(10)
+            width: vw(32)
+            height: vw(15)
+            line-height: vw(15)
+            font-size: vw(10)
+            text-align: center
+            color: #7F7F7F
+            background: #F3F3F3
+            font-weight: normal
+        .tip-coupon
+          color: #FBCE07
+  // 订单模块
+  .order-title
+    width: 100%
+    color: #404040
+    background: #fff
+    font-size: vw(14)
+    line-height: vw(20)
+    font-weight: bolder
+    box-sizing: border-box
+    padding: vw(15) vw(15) 0
+  .orders-box
+    display: flex
+    justify-content: space-around
+    padding-top: vw(18)
+    box-sizing: border-box
+    width: 100%
+    height: vw(95)
+    background: #fff
+    .item-order
+      position: relative
+      width: vw(48)
+      text-align: center
+      .item-icon
+        width: vw(28)
+        height: vw(28)
+      .item-text
+        font-size: vw(12)
+        color: #332E2E
+      .item-num
+        position: absolute
+        left: vw(28)
+        top: vw(-9)
+        width: vw(18)
+        height: vw(18)
+        line-height: vw(15)
+        border: vw(2) solid #fff
+        border-radius: 50%
+        font-size: vw(10)
+        font-weight: 600
+        text-align: center
+        background-color: #FBCE07
+      .num-two
+        width: vw(24)
+        border-radius: vw(24)  
+      .num-three
+        width: vw(36)
+        border-radius: vw(36)    
+    .item-order:last-child
+        margin-right: 0
+  // 预约模块
+  .bespeak-box
+    height: vw(171)
+    .bespeak-title
+      padding: vw(15) vw(15) vw(10) vw(15)
+      font-size: vw(14)
+      font-weight: 600
+      color: #404040
+      .bespeak-num
+        float: right
+        font-size: vw(12)
+        color: #7F7F7F
+        font-weight: 400
+    .bespeak-ul
+      width: 100%
+      height: vw(128)
+      white-space: nowrap
+      .bespeak-li
+        margin-left: vw(15)
+        display: inline-block
+        width: vw(290) 
+        height: vw(128)
+        background-color: #ffffff
+        white-space: normal 
+        position: relative
+        .position
+          position: absolute
+          bottom: 0
+          right: 0
+          width: vw(48)
+          height: vw(54)
+          image
+            width: vw(34)
+            height: vw(34)
+        .decorate-line
+          float: left
+          height: vw(128)
+          border-left: vw(2) solid #FBCE07 
+        .store-msg
+          float: right
+          width: vw(274)
+          height: vw(128)  
+          text-align: left 
+          background-image: url('https://oss1.chedianai.com/images/assets/personal-map-bg01.png')
+          background-size: cover
+          .store-date
+            display: flex
+            line-height: vw(22)
+            padding-top: vw(20)
+            font-size: vw(16)
+            color: #404040
+            .minute 
+              margin-left: vw(8)
+              font-size: vw(12)
+          .distance-start
+            font-size: vw(12)
+            color: #a6a6a6
+            .red
+              color: #DD1D21
+          .store-title
+            width: vw(200)
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+            font-size: vw(12)
+            color: #404040
+            padding-top: vw(15)
+            line-height: vw(17)
+          .store-address
+            width: vw(200)
+            padding-top: vw(3)
+            line-height: vw(14)
+            font-size: vw(10)
+            color: #A6A6A6
+      .bespeak-li_spli
+        width: vw(345)
+        .store-msg
+          width: vw(330)
+    .no-bespeak
+      margin-left: vw(15)
+      padding-left: vw(15)
+      width: vw(345)
+      height: vw(128)
+      line-height: vw(128)   
+      font-size: vw(16)
+      color: #7F7F7F
+      border-left: vw(2) solid #FBCE07
+      background: #fff
+      background-image: url('https://oss1.chedianai.com/images/assets/personal-map-bg01.png')
+      background-size: cover
+  // 底部消费记录之下的页面
+  .third-module
+    background: #fff
+    padding: 0 vw(15) 
+    margin-top: vw(15)
+    margin-bottom: vw(10)
+    .third-item
+      height: vw(66)
+      border-bottom: 1px solid #eee
+      padding: vw(25) 0
+      &:last-child
+        border-bottom: 0
+      .item-left
+        font-size: vw(14)
+        color: #404040
+        float: left
+        line-height: vw(16)
+      .item-right
+        float: right
+        line-height: vw(16)    
+        font-size: vw(12) 
+        color: #7F7F7F
+        display: flex
+        align-items: center
+  .arrow_right
+    width: vw(6)
+    height: vw(10)
+    margin-left: vw(3)
+.animation-fade-in
+	animation-name: fade-in
+	animation-duration: 1s
+	animation-timing-function: linear
+@keyframes fade-in
+	0%
+		opacity: 0
+	50%
+		opacity: 0.5
+	75%
+		opacity: 0.8
+	100%
+		opacity: 1

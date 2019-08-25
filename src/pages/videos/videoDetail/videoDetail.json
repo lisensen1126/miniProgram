@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "施工录像",
+  "usingComponents": {
+    "top-bar": "../../../components/topbar/topbar"
+  }  
+}

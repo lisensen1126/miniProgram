@@ -1,0 +1,196 @@
+@import '~@/style/mixin'
+.page-vehicle-report-detail
+  color: #F7F8FA
+  .top-nav
+    height: vw(65)
+    width: 100%
+    background: white
+    box-sizing: border-box
+    display: flex
+    justify-content: space-around
+    border-bottom: vw(1) solid #F5F6F9
+    .nav-item
+      width: 25%
+      font-size: vw(16)
+      color: #3D424C
+      font-weight: bold
+      text-align: center
+      margin-top: vw(11)
+      .item-title
+        background: #FF6464
+        color: white
+        font-weight: normal
+        width: vw(36)
+        text-align: center
+        font-size: vw(10)
+        border-radius: vw(3)
+        margin: 0 auto
+      .pending
+        background: #4B86FF
+      .noninspect
+        background: #AEB5C5
+      .normal
+        background: #12C49F
+    .is-active
+      position: relative
+      &::after
+        content: ''
+        position: absolute
+        bottom: 0
+        left: 50%
+        transform: translateX(-50%)
+        width: vw(18)
+        height: vw(2)
+        background-color: #5E7BFF
+  .detail-content
+    box-shadow: 0 vw(6) vw(16) 0 rgba(35,36,46,0.04)
+    .diagnosis-step
+      position: relative
+      width: 100%
+      padding: 0 vw(30) vw(10) vw(40)
+      box-sizing: border-box
+      min-height: vw(100)
+      background: white
+      .diagnosis-item
+        margin-bottom: vw(5)
+      .diagnosis-step-title
+        height: vw(62)
+        color: #3d424c
+        font-weight: bold
+        font-size: vw(16)
+        line-height: vw(62)
+      .diagnosis-step-icon
+        position: absolute
+        top: vw(21)
+        left: vw(15)
+        width: vw(17)
+        height: vw(17)
+      .diagnosis-item-name
+        font-weight: bold
+        color: #5e7bff
+        font-size: vw(14)
+      .diagnosis-point-name
+        color: #3d424c
+        margin-top: vw(7)
+        margin-bottom: vw(3)
+        font-size: vw(12)
+      .diagnosis-line
+        color: #8a92a2
+        font-size: vw(12)
+      .diagnosis-points
+        .points-item
+          float: left
+          min-width: vw(50)
+          padding: 0 vw(10)
+          box-sizing: border-box
+          border: vw(1) solid #ffa24e
+          height: vw(18)
+          border-radius: vw(9)
+          color: #ffa24e
+          line-height: vw(18)
+          margin-right: vw(12)
+          margin-top: vw(8)
+          font-weight: bold
+          font-size: vw(12)
+      .image-bar
+        width: 100%
+        margin-bottom: vw(15)
+        display: flex
+        justify-content: space-between
+        align-content: flex-start
+        .diagnosis-img-box
+          width: vw(100)
+          height: vw(100)
+          margin-left: vw(2)
+          margin-bottom:vw(2)
+          position: relative
+          border: none
+          .diagnosis-img
+            width: vw(100)
+            height: vw(100)
+          .icon
+            z-index: 99
+            position: absolute
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%)
+            width: vw(36)
+            height: vw(36)
+  .store-info
+    width: vw(345)
+    height: vw(152)
+    margin: vw(10) vw(15)
+    box-shadow: 0 vw(6) vw(16) 0 rgba(35,36,46,0.04)
+    border-radius: vw(2)
+    background: white
+    .item-box
+      line-height: vw(20)
+      border-bottom: vw(1) solid #F0F0F0
+      display: flex
+      justify-content: space-between
+      font-size: vw(14)
+      color: #3D424C
+      box-sizing: border-box
+      padding: vw(15)
+      .right-content
+        color: #8A92A2
+        max-width: vw(230)
+        @extend %ellipses
+    .last-box
+      border: none
+  .vehicle-info
+    width: 100%
+    height: vw(80)
+    box-sizing: border-box
+    padding: vw(15) vw(20)
+    display: flex
+    justify-content: start
+    background: white
+    .left-logo
+      width: vw(50)
+      height: vw(50)
+      margin-right: vw(15)
+    .right-info
+      .vehicle_name
+        color: #3D424C
+        font-size: vw(18)
+        font-weight: bolder
+        line-height: vw(25)
+        max-width: vw(266)
+        margin-bottom: vw(5)
+        @extend %ellipses
+      .license_plate
+        display: flex
+        justify-content: start
+        color: #8A92A2
+        font-size: vw(12)
+        .left-license
+          margin-right: vw(20)
+  // 弹出框样式
+  .video-play-meng
+    z-index: 1000
+    position: fixed
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+    background: rgba(0, 0, 0, 0.5)
+    .video-play
+      z-index: 1000
+      position: absolute
+      top: 10%
+      left: 0
+      width: 100%
+      background: rgba(0, 0, 0, 1)
+      #myVideo
+        width: 100%
+      .videoClose
+        position: absolute
+        left: 50%
+        transform: translateX(-50%)
+        bottom: vw(-100)
+        width: vw(25)
+        height: vw(25)
+        .image
+          width: 100%
+          height: 100%

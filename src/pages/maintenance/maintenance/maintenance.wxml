@@ -1,0 +1,128 @@
+<view class="page-maintenance" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="{{page_title}}"></top-bar>
+	<!-- 头部简介图 -->
+	<view class="maintenance-header">
+		<view class="shell-image" bindtap="goDetail">
+			<image class="shell" src="{{heard_image}}"></image>
+		</view>
+	</view>
+	<!-- 爱车 -->
+	<view wx:if="{{textCombination.is_open_vehicle === 1}}">
+		<view class="maintenance-car" wx:if='{{indexInfo && indexInfo.length != 0}}' bindtap='goManagecar'>
+			<view class='index_header_car'>
+				<view class="index_header_car_image">
+					<image src='{{indexInfo.logo}}'></image>
+				</view>
+				<view class="index_header_car_title">
+					<view class="index_header_line1">{{indexInfo.brand_name}} {{indexInfo.model_name}}{{indexInfo.product_year ? '-'+indexInfo.product_year+'款':''}} {{indexInfo.vehicle_name}}</view>
+					<!-- <view class="index_header_line2">{{indexInfo.license_plate}}</view> -->
+				</view>
+			</view>
+			<view class="index_header_carplate">
+				<view class="index_header_line1">汽车牌照</view>
+				<view class="index_header_line2">{{indexInfo.license_plate}}</view>
+			</view>
+			<view class="index_header_km">
+				<view class="index_header_line1">行驶里程</view>
+				<view class="index_header_line2">{{indexInfo.mileage}}KM</view>
+			</view>
+		</view>
+		<view class="index_header_null" wx:if='{{!indexInfo || indexInfo.length == 0}}' bindtap='goAddcar'>
+			<view class="index_header_addcar">
+				<image src='/images/addcar.png'></image>
+				<view class="index_header_addcar_title">
+					<view class="index_header_line1">您还未添加任何车型</view>
+					<view class="index_header_line2">赶快去添加一辆爱车吧</view>
+				</view>
+			</view>
+			<view class="index_icon">
+				<image src='/images/index/arrow_right.png'></image>
+			</view>
+		</view>
+	</view>
+	<!-- 品牌视频 -->
+	<view class="maintenance-video" wx:if="{{videoList.length > 0}}">
+		<view class="title-word">
+			<view class="left">{{textCombination.video_title}}</view>
+			<!-- <view class="right">
+				<view class="right-word">更多</view>
+				<image class="right-icon" src="/images/intelligent/right-more.png"></image>
+			</view> -->
+		</view>
+		<view class="box">
+			<view class="video-content">
+				<scroll-view style="scroll-content" scroll-y='{{false}}' scroll-x="{{true}}">
+					<view class="video" wx:for="{{videoList}}" wx:key="index">
+						<view class="viedo-list">
+							<image class="myVideo" src="{{item.video_cover}}">
+							</image>
+							<image class="icon" src="/images/intelligent/icon-play.png" data-id="{{item.id}}" data-url="{{item.video_address}}" bindtap="onChangeShowState">
+							</image>
+						</view>
+						<view class="word"><text class="text">{{item.video_name}}</text></view>
+					</view>
+				</scroll-view>
+			</view>
+		</view>
+	</view>
+	<!-- 壳保养套餐 -->
+	<view class="maintenance-meal" wx:if="{{imgList.length > 0}}">
+		<view class="title-word">
+			<view class="left">{{textCombination.product_title}}</view>
+		</view>
+		<view class="meal-content">
+			<scroll-view scroll-x="{{true}}">
+				<view class="meal" bindtap="goMallDetail" wx:for="{{imgList}}" wx:key="index" data-spu='{{item.product_id}}' data-type='{{item.type}}' data-sku='{{item.sku_id}}'>
+					<view class="image">
+						<image class="project" src="{{item.product_cover}}" mode="aspectFill"></image>
+					</view>
+					<view class="project-word">{{item.name}}</view>
+					<view class="proiect-money">¥{{item.price}}
+						<!-- <text class="economize">节省{{item.discount_price}}元</text> -->
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+	</view>
+	<!-- 壳保养品牌日 -->
+	<view class="maintenance-brand" wx:if="{{brandImage && brandImage.length !== 0}}">
+		<view class="brand" bindtap="goBrandDetail">
+			<image class="brand-image" src="{{brandImage}}"></image>
+			<image class="brand-more" src="/images/intelligent/see-more.png"></image>
+		</view>
+	</view>
+	<expectation bindtriggercancel='triggercancel' wx:if='{{isExpectation}}'></expectation>
+	<!-- 爱车有道 -->
+	<view class="maintenance-car-list" wx:if="{{carList.length > 0}}">
+		<view class="title-word">
+			<view class="left">{{textCombination.content_title}}</view>
+		</view>
+		<view class="car-list" wx:for="{{carList}}" wx:key="index" data-name="{{textCombination.name}}" data-at="{{item.created_at}}"  data-title="{{item.content_name}}" data-content="{{item.content}}" data-index="{{index}}" data-id="{{item.id}}" data-isopen="{{item.is_open}}" data-isjoin="{{item.is_join}}" bindtap="goCarDetail">
+			<view class="car-image">
+				<image class="image" mode="aspectFill" src="{{item.content_cover}}"></image>
+			</view>
+			<view class="car-describe">
+				<view class="describe-title">
+					{{item.content_name}}
+				</view>
+				<!-- 限制字符串长度 -->
+				<view class="describe-detail">
+					{{item.content_description}}
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 弹出视频框 -->
+	<view class="video-play-meng" wx:if="{{showView}}">
+		<view class="video-play">
+			<view class="video-content">
+				<video id="myVideo" autoplay="{{true}}" src="{{palyVideo}}">
+				</video>
+				<view class="videoClose" bindtap='onChangeShowCloseState'>
+					<image class="image" src='/images/index_close.png'></image>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,10 @@
+{
+	"navigationBarTitleText": "门店",
+	"usingComponents": {
+		"top-bar": "../../components/topbar/topbar",
+    "score-points": "../../components/scorePoints/scorePoints",
+    "score-points-min": "../../components/scorePointsMin/scorePoints",
+    "tech-model": "../../components/techModel/techModel",
+		"image-show": "../../components/imageShow/imageShow"
+  }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="90px" viewBox="0 0 47 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>coupon_bg_right</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FF9B83" offset="0%"></stop>
+            <stop stop-color="#F86A4B" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="coupon_bg_right" fill="url(#linearGradient-1)">
+            <path d="M7,52 C3.13400675,52 0,48.8659932 0,45 C0,41.1340068 3.13400675,38 7,38 L7,0 L45,0 C46.1045695,-2.02906125e-16 47,0.8954305 47,2 L47,88 C47,89.1045695 46.1045695,90 45,90 L7,90 L7,52 Z"></path>
+        </g>
+    </g>
+</svg>

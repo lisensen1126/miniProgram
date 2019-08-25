@@ -1,0 +1,10 @@
+{
+	"navigationBarTitleText": "购卡详情",
+	"usingComponents": {
+		"confirm-phone": "../../../components/confirmPhone/confirmPhone",
+		"top-bar": "../../../components/topbar/topbar",
+		"empty-page": "../../../components/emptyPage/emptyPage",
+		"coupon-t1": "../../../components/coupons/couponT1/couponT1",
+		"share-model": "../../../components/shareModel/shareModel"
+	}
+}

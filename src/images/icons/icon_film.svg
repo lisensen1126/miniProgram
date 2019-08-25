@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_film</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="聚合页" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="施直播详情-结束" transform="translate(-165.000000, -182.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="Group-3" transform="translate(153.000000, 182.000000)">
+                <g id="icon_film" transform="translate(12.000000, 0.000000)">
+                    <path d="M45,0 L1,0 C0.4,0 0,0.4 0,1 L0,45 C0,45.6 0.4,46 1,46 L45,46 C45.6,46 46,45.6 46,45 L46,1 C46,0.4 45.6,0 45,0 Z M18,38 L18,44 L12,44 L12,38 L18,38 Z M20,38 L26,38 L26,44 L20,44 L20,38 Z M28,38 L34,38 L34,44 L28,44 L28,38 Z M2,36 L2,10 L44,10 L44,36 L2,36 Z M28,8 L28,2 L34,2 L34,8 L28,8 Z M26,8 L20,8 L20,2 L26,2 L26,8 Z M18,8 L12,8 L12,2 L18,2 L18,8 Z M44,8 L36,8 L36,2 L44,2 L44,8 Z M10,2 L10,8 L2,8 L2,2 L10,2 Z M2,38 L10,38 L10,44 L2,44 L2,38 Z M36,44 L36,38 L44,38 L44,44 L36,44 Z" id="Shape"></path>
+                    <path d="M19.6,16.209017 C19.3,16.009017 18.9,15.909017 18.6,16.109017 C18.2,16.309017 18,16.609017 18,17.009017 L18,29.009017 C18,29.409017 18.2,29.709017 18.6,29.909017 C18.7,30.009017 18.8,30.009017 19,30.009017 C19.2,30.009017 19.4,29.909017 19.6,29.809017 L27.6,23.809017 C27.9,23.609017 28,23.309017 28,23.009017 C28,22.709017 27.9,22.409017 27.6,22.209017 L19.6,16.209017 Z M20,27.009017 L20,19.009017 L25.3,23.009017 L20,27.009017 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

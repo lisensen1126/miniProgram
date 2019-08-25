@@ -1,0 +1,9 @@
+{
+	"navigationBarTitleText": "分类列表",
+	"usingComponents": {
+		"custom-loading": "../../../components/customLoading/customLoading",
+		"empty-page": "../../../components/emptyPage/emptyPage",
+    "top-bar": "../../../components/topbar/topbar",
+		"catch-form": "../../../components/formId/formId"
+	}
+}

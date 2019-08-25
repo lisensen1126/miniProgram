@@ -1,0 +1,39 @@
+<view class="page-luckyHelp" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="抽奖说明"></top-bar>
+	<view class="content">
+		<!--说明列表-->
+		<view class="content-list">
+			<view class="item clearfix">
+				<view class="title-sm">活动时间：</view>
+				<view class="content-sm time">{{ start_time }} 至 <text wx:if="{{end_time}}">{{end_time}}</text> <text wx:if="{{!end_time}}">长期有效</text> </view>
+			</view>
+			<view class="item clearfix">
+				<view class="title-sm">活动简介：</view>
+				<view class="content-sm" >{{ description }}</view>
+			</view>
+			<view class="item clearfix">
+				<view class="title-sm">抽奖次数：</view>
+				<view class="content-sm">活动期间，每个客户完成小程序注册后赠送1次抽奖机会，分享好友可额外获得1次抽奖机会</view>
+			</view>
+			<view class="item clearfix">
+				<view class="title-sm">活动对象：</view>
+				<view class="content-sm">所有车主用户均可参加，完成小程序注册即可参与抽奖，同一手机号码只能参与一次。</view>
+			</view>
+		</view>
+		<!--说明列表end-->
+		<!--领奖说明-->
+		<view class="prize-explain">
+			<view class="title-sm">奖品领取及使用：</view>
+			<view class="content-sm">
+				<view><text class="text-black">满减券：</text>当你抽中满减券奖品后，可在小程序“我的”-“我的优惠券”里查看到你的满减券，在优惠券规定的有效时间内即可使用。</view>
+				<view><text class="text-black">兑换券：</text>当你抽中兑换券奖品后，可在小程序“我的”-“我的优惠券”里查看到你的兑换券，按照优惠券规定的有效期，在对应门店即可兑换奖品。</view>
+			</view>
+		</view>
+		<!--领奖说明end-->
+	</view>
+	<!--返回按钮-->
+	<view class="button-content">
+		<button type="default" size="defaultSize" bindtap="goLucky" class="back-button">返回</button>
+	</view>
+</view>

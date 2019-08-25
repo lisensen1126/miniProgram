@@ -1,0 +1,13 @@
+<view class="card-center" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="二维码"></top-bar>
+  <view>
+    <image class="code" src="{{qrcode_url}}" mode="aspectFit|aspectFill|widthFix" />
+    <view class="number">
+      {{id}}
+    </view>
+    <view class="tips" hover-class="none" hover-stop-propagation="false">
+      请出示二维码
+    </view>
+  </view>
+</view>

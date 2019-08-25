@@ -1,0 +1,19 @@
+<view class="page-voucher" style="padding-top:{{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="领券中心" home="{{showHome}}"></top-bar>
+	<!-- topbar end -->
+  <!-- 缺省页面 -->
+  <empty-page wx:if="{{!list.length && isinitiated}}" class="categroy-content" slogan="暂无可领取的优惠券" icon="nocoupon"></empty-page>
+  <!-- 列表数据 -->
+  <view class="list-wrapper">
+    <block wx:if="{{list.length>0}}">
+      <block wx:for="{{list}}" wx:key="{{index}}">
+        <coupon-t1 coupon="{{item}}" index="index" type="center" bind:receive="getCouponOperation" bind:toUse="useCoupon" data-cdp="coupon_voucher_listReceive"></coupon-t1>
+      </block>
+      <custom-loading has-more='{{!isAllLoaded}}' is-loading="{{isLoading}}"></custom-loading>
+    </block>
+    <block wx:else>
+      <empty-page wx:if="{{!isLoading}}" icon="nosearch" slogan="暂无优惠券"/>
+    </block>
+  </view>
+</view>

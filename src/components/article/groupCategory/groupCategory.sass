@@ -1,0 +1,92 @@
+@import '~@/style/mixin'
+.collection
+  margin-bottom: vw(20)
+  .group-category-wrapper
+    box-sizing: border-box
+    width: 100%
+    height: vw(210)
+    background: #fff
+    .header
+      box-sizing: border-box
+      display: flex
+      justify-content: space-between
+      padding: vw(7) 0
+      height: vw(42)
+      background: #E8C18E
+      .icon
+        flex: 0 0 vw(49)
+        height: vw(27)
+        background-image: url("https://oss1.chedianai.com/images/assets/pin.png")
+        background-size: cover
+      .num-wrapper
+        flex: 1
+        padding-right: vw(5)
+        height: vw(27)
+        line-height: vw(27)
+        text-align: right
+        .num
+          float: right
+          width: vw(53)
+          height: vw(27)
+          line-height: vw(27)
+          text-align: center
+          background: #FFE5C2
+        
+    .content-wrapper
+      box-sizing: border-box
+      padding: vw(15)
+      height: vw(168)
+      border: vw(5) solid #E8C18E
+      border-top: 0 
+      .goods-item
+        display: flex
+        justify-content: space-between
+        height: vw(94)
+        border-bottom: vw(1) solid #F8ECDD
+        .goods-img
+          width: vw(134)
+          height: vw(84)
+          .img
+            width: 100%
+            height: 100%
+        .goods-content
+          display: flex
+          flex-direction: column
+          justify-content: space-between
+          width: vw(158)
+          height: vw(84)
+          font-size: vw(14)
+          .title
+            width: vw(158)
+            height: vw(42)
+            line-height: vw(21)
+            font-size: vw(14)
+            color: #404040
+            overflow : hidden
+            text-overflow: ellipsis
+            display: -webkit-box
+            -webkit-line-clamp: 2
+            -webkit-box-orient: vertical
+          .price
+            font-size: vw(16)
+            color: #DD1D21
+            text
+              font-size: vw(10)
+              color: #C1C1C1
+              text-decoration: line-through
+      .btn-wrapper
+        box-sizing: border-box
+        display: flex
+        justify-content: flex-end
+        align-items: center
+        padding: vw(10) 0 vw(15) 0
+        height: vw(53)
+        .btn
+          margin-left: vw(10)
+          width: vw(70)
+          height: vw(28)
+          line-height: vw(28)
+          font-size: vw(12)
+          text-align: center
+          color: #fff
+          background: linear-gradient(140deg,rgba(58,56,66,1) 0%,rgba(27,26,31,1) 100%)

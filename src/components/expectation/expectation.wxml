@@ -1,0 +1,9 @@
+<view class="model-page" wx:if="{{showModel}}">
+    <view class="model-content">
+        <image class="model-icon" src='https://oss1.chedianai.com/images/assets/fitment.png'></image>
+        <view class="model-title">敬请期待</view>
+        <view class="bottom-btn">
+            <image src='/images/index_close.png' bindtap="cancel"></image>
+        </view>
+    </view>
+</view>

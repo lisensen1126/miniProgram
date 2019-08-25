@@ -1,0 +1,108 @@
+<!-- 用来处理金额两位小数 -->
+<wxs module="tool">
+  // 计算实付金额
+  var bar = function (a, b) {
+    var _a = (a*100).toFixed(0), _b = b;
+    var num = (_a - _b) / 100;
+    return num.toFixed(2)
+  }
+  // 立减金保留两位小数
+  var randomMoney = function (money = 0) {
+    var random_money = money / 100;
+    return random_money.toFixed(2)
+  }
+  // 函数导出
+  module.exports = {
+    formatMoney : bar,
+    randomMoney: randomMoney
+  }
+</wxs>
+<view class="makesure-order" wx:if="{{isinitiated}}" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="确认订单"></top-bar>
+  <!-- 卡信息 -->
+  <!-- <confirm-phone wx:if="{{showPhone}}" bindtriggercancel="cancelPhone" bindtriggerconfirm='confirmPhone'></confirm-phone> -->
+  <view wx:if="{{!is_show_default}}">
+    <view class="card-wrapper">
+      <view class="project-title order-title">
+        <view class="project-name">
+          订单详情
+        </view>
+      </view>
+      <view class="card-item" style="background-image: url({{info.image_url}})">
+        <view class="card-item-top">
+          <view class="card-item-title">
+            <view class="card-item-name">{{info.name}}</view>
+          </view>
+        </view>
+        <view class="card-item-bottom">
+          <view class="card-item-price">
+            <text class="card-item-nowprice">¥{{info.price}}</text>
+            <text class="card-item-storeprice">门市价 ¥{{info.origin_price}}</text>
+          </view>
+          <view class="card-item-use" wx:if="{{info.type === 1}}">
+            <view>可使用</view><view class="num-use">{{info.num}}</view><view>次</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!--优惠券-->
+    <view class="coupon" bindtap="goCouponList">
+      <image class="item-icon" src="/images/personal/first-icon01.png" />
+      <view class="item-coupon">优惠券</view>
+      <view class="coupon-quantity" wx:if="{{myCouponList.data_allow_count>0}}">{{myCouponList.data_allow_count}}张可用</view>
+      <view class="coupon-quantity default" wx:if="{{myCouponList.data_allow_count<=0}}">暂无优惠券可用</view>
+      <view class="coupon-price">
+        <text wx:if="{{myCouponList.data_allow_count>0}}">- ¥{{data_allow_count}}</text>
+        <text class="arrow-icon"></text>
+      </view>
+    </view>
+
+    <!-- 支付信息 -->
+    <view class="payment-block-info">
+      <view class="project-title">
+        <view class="project-name">
+          支付信息
+        </view>
+      </view>
+      <view class="payment-info-item">
+        <view class="pay-item-left"> 商品总额 </view>
+        <view class="pay-item-right">¥{{info.price}}</view>
+      </view>
+      <view class="payment-info-item" wx:if="{{random_id != 0}}">
+        <view class="pay-item-left"> 立减金 </view>
+        <view class="pay-item-right">-¥{{tool.randomMoney(random_money)}}</view>
+      </view>
+      <view class="payment-info-item">
+        <view class="pay-item-left"> 优惠券 </view>
+        <view class="pay-item-right" wx:if="{{myCouponList.data_allow_count>0}}">-¥{{data_allow_count}}
+        </view>
+        <view class="pay-item-right" wx:if="{{myCouponList.data_allow_count<=0}}">-¥0</view>
+      </view>
+      <view class="payment-info-item">
+        <view class="pay-item-left"> 实际金额 </view>
+        <!-- js 做小数的加减时容易精度丢失，最好转成整数做减法运算 -->
+        <view class="pay-item-right real-price">¥{{info.price - data_allow_count > 0 ? tool.formatMoney(actual_amount, random_money) : 0.01}}</view>
+      </view>
+    </view>
+    <!-- 按钮 -->
+    <view class="bottom-button">
+      <view class="payment-info">
+        <view class="pay-price">
+          <view class="total-text">实付款: ¥</view>
+          <view class="price">{{info.price - data_allow_count > 0 ? tool.formatMoney(actual_amount, random_money) : 0.01}}</view>
+        </view>
+        <!-- <view class="coupon-price" wx:if="{{myCouponList.data_allow_count>0}}">已优惠：¥{{data_allow_count}}</view>
+        <view class="coupon-price" wx:if="{{myCouponList.data_allow_count<=0}}">已优惠：¥0</view> -->
+      </view>
+      <form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+        <button formType="submit" class="payment-button" bindtap="placeOrder" data-cdp="card_makeSureOrder_1">
+          确认支付
+        </button>
+      </form>
+    </view>
+  </view>
+  <!--缺省-->
+	<empty-page wx:if="{{is_show_default}}" icon="nocard" slogan="{{err_tip}}"/>
+</view>

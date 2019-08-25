@@ -1,0 +1,67 @@
+<view wx:if="{{card_list && card_list.length}}" class="card-page" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="选择养护卡"></top-bar>
+  <!--tab切换部分-->
+  <!-- card -->
+  <swiper
+    class="card-swiper"
+    indicator-dots="{{true}}"
+    indicator-active-color="#F7D117"
+    previous-margin="100rpx"
+    current="{{current_card_index}}"
+    next-margin="100rpx"
+    bindchange="swiperChange">
+    <block wx:for="{{card_list}}" wx:key="item">
+      <swiper-item class="card-item">
+        <view class="card-detail" style="background-image: url({{item.image_url}})">
+          <text class="d-title">{{item.name}}</text>
+          <text class="d-num">使用<text>{{item.used_num}}/{{item.num}}</text>次</text>
+          <text class="d-time">有效期至 {{item.end_time}}</text>
+          <text class="d-no">NO.{{item.upkeep_no}}</text>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- card end-->
+
+  <!-- detail -->
+  <view class="card-content">
+    <block wx:for="{{current_card.item}}" wx:key="item">
+      <!-- 最后一次激活 -->
+      <view class="con-item {{item.is_activation == 1 ? 'con-activate': 'con-wait'}} {{(item.id == choosed_item.id && choosed_card.upkeep_no == current_card.upkeep_no) ? 'con-active' : ''}}" 
+        wx:if="{{item.is_end == 1}}"
+        bindtap="chooseItem" data-item="{{item}}" data-cdp="card_orderChooseCard_list">
+        <text class="i-title">{{item.name}}</text>
+        <text class="i-desc">{{item.description}}</text>
+        <text class="i-status" wx:if="{{item.is_activation == 1}}">已激活</text>
+        <text class="i-status" wx:if="{{item.is_activation != 1}}">待激活</text>
+      </view>
+
+      <!-- 正常项目 -->
+      <view class="con-item {{(item.num > item.used_num) || (item.num == 0) ? 'con-normal': 'con-over'}} {{(item.id == choosed_item.id && choosed_card.upkeep_no == current_card.upkeep_no) ? 'con-active' : ''}}" 
+        bindtap="chooseItem" data-item="{{item}}" data-cdp="card_orderChooseCard_list"
+        wx:if="{{item.is_end == 2}}">
+        <text class="i-title">{{item.name}}</text>
+        <text class="i-desc">{{item.description}}</text>
+        <text class="i-status" wx:if="{{item.num == 0}}">无限次</text>
+        <text class="i-status" wx:if="{{item.num == item.used_num && item.num != 0}}">已完成</text>
+        <text class="i-status" wx:if="{{item.num > item.used_num}}">剩余{{item.num - item.used_num}}次</text>
+      </view>
+    </block>
+  </view>
+  <!-- detail end -->
+
+  <!-- footer -->
+  <view class="footer-box footer-ok" bindtap="chooseItemIsOk" data-cdp="card_orderChooseCard_1">
+    确定
+  </view>
+  <!-- footer end-->
+</view>
+
+<view class="card-default" wx:if="{{card_list && !card_list.length}}">
+  <view class="de-box">
+    <image src="https://oss1.chedianai.com/images/assets/card_null.png" />
+    <text>暂无养护卡</text>
+  </view>
+  <!-- <view class="de-btn" bindtap="goBuyCard">去购卡中心</view> -->
+</view>

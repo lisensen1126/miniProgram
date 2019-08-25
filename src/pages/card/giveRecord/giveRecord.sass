@@ -1,0 +1,85 @@
+@import '~@/style/mixin'
+  
+.giving-record
+  .card-wrapper
+    width: 100%
+    box-sizing: border-box
+    .card-item
+      width: 100%
+      padding-left: vw(15)
+      box-sizing: border-box
+      background: #ffffff
+      margin-bottom: vw(15)
+      .card-top
+        display: flex
+        align-items: center
+        box-sizing: border-box
+        padding: vw(15) vw(15) vw(15) 0
+        border-bottom: vw(1) solid #F5F5F5
+        .card-left
+          width: vw(137)
+          height: vw(75)
+          image
+            width: 100%
+            height: 100%
+        .card-right
+          padding-left: vw(15)
+          display: flex
+          min-height: vw(75)
+          flex-direction: column
+          justify-content: space-between
+          .title
+            font-size: vw(15)
+            color: #373737
+            font-weight: bold
+          .give-people
+            .give-people-text
+              color: #858587
+              font-size: vw(14)
+              font-weight: 400
+      .card-bottom
+        padding: vw(18) vw(15) vw(18) 0
+        box-sizing: border-box
+        display: flex
+        justify-content: space-between
+        align-items: center
+        .card-order
+          color: #858587
+          font-size: vw(12)
+          font-weight: 400
+        .card-status
+          color: #858587
+          font-size: vw(14)
+          font-weight: bold
+          &.active
+            color: #EB8705
+          &.active1
+            color: #DD1D21
+          &.active2
+            color: #404040
+          &.active3
+            color: #DD1D21
+      .card-bottom-btn-box
+        width: 100%
+        padding: 0 vw(15) vw(18) 0
+        text-align: right
+        box-sizing: border-box
+        .card-bottom-btn
+          display: inline-block
+          border: vw(1) solid #A6A6A6
+          border-radius: vw(2)
+          text-align: center
+          width: vw(76)
+          height: vw(30)
+          color: #404040
+          line-height: vw(30)
+          font-weight: 400
+          font-size: vw(12)
+          margin-left: vw(15)
+          padding: 0
+          background: #ffffff
+          &.active
+            color: #DD1D21
+            border-color: #DD1D21
+          &:after
+            border: none

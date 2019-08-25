@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "壳保养",
+	"usingComponents": {
+		"expectation": "../../../components/expectation/expectation",
+		"top-bar": "../../../components/topbar/topbar"
+	}
+}

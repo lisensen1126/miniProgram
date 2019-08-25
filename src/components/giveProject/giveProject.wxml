@@ -1,0 +1,30 @@
+<view class="give-project">
+  <!-- 赠送好友 -->
+  <view class="give-friend">
+    <view class="give-button">
+      <button class="button" bindtap="cancel">取消</button>
+      <view class="give-title">
+        选择赠送项目
+      </view>
+      <button class="button" wx:if="{{show_button}}" data-items="{{list}}" open-type="share">分享好友</button>
+      <button class="button" wx:if="{{!show_button}}" bindtap="giveProject">分享好友</button>
+    </view>
+    <view class="list-wrapper">
+      <view class="item" wx:for="{{list}}" wx:key="{{index}}">
+        <view class="item-left">
+          <view class="item-title">{{item.name}}</view>
+          <view class="item-describe">可赠送{{item.num - item.used_num}}次</view>
+        </view>
+        <view class="item-right">
+          <view class="operation {{item.give_num === 0 ? 'active' : ''}}}" data-item="{{item}}" bindtap="reduc">
+            <image src="https://oss1.chedianai.com/images/assets/reduc16@2x.png"></image>
+          </view>
+          <view class="text">{{item.give_num}}</view>
+          <view class="operation {{item.num - item.used_num - item.give_num === 0 ? 'active' : ''}}" data-item="{{item}}" bindtap="add">
+            <image src="https://oss1.chedianai.com/images/assets/add16@2x%20%281%29.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,95 @@
+@import '~@/style/mixin'
+
+.video-screen
+  width: 100%
+  height: vw(306)
+  &.video-screen-finished
+    display: flex
+    background: black
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+.film-icon
+  width: vw(46)
+  height: vw(46)
+  background: url('../../../images/icons/icon_film.svg') no-repeat center center
+  background-size: cover
+
+.film-finished
+  color: #ffffff
+  font-size: vw(14)
+  line-height: vw(20)
+  margin-top: vw(15)
+
+.video-info
+  box-sizing: border-box
+  margin-top: vw(10)
+  width: vw(375)
+  padding: vw(25) vw(15)
+  background: #ffffff
+  box-shadow: 0 0 0 0 #d9d9d9, inset 0 0 0 0 #d9d9d9
+  display: flex
+  flex-direction: row
+  align-items: center
+
+.store-image
+  width: vw(50)
+  height: vw(50)
+  box-shadow: 0 vw(2) vw(12) 0 rgba(0, 0, 0, 0.10)
+  border-radius: vw(2)
+  margin-right: vw(15)
+
+.store-name
+  display: flex
+  align-items: center
+  font-weight: bold
+  margin-bottom: vw(5)
+
+.name
+  height: vw(22)
+  color: $text-darkest
+  flex-direction: column
+  font-size: vw(16)
+  line-height: vw(22)
+  max-width: vw(200)
+  @extend %ellipses
+
+.living
+  display: flex
+  align-items: center
+  height: vw(18)
+  flex-shrink: 0
+  font-size: vw(12)
+  padding: 0 vw(5)
+  background: $primary
+  align-items: center
+  margin-left: vw(5)
+  color: #ffffff
+  border-radius: vw(2)
+  &.finish
+    background: $text-darkest
+
+.construction-time
+  font-size: vw(13)
+  line-height: vw(18)
+  color: $text-gray
+
+.bottom-wrapper
+  width: 100%
+  height: vw(50)
+
+.back-button
+  position: fixed
+  display: flex
+  align-items: center
+  justify-content: center
+  left: 0
+  bottom: 0
+  width: vw(375)
+  height: vw(50)
+  background: #ffffff
+  box-shadow: 0 vw(1) vw(6) 0 rgba(0, 0, 0, 0.05), 0 0 0 0 rgba(0, 0, 0, 0.10)
+
+.back-button-hover
+  opacity: .7

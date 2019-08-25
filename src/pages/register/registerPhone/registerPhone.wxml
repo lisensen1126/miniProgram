@@ -1,0 +1,36 @@
+<view class="old-register" style="padding-top: {{top_height}}px">
+  <!-- topbar -->
+	<top-bar title="会员注册"></top-bar>
+  <view>
+    <image class="register-img" src="https://oss1.chedianai.com/static/register-img.png"></image>
+    <!-- <view class="tip-name">壳保养智慧门店会员登录</view> -->
+  </view>
+
+
+  <view class="clearfix padding-bottom">
+    <view class="get-info {{isUserInfo ? '' : 'active'}}" bindtap="cancel"></view>
+    <button wx:if="{{isUserInfo}}" open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class="user-info"></button>
+    <view class="xieyi">我同意<text bindtap="goBook" class="blue">《壳保养智慧门店用户隐私声明》</text>相关服务条款和政策</view>
+  </view>
+
+
+
+  <button class="register" wx:if="{{isUserInfo}}">微信授权登录</button>
+  <button open-type="getPhoneNumber" wx:if="{{!isUserInfo && !loading}}" bindgetphonenumber="getPhoneNumber" class="register r-active">微信授权登录</button>
+  <button wx:if="{{loading}}" class="register r-active">微信授权登录</button>
+
+
+  <!--无注册有礼设置-->
+  <view class="model" wx:if="{{!isShowCoupon && is_reigster}}" style="top: {{top_height}}px">
+    <view class="content">
+      <image src="/images/register/success.png" alt="" class="rep-img"></image>
+      <view class="con">恭喜你</view>
+      <view class="con-info">欢迎开启你的壳保养智慧门店之旅！</view>
+      <catch-form bind:callback="goback">
+        <button class="goback">返回之前页面</button>
+      </catch-form>
+    </view>
+  </view>
+  <!-- 推送优惠券弹框 -->
+	<coupon-model bindtriggercancel="couponCancel" fromRegister="{{true}}" wx:if="{{isShowCoupon && recommend_coupon.length > 0}}" list="{{recommend_coupon}}"></coupon-model>
+</view>

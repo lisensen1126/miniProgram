@@ -1,0 +1,184 @@
+<view class="group-purchase-details" wx:if="{{page_show}}" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+  <top-bar title="拼团详情"  home="{{showHome}}"></top-bar>
+  <view wx:if="{{!is_show_default}}">
+    <!-- 卡信息 -->
+    <view class="card-wrapper">
+      <view class="card-item" style="background-image: url({{info.image_url}})">
+        <view class="card-item-top">
+          <view class="card-item-title"><view class="card-item-name">{{info.name}}</view></view>
+        </view>
+        <view class="card-item-bottom">
+          <view class="card-item-price">
+            <text class="card-item-nowprice">¥{{info.price}}</text>
+            <text class="card-item-storeprice">门市价 ¥{{info.origin_price}}</text>
+          </view>
+          <view class="card-item-use" wx:if="{{info.type === 1}}">
+            <view>可使用</view><view class="num-use">{{info.num}}</view><view>次</view>
+          </view>
+        </view>
+      </view>
+      <view class="card-spike-price">
+        <view class="info">
+          <view class="price-info">
+            <view class="spike-price">¥{{info.group_price}}</view>
+            <image class="order-spike-label" src="https://oss1.chedianai.com/images/assets/order-group-label.png"/>
+          </view>
+          <view class="group-num">{{info.group_num}}人团</view>
+        </view>
+        <view class="share-btn" bindtap="goShare">
+          <image class="share-icon-img" src="/images/mall/share.png"></image>
+          <view>分享</view>
+        </view>
+      </view>
+    </view>
+    <!-- 玩法说明 -->
+    <view class="project-item">
+      <view class="project-title">
+        <view class="project-name">玩法说明</view>
+      </view>
+      <view class="desc-step">
+        <view class="desc-step-block">
+          <image class="desc-icon" src="https://oss1.chedianai.com/images/assets/group-step-one.png"/>
+          <text>开团</text>
+          <image class="desc-line" src="https://oss1.chedianai.com/images/assets/group-step-dot.png"/>
+        </view>
+        <view class="desc-step-block">
+          <image class="desc-icon" src="https://oss1.chedianai.com/images/assets/group-step-two.png"/>
+          <text>邀请好友</text>
+          <image class="desc-line" src="https://oss1.chedianai.com/images/assets/group-step-dot.png"/>
+        </view>
+        <view class="desc-step-block">
+          <image class="desc-icon" src="https://oss1.chedianai.com/images/assets/group-step-three.png"/>
+          <view>
+            <view>人满成团</view>
+            <view class="desc-last">不满可退款</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 免激活项目 -->
+    <view class="project-item" wx:if="{{info.type === 1 && activation_length !== 0}}">
+      <view class="project-title">
+        <view class="project-name">免激活项目</view>
+      </view>
+      <view class="goods-describe">可直接到店使用</view>
+      <view class="project-content">
+        <view class="project-content-item" wx:for="{{info.list}}" wx:key="{{index}}" wx:if="{{item.type === 2}}">
+          <view class="project-content-name">{{item.name}}</view>
+          <view class="project-content-direction">{{item.description}}</view>
+          <view class="project-content-angle" wx:if="{{item.num !== 0}}">可用{{item.num}}次</view>
+          <view class="project-content-angle" wx:if="{{item.num === 0}}">无限次</view>
+          <view class="project-content-time">{{item.expiry}}个月内有效</view>
+        </view>
+      </view>
+    </view>
+    <!-- 需激活项目 -->
+    <view class="project-item" wx:if="{{info.type === 1}}">
+      <view class="project-title">
+        <view class="project-name">需激活项目</view>
+      </view>
+      <view class="goods-describe">购买指定商品后使用</view>
+      <view class="project-content">
+        <view class="project-content-item" wx:for="{{info.list}}" wx:key="{{index}}" wx:if="{{item.type === 1}}">
+          <view class="project-content-name">{{item.name}}</view>
+          <view class="project-content-direction">{{item.description}}</view>
+          <view class="project-content-angle active" wx:if="{{item.is_end === 1 && info.type === 1}}">终极</view>
+          <view class="project-content-angle" wx:if="{{item.is_end === 2}}">可用{{item.num}}次</view>
+          <view class="project-content-angle" wx:if="{{item.is_end == 2 && item.num === 0}}">无限次</view>
+        </view>
+      </view>
+    </view>
+    <!-- 项目内容 -->
+    <view class="project-item" wx:if="{{info.type === 2}}">
+      <view class="project-title">
+        <view class="project-name">项目内容</view>
+      </view>
+      <view class="project-content">
+        <view class="project-content-item" wx:for="{{info.list}}" wx:key="{{index}}">
+          <view class="project-content-name">{{item.name}}</view>
+          <view class="project-content-direction">{{item.description}}</view>
+          <view class="project-content-angle active" wx:if="{{item.is_end === 1 && info.type === 1}}">终极</view>
+          <view class="project-content-angle" wx:if="{{item.is_end === 2}}">可用{{item.num}}次</view>
+          <view class="project-content-angle" wx:if="{{item.is_end == 2 && item.num === 0}}">无限次</view>
+        </view>
+      </view>
+    </view>
+    <view class="join-group-btn" wx:if="{{group_join_data.num}}">
+      <image class="group-header" src="{{group_join_data.avatar?group_join_data.avatar:'https://oss1.chedianai.com/images/assets/default-avatar-icon.png'}}"/>
+      <view class="group-name">{{group_join_data.real_name?group_join_data.real_name:group_join_data.nick_name}}</view>
+      <view class="group-number">还差<text class="days">{{group_join_data.num - group_join_data.order_num}}</text>人可成团</view>
+      <view class="group-go-btn" bindtap="isCanJoinGroup" data-type="2">去拼团</view>
+    </view>
+    <!-- 指定商品 -->
+    <view class="project-item" wx:if="{{info.type === 1 && list.length>0}}">
+      <view class="project-title goods-title">
+        <view class="project-name">指定商品</view>
+        <view class="project-button" bindtap="productMore">
+          更多 <image class="allow-right" src="/images/index/arrow_right.png"></image>
+        </view>
+      </view>
+      <view class="goods-describe">使用此卡需购买指定商品用以激活项目</view>
+      <view class="goods-content">
+        <view class="goods-image" wx:for="{{list}}" wx:if="{{index <= 2}}" wx:key="{{index}}">
+          <image class="goods-img" src="{{item.pic}}"></image>
+        </view>
+      </view>
+    </view>
+    <!-- 使用须知 -->
+    <view class="project-item">
+      <view class="project-title">
+        <view class="project-name">使用须知</view>
+      </view>
+      <view class="project-content">
+        <view class="instructions-item">
+          <view class="instructions-name">卡有效期</view>
+          <view class="instructions-direction">购卡日起{{info.expiry}}个月有效（周末、法定节假日通用）</view>
+        </view>
+        <view class="instructions-item">
+          <view class="instructions-name">使用规则</view>
+          <view class="instructions-direction">
+            <rich-text type="text" nodes="{{info.description}}"></rich-text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 图文详情 -->
+    <view class="content-detail">
+      <view class="detail-title">图文详情
+      </view>
+      <view class="detail-pic-list">
+        <view class="description rich-content">
+          <image src="{{info.content}}" mode="widthFix" class="rich-content-img" lazy-load="true"/>
+        </view>
+      </view>
+    </view>
+    <!--底部文案-->
+    <view class="detail-list-bottom">
+      <view class="line-left"></view>
+      智慧门店，每天爱车多一点
+      <view class="line-right"></view>
+    </view>
+    <!--底部按钮-->
+    <view class="group-bottom-btn">
+      <form class="form-btn" bindsubmit="sendFormId" report-submit="true" >
+        <!--单人购买-->
+        <button formType="submit" class="btn single" bindtap="createOrder">
+          <view>¥{{info.price}}</view>
+          <view>单人购买</view>
+        </button>
+        <!--开团-->
+        <button formType="submit" class="btn group" bindtap="createGroupOrder">
+          <view>¥{{info.group_price}}</view>
+          <view>{{num_array[info.group_num-2]}}人团</view>
+        </button>
+      </form>
+    </view>
+  </view>
+  <!-- 分享弹框 -->
+	<share-model wx:if="{{go_share}}" 
+							bindclose="closeShare" 
+							bindposter="goPoster"></share-model>
+  <!--缺省-->
+  <empty-page wx:if="{{is_show_default}}" icon="nocard" slogan="{{err_tip}}"/>
+</view>

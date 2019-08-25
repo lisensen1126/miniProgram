@@ -1,0 +1,229 @@
+@import '~@/style/mixin'
+
+.makesure-order
+  padding-bottom: vw(58)
+  .card-wrapper
+    width: 100%
+    padding: 0 vw(15) vw(15)
+    box-sizing: border-box
+    background: #fff
+  .card-item
+    width: 100%
+    height: vw(200)
+    border-radius: vw(10)
+    background-size: 100% 100%
+    padding: vw(20)
+    box-sizing: border-box
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    position: relative
+    .card-item-title, .card-item-bottom
+      width: 100%
+      display: flex
+      justify-content: space-between
+      align-items: center
+      line-height: 1
+    .card-item-name
+      color: #FFF6E1
+      font-size: vw(18)
+      font-weight: bold
+      position: absolute
+      bottom: vw(48)
+      left: vw(15)
+    .card-item-use
+      color: #FFF6E1
+      font-size: vw(12)
+      font-weight: 500
+      display: flex
+      align-items: center
+      position: absolute
+      bottom: vw(16)
+      right: vw(27)
+      .num-use
+        background-color: #FFF6E1
+        color: #000
+        padding: vw(1) vw(4)
+        margin: 0 vw(2)
+        line-height: 1
+    .card-item-num
+      font-size: vw(12)
+      font-weight: 400
+      color: #FFF6E1
+      position: absolute
+      top: vw(173)
+      right: vw(15)
+    .card-item-price
+      vertical-align: bottom
+      position: absolute
+      bottom: vw(15)
+      left: vw(15)
+    .card-item-nowprice
+      color: #FFF6E1
+      font-family: Gotham-Medium
+      font-weight: 600
+      font-size: vw(18)
+    .card-item-storeprice
+      color: #FFF6E1
+      font-weight: 300
+      font-size: vw(12)
+      margin-left: vw(7)
+    .card-item-button
+      width: vw(88)
+      height: vw(30)
+      background-color: #E8CE90
+      text-align: center
+      line-height: vw(30)
+      border-radius: vw(21)
+      color: #2D2F33
+      font-size: vw(12)
+      font-weight: bold
+      position: absolute
+      top: vw(134)
+      right: vw(15)
+  .project-title
+    padding: vw(15) 0 vw(15) 0
+    display: flex
+    justify-content: space-between
+    align-items: center
+    box-sizing: border-box
+    .project-name
+      position: relative
+      font-size: vw(14)
+      color: #404040
+      font-weight: bolder
+    .project-button
+      font-size: vw(16)
+      color: #A7A9AC
+      font-weight: 400
+      display: flex
+      align-items: center
+      .allow-right
+        width: vw(17)
+        height: vw(17)
+        margin-left: vw(20)
+  .order-title
+    padding: vw(20) 0 vw(15) 0
+  .payment-block-info
+    padding: 0 vw(15) vw(15)
+    background: #ffffff
+    margin-top: vw(15)
+    margin-bottom: vw(15)
+    .project-title
+      padding-bottom: 0
+    .payment-info-item
+      display: flex
+      justify-content: space-between
+      align-items: center
+      padding: vw(15) 0
+      border-bottom: vw(1) solid #F1F1F1
+      &:last-child
+        border-bottom: 0
+        padding-bottom: 0
+    .pay-item-left
+      color: #7f7f7f
+      font-size: vw(14)
+      font-weight: 400
+    .pay-item-right
+      color: #404040
+      font-size: vw(14)
+      font-weight: 400
+    .real-price
+      color: #DD1D21
+      font-weight: 400
+  .give-friend
+    padding: 0 vw(15)
+    background: #fff
+    margin-top: vw(15)
+  .bottom-button
+    display: flex
+    align-items: center
+    position: fixed
+    bottom: 0
+    left: 0
+    box-sizing: border-box
+    width: 100%
+    height: vw(58)
+    background: #ffffff
+    padding: vw(9) vw(15)
+    box-shadow: 0 vw(1) vw(6) 0 rgba(0, 0, 0, 0.05), 0 0 0 0 rgba(0, 0, 0, 0.10)
+    z-index: 11
+    justify-content: space-between
+    .payment-info
+      display: flex
+      justify-content: start
+      .pay-price
+        font-weight: bold
+        color: #DD1D21
+        display: flex
+        justify-content: start
+        .total-text
+          font-size: vw(12)
+          margin-top: vw(5.5)
+        .price
+          font-size: vw(18)
+      .coupon-price
+        color: #7F7F7F
+        height: vw(20)
+        font-size: vw(12)
+        padding-left: vw(9)
+        line-height: vw(20)
+        border-left: vw(2) solid #D9D9D9
+        margin-top: vw(12)
+    .payment-button
+      position: absolute
+      top: 50%
+      bottom: 50%
+      transform: translateY(-50%)
+      font-size: vw(14)
+      right: vw(14)
+      background: #D52F12
+      color: $text-white
+      width: vw(114)
+      height: vw(40)
+      line-height: vw(40)
+      text-align: center
+      box-shadow: 0 vw(2) vw(4) 0 rgba(26, 26, 32, 0.24)
+  
+  // 优惠券
+  .coupon
+    display: flex
+    background: #ffffff
+    align-items: center
+    height: vw(56)
+    padding-left: vw(15)
+    margin-top: vw(15)
+    color: #000000
+    .item-icon
+      width: vw(26)
+      height: vw(21)
+    .item-coupon
+      margin-left: vw(9)
+      font-size: vw(14)
+      color: #404040
+    .coupon-quantity
+      font-size: vw(12)
+      color: #E50413
+      margin-left: vw(5)
+    .default
+      color: $text-gray
+    .coupon-price
+      position: absolute
+      right: 0
+      height: vw(66)
+      line-height: vw(66)
+      padding: 0 vw(15)
+      display: flex
+      color: #E50413
+      align-items: center
+      font-size: vw(14)
+      line-height: vw(16)
+    .arrow-icon
+      display: block
+      width: vw(8)
+      height: vw(12)
+      margin-left: vw(10)
+      @include getImage('arrow_right.svg')
+      background-size: vw(8) vw(12)
+      background-repeat: no-repeat
+      background-position: center center

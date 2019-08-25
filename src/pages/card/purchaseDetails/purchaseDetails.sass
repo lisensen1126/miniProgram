@@ -1,0 +1,372 @@
+@import '~@/style/mixin'
+  
+.purchase-details
+  padding-bottom: vw(46)
+  .card-wrapper
+    width: 100%
+    padding: vw(15)
+    box-sizing: border-box
+    background: #fff
+  .card-item
+    width: 100%
+    height: vw(200)
+    background-size: 100% 100%
+    border-radius: vw(10)
+    padding: vw(20)
+    box-sizing: border-box
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    position: relative
+    .card-item-title, .card-item-bottom
+      width: 100%
+      display: flex
+      justify-content: space-between
+      align-items: center
+      line-height: 1
+    .card-item-name
+      color: #FFF6E1
+      font-size: vw(18)
+      font-weight: bold
+      position: absolute
+      bottom: vw(48)
+      left: vw(15)
+    .card-item-use
+      color: #FFF6E1
+      font-size: vw(12)
+      font-weight: 500
+      display: flex
+      align-items: center
+      position: absolute
+      bottom: vw(16)
+      right: vw(27)    
+      .num-use
+        background-color: #FFF6E1
+        color: #000
+        padding: vw(1) vw(4)
+        margin: 0 vw(2)
+        line-height: 1
+    .card-item-num
+      font-size: vw(12)
+      font-weight: 400
+      color: #FFF6E1
+      position: absolute
+      top: vw(173)
+      right: vw(15)
+    .card-item-price
+      vertical-align: bottom
+      position: absolute
+      bottom: vw(15)
+      left: vw(15)
+    .card-item-nowprice
+      color: #FFF6E1
+      font-family: Gotham-Medium
+      font-weight: 600
+      font-size: vw(18)
+    .card-item-storeprice
+      color: #FFF6E1
+      font-weight: 300
+      font-size: vw(12)
+      margin-left: vw(7)
+    .card-item-button
+      width: vw(88)
+      height: vw(30)
+      background-color: #E8CE90
+      text-align: center
+      line-height: vw(30)
+      border-radius: vw(21)
+      color: #2D2F33
+      font-size: vw(12)
+      font-weight: bold
+      position: absolute
+      top: vw(134)
+      right: vw(15)
+  .project-title
+    padding: vw(20) 0 vw(15) 0
+    display: flex
+    justify-content: space-between
+    align-items: center
+    box-sizing: border-box
+    .project-name
+      position: relative
+      font-size: vw(14)
+      color: #404040
+      font-weight: bold
+    .project-button
+      font-size: vw(12)
+      color: #7F7F7F
+      font-weight: 400
+      display: flex
+      align-items: center
+      .allow-right
+        width: vw(10)
+        height: vw(9)
+        opacity: 0.5
+  .project-item
+    width: 100%
+    height: auto
+    background: #fff
+    padding: 0 vw(15) vw(20)
+    box-sizing: border-box
+    margin-top: vw(15)
+    .project-content-item
+      width: 100%
+      border: vw(1) dashed #eeeeee
+      padding: vw(13) vw(15)
+      position: relative
+      box-sizing: border-box
+      margin-bottom: vw(15)
+      &:last-child
+        margin-bottom: 0
+      .project-content-time
+        padding-top: vw(15)
+        margin-top: vw(15)
+        line-height: 1
+        border-top: vw(1) solid #EEEEEE
+        color: #7F7F7F
+        font-size: vw(12)
+        font-weight: 400
+      .project-content-name
+        font-size: vw(14)
+        font-weight: bold
+        color: #404040
+      .project-content-direction
+        font-size: vw(12)
+        font-weight: 400
+        color: #7F7F7F
+        margin-top: vw(6)
+      .project-content-angle
+        min-width: vw(45)
+        height: vw(20)
+        padding: 0 vw(10)
+        box-sizing: border-box
+        text-align: center
+        line-height: vw(20)
+        position: absolute
+        right: 0
+        top: 0
+        background: #F7D117
+        color: #000000
+        font-size: vw(12)
+        font-weight: 400
+        &.active
+          background: #D42E12
+          color: #ffffff
+  .instructions-item
+    width: 100%
+    border-bottom: vw(1) solid #F5F5F5
+    padding: vw(15) 0
+    box-sizing: border-box
+    &:last-child
+      border-bottom: 0
+    &:first-child
+      padding-top: 0
+    .instructions-name
+      font-size: vw(14)
+      font-weight: 400
+      color: #404040
+    .instructions-direction
+      font-size: vw(12)
+      font-weight: 400
+      color: #808285
+      margin-top: vw(6)
+  .graphic
+    width: 100%
+  .goods-title
+    padding-bottom: vw(8)
+  .goods-content
+    width: 100%
+    display: flex
+    margin-top: vw(20)
+    .goods-image
+      width: vw(108)
+      height: vw(66)
+      margin-right: vw(10)
+      .goods-img
+        width: 100%
+        height: 100%
+      &:last-child
+        margin-right: 0
+  .goods-describe
+    color: #7F7F7F
+    font-size: vw(12)
+    font-weight: 400
+    line-height: 1
+  // 底部文案
+  .detail-list-bottom
+    position: relative
+    color: #B3B3B3
+    font-size: vw(12)
+    text-align: center
+    margin: vw(24) 0 vw(30) 0
+    line-height: 1
+    .line-left
+      position: absolute
+      width: vw(75)
+      height: vw(1)
+      background: #CFCFCF
+      top: vw(6)
+      left: vw(21)
+    .line-right
+      position: absolute
+      top: vw(6)
+      width: vw(75)
+      height: vw(1)
+      background: #CFCFCF
+      right: vw(21)
+  .foot-button
+    position: fixed
+    bottom: 0
+    left: 0
+    width: 100%
+    height: vw(58)
+    display: flex
+    background: #ffffff
+    padding: vw(9) vw(15)
+    box-sizing: border-box
+    display: flex
+    justify-content: space-between
+    .share-btn
+      color: #404040
+      font-size: vw(12)
+      line-height: vw(14)
+      text-align: center
+      .share-icon-img
+        width: vw(24)
+        height: vw(24)
+    .right-btn
+      width: vw(228)
+      height: vw(40)
+      display: flex
+      .give-friends, .immediately
+        width: 50%
+        height: 100%
+        background: #FBCE07
+        color: #404040
+        font-size: vw(14)
+        font-weight: bold
+        line-height: vw(28)
+        text-align: center
+        position: relative
+        .give-friends-text
+          position: absolute
+          bottom: vw(6)
+          text-align: center
+          line-height: 1
+          left: 0
+          width: 100%
+          font-size: vw(10)
+          font-weight: 400
+      .immediately
+        color: #ffffff
+        background: #DD1D21
+        line-height: vw(40)
+// 可使用优惠券
+.coupon-block
+  margin-top: vw(15)
+  .coupon-info
+    padding: vw(15)
+    background-color: #ffffff
+    .title
+      margin-right: vw(15)
+      vertical-align: middle
+      font-size: vw(14)
+      color: #7F7F7F
+    .coupon-outer
+      margin-right: vw(15)
+      display: inline-block
+      overflow: hidden
+      vertical-align: middle
+      .coupon
+        padding: 0 vw(10)
+        line-height: vw(20)
+        position: relative
+        border: vw(1) solid #DD1D21
+        font-size: vw(12)
+        color: #DD1D21
+        &::before, &::after
+          content: ''
+          display: block
+          width: vw(6)
+          height: vw(6)
+          border-radius: vw(10)
+          border: vw(1) solid #DD1D21
+          position: absolute
+          top: 50%
+          background: #FFF
+        &::before
+          left: 0
+          transform: translate(-60%, -50%)
+        &::after
+          right: 0
+          transform: translate(60%, -50%)
+  .right-icon
+    float: right
+    height: vw(10)
+    width: vw(6)
+    margin-top: vw(6.5)
+.sku-cover, .coupon-cover
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  background: rgba(0, 0, 0, 0.6)
+  z-index: 10
+  .cover-content
+    position: absolute
+    height: vw(455)
+    bottom: 0
+    left: 0
+    right: 0
+    background: $text-white
+    border-top-left-radius: vw(10)
+    border-top-right-radius: vw(10)
+    overflow-y: scroll
+    -webkit-overflow-scrolling: touch
+    .close-box
+      width: vw(30)
+      height: vw(30)
+      text-align: right
+      position: absolute
+      top: vw(13)
+      right: vw(16)
+      z-index: 11
+    .close
+      width: vw(14)
+      height: vw(14)
+    .title
+      height: vw(52)
+      line-height: vw(52)
+      position: relative
+      text-align: center
+      font-size: vw(16)
+      color: #404040
+      font-weight: 600
+      border-bottom: vw(1) solid #EEEEEE
+      .close
+        position: absolute
+        right: vw(15)
+        top: 50%
+        transform: translateY(-50%)
+    .coupons-scroll
+      position: absolute
+      top: vw(52)
+      bottom: 0
+      left: 0
+      right: 0
+      overflow-y: auto
+.coupon-cover .cover-content
+  border-radius: 0
+  .coupons
+    padding: vw(15)
+    .receive
+      margin-bottom: vw(18)
+    .title
+      color: #404040
+      width: 72px
+      height: 17px
+      font-size: 12px
+      font-weight: 500
+      line-height: 17px
+      border: 0

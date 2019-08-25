@@ -1,0 +1,110 @@
+<wxs module="tool">
+  var img = function (src, w, h) {
+		var re_img = src.split('?')[0]
+		return re_img + '?imageMogr2/thumbnail/' + w + 'x' + h + '!'
+  }
+  module.exports = {
+    formatImg : img,
+  }
+</wxs>
+<view class="page-goodsList animation-fade-in">
+	<!-- 自定义菜单 -->
+  <top-bar title="{{page_title}}" home="{{showHome}}"></top-bar>
+	<!-- 搜索框 -->
+	<view class="topSearch" style="top: {{top_height}}px">
+		<!-- 搜索框 - 默认 and 有搜索条件-->
+		<view class="search-view" wx:if="{{!isSear}}">
+			<view class="view-value {{searchValue.length<=0 ? 'color-place' : ''}}" bindtap="goSear">
+				<image src="/images/search.png"></image>
+				<text>{{searchValue ? searchValue : '快速搜索您想要的商品和服务'}}</text>
+			</view>
+			<view class="view-category" bindtap="gocategories">
+				<image src="https://oss1.chedianai.com/images/assets/mall-class-icon.png"></image>
+        <text>分类</text>
+			</view>
+		</view>
+	</view>
+	<!--内容区域-->
+	<view class="data-list" wx:if="{{!isSear}}" style="padding-top: {{data_list_height}}px">
+		<!-- tap栏 -->
+		<view class="top-nav change-index" style="top: {{top_nav_height}}px">
+			<view class="item {{chooseNav == 1 ? 'item-isactive' : ''}}" data-nav="1" bindtap="changeClassify">
+				推荐
+			</view>
+			<view class="item {{chooseNav == 2 ? 'item-isactive' : ''}}" data-nav="2" bindtap="chooseBrand">
+				品牌
+				<image class="brand" wx:if="{{!brandCover}}" src="/images/mall/down-icon.png"></image>
+				<image class="brand" wx:if="{{brandCover}}" src="/images/mall/up-active.png"></image>
+			</view>
+			<view class="item {{chooseNav == 3 ? 'item-isactive' : ''}}" data-nav="3" bindtap="changeClassify">销量</view>
+			<view class="item {{chooseNav == 4 ? 'item-isactive' : ''}}" data-nav="4" bindtap="changeClassify">
+				价格
+				<image class="pai" wx:if="{{!sort_up}}" src="/images/mall/price-up.png"></image>
+				<image class="pai" wx:if="{{sort_up}}" src="/images/mall/price-down.png"></image>
+			</view>
+		</view>
+
+		<!--推荐项-->
+		<view class="recommend" wx-if="{{!searchValue}}">
+			<scroll-view scroll-x class="recommend-scroll">
+				<view class="recommend-box">
+					<view class="recommend-item" wx:for='{{recommend_list}}' wx:key="{{index}}" data-name="{{item.name}}" bindtap="goSear">
+						<view class="r-img"><image-show src="{{item.pic}}" width="60" height="60"></image-show></view>
+						<view class="r-name">{{item.name}}</view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+
+		<!-- 用户添加车辆 -->
+		<view class="car-tip" wx:if="{{has_show_tip}}" bindtap="goVehicle">
+			<view >完善车辆和里程信息,享受更精准的推送</view>
+			<view class="right-box">
+				<text >去录入</text>
+				<image class="right-icon" src="https://oss1.chedianai.com/wechat/right-icon-cate.png" />
+			</view>
+		</view>
+		
+		<!--数据列表-->
+    <view class="goods-wrap" wx:if="{{list.length !== 0}}">
+      <catch-form wx:for="{{list}}" wx:key="index" data-item="{{item}}" bind:callback="goDetail">
+				<view class="goods-item {{index === list.length - 1 ? 'no-border' : ''}}">
+					<!-- 商品图片 -->
+					<view class="goods-item-img">
+						<!-- 商品图片 -->
+						<view class="img">
+							<image class="good-img" src="{{tool.formatImg(item.goods_img, 268, 168)}}" mode="aspectFill" lazy-load />
+						</view>
+					</view>
+					<!-- 商品信息 -->
+					<view class="goods-item-info">
+						<view class="title">{{item.goods_name}}</view>
+						<view class="price">¥{{item.goods_price}}</view>
+					</view>
+				</view>
+      </catch-form>
+			<custom-loading is-loading="{{isLoading}}" has-more="{{!isAllLoaded}}"></custom-loading>
+		</view>
+    
+		<!--缺省-->
+		<empty-page wx:if="{{list.length === 0 && isAllLoaded}}" icon="nosearch" slogan="暂无内容！"/>
+	</view>
+	<!-- 品牌浮层 -->
+	<view class="catecell" wx:if="{{brandCover && !isSear}}">
+		<view class="cell-content" style="padding-top: {{top_height}}px">
+			<view class="contents"  wx:if="{{brandList.length>0}}">
+				<view wx:for="{{brandList}}"
+					  wx:key="{{index}}"
+					  class="item-cate {{item.is_check === 2?'other-label-icon':''}}"
+					  data-index="{{index}}" bindtap="checkBrand">
+					{{item.brand_name}}
+				</view>
+			</view>
+			<view class="no-brand" wx:if="{{brandList.length<=0}}">暂无品牌</view>
+			<view class="btns">
+				<button class="reset" bindtap="reset">重置</button>
+				<button class="sure" bindtap="sure">确定</button>
+			</view>
+		</view>
+	</view>
+</view>

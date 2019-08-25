@@ -1,0 +1,424 @@
+@import '~@/style/mixin'
+
+.spike-purchase-details
+  padding-bottom: vw(46)
+  .card-wrapper
+    width: 100%
+    padding: vw(15)
+    box-sizing: border-box
+    background: #fff
+  .card-item
+    width: 100%
+    height: vw(214)
+    background-size: 100% 100%
+    border-radius: vw(10)
+    padding: vw(20)
+    box-sizing: border-box
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    position: relative
+    .card-item-title, .card-item-bottom
+      width: 100%
+      display: flex
+      justify-content: space-between
+      align-items: center
+      line-height: 1
+    .card-item-name
+      color: #FFF6E1
+      font-size: vw(18)
+      font-weight: bold
+      position: absolute
+      bottom: vw(48)
+      left: vw(15)
+    .card-item-use
+      color: #FFF6E1
+      font-size: vw(12)
+      font-weight: 500
+      display: flex
+      align-items: center
+      position: absolute
+      bottom: vw(16)
+      right: vw(27)
+      .num-use
+        background-color: #FFF6E1
+        color: #404040
+        padding: vw(1) vw(4)
+        margin: 0 vw(2)
+        line-height: 1
+    .card-item-num
+      font-size: vw(12)
+      font-weight: 400
+      color: #FFF6E1
+      position: absolute
+      top: vw(173)
+      right: vw(15)
+    .card-item-price
+      vertical-align: bottom
+      position: absolute
+      bottom: vw(15)
+      left: vw(15)
+    .card-item-nowprice
+      color: #FFF6E1
+      font-family: Gotham-Medium
+      font-weight: 600
+      font-size: vw(18)
+    .card-item-storeprice
+      color: rgba(255, 246, 225, 0.8)
+      font-weight: 300
+      font-size: vw(12)
+      margin-left: vw(7)
+    .card-item-button
+      width: vw(88)
+      height: vw(30)
+      background-color: #E8CE90
+      text-align: center
+      line-height: vw(30)
+      border-radius: vw(21)
+      color: #2D2F33
+      font-size: vw(12)
+      font-weight: bold
+      position: absolute
+      top: vw(134)
+      right: vw(15)
+  .project-title
+    padding: vw(20) 0 vw(8) 0
+    line-height: 1
+    display: flex
+    justify-content: space-between
+    align-items: center
+    box-sizing: border-box
+    .project-name
+      position: relative
+      font-size: vw(14)
+      color: #404040
+      font-weight: bold
+    .project-button
+      font-size: vw(12)
+      color: #7F7F7F
+      font-weight: 400
+      display: flex
+      align-items: center
+      .allow-right
+        width: vw(10)
+        height: vw(9)
+        opacity: 0.5
+  .un-active
+    padding-top: 0!important
+  .project-item
+    width: 100%
+    height: auto
+    background: #fff
+    padding: 0 vw(15) vw(20)
+    box-sizing: border-box
+    margin-top: vw(15)
+    .project-content-item
+      width: 100%
+      border: vw(1) dashed #eeeeee
+      padding: vw(13) vw(15)
+      position: relative
+      box-sizing: border-box
+      margin-bottom: vw(15)
+      &:last-child
+        margin-bottom: 0
+      .project-content-time
+        padding-top: vw(15)
+        margin-top: vw(15)
+        line-height: 1
+        border-top: vw(1) solid #EEEEEE
+        color: #7F7F7F
+        font-size: vw(12)
+        font-weight: 400
+      .project-content-name
+        font-size: vw(14)
+        font-weight: bold
+        color: #404040
+      .project-content-direction
+        font-size: vw(12)
+        font-weight: 400
+        color: #7F7F7F
+        margin-top: vw(6)
+      .project-content-angle
+        width: vw(62)
+        height: vw(17)
+        box-sizing: border-box
+        text-align: center
+        line-height: vw(17)
+        position: absolute
+        right: 0
+        top: 0
+        background: #FBCE07
+        color: #404040
+        font-size: vw(12)
+        font-weight: 400
+        &.active
+          background: #D42E12
+          color: #ffffff
+  .instructions-item
+    width: 100%
+    border-bottom: vw(1) solid #F5F5F5
+    padding: vw(15) 0
+    box-sizing: border-box
+    &:last-child
+      border-bottom: 0
+    &:first-child
+      padding-top: 0
+    .instructions-name
+      font-size: vw(14)
+      font-weight: 400
+      color: #404040
+    .instructions-direction
+      font-size: vw(12)
+      font-weight: 400
+      color: #808285
+      margin-top: vw(6)
+  .graphic
+    width: 100%
+  .goods-title
+    padding-bottom: vw(8)
+  .goods-content
+    width: 100%
+    display: flex
+    .goods-image
+      width: vw(108)
+      height: vw(66)
+      margin-right: vw(10)
+      .goods-img
+        width: 100%
+        height: 100%
+      &:last-child
+        margin-right: 0
+  .goods-describe
+    color: #7F7F7F
+    font-size: vw(12)
+    font-weight: 400
+    line-height: 1
+    margin-bottom: vw(20)
+  
+  // 图文详情
+  .content-detail
+    background: $text-white
+    margin-top: vw(15)
+    .detail-title
+      height: vw(50)
+      line-height: vw(20)
+      font-size: vw(15)
+      color: #404040
+      padding: vw(15)
+      box-sizing: border-box
+      image
+        width: vw(7)
+        height: vw(13)
+        position: relative
+        top: vw(2)
+    .detail-pic-list
+      width: 100%
+      box-sizing: border-box
+      .rich-content
+        .rich-content-text
+          font-size: vw(15)
+          line-height: vw(26)
+          padding: vw(15) vw(10)
+          + .rich-content-text
+            margin-top: 0
+        .rich-content-img
+          display: block
+          margin: 0
+          width: 100%
+  // 底部文案
+  .detail-list-bottom
+    position: relative
+    color: #B3B3B3
+    font-size: vw(12)
+    text-align: center
+    margin: vw(24) 0 vw(30) 0
+    line-height: 1
+    .line-left
+      position: absolute
+      width: vw(75)
+      height: vw(1)
+      background: #CFCFCF
+      top: vw(6)
+      left: vw(21)
+    .line-right
+      position: absolute
+      top: vw(6)
+      width: vw(75)
+      height: vw(1)
+      background: #CFCFCF
+      right: vw(21)
+  .foot-button
+    position: fixed
+    bottom: 0
+    left: 0
+    width: 100%
+    height: vw(58)
+    display: flex
+    background: #ffffff
+    padding: vw(9) vw(15)
+    box-sizing: border-box
+    .give-friends, .immediately
+      width: 50%
+      height: 100%
+      background: #FBCE07
+      color: #404040
+      font-size: vw(14)
+      font-weight: bold
+      line-height: vw(40)
+      text-align: center
+    .immediately
+      color: #ffffff
+      background: #DD1D21
+  .count-down-part
+    padding-bottom: vw(15)
+    background: #ffffff
+    .begin-minute
+      background-repeat: no-repeat
+      -moz-background-size: 100% 100%
+      background-size: 100% 100%
+      background-image: url('https://oss1.chedianai.com/images/assets/begin-in-a-minute.png')
+    .already-minute
+      background-repeat: no-repeat
+      -moz-background-size: 100% 100%
+      background-size: 100% 100%
+      background-image: url('https://oss1.chedianai.com/images/assets/panic-buying.png')
+    .count-down
+      height: vw(40)
+      line-height: vw(40)
+      display: flex
+      justify-content: space-between
+      align-items: center
+      padding: 0 vw(15)
+      .count-left
+        font-size: vw(14)
+        font-weight: 600
+        color: #ffffff
+      .count-right
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        .count-word
+          font-size: vw(12)
+          color: #ffffff
+          margin-right: vw(10)
+        .count-time,.time-default-color
+          font-size: vw(22)
+          color: #FFF9F9
+          font-weight: bold
+        .time-default-color
+          font-size: vw(14)
+  .card-spike-price
+    background: white
+    display: flex
+    align-items: center
+    height: vw(55)
+    box-sizing: border-box
+    line-height: 1
+    padding: vw(15)
+    padding-top: 0
+    justify-content: space-between
+    .info
+      display: flex
+      position: relative
+      justify-content: space-between
+      padding-right: vw(15)
+      box-sizing: border-box
+      width: vw(274)
+      .price-info
+        display: flex
+        justify-content: space-between
+        .spike-price
+          font-size: vw(20)
+          color: #DD1D21
+          font-weight: bold
+        .spike-de-price
+          color: #A6A6A6
+          font-size: vw(12)
+          padding-left: vw(5)
+          text-decoration: line-through
+          line-height: vw(22)
+      &::after
+        display: block
+        content: ""
+        width: vw(1)
+        height: vw(22)
+        position: absolute
+        background: #D9D9D9
+        top: vw(0)
+        right: 0
+    .share-btn
+      color: #404040
+      font-size: vw(12)
+      line-height: vw(17)
+      text-align: center
+      margin-right: vw(14)
+      .share-icon-img
+        width: vw(17)
+        height: vw(17)
+        margin-bottom: vw(5)
+  // 底部按钮
+  .content-button
+    position: fixed
+    bottom: 0
+    height: vw(58)
+    padding: vw(9) vw(15)
+    left: 0
+    right: 0
+    background: $text-white
+    font-size: vw(14)
+    box-sizing: border-box
+    box-shadow: 0 0 vw(16) 0 rgba(26, 26, 32, 0.09)
+    view
+      display: inline-block
+    .cart-button
+      width: vw(147)
+      height: vw(40)
+      text-align: center
+      image
+        display: inline-block
+        width: vw(17)
+        height: vw(19)
+        position: relative
+        top: vw(3)
+      .button-car
+        margin-left: vw(8)
+    .num
+      display: inline-block
+      background: #F74B49
+      border-radius: 50%
+      position: absolute
+      //text-align: center
+      line-height: vw(9)
+      left: vw(52)
+      font-size: vw(7)
+      top: vw(10)
+      color: $text-white
+    .cart-num
+      width: vw(9)
+      height: vw(9)
+    .num-two
+      width: vw(24)
+      border-radius: vw(24)
+    .num-three
+      width: vw(30)
+      border-radius: vw(30)
+    .add-goods
+      width: vw(115)
+      height: vw(40)
+      background: #FFAE46
+      color: $text-white
+      text-align: center
+    .create-order
+      font-size: vw(14)
+      height: vw(40)
+      line-height: vw(40)
+      width: 100%
+      background: #DD1D21
+      color: $text-white
+      text-align: center
+      font-weight: bold
+    .loot-all
+      background: #DDDDDD
+      color: #A7A9AC
+
+

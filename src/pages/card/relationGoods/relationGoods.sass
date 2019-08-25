@@ -1,0 +1,56 @@
+
+@import "~@/style/mixin"
+
+.tips-text
+  padding: vw(20) vw(15) vw(10) vw(15)
+  line-height: 1
+  font-size: vw(12)
+  color: #7F7F7F
+  background: #fff
+.goods-wrap
+  padding: vw(0) vw(15)
+  background: #fff
+  .goods-item
+    display: flex
+    align-items: center
+    padding: vw(15) 0
+    height: vw(89)
+    border-bottom: vw(1) solid #eee
+    &:first-child
+      padding-top: 0
+    &:last-child
+      border: 0
+    .goods-item-img
+      position: relative
+      flex: 0 0 vw(134)
+      margin-right: vw(10)
+      height: vw(84)
+      .img 
+        width: 100%
+        height: 100%
+      .img-top
+        width: vw(65)
+        height: vw(18)
+        position: absolute
+        right: 0
+    .goods-item-info
+      flex: 1
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      height: vw(84)
+      .title
+        line-height: vw(17.5)
+        font-size: vw(14)
+        color: #404040
+        overflow : hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      .price
+        line-height: 1
+        font-size: vw(16)
+        color: #E50113
+        font-weight: 600
+  

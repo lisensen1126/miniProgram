@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "使用记录",
+	"usingComponents": {
+		"empty-page": "../../../components/emptyPage/emptyPage",
+		"top-bar": "../../../components/topbar/topbar"
+	}
+}

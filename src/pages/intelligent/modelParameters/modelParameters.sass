@@ -1,0 +1,119 @@
+@import '~@/style/mixin'
+.page-modelParameters
+	height: 100%
+	.maintenance-tab 
+		height: 100%
+		display: flex
+		flex-direction: column
+
+// tab
+.maintenance-tab
+	padding-top: vw(15)
+	box-sizing: border-box
+	.tab-box
+		background: #ffffff
+		margin: 0 vw(15) vw(15) vw(15)
+		font-size: vw(15)
+		color: #000000
+		display: flex
+		justify-content: space-around
+		align-items: center
+		box-shadow: 0 vw(8) vw(16) 0 rgba(26, 26, 32, 0.04)
+		text-align: center
+		.line
+			border-left: vw(1) solid #EEEEEE
+			height: vw(49)
+		.tab-bar
+			box-sizing: border-box
+			height: vw(66)
+			line-height: vw(66) 
+			width: 50%
+			font-size: vw(16)
+		.tab-active
+			border-bottom: vw(2) solid #F7D117
+		.left-img
+			width: vw(16)
+			height: vw(16)
+			vertical-align: middle
+			margin-right: vw(15)
+		.right-img
+			width: vw(6)
+			height: vw(10)
+			vertical-align: middle
+			margin-left: vw(11)
+
+.page-bg
+	flex: 1
+	position: relative
+	.page-bg-content
+		width: 100%
+		height: 100%
+		overflow-y: scroll
+		overflow-x: hidden
+		-webkit-overflow-scrolling: touch
+	//保养手册
+	.page-content
+		position: absolute
+		left: 0
+		top: 0
+		width: 100%
+		height: 100%			
+
+		.configuration-table-wrapper
+			height: 100%
+
+		.configuration-table
+			height: 100%
+			width: 100%
+			display: table
+			table-layout: fixed
+			.row
+				width: 100%
+				display: table-row
+				&:nth-child(odd)
+					.col
+						background: #D6D7D8
+				&:nth-child(even)
+					.col
+						background: #ffffff
+			.col
+				vertical-align: middle
+				text-align: center
+				display: table-cell
+				box-sizing: border-box
+				flex-grow: 1
+				height: vw(44)
+				font-size: vw(14)
+				justify-content: center
+				align-items: center
+				border-right: vw(0.5) solid #D6D7D8
+				border-bottom: vw(0.5) solid #D6D7D8
+				color: $text-gray
+				&:last-child
+					border-right: none
+				&:first-child
+					width: vw(100)
+		.row-header
+			.col
+				position: sticky
+				top: 0
+				color: $text-dark
+				font-weight: bold
+				border-top: vw(0.5) solid #D6D7D8
+	// 车型参数
+	.model
+		background: #ffffff
+		width: 100%
+		.model-content
+			height: vw(66)
+			border-bottom: vw(1) solid #EEEEEE
+			display: flex
+			justify-content: space-between
+			align-items: center
+			padding: 0 vw(10) 0 vw(16)
+			.attribute
+				font-size: vw(16)
+				color: #858587
+			.substance
+				font-size: vw(16)
+				color: #000000

@@ -1,0 +1,8 @@
+{
+	"navigationBarTitleText": "确认订单",
+	"usingComponents": {
+		"confirm-phone": "../../../components/confirmPhone/confirmPhone",
+		"top-bar": "../../../components/topbar/topbar",
+		"empty-page": "../../../components/emptyPage/emptyPage"
+	}
+}

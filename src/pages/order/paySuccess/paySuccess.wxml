@@ -1,0 +1,65 @@
+<view class="page-paySuccess" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="支付成功"></top-bar>
+	<!-- topbar end -->
+	<view class="pay-success-header">
+		<image src='https://oss1.chedianai.com/images/assets/pay_success_1.png'></image>
+		<view class="pay-success-header-title">您已支付成功</view>
+		<view class="pay-success-header-order-number" wx:if="{{order.activation === 1}}">您有新的保养项目可使用，请您到店使用～</view>
+	</view>
+	<view class="pay-success-items">
+		<view class="section-header">订单详情</view>
+		<view class="pay-success-item" wx:for='{{order.item}}' wx:key='{{index}}'>
+			<view class="pay-success-item-thumb">
+				<image class="item-thumb-img"  mode="aspectFit" src='{{item.image_url}}' ></image>
+			</view>
+			<view class="pay-success-item-content">
+				<view class="item-title">
+						<text class="pay-success-item-title">{{item.item_title}} </text> 
+						<text class="pay-success-item-sku"><text wx:for='{{item.sku_attribute}}' wx:key='{{index}}'>{{item.attribute_item_value}}</text></text>
+				</view>
+				<view class="pay-success-item-pm">
+					<view class="pay-success-item-price">¥{{item.unit_price}}</view>
+					<view class="pay-success-item-num">x{{item.quantity}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="order-no">
+		<view class="title">订单编号</view>
+		<view class="number">{{orderNo}}</view>
+	</view>
+	<view class="order-info">
+		<view class="section-header">支付信息</view>
+		<view class="order-info-flex">
+			<view class="label-title" wx:if="{{order.order_type != 4}}">商品总额</view>
+			<view class="label-title" wx:if="{{order.order_type == 4}}">
+				<text wx:if="{{order.item[0].item_type ==1}}">商品原价</text>
+				<text wx:if="{{order.item[0].item_type ==2}}">服务原价</text>
+			</view>
+			<view class="label-info">¥{{order.total_amount}}</view>
+		</view>
+		<view class="order-info-flex" wx:if='{{order.preferential_price != 0}}'>
+			<view class="label-title">优惠</view>
+			<view class="label-info">- ¥{{order.preferential_price}}</view>
+		</view>
+		<view class="order-info-flex" wx:if='{{order.maintenance_fee != 0}}'>
+			<view class="label-title">工时费用</view>
+			<view class="label-info">¥{{order.maintenance_fee}}</view>
+		</view>
+		<view class="order-info-flex" wx:if="{{order.random_coupon_id > 0}}">
+			<view class="label-title order-info-receive-price">随机立减</view>
+			<view class="label-info order-info-receive-price">- ¥{{order.random_coupon_price}}</view>
+		</view>
+		<view class="order-info-flex">
+			<view class="order-info-receive-title">实际支付</view>
+			<view class="order-info-receive-price">¥{{order.final_amount}}</view>
+		</view>
+	</view>
+	<view class="pay-success-btn-box">
+    <view class="operation-button default" bindtap="goOrderDetail">查看订单</view>
+    <view class="operation-button primary" bindtap="goAppointment">立即预约</view>
+  </view>
+ <!-- 推送优惠券弹框 -->
+	<coupon-model bindtriggercancel="couponCancel" wx:if="{{isShowCoupon && recommend_coupon.length > 0}}" list="{{recommend_coupon}}"></coupon-model>
+</view>

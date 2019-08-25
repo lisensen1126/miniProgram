@@ -1,0 +1,246 @@
+<view class="page-itemDetail" wx:if="{{pageShow}}" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="商品详情" home="{{showHome}}"></top-bar>
+	<!-- topbar end -->
+	<view wx:if="{{isShowDefault === false  && goodsInfo.is_sale == 1}}">
+		<view class="content-box">
+			<!--商品基础信息-->
+			<view class="content-info">
+				<!--商品主图轮播-->
+				<block>
+					<swiper class="swiper-box" indicator-dots="{{false}}"
+							autoplay="{{true}}" interval="5000" duration="1000">
+						<block wx:for="{{skuItem.sku_pics}}" wx:key="index">
+							<swiper-item>
+								<image src="{{item}}" class="slide-image" mode='aspectFit'/>
+							</swiper-item>
+						</block>
+					</swiper>
+				</block>
+				<!--商品介绍-->
+				<block>
+					<view class="info">
+						<view class="goods-title-box">
+							<view class="info-title-box">
+								<view class="goods-title">{{goodsInfo.goods_name}}
+								</view>
+								<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+									<button formType="submit" class="share-icon" open-type="share">
+										<image src="/images/mall/share.png"></image>
+									</button>
+								</form>
+							</view>
+						</view>
+						<view class="goods-price">¥<text class="price">{{skuItem.sku_price}}</text></view>
+					</view>
+				</block>
+				<!--优惠-->
+				<block wx:if="{{goodsInfo.coupons.length>0}}">
+					<view class="coupon-block border-after" bindtap="showCouponCover">
+						<view class="coupon-info">
+							<text class="title">优惠</text>
+							<block wx:for="{{goodsInfo.coupons}}" wx:key="{{index}}" wx:if="{{index<3}}">
+								<view class="coupon-outer"><view class="coupon">{{item}}</view></view>
+							</block>
+						</view>
+						<image class="right-icon" src="/images/personal/arrow-right.png"></image>
+					</view>
+				</block>
+				<!--sku选择块-->
+				<block>
+					<view class="sku-block border-after" bindtap="chooseSku">
+						<view class="sku-info">已选
+							<text class="sku-sys">{{skuInfo}}</text>
+							<text class="sku-num">{{quantity}}件</text>
+						</view>
+						<image class="right-icon" src="/images/personal/arrow-right.png"></image>
+					</view>
+				</block>
+				<!--品牌-->
+				<block>
+					<view class="brand-block">
+						<view class="brand-title">品牌</view>
+						<view class="brand-info">{{goodsInfo.brand_name}}</view>
+					</view>
+				</block>
+				<block wx:if="{{goodsInfo.summary}}">
+					<!--商品详情-->
+					<view class="content-detail">
+						<view class="info-title g-title">商品描述
+						</view>
+						<view class="service-info"><text>{{goodsInfo.summary}}</text>
+						</view>
+					</view>
+				</block>
+			</view>
+			<!--商品详情-->
+			<view class="content-detail">
+				<view class="detail-title">商品详情
+				</view>
+				<view class="detail-pic-list">
+					<view class="description rich-content">
+						<block wx:for="{{skuItem.contents}}" wx:for-item="contentItem" wx:key="index">
+							<image src="{{contentItem}}" mode="widthFix" class="rich-content-img" lazy-load/>
+						</block>
+					</view>
+				</view>
+			</view>
+			<!--底部文案-->
+			<view class="detail-list-bottom">
+				<view class="line-left"></view>
+				智慧门店，每天爱车多一点
+				<view class="line-right"></view>
+			</view>
+		</view>
+		<view class="content-button" wx:if="{{goodsInfo.is_sale == 1}}">
+			<view class="submit-layout">
+				<view class="s-l" bindtap="goCart">
+					<view class="s-icon">
+						<image src="/images/mall/shop-cart.png"></image>
+						<text class="num{{goodsInfo.cart_num>99?' num-len':''}}">{{goodsInfo.cart_num<100?goodsInfo.cart_num:'99+'}}</text>
+					</view>
+					<view class="s-text">购物车</view>
+				</view>
+				<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+					<button formType="submit" class="s-c" data-type="2" bindtap="chooseSku">加入购物车</button>
+				</form>	
+				<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+					<button formType="submit" class="s-r" bindtap="createOrder">立即下单</button>
+				</form>
+			</view>
+		</view>
+		<view class="content-button color-default" wx:if="{{goodsInfo.is_sale == 2}}">
+			商家暂未上架该商品
+		</view>
+		<!--sku浮层-->
+		<view class="sku-cover" wx:if="{{cartCover}}">
+			<view class="cover-content">
+				<view class="sku-content">
+					<!--顶部sku标题-->
+					<view class="sku-title">
+						<view class="close-box" bindtap="closeCartCover">
+							<image class="close" src="/images/default/close-btn.png"></image>
+						</view>
+						<view class="sku-title-info">
+							<image class="item-pic"
+								   mode="aspectFit"
+								   bindtap="previewImg"
+								   data-img="{{skuItem.sku_pics[0]}}"
+								   data-imgs="{{[skuItem.sku_pics[0]]}}"
+								   src="{{skuItem.sku_pics[0]}}"></image>
+							<view class="item-info">
+								<view class="info-title">{{goodsInfo.goods_name}}  {{skuInfo}}</view>
+								<view class="info-price">¥ {{skuItem.sku_price}}</view>
+							</view>
+						</view>
+						<!--错误提示-->
+						<view class="sku-err-tip" wx:if="{{sku_err_tip.length>0}}">{{sku_err_tip}}</view>
+					</view>
+					<!--sku参数数组-->
+					<view class="sku-list">
+						<view class="sku-item" wx:for="{{goodsInfo.attribute_data}}"
+							  wx:key="attributeItem.attribute_id"
+							  wx:for-index="index"
+							  wx:for-item="attributeItem"
+							  wx:if="{{attributeItem.is_optional === 1}}">
+							<view class="item-title">{{attributeItem.attribute_name}} <text class="err-tip" wx:if="{{attributeItem.is_enabled_tip === 1}}">请选择{{attributeItem.attribute_name}}</text></view>
+							<view class="item-label-list">
+								<!--只有一条属性，禁用的sku对应的参数不展示-->
+								<view class="item-label {{parameterItem.is_checkout?'item-is-active':''}} {{parameterItem.is_enabled === 3?'bor_dashed':''}}"
+									  wx:for="{{attributeItem.attribute_items}}"
+									  wx:key="parameterItem.parameter_id"
+									  wx:for-index="itemIndex"
+									  data-id="{{parameterItem.attribute_item_id}}"
+									  data-item="{{parameterItem}}"
+									  data-index="{{index}}"
+									  data-enabled="{{parameterItem.is_enabled}}"
+									  wx:for-item="parameterItem"
+									  wx:if="{{parameterItem.is_optional === 1 && parameterItem.is_enabled !== 2 && parameterItem.is_enabled !== 3 && goodsInfo.attribute_data.length === 1}}" bindtap="checkParameterItem">
+									<text class="label-content">{{parameterItem.attribute_item_value}}</text>
+								</view>
+								<!--大于一条属性，禁用的sku对应的参数展示虚线框-->
+								<view class="item-label {{parameterItem.is_checkout?'item-is-active':''}} {{parameterItem.is_enabled === 3?'bor_dashed':''}}"
+									  wx:for="{{attributeItem.attribute_items}}"
+									  wx:key="parameterItem.parameter_id"
+									  wx:for-index="itemIndex"
+									  data-id="{{parameterItem.attribute_item_id}}"
+									  data-item="{{parameterItem}}"
+									  data-index="{{index}}"
+									  data-enabled="{{parameterItem.is_enabled}}"
+									  wx:for-item="parameterItem"
+									  wx:if="{{parameterItem.is_optional === 1 && parameterItem.is_enabled !== 2 && goodsInfo.attribute_data.length > 1}}" bindtap="checkParameterItem">
+									<text class="label-content">{{parameterItem.attribute_item_value}}</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<!--数量-->
+					<view class="sku-num">
+						<view class="sku-num-title">数量</view>
+						<view class="btn-block">
+							<view class="labels" data-number="-1" bindtap="changeItemNum">
+								<image class="num-btn-reduce" src="/images/default/reduce-btn.png"></image>
+							</view>
+							<view class="num">{{quantity}}</view>
+							<view class="labels"  data-number="1" bindtap="changeItemNum">
+								<image class="num-btn-add" src="/images/default/add-btn.png"></image>
+							</view>
+
+						</view>
+					</view>
+				</view>
+				<view class="action-button" wx:if="{{goodsInfo.is_sale == 1}}">
+					<!--选择sku-->
+					<view wx:if="{{skuCoverType == 1}}">
+						<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+							<button formType="submit" class="cancel-btn {{show_sku_err ? 'color-default' : ''}}" bindtap="addGoods"><image class="cart-icon" src="/images/shopCart/cart.png"></image>加入购物车</button>
+						</form>
+						<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+							<button formType="submit" class="submit-btn  {{show_sku_err ? 'color-default' : ''}}" bindtap="createOrder">立即下单</button>
+						</form>	
+					</view>
+					<!--底部加入购物车按钮进入-->
+					<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+						<button formType="submit" class="submit-all-button  {{show_sku_err ? 'color-default' : ''}}" bindtap="addGoods" wx:if="{{skuCoverType == 2}}">
+							确定
+						</button>
+					</form>	
+				</view>
+				<view class="action-button color-default" wx:if="{{goodsInfo.is_sale == 2}}">
+					商家暂未上架该商品
+				</view>
+			</view>
+		</view>
+
+		<!-- 优惠券浮层 -->
+		<view class="coupon-cover" style="display:{{couponCover?'block':'none'}}" catchtouchmove="true">
+			<view class="cover-content">
+				<view class="title" bindtap="showCouponCover">领取优惠券
+					<image class="close" src="/images/default/close-btn.png"></image>
+				</view>
+				<scroll-view scroll-y class="coupons-scroll">
+					<view class="coupons">
+						<!-- 优惠券列表 -->
+						<view class="receive">
+							<view class="title">可领取优惠券</view>
+							<block wx:for="{{un_receive_list}}" wx:key="{{index}}">
+								<coupon-t1 coupon="{{item}}" type="goods" bind:receive="receiveCoupon"></coupon-t1>
+							</block>
+						</view>
+
+						<view class="un-receive">
+							<view class="title">已领取优惠券</view>
+							<block wx:for="{{received_list}}" wx:key="{{index}}">
+								<coupon-t1 coupon="{{item}}" show-btn="{{false}}" type="mine"></coupon-t1>
+							</block>
+						</view>
+
+					</view>
+				</scroll-view>
+			</view>
+		</view>
+	</view>
+	<!--缺省-->
+	<empty-page wx:if="{{isShowDefault === true}}" icon="{{err_icon}}" slogan="{{err_tip}}"/>
+</view>
+

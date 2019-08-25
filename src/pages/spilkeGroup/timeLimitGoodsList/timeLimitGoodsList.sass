@@ -1,0 +1,116 @@
+@import '~@/style/mixin'
+@import '~@/style/border'
+
+.page-timeLimitGoodsList 
+  background: #ffffff
+  min-height: 100vh
+  .timeLimitGoodsList
+    padding: 0 vw(15)
+    box-sizing: border-box
+    .goods-list
+      display: flex
+      padding: vw(15) 0
+      align-items: center
+      box-sizing: border-box
+      border-bottom: vw(1) solid #EEEEEE
+      position: relative
+      background: #ffffff
+      .goods-image
+        width: vw(164)
+        height: vw(104)
+        flex-shrink: 1
+        position: relative
+        margin-right: vw(9)
+        .image
+          width: vw(165)
+          height: vw(103)
+        .item-type
+          position: absolute
+          top: vw(-2)
+          right: vw(-2)
+          width: vw(38)
+          height: vw(14)
+      .goods-detail
+        .title
+          text-overflow: ellipsis
+          overflow: hidden
+          white-space: nowrap
+          width: vw(178)
+          font-size: vw(14)
+          color: #404040
+          line-height: vw(14)
+        .time-exhibition
+          color: #393940
+          font-size: vw(12)
+          line-height: vw(12)
+          margin: vw(10) 0
+          .distance
+            margin: vw(1) 0
+            margin-right: vw(5)
+            color: #7F7F7F
+          .time-default-color
+            color: #96979E
+          .time
+            display: inline-block
+            font-weight: lighter
+            width: vw(16)
+            height: vw(16)
+            background: #393940
+            text-align: center
+            line-height: vw(16)
+            color: #ffffff
+            margin: 0 vw(2)
+            font-size: vw(10)
+          .begin
+            background: #FBCE07
+            color: #404040
+        .progress
+          color: #7F7F7F
+          font-size: vw(10)
+          line-height: vw(14)
+          .progress-strip
+            width: vw(74)
+            height: vw(6)
+            max-width: vw(74)
+            display: inline-block
+            border-radius: vw(3)
+            background: #D8D8D8
+            position: relative
+            margin-right: vw(6)
+            .real-progress
+              max-width: vw(74)
+              min-width: vw(6)
+              border-radius: vw(3)
+              height: vw(6)
+              position: absolute
+              left: 0
+              top: 0
+              background: #DD1D21
+        .concessional
+          color: #DD1D21
+          font-size: vw(16)
+          line-height: vw(16)
+          margin: vw(10) 0 vw(3) 0
+        .original
+          color: #7F7F7F
+          font-size: vw(12)
+          line-height: vw(12)
+          text-decoration: line-through
+      .snatch,.snatch-start
+        position: absolute
+        bottom: vw(18)
+        right: 0
+        width: vw(52)
+        height: vw(25)
+        background: #D9D9D9
+        text-align: center
+        .word
+          font-size: vw(12)
+          font-weight: 500
+          color: #A7A9AC
+          line-height: vw(17)
+      .snatch-start
+        background: #DD1D21
+        .word
+          color: #FFFFFF
+

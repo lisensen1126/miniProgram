@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "支付结果",
+	"usingComponents": {
+		"top-bar": "../../../components/topbar/topbar",
+		"coupon-model": "../../../components/couponModel/couponModel"
+	}
+}

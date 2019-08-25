@@ -1,0 +1,11 @@
+{
+	"navigationBarBackgroundColor": "#ffffff",
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "品牌日",
+	"backgroundColor": "#000000",
+	"backgroundTextStyle": "light",
+	"enablePullDownRefresh": false,
+	"usingComponents": {
+    "top-bar": "../../../components/topbar/topbar"
+	}
+}

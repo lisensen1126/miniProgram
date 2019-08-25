@@ -1,0 +1,191 @@
+@import '~@/style/vw'
+.coupon-model
+  position: fixed
+  left: 0
+  top: 0
+  bottom: 0
+  right: 0
+  overflow: hidden
+  z-index: 9999
+  background-color: rgba(0,0,0,0.5)
+  .fl
+    float: left
+  .fr
+    float: right
+  .clearfix:after
+    content: " "  
+    display: block
+    clear: both
+    visibility: hidden
+    height: 0
+    font-size: 0
+  .welfare_center
+    position: absolute
+    left: 50%
+    top: 45%
+    width: vw(305)
+    // background-color: $bg-white
+    text-align: center
+    transform: translate(-50%,-50%)
+    margin: auto
+    .top
+      width: 100%
+      height: vw(134)
+      line-height: vw(52)
+      font-size: vw(16)
+      color: #404040
+      text-align: center
+      font-weight: 500
+      position: relative
+      image
+        width: 100%
+        height: vw(134)
+      .close-box
+        width: vw(40)
+        height: vw(40)
+        position: absolute
+        top: vw(10)
+        right: 0
+        .close
+          width: vw(40)
+          height: vw(40)
+          background: url('https://oss1.chedianai.com/images/assets/coupon-close.png') no-repeat center
+          background-size: vw(15) vw(15)
+    .back
+      background: linear-gradient(to bottom, #C22216, #D64319)
+      box-sizing: border-box
+      padding-top: vw(20)
+    .content
+      box-sizing: border-box
+      max-height: vw(240)
+      min-height: vw(81)
+      // overflow-y: scroll
+      .list
+        box-sizing: border-box
+        height: vw(81)
+        width: vw(275)
+        margin: 0 auto
+        position: relative
+        overflow: hidden
+        margin-bottom: vw(15)
+        // border: 1px solid #ffffff
+        .y-top
+          width: vw(8)
+          height: vw(8)
+          border-radius: 100%
+          position: absolute
+          top: vw(-5.5)
+          left: vw(83)
+          background-color: #CA3118
+          z-index: 9999
+        .y-bottom
+          width: vw(8)
+          height: vw(8)
+          border-radius: 100%
+          position: absolute
+          bottom: vw(-5.5)
+          left: vw(83)
+          background-color: #CA3118
+          z-index: 9999
+        .left
+          box-sizing: border-box
+          height: vw(81)
+          width: vw(87)
+          border-right: vw(1) dashed #DD1D21
+          z-index: 999
+          margin-top: 0
+          .margin-auto
+            margin: 0 auto
+            display: inline-block
+          .money
+            box-sizing: border-box
+            line-height: 1
+            padding-top: vw(12)
+            // padding-left: vw(8)
+            .m
+              font-size: vw(16)
+              font-weight: 600
+              color: #DD1D21
+              padding-top: vw(16)
+            .n
+              font-size: vw(34)
+              font-weight: 600
+              color: #DD1D21
+            .z
+              font-size: vw(16)
+              font-weight: 600
+              color: #DD1D21
+              padding-top: vw(16)
+          .condition
+            color: #404040
+            font-size: vw(12)
+            line-height: vw(20)
+            padding-top: vw(4)
+        .right
+          box-sizing: border-box
+          height: vw(81)
+          width: vw(186)
+          text-align: left
+          padding-left: vw(10)
+          position: relative
+          z-index: 999
+          margin-top: 0
+          .name
+            padding-top: vw(20)
+            font-size: vw(14)
+            font-weight: 600
+            color: #404040
+            line-height: vw(20)
+            max-width: vw(123)
+            white-space: nowrap
+            text-overflow: ellipsis
+            overflow: hidden
+          .time
+            color: #7F7F7F
+            font-size: vw(12)
+            line-height: vw(17)
+            padding-top: vw(4)
+          .lj-btn
+            width: vw(68)
+            height: vw(28)
+            position: absolute
+            top: vw(15)
+            right: vw(15)
+            text-align: center
+            line-height: vw(28)
+            font-size: vw(14)
+            color: #ffffff
+            background-color: #DD1D21
+      .zk, .mj, .dj, .dh
+        background-position-x: vw(195) !important
+        background-size: vw(82) vw(82) !important
+        background-color: #ffffff !important
+      .zk
+        background: url('https://oss1.chedianai.com/images/assets/couz-img.png') no-repeat
+      .mj
+        background: url('https://oss1.chedianai.com/images/assets/couj-img.png') no-repeat
+      .dj
+        background: url('https://oss1.chedianai.com/images/assets/coudj.png') no-repeat
+      .dh
+        background: url('https://oss1.chedianai.com/images/assets/coud-img.png') no-repeat
+      .zk, .mj, .dj, .dh
+        background-position-x: vw(195)
+        background-size: vw(82) vw(82)
+        background-color: #ffffff
+      .list:last-child
+        margin-bottom: 0
+    .tip-bottom
+      height: vw(84)
+      width: 100%
+      box-sizing: border-box
+      padding-top: vw(24)
+      .btn
+        width: vw(215)
+        height: vw(40)
+        line-height: vw(40)
+        border-radius: vw(40)
+        background-color: #FCDA0B
+        font-size: vw(16)
+        color: #404040
+        font-weight: 600
+        margin: 0 auto

@@ -1,0 +1,171 @@
+{
+	"pages": [
+		"pages/index/index",
+		"pages/applicable/applicable",
+		"pages/personal/personal",
+		"pages/personalEdit/personalEdit",
+		"pages/store/store",
+		"pages/storeList/storeList",
+		"pages/defaultPage/defaultPage",
+		"pages/shopCart/shopCart",
+		"pages/mall/categories/categories",
+		"pages/mall/categoryList/categoryList",
+		"pages/mall/categorySearchList/categorySearchList",
+		"pages/order/orderList/orderList",
+		"pages/order/orderDetail/orderDetail",
+		"pages/order/confirmOrder/confirmOrder",
+		"pages/myreservation/myreservation",
+		"pages/videos/constructionLive/constructionLive",
+		"pages/videos/videoList/videoList",
+		"pages/videos/videoDetail/videoDetail",
+		"pages/appointment/makeAppointment/makeAppointment",
+		"pages/appointment/chooseTime/chooseTime",
+		"pages/appointment/appointmentSuccess/appointmentSuccess",
+		"pages/order/paySuccess/paySuccess",
+		"pages/storeEvaluate/storeEvaluate",
+		"pages/register/registerPhone/registerPhone",
+		"pages/h5/autoshop",
+		"pages/technicianList/technicianList",
+		"pages/mall/serviceDetail/serviceDetail",
+		"pages/mall/goodsDetail/goodsDetail",
+		"pages/maintenance/maintenance/maintenance",
+		"pages/maintenance/introduce/introduce",
+		"pages/maintenance/brandAreaList/brandAreaList",
+		"pages/intelligent/intelligent/intelligent",
+		"pages/intelligent/change/replacement",
+		"pages/perevaluate/storeEvaluate/storeEvaluate",
+		"pages/photoAlbum/photoAlbum",
+		"pages/intelligent/modelParameters/modelParameters",
+		"pages/coupon/my/myCoupon",
+		"pages/coupon/voucher/voucher",
+		"pages/coupon/chooseCoupons/chooseCoupons",
+		"pages/maintenance/carList/carList",
+		"pages/register/userAgreements/agreements",
+		"pages/aboutUs/aboutUs",
+		"pages/article/article",
+		"pages/maintenance/advert/advert",
+		"pages/h5Vehicle/h5Vehicle",
+		"pages/qrcodeShare/qrcodeShare",
+		"pages/qrcodeAnalysis/qrcodeAnalysis",
+		"pages/poster/poster",
+		"pages/order/writeOff/writeOff"
+	],
+	"subPackages": [
+		{
+			"root": "pages/vehicle/",
+			"pages": [
+				"vehicleBrandSelector/vehicleBrandSelector",
+				"vehicleTypeSelector/vehicleTypeSelector",
+				"vehicleAdd/vehicleAdd",
+				"VehicleEdit/VehicleEdit",
+				"vehicleProfile/vehicleProfile",
+				"vehiclesMultiple/vehiclesMultiple",
+				"vehiclesReportList/vehiclesReportList",
+				"vehicleReportDetail/vehicleReportDetail"
+			]
+		},
+		{
+			"root": "pages/card/",
+			"pages": [
+				"cardCenter/cardCenter",
+				"myCardBag/myCardBag",
+				"myCardList/myCardList",
+				"myCardCode/myCardCode",
+				"purchaseDetails/purchaseDetails",
+				"myCardWirte/myCardWirte",
+				"makeSureOrder/makeSureOrder",
+				"payForSuccess/payForSuccess",
+				"giveSuccess/giveSuccess",
+				"orderChooseCard/orderChooseCard",
+				"relationGoods/relationGoods",
+				"myCardDetail/myCardDetail",
+				"giveRecord/giveRecord",
+				"giveRecordDetail/giveRecordDetail",
+				"cardWriteOff/CardWriteOff",
+				"receiveCard/receiveCard",
+				"giveCardShare/giveCardShare",
+				"giftRecord/giftRecord"
+			]
+		},
+		{
+			"root": "pages/spilkeGroup",
+			"pages": [
+				"groupCategoryList/groupCategoryList",
+				"timeLimitGoodsList/timeLimitGoodsList",
+				"timeLimitGoodsDetail/timeLimitGoodsDetail",
+				"timeLimitServiceDetail/timeLimitServiceDetail",
+				"timeLimitPurchaseDetail/timeLimitPurchaseDetail",
+				"groupGoodsDetail/groupGoodsDetail",
+				"groupServiceDetail/groupServiceDetail",
+				"groupPurchaseDetail/groupPurchaseDetail",
+				"groupSharePage/groupSharePage",
+				"groupSpilkeConfirmOrder/groupSpilkeConfirmOrder",
+				"groupPaySuccess/groupPaySuccess",
+				"purchasePaySuccess/purchasePaySuccess",
+				"purchaseOrder/purchaseOrder"
+			]
+		},
+		{
+			"root": "pages/lottery",
+			"pages": [
+				"lucky/lucky",
+				"luckyHelp/luckyHelp",
+				"defaultPage/defaultPage",
+				"payOffline/payOffline",
+				"paySuccess/paySuccess",
+				"payOfflineOrder/payOfflineOrder"
+			]
+		}
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#ffffff",
+		"navigationBarTitleText": "商城",
+		"navigationBarTextStyle": "black",
+		"backgroundColor": "#F7F6F2",
+		"onReachBottomDistance": 50,
+		"navigationStyle": "custom"
+	},
+	"tabBar": {
+		"color": "#A6A6A6",
+		"selectedColor": "#404040",
+		"backgroundColor": "#ffffff",
+		"borderStyle": "white",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "./images/tabbar/home-default.png",
+				"selectedIconPath": "./images/tabbar/home-active.png"
+			},
+			{
+				"pagePath": "pages/mall/categoryList/categoryList",
+				"text": "分类",
+				"iconPath": "./images/tabbar/fenlei-default.png",
+				"selectedIconPath": "./images/tabbar/fenlei-active.png"
+			},
+			{
+				"pagePath": "pages/store/store",
+				"text": "门店",
+				"iconPath": "./images/tabbar/store-default.png",
+				"selectedIconPath": "./images/tabbar/store-active.png"
+			},
+			{
+				"pagePath": "pages/personal/personal",
+				"text": "我的",
+				"iconPath": "./images/tabbar/my-default.png",
+				"selectedIconPath": "./images/tabbar/my-active.png"
+			}
+		]
+	},
+	"networkTimeout": {
+		"request": 10000,
+		"downloadFile": 10000
+	},
+	"permission": {
+		"scope.userLocation": {
+			"desc": "你的位置信息将用于小程序"
+		}
+	},
+	"debug": true
+}

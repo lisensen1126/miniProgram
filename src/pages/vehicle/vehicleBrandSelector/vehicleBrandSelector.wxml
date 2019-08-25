@@ -1,0 +1,56 @@
+<view class="page-wrapper" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="选择车型"></top-bar>
+  <view class="selection-title">选择品牌</view>
+  <scroll-view class="selection-list" scroll-y="true" scroll-with-animation="{{true}}" scroll-into-view="{{scrollPosition}}">
+    <text class="section-label" id="hot">热门品牌</text>
+    <view class="hot-brand-list">
+      <view wx:for="{{hotBrands}}" wx:key="{{index}}" class="hot-brand-section" data-selection-id="{{item.id}}" data-selection-name="{{item.name}}"
+        data-selection-logo="{{item.logo_url}}" bindtap="selectBrand" data-cdp="vehicle_vehicleBrandSelector_hotBrandsList">
+        <image class="hot-brand-avatar" src="{{item.logo_url}}" />
+        <view class="hot-brand-title">{{item.name}}</view>
+      </view>
+    </view>
+    <block wx:for="{{list}}" wx:key="{{index}}">
+      <text wx:if="{{item.isFirstOfGroup}}" class="section-label" id="{{item.initial}}">{{item.initial}}</text>
+      <view class="selection-item" data-selection-id="{{item.id}}" data-selection-name="{{item.name}}" data-selection-logo="{{item.logo_url}}"
+        bindtap="selectBrand" data-cdp="vehicle_vehicleBrandSelector_list">
+        <image class="brand-avatar" src="{{item.logo_url}}" />
+        <text class="brand-title">{{item.name}}</text>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- <view class="alphabet-wrapper" bindtouchmove="tmove" bindtouchend="tend">
+    <view wx:for="{{alphabet}}" wx:key="{{index}}" class="letter {{currentPosition === item ? 'active' : ''}}" data-position="{{item}}"> -->
+  <view class="alphabet-wrapper">
+    <view wx:for="{{alphabet}}" bindtap="changeaAlphabet" wx:key="{{index}}" class="letter {{currentPosition === item ? 'active' : ''}}"
+      data-position="{{item}}" data-cdp="vehicle_vehicleBrandSelector_changeaAlphabet">
+      <text class="letter-inner">{{item}}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{brandSelecting}}" class="type-wrapper" bindtap="hideBrandPannel" data-cdp="vehicle_vehicleBrandSelector_1">
+    <view class="type-list-pannel {{pannelShow && 'show'}}" catchtap="prevent" style="padding-top: {{topbarHeight}}px;box-sizing: border-box;">
+      <view class="selection-title">选择车型</view>
+      <view class="brand-selection">
+        <image class="brand-avatar" src="{{brandSelection.logo_url}}" />
+        <text class="brand-title">{{brandSelection.name}}</text>
+        <view class="sub-choose" style="background: #F7D117;color:#000000" bindinput="getValue" bindtap="subBrand" data-cdp="vehicle_vehicleBrandSelector_2">确认</view>
+      </view>
+      <view class="search-vehicle">
+        <image class="fangdajing" src="../../../images/vehicle-search.png"></image>
+        <input type="text" value="{{search_text}}" placeholder="搜索车辆型号" confirm-type="search" bindconfirm="searchVehicle" bindinput="getValue"/>
+      </view>
+      <scroll-view class="selection-list brand-list" scroll-y="true" scroll-with-animation="{{true}}">
+        <block wx:for="{{models}}" wx:key="{{index}}">
+          <text wx:if="{{item.isFirstOfFactory}}" class="section-label" id="{{item.id}}">{{item.factory.name}}</text>
+          <view class="selection-item{{item.id === modelSelection ? ' selected' : ''}}" data-model-id="{{item.id}}" data-model-index="{{index}}"
+            bindtap="selectModel" data-cdp="vehicle_vehicleBrandSelector_modelsList">
+            <text class="brand-title">{{item.name}}</text>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>

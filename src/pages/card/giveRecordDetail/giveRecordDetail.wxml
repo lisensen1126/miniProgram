@@ -1,0 +1,140 @@
+<view class="page-orderDetail" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="订单详情" home="{{showHome}}"></top-bar>
+	<!-- topbar end -->
+  <view>
+    <!-- 赠送卡状态 -->
+    <view class="card-give-status">
+      <view class="give-status-box" wx:if="{{order.is_received === 3 && order.upkeep_type === 2}}">
+        <view class="give-status">
+          <image class="status-image" src="https://oss1.chedianai.com/images/assets/card-give-allow.png"></image>
+          <view class="status-text status-red">未领取，赠送失败</view>
+        </view>
+        <view class="give-status-text">已自动退回卡包</view>
+      </view>
+      <view class="give-status-box" wx:if="{{order.upkeep_type === 3}}">
+        <view class="give-status">
+          <image class="status-image" src="https://oss1.chedianai.com/images/assets/card-give-time.png"></image>
+          <view class="status-text status-red">待赠送</view>
+        </view>
+      </view>
+      <view class="give-status-box" wx:if="{{order.is_received === 2 && order.upkeep_type === 2}}">
+        <view class="give-status">
+          <image class="status-image" src="https://oss1.chedianai.com/images/assets/card-give-time.png"></image>
+          <view class="status-text status-red">待领取</view>
+        </view>
+        <view class="give-status-time-down">
+          剩余：<view class="time-down-text">{{clock}}</view>
+        </view>
+        <view class="give-status-text">72小时后可退回到我的卡包</view>
+      </view>
+      <view class="give-status-box" wx:if="{{order.is_received === 1&& order.upkeep_type === 2}}">
+        <view class="give-status">
+          <image class="status-image" src="https://oss1.chedianai.com/images/assets/card-give-right.png"></image>
+          <view class="status-text status-yellow">已领取，赠送成功</view>
+        </view>
+        <view class="give-status-text">你的好友已领取</view>
+      </view>
+      <view class="give-time" wx:if="{{order.is_received !== 1 && order.upkeep_type === 2}}">
+        赠送时间：<view class="give-time-text">{{order.give_time}}</view>
+      </view>
+      <view class="receive-info" wx:if="{{order.is_received === 1 && order.upkeep_type === 2}}">
+        <view class="receive-info-item">
+          <view class="receive-item-title">获赠人：</view>
+          <view class="receive-item-content">
+          <image class="avater-image" src="{{order.give_customer_avatar}}"></image>{{order.give_customer_name}}</view>
+        </view>
+        <view class="receive-info-item">
+          <view class="receive-item-title">手机号：</view>
+          <view class="receive-item-content">{{order.give_mobile}}</view>
+        </view>
+        <view class="receive-info-item">
+          <view class="receive-item-title">领取时间：</view>
+          <view class="receive-item-content">{{order.receive_time}}</view>
+        </view>
+        <view class="receive-info-item">
+          <view class="receive-item-title">赠送时间：</view>
+          <view class="receive-item-content">{{order.give_time}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 订单信息 -->
+    <view class="info-section card-item-box">
+      <view class="section-header font-bold">订单内容</view>
+      <view class="card-item" style="background-image: url({{order.card.image_url}})" wx:key='index'>
+        <view class="card-item-top">
+          <view class="card-item-title">
+            <view class="card-item-name">{{order.card.card_name}}</view>
+            <view class="card-item-use" wx:if="{{order.card.card_type === 1}}"><view>可使用</view><view class="num-use">{{order.card.num}}</view><view>次</view></view>
+          </view>
+        </view>
+        <view class="card-item-bottom">
+          <view class="card-item-price">
+            <text class="card-item-nowprice">¥{{order.card.price}}</text>
+            <text class="card-item-storeprice">门市价 ¥{{order.card.origin_price}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="info-section">
+      <view class="info-item">
+        <view class="info-label">订单编号</view>
+        <view class="info-content">{{order.trade_order_no}}</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">下单时间</view>
+        <view class="info-content">{{creat_time}}</view>
+      </view>
+      <!-- <view class="info-item">
+        <view class="info-label">下单门店</view>
+        <view class="info-content">{{order.store_name}}</view>
+      </view> -->
+    </view>
+    <!--交易详情-->
+    <view class="info-section" wx:if='{{order.status !== 1}}'>
+      <view class="info-item">
+        <view class="info-label">交易流水号</view>
+        <view class="info-content">{{order.payment.third_payment_no}}</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">支付方式</view>
+        <view class="info-content">微信支付</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">支付时间</view>
+        <view class="info-content">{{order.paid_at}}</view>
+      </view>
+    </view>
+    <!--订单费用-->
+    <view class="info-section" wx:if='{{order.status !== 1}}'>
+      <view class="info-item">
+        <view class="info-label" wx:if="{{order.order_type !=3 && order.order_type != 4}}">商品总价</view>
+        <view class="info-label" wx:if="{{order.order_type ==3 || order.order_type == 4}}">
+          <text wx:if="{{order.item[0].item_type != 2}}">商品总价</text>
+        </view>
+        <view class="info-content">¥{{order.total_amount}}</view>
+      </view>
+      <view class="info-item" wx:if='{{order.preferential_price != 0}}'>
+        <view class="info-label">优惠券</view>
+        <view class="info-content">- ¥{{order.preferential_price}}</view>
+      </view>
+      <view class="info-item" wx:if='{{order.random_coupon != 0}}'>
+        <view class="info-label">立减金</view>
+        <view class="info-content">- ¥{{order.random_coupon}}</view>
+      </view>
+      <view class="info-item payment-line">
+        <view class="info-content">
+          <view class="info-label">实付金额:</view>
+          <view class="info-content-payment">¥{{order.final_amount}}</view></view>
+      </view>
+    </view>
+  </view>
+  <!-- 养护卡相关 -->
+  <block wx:if="{{order.is_received !== 1}}">
+    <view class="operation-button-wrapper">
+      <button class="operation-button unreversion" bindtap="selfUse">自己使用</button>
+      <button class="operation-button reversion" data-type="card_share" open-type="share">{{order.upkeep_type === 3 ? '赠送好友' : '重新赠送'}}</button>
+    </view>
+  </block>
+  <confirm-self-use wx:if="{{show_confrim}}" bindtriggerconfirm="confirm" bindtriggercancel="cancel"></confirm-self-use>
+</view>

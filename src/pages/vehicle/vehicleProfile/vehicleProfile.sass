@@ -1,0 +1,118 @@
+@import '~@/style/mixin'
+
+.car-file
+  width: 100%
+  height: vw(115)
+  background: #ffc723
+  box-sizing: border-box
+  padding: vw(15) vw(15) vw(20)
+  position: relative
+  &::before
+  &::after
+    display: block
+    content: ""
+    position: absolute
+    bottom: 0
+    z-index: 1
+  &::before
+    left: 0
+    width: vw(102)
+    height: vw(115)
+    @include getImage('bg_01.svg')
+  &::after
+    right: 0
+    width: vw(84)
+    height: vw(92)
+    @include getImage('bg_02.svg')
+.car-file-box
+  width: 100%
+  height: vw(80)
+  border-radius: $radius
+  background: $bg-white
+  display: flex
+  align-items: stretch
+  justify-content: space-between
+  position: relative
+  z-index: 2
+  box-shadow: 0 0 vw(14) 0 rgba(168, 168, 168, .30)
+.car-info
+  flex: 1
+  height: 100%
+  box-sizing: border-box
+  padding-left: vw(20)
+  padding-right: vw(20)
+  display: flex
+  overflow: hidden
+  align-items: center
+  .car-icon
+    width: vw(36)
+    height: vw(36)
+    overflow: hidden
+    margin-right: vw(15)
+    flex-shrink: 0
+    .logo
+      width: vw(36)
+      height: vw(36)
+  .info
+    display: flex
+    flex-grow: 1
+    overflow: hidden
+    flex-direction: column
+    .title
+      width: 100%
+      line-height: vw(20)
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+      color: $text-dark
+      font-weight: bold
+    .detail
+      color: $text-gray
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+      width: 100%
+
+.form-line-input
+  &.has-unit
+    padding-right: 0
+.unit
+  padding-right: vw(15)
+
+.license-content
+  position: relative
+  display: inline-block
+  width: vw(30)
+  height: vw(50)
+  text-align: left
+  &::after
+    content: ''
+    position: absolute
+    right: 0
+    top: 50%
+    transform: translateY(-50%) rotate(-45deg)
+    display: block
+    width: vw(6)
+    height: vw(6)
+    border: solid #d3d3d3
+    border-width: 0 0 vw(2) vw(2)
+.license-plate-input
+  display: inline-block
+  width: vw(66)
+  padding-left: vw(15)
+  height: vw(50)
+  line-height: vw(50)
+  font-size: vw(16)
+  color: #121212
+  text-align: right
+  &.is-error
+    color: $text-red
+
+.timestamp
+  position: fixed
+  bottom: vw(30)
+  width: 100%
+  text-align: center
+  font-size: vw(14)
+  line-height: vw(20)
+  color: #b2b2b2

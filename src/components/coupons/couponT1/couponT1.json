@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+		"catch-form": "../../formId/formId"
+  }
+}

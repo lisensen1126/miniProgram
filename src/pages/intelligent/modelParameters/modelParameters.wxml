@@ -1,0 +1,48 @@
+<view class="page-modelParameters" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="智能保养"></top-bar>
+	<!-- tab -->
+	<view class="maintenance-tab">
+		<!--tab切换部分-->
+		<view class="tab-box">
+			<view class="tab-bar {{tabType === 1?'tab-active':''}}" data-tab="1" bindtap="changeTab">
+				<image class="left-img" src="/images/intelligent/group.png"></image>
+				保养手册
+				<image class="right-img" src="/images/intelligent/right.png"></image>
+			</view>
+			<view class="line"></view>
+			<view class="tab-bar {{tabType === 2?'tab-active':''}}" data-tab="2" bindtap="changeTab">
+				<image class="left-img" src="/images/intelligent/shape.png"></image>
+				车型参数
+				<image class="right-img" src="/images/intelligent/right.png"></image>
+			</view>
+		</view>
+		<view class="page-bg">
+			<!-- 保养手册 -->
+			<view class="page-content" wx:if="{{tabType === 1}}" style="max-height:{{screenHeight}}">
+				<view wx:if="{{ tab.length !== 0 && showPage}}" class="page-bg-content">
+					<view class="content-wrapper" wx:for="{{tabs}}" wx:key="{{item.id}}">
+						<!--保养计划 -->
+						<!--table组件：table-data纵向表头、col-header横向表头、里程数-->
+						<custom-table table-data="{{tableData}}" col-header="{{item.colHeader}}" miles="{{mileage}}">
+						</custom-table>
+					</view>
+				</view>
+				<!-- 缺省页面 -->
+				<empty-page wx:if="{{ tab.length === 0 && showPage}}" class="categroy-content" slogan="暂无保养数据" icon="carmodel"></empty-page>
+			</view>
+			<!--车型参数-->
+			<view class="page-content" wx:if="{{tabType === 2}}">
+				<view wx:if="{{modelList.length > 0 && showPageModel}}" class="page-bg-content model">
+					<view class="model-content" wx:for="{{modelList}}" wx:key="{{index}}">
+						<text class="attribute">{{item.key}}</text>
+						<text class="substance" wx:if="{{item.value === null}}"></text>
+						<text class="substance" wx:else>{{item.value}}</text>
+					</view>
+				</view>
+				<!-- 缺省页面 -->
+  				<empty-page wx:if="{{modelList.length === 0 && showPageModel}}" class="categroy-content" slogan="暂无该车型数据" icon="carmodel"></empty-page>
+			</view>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,44 @@
+<view class="page-photoAlbum" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="图册"></top-bar>
+	<view class="status-filter-wrapper">
+		<scroll-view scroll-x="{{true}}" class='scroll_view_photo' scroll-with-animation="{{true}}" scroll-into-view="{{scrollPosition}}">
+			<view class="filter-item{{currentLevel === '0' ? ' is-active' : ''}}" data-level="0" bindtap="switchLevel" id="filter0">
+				门店视频
+			</view>
+			<view class="filter-item{{currentLevel === '1' ? ' is-active' : ''}}" data-level="1" bindtap="switchLevel" id="filter1">
+				门店环境
+			</view>
+			<view class="filter-item{{currentLevel === '2' ? ' is-active' : ''}}" data-level="2" bindtap="switchLevel" id="filter2">
+				门店资质
+			</view>
+			<view class="filter-item{{currentLevel === '3' ? ' is-active' : ''}}" data-level="3" bindtap="switchLevel" id="filter3">
+				门店设备
+			</view>
+			<view class="filter-item{{currentLevel === '4' ? ' is-active' : ''}}" data-level="4" bindtap="switchLevel" id="filter4">
+				门店项目
+			</view>
+		</scroll-view>
+  </view>
+	<empty-page wx:if="{{list.length === 0}}" class="categroy-content" slogan="{{currentLevel === '0' ? '暂无视频' : '暂无图片'}}" icon="nophoto"></empty-page>
+	<view class="photo_list" wx:if='{{list.length !== 0}}'>
+		<view class="photo_item" wx:for='{{list}}' wx:key='index'>
+			<image wx:if='{{currentLevel !== "0"}}' bindtap='previewImage' data-index='{{index}}' data-arr='{{list}}' src='{{item.image_url}}'></image>
+			<view wx:if='{{currentLevel !== "0" && item.image_name}}' class="item_name">{{item.image_name}}</view>
+			<image wx:if='{{currentLevel === "0"}}' class="myVideo" src="{{item.picture}}"></image>
+			<image wx:if='{{currentLevel === "0"}}' class="icon" src="/images/intelligent/icon-play.png" data-id="{{item.id}}" data-url="{{item.url}}" bindtap="onChangeShowState"></image>
+		</view>
+	</view>
+	<!-- 弹出视频框 -->
+	<view class="video-play-meng" wx:if="{{showView}}">
+		<view class="video-play">
+			<view class="video-content">
+				<video id="myVideo" direction="0" autoplay="{{true}}" src="{{palyVideo}}">
+				</video>
+				<view class="videoClose" data-url="{{}}" bindtap='onChangeShowCloseState'>
+					<image class="image" src='/images/index_close.png'></image>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,537 @@
+@import '~@/style/vw'
+
+.page-store
+  .clearfix:after
+    content: " "  
+    display: block
+    clear: both
+    visibility: hidden
+    height: 0
+    font-size: 0
+.s-bac
+  position: relative
+  width: 100%
+  height: vw(124)
+  background: url(https://oss1.chedianai.com/images/assets/s-t-bac.png) left bottom/100% auto no-repeat
+  .s-change
+    position: absolute
+    left: vw(15)
+    bottom: vw(30)
+    width: vw(84)
+    height: vw(26)
+    line-height: vw(26)
+    display: flex
+    align-items: center
+    justify-content: center
+    font-size: vw(12)
+    background: #FBCE07
+    font-weight: 400
+    color: #000
+    .change-store
+      width: vw(14)
+      height: vw(12)
+      margin-right: vw(5)
+.s-bac-h
+  height: vw(156)
+.s-base
+  position: relative
+  z-index: 2
+  background: #fff
+  padding: vw(0) vw(15)
+  border-radius: vw(20) vw(20) 0 0
+  margin-top: - vw(15)
+  .s-tit-box
+    display: flex
+    justify-content: space-between
+    // align-items: center
+    padding-top: vw(15)
+    .s-tit
+      width: calc(100% - 60rpx)
+      color: #000
+      font-size: vw(18)
+      font-weight: 600
+      line-height: vw(30)
+    .share-btn
+      width: vw(30)
+      height: vw(30)
+      border: 0
+      padding: 0
+      margin: 0
+      line-height: 1
+      background: transparent
+      &::after
+        border: none
+      image
+        width: vw(30)
+        height: vw(30)
+  .s-stars
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    margin-top: vw(10)
+    .s-s-score
+      margin-left: vw(10)
+      color: #7F7F7F
+    .s-s-zuan
+      position: relative
+      margin-left: vw(18)
+      height: vw(18)
+      display: flex
+      align-items: center
+      // line-height: 1
+      padding: vw(1) vw(6) 0 vw(16)
+      box-sizing: border-box
+      background: #DD1D21
+      font-size: vw(11)
+      color: #fff
+      image
+        position: absolute
+        left: - vw(11)
+        top: - vw(2)
+        width: vw(23)
+        height: vw(20)
+      
+  .s-photo
+    margin-top: vw(20)
+    box-sizing: border-box
+    white-space: nowrap
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+    .s-p-item:last-child
+      margin-right: 0
+    .s-p-item
+      position: relative
+      display: inline-block
+      width: vw(104)
+      height: vw(67)
+      margin-right: vw(10)
+      image
+        width: vw(104)
+        height: vw(67)
+      .s-p-item-text
+        position: absolute
+        left: 0
+        bottom: 0
+        color: #fff
+        width: 100%
+        box-sizing: border-box
+        height: vw(19)
+        background: rgba(0,0,0,0.3)
+        padding: 0 vw(8)
+        font-size: vw(11)
+        display: flex
+        justify-content: space-between
+  .s-tags
+    // margin-top: vw(6)
+    text
+      display: inline-block
+      margin-right: vw(10)
+      height: vw(20)
+      font-size: vw(10)
+      line-height: vw(20)
+      padding: 0 vw(5)
+      background: #F3F3F3
+      color: #7F7F7F
+.s-rview:last-child
+  border-bottom: none
+.s-rview
+  height: vw(60)
+  line-height: vw(60)
+  display: flex
+  justify-content: space-between
+  align-items: center
+  border-bottom: 1px solid #eee
+  .s-rv-text
+    width: calc(100% - 50rpx)
+    height: vw(60)
+    font-size: vw(14)
+    color: #332E2E
+    padding-left: vw(20)
+    overflow: hidden
+  .s-rv-icon
+    width: vw(24)
+    height: vw(24)
+  .s-rv-ad
+    background: url(https://oss1.chedianai.com/images/assets/s-address-g.png) no-repeat
+    background-size: vw(14) vw(14)
+    background-position: left center
+  .s-rv-time
+    background: url(https://oss1.chedianai.com/images/assets/s-time.png) no-repeat
+    background-size: vw(14) vw(14)
+    background-position: left center
+.lsd-box
+  margin-top: vw(10)
+  .s-rview
+    background: #fff
+    padding: 0 vw(10)
+.box-title
+  display: flex
+  justify-content: space-between
+  align-items: center
+  height: vw(40)
+  .b-t-l
+    font-size: vw(14)
+    line-height: 1
+    font-weight: 600
+    color: #404040
+  .b-t-r
+    color: #7F7F7F
+    font-size: vw(12)
+    padding: vw(5) 0
+    image
+      width: vw(9)
+      height: vw(9)
+      opacity: 0.5
+.bp-box
+  background: #F5F5F5
+  padding: vw(7) vw(15) vw(15)
+  .bp-con
+    box-sizing: border-box
+    white-space: nowrap
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+    .bp-item
+      display: inline-block
+      width: vw(135)
+      margin-right: vw(10)
+      color: #404040
+      line-height: vw(18)
+      .bp-i-pic
+        width: vw(135)
+        height: vw(84)
+        background: #ffffff
+        image
+          width: 100%
+          height: 100%
+      .bp-i-title
+        margin-top: vw(10)
+        height: vw(36)
+        width: 100%
+        font-size: vw(13)
+        overflow: hidden
+        white-space: normal
+        text-overflow: ellipsis
+        display: -webkit-box
+        -webkit-line-clamp: 2
+        -webkit-box-orient: vertical
+      .bp-i-price
+        margin-top: vw(5)
+        font-size: vw(14)
+        font-weight: 600
+.yhj-box
+  background: #ffffff
+  padding: vw(7) vw(15) vw(15)
+  .yhj-list-thr
+    justify-content: space-between
+  .yhj-list
+    display: flex
+    .yhj-item:last-child
+      margin-right: 0
+    .yhj-item
+      width: vw(112)
+      height: vw(110)
+      margin-right: vw(10)
+      background-image: url("https://oss2.chedianai.com/images/assets/coupon-cover.png")
+      background-repeat: no-repeat
+      background-size: contain
+      text-align: center
+      // display: flex
+      // justify-content: center
+      color: #fff
+      .yhj-top
+        height: vw(77)
+        display: flex
+        align-items: center
+        flex-direction: column
+        justify-content: center
+        .yhj-i-money, .yhj-i-zhe
+          display: flex
+          justify-content: center
+          font-weight: 600
+          .yhj-im-i
+            padding-top: vw(2)
+            font-size: vw(20)
+            line-height: 1
+          .yhj-im-m
+            font-size: vw(28)
+            line-height: 1
+          .yhj-im-z
+            padding-bottom: vw(4)
+            font-size: vw(14)
+            line-height: 1
+        .yhj-i-money
+          align-items: flex-start
+        .yhj-i-zhe
+          align-items: flex-end
+        .yhj-i-text
+          font-size: vw(12)
+          opacity: 0.6
+      .yhj-i-btn
+        height: vw(32)
+        line-height: vw(32)
+        font-size: vw(14)
+        text
+          display: inline-block
+          width: 100%
+    .yhj-item-over
+      background-image: url("https://oss2.chedianai.com/images/assets/coupon-index-default.png")
+      color: #DD1D21
+.js-box
+  background: #ffffff
+  padding: vw(7) vw(15) vw(20)
+  margin-top: vw(15)
+  padding-right: vw(0)
+  .js-title
+    box-sizing: border-box
+    padding-right: vw(15)
+  .js-list
+    white-space: nowrap
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+    height: vw(190)
+    .js-item
+      position: relative
+      display: inline-block
+      width: vw(98)
+      height: vw(163)
+      padding-top: vw(10)
+      text-align: center
+      margin-right: vw(10)
+      .js-photo
+        position: relative
+        width: vw(98)
+        height: vw(98)
+        .js-p-tx
+          width: vw(98)
+          height: vw(98)
+          image
+            width: vw(98)
+            height: vw(98)
+        image.js-p-icon
+          position: absolute
+          right: - vw(10)
+          top: - vw(10)
+          width: vw(20)
+          height: vw(20)
+        text
+          position: absolute
+          left: 0
+          bottom: 0
+          width: 100%
+          height: vw(26)
+          line-height: vw(26)
+          text-align: center
+          overflow: hidden
+          background: linear-gradient(rgba(0,0,0,0.02), rgba(0,0,0,0.3))
+          font-size: vw(14)
+          font-weight: 600
+          color: #fff
+      .js-bac
+        background: #F7F7F7
+        height: vw(65)
+        .js-job
+          padding-top: vw(8)
+          font-size: vw(12)
+          color: #332E2E
+        .js-num
+          margin-top: vw(2)
+          font-size: vw(10)
+          color: #7F7F7F
+      .js-btn
+        position: absolute
+        left: 50%
+        bottom: - vw(16)
+        margin-left: - vw(16)
+        width: vw(32)
+        height: vw(32)
+        border-radius: vw(30)
+        background: #FBCE07
+        display: flex
+        justify-content: center
+        align-items: center
+        image
+          width: vw(20)
+          height: vw(20)
+      .js-one
+        position: absolute
+        left: 50%
+        bottom: 0
+        width: vw(24)
+        height: vw(24)
+        background: #EB8705
+        color: #fff
+        border-radius: vw(24)
+        opacity: 0
+
+.comment-box
+  background: #ffffff
+  padding: vw(7) vw(15) vw(15)
+  margin-top: vw(15)
+  .box-title
+    margin-bottom: - vw(10)
+    .comment-count
+      font-weight: 500
+  .comment-item:last-child
+    border-bottom: none
+  .comment-item
+    display: flex
+    justify-content: space-between
+    padding: vw(25) 0
+    border-bottom: 1px solid #eee
+    .com-photo
+      width: vw(44)
+      height: vw(44)
+      border-radius: vw(44)
+      overflow: hidden
+      image
+        width: vw(44)
+        height: vw(44)
+    .com-con
+      width: calc(100% - 100rpx)
+      .com-info
+        padding-top: vw(3)
+        display: flex
+        justify-content: space-between
+        .com-base
+          .com-b-name
+            font-size: vw(14)
+            font-weight: 600
+            color: #332E2E
+          .com-b-time
+            height: vw(17)
+            font-size: vw(12)
+            color: #7F7F7F
+            display: flex
+            justify-content: flex-start
+            align-items: center
+            .start
+              margin-left: vw(4)
+        .time
+          font-size: vw(12)
+          color: #7F7F7F
+      .com-des
+        margin-top: vw(12)
+        font-size: vw(16)
+        color: #393940
+      .com-pic
+        margin-top: vw(15)
+        display: flex
+        .com-pic-item
+          margin-right: vw(5)
+          width: calc(100%/3 - 20rpx/3)
+          height: vw(77)
+          image
+            width: 100%
+            height: vw(77)
+      .recommend
+        width: vw(298)
+        height: auto
+        .technicians-tips
+          padding: vw(14) 0 vw(2) 0
+          font-size: vw(12)
+          color: #7F7F7F
+          line-height: vw(17)
+        .rec-photo
+          width: vw(144)
+          height: vw(48)
+          background-color: #F7F7F7
+          margin-right: vw(5)
+          margin-top: vw(5)
+          float: left
+          image
+            width: vw(30)
+            height: vw(30)
+            float: left
+            border-radius: vw(30)
+            margin-top: vw(9)
+            margin-left: vw(15)
+          .rec-info
+            float: left
+            padding-top: vw(8)
+            padding-left: vw(4)
+            .rec-name
+              font-size: vw(12)
+              font-weight: 600
+              color: #332E2E
+              line-height: vw(18)
+              width: vw(90)
+              overflow: hidden
+              text-overflow: ellipsis
+              white-space: nowrap
+            .rec-job
+              font-size: vw(10)
+              color: #A6A6A6
+              line-height: vw(12)
+      .hr
+        width: 100%
+        height: vw(15)
+        border-bottom: vw(1) solid #eeeeee
+      .reply
+        width: 100%
+        margin-top: vw(15)
+        box-sizing: border-box
+        padding: vw(12)
+        background: #F7F7F7
+.s-bj
+  position: fixed
+  right: vw(15)
+  bottom: vw(82)
+  width: vw(62)
+  height: vw(62)
+  image
+    width: vw(62)
+    height: vw(62)
+.mianze
+  position: relative
+  font-size: vw(12)
+  color: #D9D9D9
+  padding: vw(20) vw(15) vw(20) vw(75)
+  span
+    position: absolute
+    top: vw(20)
+    left: vw(15)
+
+
+.js-btn-active
+  animation: zan .5s
+
+@keyframes zan
+  0%, 100%
+    background: #FBCE07
+  50%
+    background: #DD1D21
+
+.js-hand-active
+  animation: hand .5s
+
+@keyframes hand
+  0%, 100%
+    transform: rotate(0deg)
+  50%
+    transform: rotate(-45deg)
+
+.js-one-active
+  animation: one .5s
+
+@keyframes one
+  0%
+    transform: scale(0, 0) translate(0, 0)
+    opacity: 0
+  80%
+    opacity: 1
+  100%
+    transform: scale(1, 1) translate(25px, -25px)
+    opacity: 0
+.animation-fade-in
+	animation-name: fade-in
+	animation-duration: 1s
+	animation-timing-function: linear
+@keyframes fade-in
+	0%
+		opacity: 0
+	50%
+		opacity: 0.5
+	75%
+		opacity: 0.8
+	100%
+		opacity: 1

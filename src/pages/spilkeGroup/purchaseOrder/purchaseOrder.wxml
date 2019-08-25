@@ -1,0 +1,64 @@
+<view class="purchase-order" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="确认订单"></top-bar>
+  <view wx:if="{{!is_show_default}}">
+    <view class="card-wrapper">
+      <view class="card-title">订单详情</view>
+      <view class="card-item" style="background-image: url({{info.image_url}})">
+        <view class="card-item-top">
+          <view class="card-item-title">
+            <view class="card-item-name">{{info.name}}</view>
+          </view>
+        </view>
+        <view class="card-item-bottom">
+          <view class="card-item-price">
+            <text class="card-item-nowprice">¥{{info.price}}</text>
+            <text class="card-item-storeprice">门市价 ¥{{info.origin_price}}</text>
+          </view>
+          <view class="card-item-use" wx:if="{{info.type === 1}}">
+            <view>可使用</view><view class="num-use">{{info.num}}</view><view>次</view>
+          </view>
+        </view>
+      </view>
+      <view class="card-spike-price">
+        <view class="spike-price">¥{{order_item.active_price}}</view>
+        <image class="order-spike-label" wx:if="{{order_item.offered == 1}}" src="https://oss1.chedianai.com/images/assets/order-spike-label.png"/>
+        <image class="order-spike-label" wx:if="{{order_item.offered == 2}}" src="https://oss1.chedianai.com/images/assets/order-group-label.png"/>
+        <view class="group-num" wx:if="{{order_item.offered == 2}}">{{info.group_num}}人团</view>
+      </view>
+    </view>
+    <view class="layout-block"></view>
+    <!-- 支付信息 -->
+    <view class="payment-block-info">
+      <view class="project-title">
+        <view class="project-name">支付信息
+        </view>
+      </view>
+      <view class="payment-info-item">
+        <view class="pay-item-left"> 商品总额 </view>
+        <view class="pay-item-right font-bold">¥{{order_item.final_amount}}</view>
+      </view>
+      <view class="payment-info-item">
+        <view class="pay-item-left"> 实际金额 </view>
+        <view class="pay-item-right real-price">¥{{order_item.final_amount}}</view>
+      </view>
+    </view>
+    <!-- 按钮 -->
+    <view class="bottom-button">
+      <view class="payment-info">
+        <view>需付款: </view>
+        <view class="pay-price">¥{{order_item.final_amount}}</view>
+      </view>
+      <view wx:if="{{group_status == 1}}" class="payment-button" bindtap="confirmOrder">
+        确认支付
+      </view>
+      <view wx:if="{{group_status == 2 || group_status == 3}}" class="payment-button default-color">
+        {{group_status == 2?'你来晚了，名额已满～':'你来晚了，拼团已结束～'}}
+      </view>
+    </view>
+    <group-tips bindtriggercancel='couponCancel' wx:if="{{group_status == 2}}" slogan="你来晚了，名额已满～" icon="offered-quota"></group-tips>
+    <group-tips bindtriggercancel='couponCancelOver' wx:if="{{group_status == 3}}" slogan="你来晚了，拼团已结束～" icon="offered-end"></group-tips>
+  </view>
+  <!--缺省-->
+	<empty-page wx:if="{{is_show_default}}" icon="nocard" slogan="{{err_tip}}"/>
+</view>

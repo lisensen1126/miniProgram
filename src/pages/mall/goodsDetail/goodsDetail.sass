@@ -1,0 +1,496 @@
+@import '~@/style/mixin'
+
+.color-default
+  color: $text-white !important
+  background: #C0C3CC !important
+  display: flex
+  align-items: center
+  justify-content: center
+.page-itemDetail
+  padding-bottom: vw(30)
+  // 商品详情部分
+  .content-info
+    .swiper-box
+      width: vw(375)
+      height: vw(234)
+      background: $text-white
+      swiper-item
+        width: 100%
+        height: 100%
+        text-align: center
+        .slide-image
+          height: 100%
+          width: 100%
+    button::after
+      border: none
+    .share-icon
+      line-height: 1
+      background: transparent
+      padding: 0
+      image
+        width: vw(17)
+        height: vw(17)
+    .info
+      min-height: vw(44)
+      box-sizing: border-box
+      padding: vw(15)
+      background: $text-white
+      color: #332E2E
+      position: relative
+      .goods-title
+        font-size: vw(16)
+        line-height: vw(18)
+        font-weight: 600
+        max-width: vw(320)
+        word-break: break-all
+        overflow: hidden
+        text-overflow: ellipsis
+        display: -webkit-box
+        -webkit-line-clamp: 2
+        -webkit-box-orient: vertical
+      .goods-price
+        margin-top: vw(10)
+        color: #E50015
+        line-height: vw(14)
+        font-size: vw(20)
+        font-weight: bold
+        .price
+          font-size: vw(20)
+    .coupon-block
+      margin-top: vw(15)
+      .coupon-info
+        .title
+          margin-right: vw(15)
+          vertical-align: middle
+          font-size: vw(14)
+          color: #7F7F7F
+        .coupon-outer
+          margin-right: vw(15)
+          display: inline-block
+          overflow: hidden
+          vertical-align: middle
+          .coupon
+            padding: 0 vw(10)
+            line-height: vw(20)
+            position: relative
+            border: vw(1) solid #DD1D21
+            font-size: vw(12)
+            color: #DD1D21
+            &::before, &::after
+              content: ''
+              display: block
+              width: vw(6)
+              height: vw(6)
+              border-radius: vw(10)
+              border: vw(1) solid #DD1D21
+              position: absolute
+              top: 50%
+              background: #FFF
+            &::before
+              left: 0
+              transform: translate(-60%, -50%)
+            &::after
+              right: 0
+              transform: translate(60%, -50%)
+
+    .sku-block, .coupon-block
+      height: vw(66)
+      padding: vw(25) vw(15)
+      box-sizing: border-box
+      background: $text-white
+      line-height: vw(15)
+      .sku-info, .coupon-info
+        display: inline-block
+        font-size: vw(14)
+        color: #7F7F7F
+        .sku-sys, .sku-num
+          color: #332E2E
+        .sku-sys
+          margin-left: vw(15)
+        .sku-num
+          margin-left: vw(22)
+      .right-icon
+        float: right
+        height: vw(10)
+        width: vw(6)
+        margin-top: vw(4)
+    .border-after
+      position: relative
+      &::after
+        content: ""
+        display: block
+        position: absolute
+        left: vw(15)
+        right: vw(15)
+        bottom: 0
+        height: vw(1)
+        background: #eeeeee
+    .brand-block
+      height: vw(66)
+      box-sizing: border-box
+      padding: vw(25) vw(15)
+      line-height: vw(16)
+      font-size: vw(14)
+      color: #332E2E
+      background: $text-white
+      .brand-title
+        color: #7F7F7F
+        display: inline-block
+      .brand-info
+        float: right
+  
+  // 商品图文细节
+  .content-detail
+    background: $text-white
+    margin-top: vw(10)
+    .info-title
+      height: vw(55)
+      line-height: vw(15)
+      font-size: vw(14)
+      color: #332E2E
+      padding: vw(20) vw(15)
+      box-sizing: border-box
+    .g-title
+      font-weight: 600
+      color: #404040
+    .service-info
+      font-size: vw(13)
+      line-height: vw(19)
+      padding: 0 vw(15) vw(15) vw(15)
+    .detail-title
+      height: vw(45)
+      line-height: vw(15)
+      font-size: vw(14)
+      padding: vw(15)
+      box-sizing: border-box
+      font-weight: 600
+      color: #404040
+      image
+        width: vw(7)
+        height: vw(13)
+        position: relative
+        top: vw(2)
+    .detail-pic-list
+      width: 100%
+      box-sizing: border-box
+      .rich-content
+        .rich-content-text
+          font-size: vw(15)
+          line-height: vw(26)
+          padding: vw(15) vw(10)
+          + .rich-content-text
+            margin-top: 0
+        .rich-content-img
+          display: block
+          margin: 0
+          width: 100%
+  // 底部文案
+  .detail-list-bottom
+    position: relative
+    color: #B3B3B3
+    font-size: vw(12)
+    text-align: center
+    margin: vw(16) 0 vw(60) 0
+    line-height: 1
+    .line-left
+      position: absolute
+      width: vw(65)
+      height: vw(1)
+      background: #B3B3B3
+      top: vw(6)
+      left: vw(43)
+    .line-right
+      position: absolute
+      top: vw(6)
+      width: vw(65)
+      height: vw(1)
+      background: #B3B3B3
+      right: vw(43)
+  // 底部按钮
+  .content-button
+    padding: vw(9) vw(15)
+    height: vw(40)
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    background: $text-white
+    font-size: vw(14)
+    box-shadow: 0px 3px 16px 0px rgba(26,26,32,0.09)
+    .submit-layout
+      width: 100%
+      height: 100%
+      display: flex
+      align-items: center
+      .s-l
+        flex: 1
+        padding-top: vw(4)
+        padding-left: 3%
+        .s-icon
+          margin-left: vw(8)
+          display: inline-block
+          position: relative
+          image
+            width: vw(17)
+            height: vw(17)
+          .num
+            min-width: vw(14)
+            display: inline-block
+            background: #F74B49
+            border-radius: 50%
+            position: absolute
+            text-align: center
+            bottom: vw(17)
+            left: vw(12)
+            font-size: vw(9)
+            color: $text-white
+            white-space: nowrap
+        .s-text
+          line-height: 1
+          color: #404040
+          font-size: vw(12)
+      .s-c, .s-r
+        width: vw(114)
+        line-height: vw(40)
+        font-size: vw(14)
+        font-weight: 600
+        text-align: center
+      .s-c
+        color: #404040
+        background: #FBCE07
+      .s-r
+        color: #FFF
+        background: #DD1D21
+
+  // sku浮层
+  .sku-cover, .coupon-cover
+    position: fixed
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    background: rgba(0, 0, 0, 0.6)
+    z-index: 10
+    .cover-content
+      position: absolute
+      height: vw(455)
+      bottom: 0
+      left: 0
+      right: 0
+      background: $text-white
+      border-top-left-radius: vw(10)
+      border-top-right-radius: vw(10)
+      overflow-y: scroll
+      -webkit-overflow-scrolling: touch
+      .close-box
+        width: vw(30)
+        height: vw(30)
+        text-align: right
+        position: absolute
+        top: vw(13)
+        right: vw(16)
+        z-index: 11
+      .close
+        width: vw(14)
+        height: vw(14)
+      .sku-content
+        color: #666363
+        padding: 0 vw(15) vw(45) vw(15)
+        .sku-title
+          font-size: 0
+          padding: vw(27) vw(15) 0 vw(15)
+          box-sizing: border-box
+          position: fixed
+          left: 0
+          right: 0
+          background: $text-white
+          z-index: 10
+          .sku-title-info
+            background: $text-white
+            .item-pic
+              width: vw(165)
+              height: vw(103)
+              margin: 0 vw(10) 0 0
+            .item-info
+              position: absolute
+              left: vw(175)
+              right: vw(15)
+              //height: vw(118)
+              top: 0
+              bottom: 0
+              .info-title
+                font-size: vw(16)
+                color: #393940
+                overflow: hidden
+                text-overflow: ellipsis
+                display: -webkit-box
+                -webkit-line-clamp: 2
+                -webkit-box-orient: vertical
+              .info-price
+                color: #E50113
+                font-size: vw(20)
+                line-height: vw(28)
+                position: absolute
+                bottom: 0
+            position: relative
+        .sku-list
+          padding: vw(142) vw(15) 0 vw(2)
+        .sku-item:not(:first-child)
+          margin-top: vw(21)
+        .sku-item
+          .sku-title
+            font-size: vw(14)
+          .item-title
+            line-height: vw(36)
+            color: #C6C6C7
+            .err-tip
+              color: #E50113
+              font-size: vw(12)
+              margin-left: vw(10)
+          .item-label-list
+            .item-label:not(:nth-child(4n))
+              margin-right: vw(10)
+            .item-label
+              display: inline-block
+              line-height: 1
+              color: #332E2E
+              background: #F8F8F8
+              padding: vw(9) vw(20)
+              position: relative
+              text-align: center
+              font-weight: bold
+              margin-top: vw(15)
+              margin-right: vw(12)
+              .label-content
+                position: relative
+                z-index: 1
+            .item-is-active
+              background: $primary
+        .sku-num
+          height: vw(25)
+          line-height: vw(25)
+          margin-bottom: vw(43)
+          .sku-num-title
+            line-height: vw(36)
+            margin-bottom: vw(9)
+            color: #C6C6C7
+          view
+            display: inline-block
+          .btn-block
+            position: absolute
+            right: vw(15)
+            display: inline-flex
+            align-items: center
+            justify-content: center
+            .num-btn-add
+              width: vw(14)
+              height: vw(14)
+            .num-btn-reduce
+              width: vw(14)
+              height: vw(2)
+            .num
+              width: vw(40)
+              height: vw(35)
+              line-height: vw(35)
+              background: #F8F8F8
+              color: #000000
+              font-size: vw(12)
+              text-align: center
+          .labels
+            display: inline-flex
+            align-items: center
+            padding: vw(15)
+      .action-button
+        position: fixed
+        bottom: 0
+        left: 0
+        right: 0
+        height: vw(50)
+        z-index: 10
+        .cancel-btn,.submit-btn
+          display: inline-block
+          width: 50%
+          height: vw(50)
+          line-height: vw(50)
+          box-sizing: border-box
+          font-size: vw(14)
+          color: $text-white
+          text-align: center
+        .cancel-btn
+          color: #000000
+          background: $text-white
+          .cart-icon
+            width: vw(24)
+            height: vw(17)
+            position: relative
+            top: vw(3)
+            left: vw(-2)
+        .submit-btn
+          background: #D52F12
+        .submit-all-button
+          height: vw(50)
+          line-height: vw(50)
+          box-sizing: border-box
+          font-size: vw(14)
+          color: $text-white
+          text-align: center
+          background: #D52F12
+      .title
+        height: vw(52)
+        line-height: vw(52)
+        position: relative
+        text-align: center
+        font-size: vw(16)
+        color: #404040
+        font-weight: 600
+        border-bottom: vw(1) solid #EEEEEE
+        .close
+          position: absolute
+          right: vw(15)
+          top: 50%
+          transform: translateY(-50%)
+      .coupons-scroll
+        position: absolute
+        top: vw(52)
+        bottom: 0
+        left: 0
+        right: 0
+        overflow-y: auto
+
+  .coupon-cover .cover-content
+    border-radius: 0
+    .coupons
+      padding: vw(15)
+      .receive
+        margin-bottom: vw(18)
+      .title
+        color: #404040
+        width: 72px
+        height: 17px
+        font-size: 12px
+        font-weight: 500
+        line-height: 17px
+        border: 0
+
+.bor_dashed
+  border: 1px dashed #C6C6C7
+  background: $text-white !important
+  color: #000000 !important
+.sku-err-tip
+  position: absolute
+  bottom: vw(-24)
+  left: vw(15)
+  right: vw(15)
+  height: vw(24)
+  line-height: vw(24)
+  color: #E0A01E
+  background: rgba(252, 225, 143, 0.5)
+  padding: 0 vw(12)
+  font-size: vw(12)
+  z-index: 10
+.goods-title-box
+  height: vw(36)
+.info-title-box
+  display: flex
+  align-items: center
+  justify-content: space-between

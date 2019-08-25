@@ -1,0 +1,77 @@
+<view class="purchase-for-success" wx:if="{{isinitiated}}" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="支付成功"></top-bar>
+  <view class="pay-success-header">
+    <image src='https://oss1.chedianai.com/images/assets/card-pay-sucess.png'></image>
+    <view class="pay-success-header-title">购买成功</view>
+  </view>
+  <!-- 卡信息 -->
+  <view class="pay-success-items">
+    <view class="section-header">订单内容</view>
+    <view class="card-item" style="background-image: url({{info.card.image_url}})">
+      <view class="card-item-top">
+        <view class="card-item-title">
+          <view class="card-item-name">{{info.card.card_name}}</view>
+        </view>
+      </view>
+      <view class="card-item-bottom">
+        <view class="card-item-price">
+          <text class="card-item-nowprice">¥{{info.card.price / 100}}</text>
+          <text class="card-item-storeprice">门市价¥{{info.card.origin_price / 100}}</text>
+        </view>
+        <view class="card-item-use" wx:if="{{info.card.card_type === 1}}">
+          <view>可使用</view><view class="num-use">{{info.card.num}}</view><view>次</view>
+        </view>
+      </view>
+    </view>
+    <!--限时价-->
+    <view class="card-spike-price">
+      <view class="spike-price">¥{{info.item[0].activity_price}}</view>
+      <image class="order-spike-label" src="https://oss1.chedianai.com/images/assets/order-spike-label.png"/>
+    </view>
+  </view>
+  <!-- 订单信息 -->
+  <view class="order-info">
+    <view class="order-info-flex">
+      <view class="label-title">订单编号</view>
+      <view class="label-info">{{info.trade_order_no}}</view>
+    </view>
+    <view class="order-info-flex">
+      <view class="label-title">下单时间</view>
+      <view class="label-info">{{info.created_at}}</view>
+    </view>
+  </view>
+  <!-- 交易信息 -->
+  <view class="order-info">
+    <view class="order-info-flex">
+      <view class="label-title">交易流水号</view>
+      <view class="label-info">{{info.payment.third_payment_no}}</view>
+    </view>
+    <view class="order-info-flex">
+      <view class="label-title">支付方式</view>
+      <view class="label-info">微信支付</view>
+    </view>
+    <view class="order-info-flex">
+      <view class="label-title">支付时间</view>
+      <view class="label-info">{{info.paid_at}}</view>
+    </view>
+  </view>
+  <!-- 支付信息 -->
+  <view class="order-info">
+    <view class="order-info-flex">
+      <view class="label-title">商品总价</view>
+      <view class="label-info font-bold">¥{{info.final_amount / 100}}</view>
+    </view>
+    <view class="order-info-flex">
+      <view class="label-title">实际付款</view>
+      <view class="order-info-receive-price font-bold">¥{{info.final_amount /100}}</view>
+    </view>
+  </view>
+  <!-- 按钮 -->
+  <view class="pay-success-btn-box">
+    <view class="operation-button default" bindtap="goOrderList">查看订单</view>
+    <view class="operation-button primary" bindtap="goMyCard">查看卡详情</view>
+  </view>
+  <!-- 推送优惠券弹框 -->
+	<coupon-model bindtriggercancel="couponCancel" wx:if="{{isShowCoupon && recommend_coupon.length > 0}}" list="{{recommend_coupon}}"></coupon-model>
+</view>

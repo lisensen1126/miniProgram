@@ -1,0 +1,61 @@
+<view class="card-center"  style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="核销记录"></top-bar>
+  <!--tab切换部分-->
+  <view class="tab-box">
+    <view class="tab-bar {{tabType === 2?'tab-active':''}}" data-tab="2" bindtap="changeTab" data-cdp="card_myCardWirte_1">待核销({{info.waiting_num}})
+    </view>
+    <view class="tab-bar pull-right {{tabType===1?'tab-active':''}}" data-tab="1" bindtap="changeTab" data-cdp="card_myCardWirte_2">已核销({{info.cancelled_num}})</view>
+  </view>
+
+  <!-- 待核销列表 -->
+  <view class="d-list" wx:if="{{tabType === 2}}">
+    <view class="line" wx:if="{{waiting_list.length > 0 && isinitiated}}" wx:for="{{waiting_list}}" wx:key="{{index}}">
+      <view class="pull-left">
+        {{item.name}}
+      </view>
+      <view class="pull-right num">
+        x1
+      </view>
+    </view>
+  </view>
+
+  <!-- 已核销列表 -->
+  <view class="y-list" wx:if="{{tabType === 1}}">
+    <view class="line" wx:if="{{cancelled_list.length > 0 && isinitiated}}" wx:for="{{cancelled_list}}" wx:key="{{index}}">
+      <view class="pull-left title">
+        <view class="name">
+          {{item.name}}
+        </view>
+        <view class="time">
+            {{item.write_off_time}}
+        </view>
+      </view>
+      <view class="pull-right num">
+        x1
+      </view>
+    </view>
+  </view>
+
+  <!-- 暂无任何数据 -->
+  <view wx:if="{{waiting_list.length == 0 && tabType === 2}}">
+    <view class="bg">
+      <view class="text">
+        暂时没有可以核销的优惠
+      </view>
+      <view class="botton" bindtap="goCardCenter" data-cdp="card_myCardWirte_3">
+        获取优惠
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{cancelled_list.length == 0 && tabType === 1}}">
+    <view class="bg">
+      <view class="text">
+        暂无记录
+      </view>
+      <!-- <view class="botton">
+        获取优惠
+      </view> -->
+    </view>
+  </view>
+</view>

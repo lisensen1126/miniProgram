@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "施工录像",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "top-bar": "../../../components/topbar/topbar",    
+    "custom-loading": "../../../components/customLoading/customLoading",
+    "empty-page": "../../../components/emptyPage/emptyPage"
+  }
+}

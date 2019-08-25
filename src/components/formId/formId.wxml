@@ -1,0 +1,5 @@
+<form class="formid" bindsubmit="sendFormId" report-submit>
+  <button class="formid-btn" formType="submit">
+    <slot></slot>
+  </button>
+</form>

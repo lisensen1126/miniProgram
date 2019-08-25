@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "好友分享礼",
+	"usingComponents": {
+		"top-bar": "../../components/topbar/topbar"
+  }
+}

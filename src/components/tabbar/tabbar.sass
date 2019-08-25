@@ -1,0 +1,83 @@
+@import '~@/style/mixin'
+@import '~@/style/border'
+
+.tabbar
+  position: fixed
+  bottom: 0
+  left: 0
+  width: 100%
+  height: vw(52)
+  z-index: 99
+  box-sizing: border-box
+  background: #ffffff
+  display: flex
+  button
+    overflow: visible
+.tab
+  flex: 3
+  position: relative
+  text-align: center
+  .index-img image
+    width: vw(18)
+    height: vw(18)
+  // .category-img image
+  //   width: vw(18)
+  //   height: vw(14)
+  // .my-img image
+  //   width: vw(18)
+  //   height: vw(17)
+  // .store-img image
+  //   width: vw(16)
+  //   height: vw(18)
+  .icon
+    padding-top: vw(5)
+    padding-bottom: vw(10)
+    height: vw(18)
+    
+  text
+    display: block
+    font-size: vw(9)
+    line-height: vw(12)
+    color: #7A7E82
+  .unread
+    position: absolute
+    left: 50%
+    top: vw(3)
+    min-width: vw(18)
+    margin-left: vw(3)
+    text-align: center
+    height: vw(18)
+    line-height: vw(18)
+    font-size: vw(12)
+    background: #F43530
+    color: #ffffff
+    z-index: 4
+    border-radius: vw(18)
+.current
+  text
+    color: #000000
+    position: relative
+  &::after
+    position: absolute
+    bottom: 0
+    content: ""
+    display: table
+    width: 100%
+    height: vw(4)
+    background: $primary
+.btn-sty
+  width: 100%
+  height: 100%
+  position: absolute
+  margin: 0
+  padding: 0
+  line-height: inherit
+  text-align: left
+  border-radius: 0
+  background-color: transparent
+  display: flex
+  &::after
+    display: none
+form,.btn-sty view
+  box-sizing: content-box !important
+  

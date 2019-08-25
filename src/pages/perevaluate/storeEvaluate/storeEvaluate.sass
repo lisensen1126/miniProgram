@@ -1,0 +1,307 @@
+@import '~@/style/mixin'
+.page-storeEvaluate 
+    background-color: #ffffff
+    height: 100%
+    .zhao
+        position: fixed
+        width: 100vw
+        min-height: 100vh
+        opacity: 0
+        z-index: 99
+        left: 0
+        top: 0
+    .star
+        // margin-top: vw(7)
+        display: inline-block
+        width: vw(125)
+        height: vw(20)
+        .star-item
+            display: inline-block
+            width: vw(20)
+            height: vw(20)
+            margin-right: vw(5)
+            vertical-align: top
+            image
+                width: vw(20)
+                height: vw(20)
+        .isShow
+            display: none
+    .fl
+        float: left
+    .fr
+        float: right
+    .clearfix:after
+        content: ""
+        display: block
+        clear: both
+    .c-top
+        display: flex
+        clear: both
+        width: 100%
+        height: vw(104)
+        background-color: #ffffff
+        border-bottom: vw(1) solid #eeeeee
+        .t-left
+            display: block
+            height: vw(65)
+            margin-left: vw(20)
+            margin-top: vw(20)
+            background-color: #f5f5f5
+            .img
+                width: vw(104)
+                height: vw(65)
+        .t-right
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            width: vw(258)
+            margin: vw(22) vw(11) vw(18) vw(11)
+            .store
+                display: block
+                font-size: vw(16)
+                line-height: vw(16)
+                height: vw(18)
+                overflow: hidden
+                text-overflow: ellipsis                
+                font-weight: 600
+                white-space: nowrap
+                color: #404040
+                max-width: vw(228)
+            .address
+                line-height: vw(18)
+                font-size: vw(14)
+                font-weight: 400
+                color: #7f7f7f
+                max-height: vw(36)
+                overflow: hidden
+                text-overflow: ellipsis
+                word-break: break-all
+    .evaluate
+        .star-text
+            padding: vw(20) vw(20) 0 vw(20)
+            .tip
+                width: vw(66)
+                font-size: vw(16)
+                font-weight: 600
+                color: #000000
+                // line-height: vw(20)
+                margin-right: vw(14)
+            .count
+                font-weight: 600
+                color: #000000
+                font-size: vw(16)
+        .context 
+            margin-top: vw(18)   
+            padding: 0 vw(20) 
+            height: vw(104)
+            .text
+                width: 100%  
+                height: vw(84)
+                font-size: vw(14)
+                color: #000000
+            .phcolor
+                color: #909092
+            .tip-num
+                width: 100%
+                text-align: right
+                font-size: vw(12)
+                font-weight: 400
+                color: rgba(209,212,216,1)
+        .up-image
+            padding: 0 vw(20) vw(12.5) vw(24)
+            margin-top: vw(25)
+            .choose-img
+                box-sizing: border-box
+                float: left
+                width: vw(60)
+                height: vw(60)
+                text-align: center
+                color: rgba(179, 173, 173, 1)
+                font-size: vw(11)
+                image
+                    width: vw(60)
+                    height: vw(60)
+            .upimg-tip
+                width: vw(140)
+                height: vw(60)
+                margin-left: vw(12)
+                float: left
+                .f-title
+                    font-size: vw(14)
+                    color: #332E2E
+                    line-height: vw(30)
+                    margin-top: vw(5)
+                .s-title
+                    font-size: vw(12)
+                    color: #8E8E8E
+            .get-image
+                float: left
+                width: vw(60)
+                height: vw(60)
+                margin-right: vw(15)
+                position: relative
+                border: vw(1) solid #f5f5f5
+                .close
+                    position: absolute
+                    width: vw(20)
+                    height: vw(20)
+                    top: vw(-8)
+                    right: vw(-8)
+                    background: white
+                    border-radius: 50%
+                image
+                    width: vw(60)
+                    height: vw(60)	
+    .hr
+        width: 100%
+        height: vw(10)
+        background-color: #F5F5F5
+    .technician
+        background-color: #ffffff
+        // height: vw(208)
+        height: auto
+        width: 100%
+        padding-top: vw(20)
+        overflow: hidden
+        .title
+            font-size: vw(14)
+            font-weight: 600
+            color: #404040
+            margin-left: vw(20)
+            line-height: vw(20)
+            .title-tip
+                font-size: vw(10)
+                color: #a6a6a6
+                line-height: vw(18)
+                font-weight: 400
+                padding-left: vw(4)
+        .scroll_box
+            width: 100%
+            height: auto
+            padding-bottom: vw(10)
+            // overflow: hidden
+            padding-left: vw(20)
+            background: #fff
+            white-space: nowrap
+            margin-top: vw(10)
+            .scroll-view_x
+                padding-right: vw(20)
+        .scroll_box_no
+            width: 100%
+            height: vw(143)
+            line-height: vw(143)
+            text-align: center
+            font-size: vw(14)
+            color: #909092
+        
+    .bottem
+        width: 100%
+        height: vw(58)
+        position: fixed
+        bottom: 0
+        left: 0
+        background-color: #F5F5F5
+        display: flex
+        align-items: center
+        justify-content: center
+        background: #fff
+        .submit
+            width: vw(345)
+            height: vw(40)
+            text-align: center
+            line-height: vw(40)
+            font-size: vw(14)
+            font-weight: 600
+            color: #404040
+            letter-spacing: vw(1)
+            background-color: #F7D117            
+            margin: auto
+        .disabled
+            background-color: #EFEFEF !important
+            color: #404040 !important
+.hide
+    display: none
+.textarea-text
+    width: 100%
+    height: 168rpx
+    font-size: 28rpx
+    color: #909092
+
+// 评论
+.comment 
+    .list
+        padding: vw(5) 0 0 vw(15)
+        .list-item
+            padding: vw(6) vw(15)
+            color: #A6A6A6
+            line-height: vw(16)
+            font-size: vw(12)
+            margin-top: vw(15)
+            margin-right: vw(15)
+            border: vw(1) solid #D9D9D9
+            float: left
+        .avtive
+            background: rgba(251, 206, 7, 0.3)
+            border: vw(1) solid rgba(251, 206, 7, 1)
+            color: #404040    
+.more
+    color: #DD1D21
+    font-size: vw(12)
+    border-top: 1px solid #eeeeee
+    padding: vw(15) 0
+    text-align: center
+    background: #ffffff
+    text
+        vertical-align: middle
+    .arrow-right
+        vertical-align: middle
+        display: inline-block
+        width: 6px
+        height: 6px
+        border-top: 1px solid #DD1D21
+        border-right: 1px solid #DD1D21
+        transform: rotate(45deg)
+
+.js-list
+    position: relative
+    width: vw(98)
+    background: #f5f5f5
+    border: vw(1) solid #f5f5f5    
+    text-align: center
+    margin-right: vw(10)
+    padding-bottom: vw(10)
+    display: inline-block
+    .check
+        position: absolute
+        top: vw(5)
+        right: vw(5)
+        width: vw(19)
+        height: vw(19)
+    .avatar
+        width: vw(98)
+        height: vw(98)
+    // .name-box
+    //     position: 
+    //     margin-top: vw(-25)
+    .name
+        left: 0
+        right: 0
+        top: vw(72)
+        position: absolute
+        background: linear-gradient(rgba(0,0,0,0.02),rgba(0,0,0,0.3))
+        color: #fff
+        height: vw(26)        
+        font-size: vw(14)        
+        font-weight: bold
+        line-height: vw(26)
+    .level
+        margin: vw(10) 0 vw(2) 0
+        line-height: vw(17)
+        font-size: vw(12)        
+        color: #404040
+    .stars
+        color: #7f7f7f
+        line-height: vw(14)
+        font-size: vw(10)
+.select-js-list
+    border: vw(1) solid #FBCE07

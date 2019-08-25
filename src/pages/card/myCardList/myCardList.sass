@@ -1,0 +1,179 @@
+@import "~@/style/mixin"
+.card-center
+    width: 100%
+    min-height: 100vh
+    // padding-bottom: vw(50)
+    background: #F7F7F7
+.no-data
+    background: #ffffff
+.bold
+    font-weight: 600
+.fl
+    float: left
+.fr
+    float: right
+.clearfix:after
+    content: " "  
+    display: block
+    clear: both
+    visibility: hidden
+    height: 0
+    font-size: 0
+.back-write
+    background-color: #ffffff
+.m-t-20
+    margin-top: vw(20)
+.car-tips
+    width: vw(345)
+    line-height: vw(38)
+    font-size: vw(14)
+    color: #404040
+    padding: vw(0) vw(15)
+    font-weight: bolder
+    margin: vw(15) vw(15)
+    background: rgba(251,206,7,0.6)
+    box-sizing: border-box
+.give-record
+    position: fixed
+    bottom: vw(119)
+    right: vw(0)
+    z-index: 999
+    .record-img
+        width: vw(92)
+        height: vw(40)
+.car-list
+    width: 100%
+    height: auto
+    .card-item
+        width: vw(345)
+        height: vw(200)
+        margin: 0 auto
+        margin-top: vw(20)
+        border-radius: vw(10)
+        background-size: vw(345) vw(214)
+        position: relative
+        .card-give
+            position: absolute
+            width: vw(34)
+            line-height: vw(16)
+            box-sizing: border-box
+            color: #FFF6E1
+            border: 1rpx solid rgba(255,246,225,1)
+            border-radius: vw(2)
+            font-size: vw(11)
+            text-align: center
+            top: 0
+            right: vw(-42)
+            font-size: 500
+        .card-item-use
+            color: #FFF6E1
+            font-size: vw(12)
+            font-weight: 500
+            display: flex
+            align-items: center
+            position: absolute
+            bottom: vw(34)
+            right: vw(52)
+            .num-use
+                background-color: #FFF6E1
+                color: #000
+                padding: vw(1) vw(4)
+                margin: 0 vw(2)
+                line-height: 1
+        .card-name
+            color: #FFF6E1
+            font-size: vw(16)
+            line-height: 1
+            font-weight: bold
+            position: absolute
+            bottom: vw(48)
+            left: vw(15)
+        .card-time
+            font-size: vw(12)
+            color: #FFF6E1
+            line-height: 1
+            position: absolute
+            bottom: vw(16)
+            right: vw(15)
+        .card-order
+            color: #FFF6E1
+            font-size: vw(18)
+            line-height: 1
+            position: absolute
+            bottom: vw(15)
+            left: vw(15)            
+        .card-code
+            position: absolute
+            right: vw(15)
+            bottom: vw(34)
+            width: vw(60)
+            height: vw(43)
+        .past-due
+            width: vw(62)
+            height: vw(30)
+            text-align: center
+            line-height: vw(30)
+            border: vw(1) solid #fff6e1
+            border-radius: vw(3)
+            position: absolute
+            right: vw(15)
+            bottom: vw(15)
+            color: #fff6e1
+    .card-item:last-child
+        margin-bottom: vw(20)
+    .card-item:first-child
+        margin-top: 0
+.m-t-20
+    margin-top: vw(20)
+.button
+    position: fixed
+    bottom: 0
+    left: 0
+    height: vw(46)
+    width: 100%
+    text-align: center
+    line-height: vw(46)
+    font-size: vw(14)
+    color: #000000
+    font-weight: 500
+    background-color: #ffffff
+    .btn
+        width: 50%
+    .c-f
+        background-color: #F7D117
+.status-filter-wrapper
+    white-space: nowrap
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+    position: sticky
+    z-index: 10
+    top: 0
+    display: flex
+    width: 100%
+    height: vw(44)
+    background-color: #fff
+    box-shadow: 0 vw(1) vw(6) 0 rgba(0, 0, 0, .05)
+.filter-item
+    position: relative
+    flex: 1 1 25%
+    // display: flex
+    // justify-content: center
+    // align-items: center
+    font-weight: 500
+    font-size: vw(16)
+    color: #000000
+    display: inline-block
+    width: vw(83)
+    height: vw(44)
+    line-height: vw(44)
+    text-align: center
+    &.is-active
+        &::after
+            content: ''
+            position: absolute
+            bottom: 0
+            left: 50%
+            transform: translateX(-50%)
+            width: vw(15)
+            height: vw(2)
+            background-color: $primary

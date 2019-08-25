@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "施工直播",
+  "usingComponents": {
+    "top-bar": "../../../components/topbar/topbar"
+  }   
+}

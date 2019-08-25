@@ -1,0 +1,47 @@
+<view class="province-code" animation="{{animationData}}">
+  <!-- 第一 -->
+  <view class="key-item">
+    <view 
+      wx:for="{{key_one}}" 
+      wx:key="index"
+      bindtap="chooseProvince"
+      data-item="{{item}}"
+      class="province {{item === province ? 'is-active' : ''}}">{{item}}</view>
+  </view>
+  <!-- 第二行 -->
+  <view class="key-item">
+    <view 
+      wx:for="{{key_two}}" 
+      wx:key="index" 
+      bindtap="chooseProvince"
+      data-item="{{item}}"
+      class="province {{item === province ? 'is-active' : ''}}">{{item}}</view>
+  </view>
+  <!-- 第三行 -->
+  <view class="key-item">
+    <view 
+      wx:for="{{key_three}}" 
+      wx:key="index" 
+      bindtap="chooseProvince"
+      data-item="{{item}}"
+      class="province {{item === province ? 'is-active' : ''}}">{{item}}</view>
+  </view>
+  <!-- 第四行 -->
+  <view class="key-item">
+    <view 
+      wx:for="{{key_four}}" 
+      wx:key="index" 
+      bindtap="chooseProvince"
+      data-item="{{item}}"
+      class="province {{item === province ? 'is-active' : ''}}">{{item}}</view>
+  </view>
+  <!-- 第五行 -->
+  <view class="key-item last-item">
+    <view 
+      wx:for="{{key_five}}" 
+      wx:key="index" 
+      bindtap="chooseProvince"
+      data-item="{{item}}"
+      class="province {{item === province ? 'is-active' : ''}}">{{item}}</view>
+  </view>
+</view>

@@ -1,0 +1,22 @@
+<view class="page-brand-list" wx:if="{{pageShow}}" style="padding-top:{{topbarHeight}}px">
+    <top-bar title="品牌专区"></top-bar>
+	<!--内容区域-->
+		<!--列表-->
+    <view class="brand-list" wx:if="{{list.length !== 0}}">
+		<view class="brand-item"
+              wx:for="{{list}}"
+              wx:key="index"
+              data-item="{{item}}"
+              data-id="{{item.brand_houses_id}}"
+              bindtap="goBrandDetail">
+            <!-- 品牌图片 -->
+            <image class="item-img" mode='aspectFit' src="{{item.brand_houses_cover}}"/>
+            <!-- 品牌信息 -->
+            <view class="item-info">
+                <view class="info">{{item.brand_description}}</view>
+            </view>
+		</view>
+		<custom-loading is-loading="{{isLoading}}" has-more="{{!isAllLoaded}}"></custom-loading>
+    </view>
+    <empty-page wx:if="{{list.length<=0}}" slogan="暂无品牌" icon="nogoods"></empty-page>
+</view>

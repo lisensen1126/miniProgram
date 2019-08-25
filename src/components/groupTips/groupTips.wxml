@@ -1,0 +1,10 @@
+<view class="coupon-model">
+    <view class="welfare_center">
+        <image class="welfare_center_img" src='https://oss1.chedianai.com/images/assets/{{icon}}.png'></image>
+        <view class="welfare_center_text">{{slogan}}</view>
+        <view class="welfare_center_btn" catchtap='goCoupon'>我知道啦</view>
+        <view class="welfare_center_close" catchtap='cancel'>
+            <image src='/images/index_close.png'></image>
+        </view>
+    </view>
+</view>

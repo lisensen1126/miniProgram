@@ -1,0 +1,32 @@
+@import '~@/style/mixin'
+
+.score-points
+  display: flex
+  height: vw(13)
+  align-items: center
+  line-height: 1
+  padding-top: vw(1)
+
+.star
+  + .star
+    margin-left: vw(5)
+  width: vw(13)
+  height: vw(13)
+  background: url('https://oss1.chedianai.com/images/assets/start-g.png') no-repeat center center
+  background-size: cover
+  display: inline-block
+  &.star-active
+    background: url('https://oss1.chedianai.com/images/assets/start-y.png') no-repeat center center
+    background-size: cover
+    display: inline-block
+  &.star-half
+    background: url('https://oss1.chedianai.com/images/assets/start-h.png') no-repeat center center
+    background-size: cover
+    display: inline-block
+
+.points
+  font-size: vw(11)
+  height: vw(12)
+  line-height: vw(12)
+  padding-left: vw(6)
+  color: $highlight

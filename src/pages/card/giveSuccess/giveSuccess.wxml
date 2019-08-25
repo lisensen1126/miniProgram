@@ -1,0 +1,65 @@
+<view class="pay-for-success" wx:if="{{isinitiated}}" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="支付成功"></top-bar>
+  <view class="pay-success-header">
+    <image src='https://oss2.chedianai.com/images/assets/pay-success-card.png'></image>
+    <view class="pay-success-header-title">您已购买成功</view>
+    <view class="pay-success-header-order-number"><text wx:if="{{upkeep_type == 1}}">快去选择您想赠送的好友吧</text></view>
+  </view>
+  <!-- 卡信息 -->
+  <view class="pay-success-items">
+    <view class="section-header">订单详情</view>
+    <view class="card-item" style="background-image: url({{info.card.image_url}})">
+      <view class="card-item-top">
+        <view class="card-item-title">
+          <view class="card-item-name">{{info.card.card_name}}</view>
+        </view>
+      </view>
+      <view class="card-item-bottom">
+        <view class="card-item-price">
+          <text class="card-item-nowprice">¥{{info.card.price / 100}}</text>
+          <text class="card-item-storeprice">门市价¥{{info.card.origin_price / 100}}</text>
+        </view>
+        <view class="card-item-use" wx:if="{{info.card.card_type === 1}}">
+          <view>可使用</view><view class="num-use">{{info.card.num}}</view><view>次</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 支付信息 -->
+  <view class="order-info">
+    <view class="section-header">支付信息</view>
+    <view class="order-info-flex">
+      <view class="label-title">订单总额</view>
+      <view class="label-info">¥{{info.total_amount / 100}}</view>
+    </view>
+    <view class="order-info-flex">
+      <view class="label-title">实际金额</view>
+      <view class="label-info">¥{{info.final_amount / 100}}</view>
+    </view>
+    <view class="order-info-flex" wx:if="{{random_coupon != 0}}">
+      <view class="label-title">立减金</view>
+      <view class="label-info">-¥{{random_coupon / 100}}</view>
+    </view>
+    <view class="order-info-flex">
+      <view class="label-title">优惠金额</view>
+      <view class="label-info">-¥{{info.preferential_price / 100}}</view>
+    </view>
+    <view class="order-info-flex">
+      <view class="order-info-receive-title">实际支付</view>
+      <view class="order-info-receive-price">¥{{info.final_amount /100}}</view>
+    </view>
+  </view>
+  <!-- 按钮 -->
+  <view class="pay-success-btn-box form-btn" wx:if="{{info.upkeep_type === 3}}">
+    <button open-type="share" class="operation-button" bindtap="giveFriend" data-cdp="card_payForSuccess_1">选择赠送好友</button>
+  </view>
+  <view class="pay-success-btn-box active" wx:if="{{info.upkeep_type === 2 && info.is_received === 2}}">
+    <view class="pay-success-text">
+      <view class="timeout">待领取倒计时：{{clock}}</view>
+      <view class="tishi">72小时后好友将无法领取该养护卡</view>
+    </view>
+  </view>
+  <!-- 推送优惠券弹框 -->
+	<coupon-model bindtriggercancel="couponCancel" wx:if="{{isShowCoupon && recommend_coupon.length > 0}}" list="{{recommend_coupon}}"></coupon-model>
+</view>

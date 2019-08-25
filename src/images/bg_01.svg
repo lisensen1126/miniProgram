@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="102px" height="115px" viewBox="0 0 102 115" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="-76.6678156%" y1="92.9347826%" x2="110.893459%" y2="23.1844429%" id="linearGradient-1">
+            <stop stop-color="#FFA000" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFA200" stop-opacity="0.2" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="智能保养-首页" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(0.000000, -64.000000)" opacity="0.93529212">
+        <g id="背景" transform="translate(0.000000, 64.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="bg_head">
+                <path d="M-4.4408921e-16,0.335642665 C2.63717719,0.113384449 5.30534742,0 8,0 C59.9147665,0 102,42.0852335 102,94 C102,101.218974 101.186235,108.247884 99.6454336,115 L39.6751087,115 C43.6716453,108.983932 46,101.763874 46,94 C46,73.0131795 28.9868205,56 8,56 C5.25566782,56 2.57928239,56.2909146 -2.5313085e-14,56.8435876 L0,0.335642665 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

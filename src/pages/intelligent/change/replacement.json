@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "智能保养",
+	"usingComponents": {
+    "top-bar": "../../../components/topbar/topbar"
+	}	
+}

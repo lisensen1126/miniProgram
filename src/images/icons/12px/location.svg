@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/12px/location</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="12" height="12"></rect>
+    </defs>
+    <g id="Main" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="主页-车检报告" transform="translate(-100.000000, -544.000000)">
+            <g id="store-card" transform="translate(15.000000, 482.000000)">
+                <g id="store-header">
+                    <g id="store-location" transform="translate(85.000000, 60.000000)">
+                        <g id="icons/12px/location" transform="translate(0.000000, 2.000000)">
+                            <g>
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <g id="nc-rect"></g>
+                                <path d="M6,0 C3.075,0 0.75,2.325 0.75,5.25 C0.75,6.675 1.275,8.025 2.325,9 C2.4,9.075 5.4,11.775 5.475,11.85 C5.775,12.075 6.225,12.075 6.45,11.85 C6.525,11.775 9.6,9.075 9.6,9 C10.65,8.025 11.175,6.675 11.175,5.25 C11.25,2.325 8.925,0 6,0 Z M6,6.75 C5.175,6.75 4.5,6.075 4.5,5.25 C4.5,4.425 5.175,3.75 6,3.75 C6.825,3.75 7.5,4.425 7.5,5.25 C7.5,6.075 6.825,6.75 6,6.75 Z" id="Shape" fill="#D1D1D1" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

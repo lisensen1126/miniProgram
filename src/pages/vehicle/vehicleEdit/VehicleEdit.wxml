@@ -1,0 +1,70 @@
+<view class="init-layer" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="修改车辆"></top-bar>
+    <!-- 上面提示 -->
+  <view wx:if="{{show_warn}}" class="warn-tip">
+    <view>录入完整的车型和里程信息，享受更精准的服务</view>
+    <view class="close-box" bindtap="closeTip">
+    </view>
+  </view>
+  <!-- 车牌输入键盘 -->
+  <plate-number 
+    wx:if="{{is_input}}" 
+    bindkey="changePlate"
+    binddel="delPlate"
+    bindsave="saveDataPlate"
+    province="{{province}}"
+    bindcheckLicense="checkPlate"
+    plate="{{licensePartial}}"></plate-number>
+  <!-- 省市区弹框 -->
+  <province-code 
+    wx:if="{{is_choose_province}}" 
+    province="{{province}}" 
+    bindprovince="getProvince"></province-code>
+  <view class="step">
+    <view class="step-content-wapper down">
+      <view class="step-content-wapper-title">
+        <view class="step-content-wapper-text"><text class="required">*</text>车牌号</view>
+        <view class="step-content-error" wx:if="{{!licenseInvalid}}">请输入正确的车牌号</view>
+      </view>
+      <view class="selector-box {{!licenseInvalid ? 'active' : ''}}">
+        <view class="license-content has-arrow" bindtap="provinceChange">{{province}}</view>
+        <view class="step-content-input has-p" wx:if="{{is_input}}">
+          <view >{{licensePartial}}</view>
+          <view class="input-cursor {{licensePartial ? 'has-cursor' : ''}}"></view>
+        </view>
+        <view bindtap="showKey" class="step-content-input {{licensePartial ? 'has-p' : ''}}" wx:else>{{licensePartial || '车牌号'}}</view>
+      </view>
+    </view>
+    <view class="step-content-name" bindtap="goChooseBrand" hover-class="none">
+      <view class="step-content-wapper step-content-wapper-modal">
+        <view class="step-content-wapper-title">
+          <view class="step-content-wapper-text"><text class="required">*</text>选择品牌车型</view>
+          <view class="step-content-warn" wx:if="{{carModel && !carModel.id}}">建议选择完整的车辆信息以获取更好的服务</view>
+        </view>
+        <view class="car-content">
+          <view class="car-content-title" wx:if="{{!carModel}}">选择品牌车型</view>
+          <view class="car-info" wx:if="{{carModel}}">{{carModel.brand_name}} {{carModel.model_name?carModel.model_name:''}} {{carModel.series_name?carModel.series_name+'-':''}}{{carModel.sales_name}}</view>
+          <view class="car-content-right">
+            <image src="https://oss1.chedianai.com/images/assets/arrow_right.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="step-content-wapper">
+      <view class="step-content-wapper-title step-content-wapper-km">上次保养里程</view>
+      <view class="step-content-wapper-mileage">
+        <input class="step-content-input" placeholder-class="phcolor" bindfocus="getFocus" bindblur="getWarn" bindinput="bindMileageChange" type="number" value="{{mileage}}" placeholder="请输入上次保养里程"></input>
+        <view class="km">KM</view>
+      </view>
+    </view>
+    <view class="init-bottom-btn-wapper">
+      <view class="del">
+        <catch-form bind:callback="delData">删除</catch-form>
+      </view>
+      <view class="save {{!carModel || !licenseInvalid || !has_brand_id ? 'no-save' : ''}}">
+        <catch-form bind:callback="saveData">保存</catch-form>
+      </view>
+    </view>
+  </view>
+</view>  

@@ -1,0 +1,9 @@
+{
+	"navigationBarTitleText": "支付成功",
+	"usingComponents": {
+		"empty-page": "../../../components/emptyPage/emptyPage",
+		"custom-loading": "../../../components/customLoading/customLoading",
+		"coupon-model": "../../../components/couponModel/couponModel",
+		"top-bar": "../../../components/topbar/topbar"
+	}
+}

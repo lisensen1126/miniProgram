@@ -1,0 +1,450 @@
+@import '~@/style/mixin'
+@import '~@/style/border'
+
+.page-itemDetail
+  padding-bottom: vw(30)
+  // 商品详情部分
+  .content-info
+    .swiper-box
+      width: vw(375)
+      height: vw(233)
+      background: $text-white
+      swiper-item
+        width: 100%
+        height: 100%
+        text-align: center
+        .slide-image
+          height: 100%
+          width: 100%
+    button::after
+      border: none
+    .share-icon
+      line-height: 1
+      background: transparent
+      padding: 0
+      image
+        width: vw(17)
+        height: vw(17)
+    .info
+      min-height: vw(44)
+      box-sizing: border-box
+      padding: vw(15)
+      background: $text-white
+      color: #332E2E
+      position: relative
+      .goods-title
+        font-size: vw(16)
+        line-height: vw(18)
+        font-weight: 600
+        max-width: vw(320)
+        word-break: break-all
+        overflow: hidden
+        text-overflow: ellipsis
+        display: -webkit-box
+        -webkit-line-clamp: 2
+        -webkit-box-orient: vertical
+      .goods-score
+        margin: vw(10) 0
+        view
+          display: inline-block
+        .score-num
+          display: inline-block
+          margin-left: vw(8)
+          color: #B3ADAD
+      .goods-price
+        margin-top: vw(10)
+        color: #E50015
+        line-height: vw(14)
+        font-size: vw(20)
+        font-weight: bold
+        .price
+          font-size: vw(20)
+
+  .coupon-block
+    margin-top: vw(10)
+    height: vw(55)
+    line-height: vw(15)
+    font-size: vw(14)
+    color: #332E2E
+    padding: vw(20) vw(15)
+    box-sizing: border-box
+    background: $text-white
+    .title
+      margin-right: vw(15)
+      vertical-align: middle
+      font-size: vw(14)
+      color: #7F7F7F
+    .coupon-outer
+      margin-right: vw(15)
+      display: inline-block
+      overflow: hidden
+      vertical-align: middle
+      .coupon
+        padding: 0 vw(10)
+        line-height: vw(22)
+        position: relative
+        border: vw(1) solid #DD1D21
+        font-size: vw(12)
+        color: #DD1D21
+        &::before, &::after
+          content: ''
+          display: block
+          width: vw(6)
+          height: vw(6)
+          border-radius: vw(10)
+          border: vw(1) solid #DD1D21
+          position: absolute
+          top: 50%
+          background: #FFF
+        &::before
+          left: 0
+          transform: translate(-60%, -50%)
+        &::after
+          right: 0
+          transform: translate(60%, -50%)
+    .right-icon
+      float: right
+      height: vw(10)
+      width: vw(6)
+      margin-top: vw(4)
+  .border-after
+    position: relative
+    &::after
+      content: ""
+      display: block
+      position: absolute
+      left: vw(15)
+      right: vw(15)
+      bottom: 0
+      height: vw(1)
+      background: #eeeeee
+
+  // 商品图文细节
+  .content-detail
+    background: $text-white
+    margin-top: vw(10)
+    .detail-title
+      height: vw(45)
+      line-height: vw(15)
+      font-size: vw(14)
+      color: #332E2E
+      padding: vw(15)
+      box-sizing: border-box
+    .info-title
+      height: vw(55)
+      line-height: vw(15)
+      font-size: vw(14)
+      color: #332E2E
+      padding: vw(20) vw(15)
+      box-sizing: border-box
+    .g-title
+      font-weight: 600
+      color: #404040
+    .other-label-icon
+      font-weight: 600
+      color: #404040
+    .service-info
+      font-size: vw(13)
+      line-height: vw(19)
+      padding: 0 vw(15) vw(15) vw(15)
+    .detail-pic-list
+      width: 100%
+      box-sizing: border-box
+      .rich-content
+        .rich-content-text
+          font-size: vw(13)
+          line-height: vw(19)
+          padding: vw(10) vw(15)
+          + .rich-content-text
+            margin-top: 0
+        .rich-content-img
+          display: block
+          margin: 0
+          width: 100%
+  .content-detail-num
+    display: flex
+    align-items: center
+    margin-top: 0
+    .info-title
+      color: #7F7F7F
+    .btn-block
+      position: absolute
+      right: vw(15)
+      display: inline-flex
+      align-items: center
+      justify-content: center
+      .num-btn-add
+        width: vw(10)
+        height: vw(10)
+      .num-btn-reduce
+        width: vw(10)
+        height: vw(10)
+      .num
+        width: vw(48)
+        height: vw(28)
+        line-height: vw(28)
+        background: #F8F8F8
+        color: #404040
+        font-size: vw(16)
+        text-align: center
+      .labels
+        width: vw(28)
+        height: vw(28)
+        display: inline-flex
+        align-items: center
+        justify-content: center
+        border: 1px solid #F7F7F7
+        box-sizing: border-box
+      .disable-num
+        opacity: 0.25
+  // 底部文案
+  .detail-list-bottom
+    position: relative
+    color: #B3B3B3
+    font-size: vw(12)
+    text-align: center
+    margin: vw(16) 0 vw(60) 0
+    line-height: 1
+    .line-left
+      position: absolute
+      width: vw(65)
+      height: vw(1)
+      background: #B3B3B3
+      top: vw(6)
+      left: vw(43)
+    .line-right
+      position: absolute
+      top: vw(6)
+      width: vw(65)
+      height: vw(1)
+      background: #B3B3B3
+      right: vw(43)
+  // 底部按钮
+  .content-button
+    padding: vw(9) vw(15)
+    height: vw(40)
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    background: $text-white
+    font-size: vw(14)
+    box-shadow: 0px 3px 16px 0px rgba(26,26,32,0.09)
+    .submit-layout
+      width: 100%
+      height: 100%
+      display: flex
+      align-items: center
+      .s-l
+        flex: 1
+        padding-top: vw(4)
+        padding-left: 3%
+        .s-icon
+          margin-left: vw(8)
+          display: inline-block
+          position: relative
+          image
+            width: vw(17)
+            height: vw(17)
+          .num
+            min-width: vw(14)
+            display: inline-block
+            background: #F74B49
+            border-radius: 50%
+            position: absolute
+            text-align: center
+            bottom: vw(17)
+            left: vw(12)
+            font-size: vw(9)
+            color: $text-white
+            white-space: nowrap
+        .s-text
+          line-height: 1
+          color: #404040
+          font-size: vw(12)
+      .s-c, .s-r
+        width: vw(114)
+        line-height: vw(40)
+        font-size: vw(14)
+        font-weight: 600
+        text-align: center
+      .s-c
+        color: #404040
+        background: #FBCE07
+      .s-r
+        color: #FFF
+        background: #DD1D21
+
+
+
+  // sku浮层
+  .coupon-cover
+    position: fixed
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    background: rgba(0, 0, 0, 0.6)
+    z-index: 10
+    .cover-content
+      position: absolute
+      height: vw(455)
+      bottom: 0
+      left: 0
+      right: 0
+      background: $text-white
+      border-top-left-radius: vw(10)
+      border-top-right-radius: vw(10)
+      overflow-y: scroll
+      -webkit-overflow-scrolling: touch
+      .close
+        width: vw(14)
+        height: vw(14)
+      .sku-content
+        color: #666363
+        padding: 0 vw(15) vw(45) vw(15)
+        .sku-title
+          height: vw(109)
+          padding: vw(27) vw(15) 0 vw(15)
+          box-sizing: border-box
+          position: fixed
+          left: 0
+          right: 0
+          background: $text-white
+          z-index: 10
+          .sku-title-info
+            .item-pic
+              width: vw(70)
+              height: vw(70)
+              margin: 0 vw(10) 0 0
+            .item-info
+              position: absolute
+              left: vw(113)
+              right: vw(15)
+              height: vw(70)
+              top: 0
+              .info-title
+                color: #332E2E
+                font-size: vw(14)
+                height: 60%
+                overflow: hidden
+                text-overflow: ellipsis
+                display: -webkit-box
+                -webkit-line-clamp: 2
+                -webkit-box-orient: vertical
+                //text-overflow: ellipsis
+                //white-space: nowrap
+              .info-price
+                color: #F74B49
+                font-size: vw(17)
+                line-height: 1
+                position: absolute
+                bottom: 0
+            position: relative
+            padding-bottom: vw(12)
+            &:after
+              @include Pseudo-border-after()
+        .sku-list
+          padding: vw(124) 0 vw(15) vw(2)
+        .sku-item:not(:first-child)
+          margin-top: vw(21)
+        .sku-item
+          .sku-title
+            font-size: vw(14)
+          .item-title
+            line-height: 1
+            margin-bottom: vw(9)
+          .item-label-list
+            .item-label:not(:nth-child(4n))
+              margin-right: vw(10)
+            .item-label
+              display: inline-block
+              width: vw(76)
+              height: vw(25)
+              line-height: vw(25)
+              color: #332E2E
+              position: relative
+              border-radius: vw(16)
+              border: vw(1) solid #B3ADAD
+              text-align: center
+              margin-top: vw(15)
+              font-weight: bold
+              .label-content
+                position: relative
+                z-index: 1
+              .color-active
+                color: $text-white
+            .label-bg
+              width: vw(87)
+              height: vw(35)
+              position: absolute
+              z-index: 0
+              top: vw(-4)
+              left: vw(-6)
+        .sku-num
+          height: vw(25)
+          line-height: vw(25)
+          margin-bottom: vw(43)
+          view
+            display: inline-block
+          .btn-block
+            position: absolute
+            right: vw(15)
+            image
+              width: vw(25)
+              height: vw(25)
+            .num
+              width: vw(50)
+              height: vw(25)
+              line-height: vw(25)
+              position: relative
+              top: vw(-7)
+              text-align: center
+      .action-button
+        position: fixed
+        bottom: 0
+        left: 0
+        right: 0
+        height: vw(50)
+        z-index: 10
+      .title
+        height: vw(52)
+        line-height: vw(52)
+        position: relative
+        text-align: center
+        font-size: vw(16)
+        color: #404040
+        font-weight: 600
+        border-bottom: vw(1) solid #EEEEEE
+        .close
+          position: absolute
+          right: vw(15)
+          top: 50%
+          transform: translateY(-50%)
+      .coupons-scroll
+        position: absolute
+        top: vw(52)
+        bottom: 0
+        left: 0
+        right: 0
+        .coupons
+          padding: vw(15)
+          .receive
+            margin-bottom: vw(18)
+          .title
+            color: #404040
+            width: 72px
+            height: 17px
+            font-size: 12px
+            font-weight: 500
+            line-height: 17px
+            border: 0
+  .coupon-cover .cover-content
+    border-radius: 0
+.goods-title-box
+  height: vw(36)
+.info-title-box
+  display: flex
+  align-items: center
+  justify-content: space-between
+

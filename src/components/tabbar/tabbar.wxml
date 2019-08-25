@@ -1,0 +1,45 @@
+
+<view class="tabbar">
+    <view class="btn-sty">
+        <!-- 首页 按钮-->
+        <view class="tab {{current === '0'?'current':''}}">
+            <catch-form bind:callback="goIndex">
+                <view class="icon index-img">
+                    <image wx:if="{{current !== '0'}}" src="../../images/tabbar/index.png"></image>
+                    <image wx:if="{{current === '0'}}" src="../../images/tabbar/index_active.png"></image>
+                </view>
+                <text>首页</text>
+            </catch-form>
+        </view>
+        <!-- 分类 按钮-->
+        <view class="tab {{current === '1'?'current':''}}">
+            <catch-form bind:callback="goCategory">
+                <view class="icon index-img">
+                    <image wx:if="{{current !== '1'}}" src="../../images/tabbar/category.png"></image>
+                    <image wx:if="{{current === '1'}}" src="../../images/tabbar/category_active.png"></image>
+                </view>
+                <text>分类</text>
+            </catch-form>
+        </view>
+        <!-- 门店 按钮-->
+        <view class="tab {{current === '2'?'current':''}}">
+            <catch-form bind:callback="goStore">
+                <view class="icon index-img">
+                    <image wx:if="{{current !== '2'}}" src="../../images/tabbar/store.png"></image>
+                    <image wx:if="{{current === '2'}}" src="../../images/tabbar/store_active.png"></image>
+                </view>
+                <text>门店</text>
+            </catch-form>
+        </view>
+        <!-- 我的 按钮-->
+        <view class="tab {{current === '3'?'current':''}}">
+            <catch-form bind:callback="goMy">
+                <view class="icon index-img">
+                    <image wx:if="{{current !== '3'}}" src="../../images/tabbar/my.png"></image>
+                    <image wx:if="{{current === '3'}}" src="../../images/tabbar/my_active.png"></image>
+                </view>
+                <text>我的</text>
+            </catch-form>
+        </view>
+    </view>
+</view>

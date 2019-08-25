@@ -1,0 +1,52 @@
+@import '~@/style/mixin'
+.goods-item
+  display: flex
+  justify-content: space-between
+  box-sizing: border-box
+  position: relative
+  margin-bottom: vw(20)
+  padding: vw(20) vw(15)
+  width: 100%
+  height: vw(134)
+  background: #fff
+  border: vw(5) solid #E8C18E
+  .goods-img
+    width: vw(134)
+    height: vw(84)
+    .img
+      width: 100%
+      height: 100%
+  .goods-content
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    width: vw(158)
+    height: vw(84)
+    font-size: vw(14)
+    .title
+      width: vw(158)
+      height: vw(42)
+      line-height: vw(21)
+      font-size: vw(14)
+      color: #404040
+      overflow : hidden
+      text-overflow: ellipsis
+      display: -webkit-box
+      -webkit-line-clamp: 2
+      -webkit-box-orient: vertical
+    .price-wrapper
+      display: flex
+      justify-content: space-between
+      .price
+        font-size: vw(20)
+        color: #E50113
+        text
+          font-size: vw(14)
+      .detail
+        width: vw(70)
+        height: vw(28)
+        line-height: vw(28)
+        text-align: center
+        font-size: vw(12)
+        color: #fff
+        background: linear-gradient(140deg,rgba(58,56,66,1) 0%,rgba(27,26,31,1) 100%)

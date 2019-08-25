@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_play_b</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="施工录像" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-68.000000, -122.000000)">
+        <g id="list1" transform="translate(15.000000, 79.000000)">
+            <g id="icon_play_b" transform="translate(53.000000, 43.000000)">
+                <circle id="Oval-5" fill="#FFFFFF" opacity="0.9" cx="16" cy="16" r="16"></circle>
+                <path d="M21.6802214,15.3853416 L14.1798141,10.1350565 C13.9518017,9.97454778 13.6517854,9.9565468 13.4035219,10.0840537 C13.1552584,10.2138108 13,10.4695747 13,10.7493399 L13,21.2506601 C13,21.5304253 13.1552584,21.7869393 13.4035219,21.9159463 C13.6517854,22.0434532 13.9510516,22.0254522 14.1798141,21.8649435 L21.6802214,16.6146584 C21.8812323,16.4751508 22.0004888,16.2456383 22.0004888,16.0011251 C22.0004888,16.0011251 22.0004888,16.0011251 22.0004888,16.0011251 C22.0004888,16.0011251 22.0004888,16.000375 22.0004888,15.999625 C22.0004888,15.7551117 21.8812323,15.5255992 21.6802214,15.3853416 Z" id="Shape" fill="#FFC723" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

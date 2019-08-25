@@ -1,0 +1,261 @@
+<wxs module="tool">
+  var img = function (src, w, h) {
+		var re_img = src.split('?')[0]
+		return re_img + '?imageMogr2/thumbnail/' + w + 'x' + h + '!'
+  }
+  module.exports = {
+    formatImg : img,
+  }
+</wxs>
+<view class="page-index-new animation-fade-in" style="padding-top:{{topbarHeight}}px" wx:if="{{!skeleton}}">
+	<scroll-view>
+		<!-- topbar -->
+		<top-bar title="{{store_name}}"></top-bar>
+		<!--顶部相关-->
+		<!-- wx:if="{{default_car}}" -->
+		<view class="index-top box-shawons">
+			<!--车辆信息、天气、连锁店-->
+			<view class="cars-weather {{is_chain==1 ? 'is-chain' : ''}}">
+				<!--车辆信息-->
+				<image lazy-load class="car-cover" src="https://oss1.chedianai.com/images/static/index-bg01.png"/>
+				<!--已有车辆信息-->
+				<catch-form bind:callback="goManagecar" wx:if="{{default_car.license_plate.length>0}}">
+					<view class="car-part font-medium" >欢迎您，{{default_car.license_plate}}
+						<image lazy-load class="right-icon" src="https://oss1.chedianai.com/images/assets/arrow_right.png"/>
+					</view>
+				</catch-form>
+				<!--无车辆-->
+				<view class="car-part font-medium padding50" bindtap='goAddcar' wx:else>Hi,我们认识一下?
+					<image lazy-load class="right-icon" src="https://oss1.chedianai.com/images/assets/arrow_right.png"/>
+				</view>
+				<!--天气部分-->
+				<view class="weather-part" wx:if="{{weather_data}}">
+					<text> {{weather_data.weather}} </text>
+					<text>{{weather_data.temperature}}℃</text>
+					<text>{{weather_data.car_brief}}洗车</text>
+				</view>
+				<!--连锁店切换门店-->
+				<view wx:if="{{is_chain==1}}"  bindtap="changeStore" class="change-store-btn">
+					<image class="change-store" src="https://oss1.chedianai.com/images/static/change-store-1.png" />切换门店
+				</view>
+			</view>
+			<!-- 轮播图 -->
+			<view class="index-banner" wx:if="{{imgUrls.length>0}}">
+				<swiper class="swiper-part" autoplay="{{true}}" current="{{currentSwiper}}" bindchange="swiperChange">
+					<block wx:for="{{imgUrls}}" wx:key='index'>
+						<view data-item='{{item}}' data-type="{{item.value_type}}" bindtap="goSwiper">
+							<swiper-item>
+								<image src="{{tool.formatImg(item.pic, 690, 310)}}" lazy-load class="slide-image" />
+							</swiper-item>
+						</view>
+					</block>
+				</swiper>
+				<view class="dots">
+					<block wx:for="{{imgUrls}}" wx:key='index'>
+						<view class="dot{{index == currentSwiper ? ' active' : ''}}"></view>
+					</block>
+				</view>
+			</view>
+			<!--金刚-->
+			<view class="icon-list">
+				<swiper class="icon-swiper-part" autoplay="{{false}}" current="{{currentIconSwiper}}" bindchange="swiperIconChange">
+					<swiper-item class="swiper-item" wx:for="{{navList}}" wx:key="index">
+						<view
+							wx:for="{{item}}"
+							wx:for-item="sonItem"
+							wx:key="{{sonItem.id}}"
+							data-item="{{sonItem}}"
+							bindtap="goNav"
+							class="shell-icon-item">
+								<image src="{{sonItem.icon_pic}}" lazy-load />
+								<view class="icon-item-title">{{sonItem.title}}</view>
+						</view>
+					</swiper-item>
+				</swiper>
+				<view class="dots">
+					<block wx:for="{{navList}}" wx:key='index'>
+						<view class="dot{{index == currentIconSwiper ? ' icon-active' : ''}}"></view>
+					</block>
+				</view>
+			</view>
+		</view>
+		<!--保养-->
+		<view class="maintain-part" wx:if="{{maintain_type}}">
+			<view class="maintain-content box-shawons">
+				<view class="maintain-info" wx:if="{{maintain_type.status == 1}}">
+					<view class="info">
+						<view class="info-no-car font-medium">你真的知道怎么保养爱车吗？</view>
+						<view class="maintain-date">完善车辆信息，给爱车定制保养方案</view>
+					</view>
+					<catch-form bind:callback="goAddcar" class="maintain-btn">
+						立即完善爱车
+					</catch-form>
+				</view>
+				<view class="maintain-info" wx:if="{{maintain_type.status == 2 || maintain_type.status == 4 || maintain_type.status == 7}}">
+					<view class="info">
+						<view>建议下次保养里程 <text class="car-mileage">{{maintain_type.next_mileage}}</text>KM</view>
+						<view class="maintain-date">建议每{{maintain_type.every_mileage}}KM/{{maintain_type.every_time}}个月进行保养</view>
+					</view>
+					<catch-form class="maintain-btn" bind:callback="goIntelligent">
+						去保养
+					</catch-form>
+				</view>
+				<view class="maintain-info" wx:if="{{maintain_type.status == 3 || maintain_type.status == 5 || maintain_type.status == 9}}">
+					<view class="info">
+						<view class="info-default font-medium">完善爱车里程，体验快速保养</view>
+						<view class="maintain-date">建议每{{maintain_type.every_mileage}}KM/{{maintain_type.every_time}}个月进行保养</view>
+					</view>
+					<catch-form class="maintain-btn" bind:callback="goIntelligent">
+						去保养
+					</catch-form>
+				</view>
+				<view class="maintain-info" wx:if="{{maintain_type.status == 6 || maintain_type.status == 8}}">
+					<view class="info">
+						<view class="info-default font-medium">抱歉，我们还没有您的车型数据</view>
+						<view class="maintain-date">您的车型信息我们正在抓紧升级中...</view>
+					</view>
+					<catch-form class="maintain-btn" bind:callback="goIntelligent">
+						去保养
+					</catch-form>
+				</view>
+				<view class="maintain-tip">
+					<image lazy-load class="tip-icon" src="https://oss2.chedianai.com/images/assets/maintain-tip.png"/>
+					<view class="tips">
+						<swiper class="swiper-part" vertical="{{true}}" interval="3000" circular="{{true}}" autoplay="{{true}}">
+							<block wx:for="{{tipList}}" wx:key='index'>
+								<swiper-item catchtouchmove="swiperTip"><view>{{item.content}}</view></swiper-item>
+							</block>
+						</swiper>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!--优惠来袭-->
+		<view class="coupon-part" wx:if="{{coupon_list.length>0}}">
+			<view class="part-title font-medium">
+				<view class="title">优惠来袭</view>
+				<view class="more" bindtap="goVoucher">更多<image lazy-load="{{true}}" class="more-icon" src="https://oss1.chedianai.com/images/assets/arrow_right.png"/></view>
+			</view>
+			<view class="coupon-list">
+				<view class="white-abs"></view>
+				<view class="coupon-item {{coupon_list.length<=2?'single-coupon':''}} {{item.receive_status==3?'coupon-default-cover':''}}" wx:for="{{coupon_list}}" wx:key="index">
+					<image lazy-load mode='scaleToFill' wx:if="{{item.receive_status == 3}}" class="coupon-img-cover" src="https://oss2.chedianai.com/images/assets/coupon-index-default.png"/>
+					<image lazy-load mode='scaleToFill' wx:if="{{item.receive_status != 3}}" class="coupon-img-cover" src="https://oss2.chedianai.com/images/assets/coupon-cover.png"/>
+					<view class="coupon-info-desc">
+						<!--优惠券使用条件start-->
+						<view class="coupon-money-part" wx:if="{{item.coupon_type != 4}}">¥<text class="coupon-money font-medium">{{item.discount_amount}}</text></view>
+						<view class="coupon-money-part" wx:if="{{item.coupon_type == 4}}"><text class="coupon-money font-medium">{{item.discount_amount}}</text><text class="coupon-sale">折</text></view>
+						<view class="coupon-info" wx:if="{{item.condition_value == 0 || item.coupon_type == 1 || item.coupon_type == 2}}">无消费门槛</view>
+						<view class="coupon-info" wx:if="{{item.condition_value > 0 && item.coupon_type == 3 }}">满{{item.condition_value/100}}减{{item.discount_amount}}</view>
+						<view class="coupon-info" wx:if="{{item.condition_value > 0 && item.coupon_type == 4 }}">满{{item.condition_value/100}}元{{item.discount_amount}}折</view>
+						<!--优惠券使用条件end-->
+						<view class="coupon-btn" wx:if="{{item.receive_status == 1}}">
+							<catch-form bind:callback="getCouponOperation"
+								data-id="{{item.coupon_id}}"
+								data-item="{{item}}">领取</catch-form>
+						</view>
+						<view class="coupon-btn" wx:if="{{item.receive_status == 3}}">
+							<catch-form bind:callback="goUse" class="coupon-btn"
+								data-id="{{item.coupon_id}}"
+								data-item="{{item}}">去使用</catch-form>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!--养护卡-->
+		<view class="card-part" wx:if="{{card_list.length>0}}">
+			<view class="part-title font-medium">
+				<view class="title">养护卡</view>
+			</view>
+			<catch-form bind:callback="goCardList">
+				<view	class="card-info box-shawons">
+					<image lazy-load class="card-img" src="https://oss1.chedianai.com/images/static/card-maintain.png"/>
+					<view class="info font-medium">
+						<view class="card-title">{{card_list[0].name}}</view>
+						<view class="card-price">¥{{card_list[0].price}}</view>
+					</view>
+					<view class="go-card-center">前往购卡中心</view>
+				</view>
+			</catch-form>
+		</view>
+		<!--秒杀、拼团、品牌专区-->
+		<view class="product-part m-t-20" wx:if="{{spike_list.length>0 || groupList.length>0 || brandList.length>0}}">
+			<!--秒杀-->
+			<view class="spilke-part" wx:if="{{spike_list.length>0}}">
+				<view class="part-title font-medium">
+					<view class="title">限时秒杀</view>
+					<view class="more" bindtap="goSpilkeList">更多<image lazy-load="{{true}}" class="more-icon" src="https://oss1.chedianai.com/images/assets/arrow_right.png"/></view>
+				</view>
+				<view class="spilke-list">
+					<view class="spilke-item {{spike_list.length<=1?'single-sku':''}}" wx:for="{{spike_list}}" wx:key="index" data-item="{{item}}" bindtap="goLimitDetail">
+						<view class="spilke-time">
+							<text wx:if="{{item.seckill_time_line_day>0}}">{{item.seckill_time_line_day}}天</text>
+							<text>{{item.seckill_time_line[0]}}</text>:<text>{{item.seckill_time_line[1]}}</text>:<text>{{item.seckill_time_line[2]}}</text>
+						</view>
+						<view class="spilke-goods">
+							<view class="spilke-goods-img">
+								<image src="{{tool.formatImg(item.pic, 338, 208)}}" lazy-load class="spilke-img" />
+							</view>
+							<view class="spilke-name">{{item.name}}</view>
+							<view>
+								<text class="spilke-price font-medium">¥{{item.seckill_sku_price}}</text>
+								<text class="default-price">¥{{item.sku_price}}</text>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!--拼团-->
+			<view   wx:if="{{groupList.length>0}}" class="group-part {{spike_list.length>0 ? 'p-t-2' : ''}}">
+				<view class="part-title font-medium">
+					<view class="title">拼团</view>
+					<view class="more" bindtap="goGroupList">更多<image lazy-load="{{true}}" class="more-icon" src="https://oss1.chedianai.com/images/assets/arrow_right.png"/></view>
+				</view>
+				<view class="group-list">
+					<view class="group-item {{groupList.length<=1?'single-sku':''}}" wx:for="{{groupList}}" wx:key="index" data-item="{{item}}" bindtap="goDetail">
+						<view class="group-time">{{item.num}}人团</view>
+						<view class="group-goods">
+							<view class="group-img">
+								<image mode="aspecFit" lazy-load src="{{item.goods_img}}" class="group-img" />
+							</view>
+							<view class="group-name">{{item.goods_name}}</view>
+							<view>
+								<text class="group-price font-medium">¥{{item.group_price}}</text>
+								<text class="default-price">¥{{item.goods_price}}</text>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!--品牌专区-->
+			<view wx:if="{{brandList.length>0}}" class="brand-part {{(spike_list.length>0 || groupList.length>0) ? 'p-t-2' : ''}}">
+				<view class="part-title font-medium">
+					<view class="title">品牌专区</view>
+					<view class="more" bindtap="goBrandList">更多<image lazy-load="{{true}}" class="more-icon" src="https://oss1.chedianai.com/images/assets/arrow_right.png"/></view>
+				</view>
+				<view class="brand-list">
+					<view class="brand-item" 
+						wx:for="{{brandList}}" 
+						wx:key="index"
+						data-id="{{item.brand_houses_id}}" 
+						bindtap="goBrandDetail">
+						<image mode="aspecFit" lazy-load src="{{item.brand_houses_cover}}" class="brand-item" />
+					</view>
+				</view>
+			</view>
+		</view>
+		<!--关注公众号组件 -->
+		<view class="official-account {{showOfficial && openOfficial ? '' : 'hideOfficial'}}">
+			<official-account bindload="connectSuccess" binderror="connectError"></official-account>
+		</view>
+		<!--添加到我的小程序-->
+		<view class="guide-cover" bindtap="closeGuideCover" wx:if="{{guide_cover}}">
+			<view class="guide-tip">添加到我的小程序，轻松保养您的爱车</view>
+		</view>
+		<!--开机大屏-->
+		<index-open bindtriggercancel='openCancel' type='{{open_type}}'  wx:if='{{isShowOpen && is_show_open}}' img='{{open_img}}' url='{{open_url}}'></index-open>
+		<!-- 推送优惠券弹框 -->
+		<coupon-model bindtriggercancel="couponCancel" wx:if="{{isShowCoupon && recommend_coupon.length > 0}}" page="index" list="{{recommend_coupon}}"></coupon-model>
+	</scroll-view>
+</view>

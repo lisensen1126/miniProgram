@@ -1,0 +1,32 @@
+<view clas="page-wrapper" wx:if="{{pageShow}}" style="padding-top: {{top_height}}px">
+  <!-- topbar -->
+	<top-bar title="爱车档案" home="{{showHome}}"></top-bar>
+  <view class="carBox" wx:if="{{carList.length > 0}}" wx:for="{{carList}}" wx:key="{{index}}">
+    <view wx:if="{{initialized}}" class="car-file">
+      <view class="car-icon">
+        <image class="logo" mode="aspectFit" src="{{item.logo}}"/>
+      </view>
+      <view class="info">
+        <view class="title">{{item.license_plate}}</view>
+        <view class="detail">{{item.desTxt}}</view>
+      </view>
+      <view class="edit" bindtap="goEdit" data-item="{{item}}" data-cdp="vehicle_vehiclesMultiple_listEdit">
+        <image class="icon" src="https://oss1.chedianai.com/edit-car.png" mode="aspectFit"/>
+      </view>
+    </view>
+    <view class="vehicle-radio">
+      <view class="left" data-index="{{index}}" bindtap="toggleChoose" data-cdp="vehicle_vehiclesMultiple_listDefault">
+        <image wx:if="{{item.is_default}}" class="left-img" src="../../../images/shopCart/check-btn-active.png"></image>
+        <image wx:if="{{!item.is_default}}" class="left-img" src="../../../images/shopCart/check-btn.png"></image>
+        <view>设为默认车辆</view>
+      </view>
+    </view>
+  </view>
+  <!-- 缺省页面 -->
+  <empty-page wx:if="{{carList.length === 0}}" class="categroy-content" slogan="快来添加你的爱车" icon="nolovecar"></empty-page>
+  <view wx:if="{{initialized && updated_at}}" class="timestamp">更新时间：{{updated_at}}</view>
+  <view style="height:100px"></view>
+  <view class="btnBox">
+    <view class="btn" bindtap="goAddCar" data-cdp="vehicle_vehiclesMultiple_1">新增车辆</view>
+  </view>
+</view>

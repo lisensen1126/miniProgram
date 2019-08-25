@@ -1,0 +1,27 @@
+<view style="padding-top: {{top_height}}px">
+  <!-- topbar -->
+	<top-bar title="施工直播" home="{{showHome}}"></top-bar>
+  <video class="video-screen" wx:if="{{status === 'OPEN'}}" src="{{liveInfo.video_url}}" poster="{{liveInfo.image_url}}"></video>
+  <view class="video-screen video-screen-finished" wx:if="{{status === 'CLOSED'}}">
+    <view class="film-icon"></view>
+    <view class="film-finished">直播已结束</view>
+  </view>
+  <view class="video-info">
+    <image src="{{liveInfo.image_url}}" class="store-image" mode="aspectFill" />
+    <view>
+      <view class="store-name">
+        <view class="name">{{liveInfo.store_name}}</view>
+        <view class="living" wx:if="{{status === 'OPEN'}}">直播中</view>
+        <view class="living finish" wx:if="{{status === 'CLOSED'}}">已完成</view>
+      </view>
+      <view class="construction-time" wx:if="{{status === 'CLOSED'}}">施工已结束</view>
+      <view class="construction-time" wx:if="{{status === 'OPEN'}}">施工进行中...</view>
+    </view>
+  </view>
+
+  <view class="bottom-wrapper">
+    <navigator class="back-button" open-type="navigateBack" hover-class="back-button-hover">
+      返回
+    </navigator>
+  </view>
+</view>

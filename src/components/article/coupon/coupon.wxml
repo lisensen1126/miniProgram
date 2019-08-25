@@ -1,0 +1,34 @@
+<view class='collection'>
+  <view class="c-wrapper">
+    <view class="c-left">
+      <view class="c-money-warpper">
+        <view class="c-money">
+          <text class="c-icon">¥</text>
+          <text class="c-text">9999</text>
+          <!-- <text class="c-text">8.5</text>
+          <text class="c-icon">折</text> -->
+        </view>
+        <view class="c-limit">
+          满999元使用
+        </view>
+      </view>
+      <view class="c-term-wrapper">
+        <view class="c-title">活动用兑换券名称活动用</view>
+        <view class="c-text-wrapper">
+          <!-- <view class="c-spot"></view> -->
+          <view class="c-text-item" wx:for="{{['领券后30天内有效', '全场商品/服务可用']}}" wx:key="i">
+            {{item}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="c-right">
+      <view class="c-btn-warpper">
+        <view>立</view>
+        <view>即</view>
+        <view>领</view>
+        <view>取</view>
+      </view>
+    </view>
+  </view>
+</view>

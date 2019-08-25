@@ -1,0 +1,203 @@
+$unit: 1rpx
+
+@function parseVW($value)
+  @return (($value * $unit) * 2)
+
+@function vw($args)
+  @return parseVW($args)
+
+@mixin getImage($path)
+  background:
+    image: url('~@/images/#{$path}')
+    size: cover
+
+// F74B49
+$primary: #F7D117
+$gray-placeholder: #C6C6C7
+
+$text-white: #ffffff
+$text-darkest: #121212
+$text-dark: #353535
+$text-gray: #999
+$text-light: #b2b2b2
+$text-red: #d0021b
+
+$bg-yellow: #ffd762
+$bg-yellow-darker: #ffc723
+$bg-green: #1aad19
+$bg-white: #fff
+$bg-gray: #f5f5f5
+$bg-warn: #fff5d7
+$highlight: #f5a623
+$hr-border-color: #d9d9d9
+
+$border: rgba(240,240,240,1)
+
+$radius: vw(2)
+
+@mixin horizontal-line
+  width: 100%
+  height: vw(1)
+  background: $border
+  display: block
+  content: ""
+  position: absolute
+@mixin vertical-line
+  width: vw(1)
+  height: 100%
+  background: $border
+  display: block
+  content: ""
+  position: absolute  
+
+%double-line-ellipses
+  display: -webkit-box 
+  overflow: hidden
+  text-overflow: ellipsis
+  word-break: break-all
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: 2
+
+%ellipses
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+
+%btn
+  display: flex
+  align-items: center
+  border-radius: vw(3)
+  font-size: vw(16)
+  color: $text-white
+  font-weight: bold
+  justify-content: center
+
+@mixin btn-disabled
+  background: #ddd
+  @extend %btn
+
+@mixin btn-green
+  background: #09bb07
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.05), 0 2px 6px 0 rgba(9,187,7,0.15), inset 0 0 0 0 #09a307
+  @extend %btn
+
+@mixin btn-white
+  background: $text-white
+  border: vw(1) solid #a7a7a7
+  box-sizing: border-box
+  color: $text-dark
+  @extend %btn
+
+@mixin btn-black
+  background-color: $text-darkest
+  border: vw(1) solid #a7a7a7
+  color: $text-white
+  @extend %btn
+
+@mixin btn-gray
+  background: #f7f7fa
+  @extend %btn
+@mixin btn-yellow
+  color: $text-darkest
+  background: $bg-yellow-darker
+  @extend %btn
+@mixin btn-yellow-disabled
+  opacity: .3
+@mixin btn-primary
+  color: $text-dark
+  box-sizing: border-box
+  box-shadow: 0 vw(1) vw(6) 0 rgba(0, 0, 0, .05), 0 vw(4) vw(12) 0 rgba(255, 199, 35, .20)
+  background: $bg-yellow-darker
+  @extend %btn
+
+%banner-box
+  width: vw(345)
+  margin: 0 auto
+  background-color: $bg-white
+  border-radius: vw(4)
+  box-shadow: 0 vw(1) vw(6) 0 rgba(0, 0, 0, .05), 0 vw(6) vw(24) 0 rgba(0, 0, 0, .05)
+  position: relative
+  box-sizing: border-box
+  
+.label-icon::before
+  content: ""
+  display: inline-block
+  position: relative
+  top: vw(2)
+  width: vw(6)
+  height: vw(13)
+  background: $primary
+  
+.other-label-icon::before
+  content: ""
+  display: inline-block
+  position: relative
+  top: vw(2)
+  width: vw(5)
+  height: vw(14)
+  margin-right: vw(8)
+  background: $primary
+// 返回首页按钮
+.back-home
+  position: fixed
+  left: 0
+  z-index: 8888
+  top: vw(200)
+  background-color: transparent
+  opacity: 1
+.back-home::before
+  content: ''
+  display: inline-block
+  width: vw(42)
+  height: vw(36)
+  background: center no-repeat url('https://oss1.chedianai.com/images/assets/back-to-home3.png')
+  background-size: cover
+  margin-bottom: vw(4)
+// 公共字体样式
+// 极细体
+.font-ultralight
+  font-family:  PingFangSC-Ultralight
+//  细体
+.font-light
+  font-family:  PingFangSC-Light
+//  纤细体
+.font-thin
+  font-family:  PingFangSC-Thin
+//  中黑体
+.font-medium
+  font-family:  PingFangSC-Medium
+//  中粗体
+.font-semibold
+  font-family:  PingFangSC-Semibold
+.form-btn
+  button
+    border: none
+    outline: none
+    border-radius: 0
+    background-color: transparent
+  .button-hover
+    background-color: transparent
+  button::after
+    border: none
+.clearfix:after
+  content: " "  
+  display: block
+  clear: both
+  visibility: hidden
+  height: 0
+  font-size: 0
+
+.formid
+	button.formid-btn
+	border: none
+  text-align: inherit
+  padding: 0
+  margin: 0
+  line-height: inherit
+  background: transparent
+  color: inherit
+  border-radius: 0
+  font-size: inherit
+  outline: 0
+	button.formid-btn::after
+		border: none

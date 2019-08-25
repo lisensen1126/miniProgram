@@ -1,0 +1,35 @@
+<view class="page-chooseTime" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="选择时间"></top-bar>
+	<!-- topbar end -->
+	<scroll-view scroll-x class="scroll-box">
+    <view class="date-box">
+      <view class="date-list">
+        <view class="date-item {{item.fullDate === reservableDate ? 'is-active' : ''}}" wx:for="{{dateList}}" wx:key="index" data-date="{{item}}" bindtap="chooseDate">
+          <view class="week">{{item.day}}</view>
+          <view class="date">{{item.date}}</view>
+          <view class="border-date"></view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="time-section-box">
+    <view class="time-box" wx:if="{{!isLoading}}">
+      <view class="title">上午</view>
+      <view class="time-zone-wrapper">
+        <view class="time-zone" wx:for="{{timeList.am}}" wx:key="index" class="time-zone {{!item.available ? 'is-unable' : item.start === reservableTime ? 'is-active': ''}}" data-time="{{item}}" bindtap="chooseTime">
+          {{item.start}}
+        </view>
+      </view>
+    </view>
+    <view class="time-box" wx:if="{{!isLoading}}">
+      <view class="title">下午</view>
+      <view class="time-zone-wrapper">
+        <view class="time-zone" wx:for="{{timeList.pm}}" wx:key="index" class="time-zone {{!item.available ? 'is-unable' : item.start === reservableTime ? 'is-active': ''}}" data-time="{{item}}" bindtap="chooseTime">
+          {{item.start}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <status-action-bar show-primary="{{true}}" is-enable="{{isEnable}}" bind:triggercancel="actionCancel" bind:triggercomfirm="actionConfirm"></status-action-bar>
+</view>

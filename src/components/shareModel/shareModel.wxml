@@ -1,0 +1,17 @@
+<view class="">
+  <view class="dark" wx:if="{{true}}" bindtap="closeCouModal"></view>
+  <view class="share-box form-btn">
+    <button class="share-item btn" data-type="{{sharemodel}}" open-type='share' bindtap="shareToPy">
+      <image class="logo-icon" src="https://oss1.chedianai.com/wechat/weixi-icon.png"></image>
+      <view class="txt">
+          发送给朋友
+      </view>
+    </button>
+    <view class="share-item btn" bindtap="shareToPyq">
+      <image class="logo-icon" src="https://oss1.chedianai.com/wechat/friend-icon.png"></image>
+      <view class="txt">
+          生成分享海报
+      </view>
+    </view>
+  </view>
+</view>

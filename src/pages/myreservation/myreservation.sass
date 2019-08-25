@@ -1,0 +1,141 @@
+@import '~@/style/mixin'
+.page-myreservation
+  .appointment-card
+    background-color: #fff
+    padding: vw(15)
+    padding-bottom: 0
+    padding-right: 0
+    margin-bottom: vw(15) 
+    .appointment-time
+      color: #000000
+      font-weight: 500
+      font-size: vw(15)
+      padding-right: vw(15)
+    .appointment-item
+      display: flex
+      padding: vw(15) vw(15) vw(15) 0
+      justify-content: space-between
+      border-bottom: vw(1) solid rgba(247,246,242,1)
+      .appointment-thumb
+        width: vw(102)
+        height: vw(67)
+        image
+          width: vw(102)
+          height: vw(67)
+      .appointment-item-content
+        flex: 1
+        padding-left: vw(15)
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        .appointment-item-title
+          color: #666666
+          font-weight: 500
+          font-size: vw(13)
+        .appointment-item-address
+          color: #666666
+          margin-top: vw(8)
+          font-size: vw(13)
+          display: flex
+          .appointment-item-address-icon
+            margin-right: vw(8)
+            image
+              width: vw(11)
+              vertical-align: middle
+              height: vw(13)
+              margin-bottom: vw(2)
+    .appointment-bottom
+      padding: vw(15) vw(15) vw(15) 0
+      position: relative
+      align-items: center
+      display: flex
+      justify-content: space-between
+      .lookAll
+        color: #000000
+        display: inline-block
+        font-size: vw(14)
+        font-weight: 600
+        image
+          width: vw(11)
+          height: vw(7)
+          vertical-align: middle
+          margin-left: vw(2)
+      .cancel
+        // width: vw(72)
+        height: vw(35)
+        color: #000000
+        background-color: $primary
+        font-size: vw(12)
+        font-weight: 500
+        text-align: center
+        line-height: vw(35)
+  .info-section
+    padding: 0 0
+    padding-bottom: vw(15)
+    border-radius: vw(5)
+    background-color: #fff
+    font-size: vw(14)
+    line-height: vw(20)
+    overflow: hidden
+  .info-item 
+    padding-bottom: vw(15)
+    display: flex
+    justify-content: space-between
+    &.special-info
+      justify-content: flex-start
+    .info-content
+      color: #999
+      display: flex
+      align-items: center
+    .info-content-color
+      color: #F74B49
+  .item-avatar
+    flex: 0 0 vw(85)
+    width: vw(85)
+    height: vw(85)
+    background-color: $text-white
+    position: relative
+    .item-avatar-img
+      width: vw(85)
+      height: vw(85)
+    .item-type
+      position: absolute
+      left: 0
+      top: 0
+      width: vw(37)
+      height: vw(37)
+  .item-content
+    display: flex
+    flex: 1 1 auto
+    padding-right: vw(15)
+    padding-left: vw(15)
+    flex-direction: column
+    justify-content: space-between 
+  .item-title
+    font-size: vw(15)
+    line-height: vw(20)
+    color: #000000
+    font-weight: 500
+    display: -webkit-box
+    word-break: break-all
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 2
+    overflow: hidden
+    text-overflow: ellipsis
+  .item-sku
+    font-size: vw(13)
+    line-height: vw(20)
+    color: #000000
+  .time-stamp
+    display: flex
+    justify-content: space-between
+    align-items: center
+    .order-amount
+      line-height: vw(20)
+      color: #E50413
+      font-size: vw(20)
+      font-weight: 500
+    .order-number
+      color: #000000
+      font-size: vw(14)
+

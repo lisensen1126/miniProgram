@@ -1,0 +1,24 @@
+<view class="page-myCoupon" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="我的优惠券" home="{{showHome}}"></top-bar>
+	<!-- topbar end -->
+  <view class="status-filter-wrapper" style="margin-top: {{top_height}}px">
+    <view wx:for="{{taber_list}}" wx:key="{{index}}" class="filter-item{{index==(coupon_status-1)?' is-active':''}}" data-index="{{index}}" bindtap="chooseTaber">{{item}}</view>
+  </view>
+  <!-- 列表数据 -->
+  <view class="list-wrapper">
+    <block wx:if="{{list.length>0}}">
+      <block wx:for="{{list}}" wx:key="{{index}}">
+        <coupon-t1 coupon="{{item}}" type="mine" status="{{coupon_status}}" index="{{index}}" bind:toUse="toUse" data-cdp="coupon_myCoupon_listToUse"></coupon-t1>
+      </block>
+      <custom-loading has-more='{{!isAllLoaded}}' is-loading="{{isLoading}}"></custom-loading>
+    </block>
+    <block wx:else>
+      <empty-page wx:if="{{!isLoading}}" icon="nosearch" slogan="暂无优惠券"/>
+    </block>
+  </view>
+  <view class="submit-layout">
+    <view class="submit" bindtap="goVoucher">进入领券中心</view>
+  </view>
+  
+</view>

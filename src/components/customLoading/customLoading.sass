@@ -1,0 +1,24 @@
+@import '~@/style/mixin'
+
+.loading
+  width: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+  color: $text-light
+  font-size: vw(12)
+  height: vw(40)
+
+.loading-icon
+  width: vw(12)
+  height: vw(12)
+  margin-right: vw(5)
+  background: url('../../images/base/bars-rotate.svg') no-repeat center center
+  background-size: cover
+  animation: rotate 0.8s steps(24) infinite
+
+@keyframes rotate
+  0%
+    transform: rotate(0deg)
+  to
+    transform: rotate(1turn)

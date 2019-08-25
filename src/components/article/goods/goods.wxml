@@ -1,0 +1,16 @@
+<view class='collection'>
+  <view class="goods-item" data-type="{{content_type}}" data-spu-id="{{spu_id}}" data-sku-id="{{sku_id}}" bind:tap="goDetail">
+    <view class="goods-img">
+      <image class="img" mode="widthFix" src="{{goods_img}}"></image>
+    </view>
+    <view class="goods-content">
+      <view class="title">{{goods_name}}</view>
+      <view class="price-wrapper">
+        <view class="price">
+          <text>¥</text>{{goods_price}}
+        </view>
+        <view class="detail">查看详情</view>
+      </view>
+    </view>
+  </view>
+</view>

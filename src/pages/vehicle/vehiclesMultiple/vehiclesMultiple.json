@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "爱车档案",
+  "usingComponents": {
+    "empty-page": "../../../components/emptyPage/emptyPage",
+    "top-bar": "../../../components/topbar/topbar"
+	}
+}

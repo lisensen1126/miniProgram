@@ -1,0 +1,49 @@
+<view class="page-timeLimitGoodsList" wx:if="{{pageShow}}" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="秒杀" home="{{showHome}}"></top-bar>
+	<view class="timeLimitGoodsList">
+		<view class="goods-list" bindtap="goLimitDetail" data-item="{{item}}"  wx:for="{{spike_list}}" wx:key="{{index}}">
+			<view class="goods-image">
+				<view class="image">
+					<image-show src="{{item.pic}}" quality="95"></image-show>
+				</view>
+				<image class="item-type" wx:if="{{item.type == 1}}" src="https://oss1.chedianai.com/images/assets/goods-icon.png"/>
+				<image class="item-type" wx:if="{{item.type == 2}}" src="https://oss1.chedianai.com/images/assets/service-icon.png"/>
+				<image class="item-type" wx:if="{{item.type == 3 || item.type == 4 || item.type == 5}}" src="https://oss1.chedianai.com/images/assets/card-icon.png"/>
+			</view>
+			<view class="goods-detail">
+				<view class="title">{{item.name}}</view>
+				<view class="time-exhibition" wx:if="{{item.isOpen !==3 }}">
+					<text class="distance" wx:if="{{item.isOpen === 1}}">距开始</text>
+					<text class="distance" wx:else>距结束</text>
+					<text class="time {{item.isOpen === 1 ? 'begin' : ''}}" wx:if="{{item.seckill_time_line_day>0}}">{{item.seckill_time_line_day}}</text>
+					<text class="time-default-color" wx:if="{{item.seckill_time_line_day>0}}">天</text><text class="time {{item.isOpen === 1 ? 'begin' : ''}}">{{item.seckill_time_line[0]}}</text>:<text class="time {{item.isOpen === 1 ? 'begin' : ''}}">{{item.seckill_time_line[1]}}</text>:<text class="time {{item.isOpen === 1 ? 'begin' : ''}}">{{item.seckill_time_line[2]}}</text>
+				</view>
+				<view class="time-exhibition" wx:else>
+					<text class="distance">活动已结束</text>
+				</view>
+				<view class="progress" wx:if="{{item.isOpen === 1 || item.isOpen === 3}}">
+					<text>限量{{item.inventory_total}}</text>
+				</view>
+				<view class="progress" wx:else>
+					<view class="progress-strip">
+						<view class="{{item.inventory_total>0?'real-progress':''}}" wx:if="item.inventory_total > 0" style="width: {{item.sale_number}}px">
+						</view>
+					</view>
+					<text wx:if="{{item.inventory_total>0}}">剩余{{item.inventory_total}}</text>
+					<text wx:else>已抢光</text>
+				</view>
+				<view class="concessional font-semibold">¥{{item.seckill_sku_price}}</view>
+				<view class="original">¥{{item.sku_price}}</view>
+			</view>
+			<view class="snatch-start font-medium"  wx:if="{{item.isOpen === 2 && item.inventory_total>0}}">
+				<span class="word">马上抢</span>
+			</view>
+			<view class="snatch font-medium" wx:else>
+				<span class="word">马上抢</span>
+			</view>
+		</view>
+	</view>
+	<empty-page wx:if="{{!spike_list.length && isinitiated}}" class="categroy-content" slogan="暂无秒杀商品" icon="noorder"></empty-page>
+	<custom-loading has-more='{{!is_all_loaded}}' is-loading="{{is_loading}}"></custom-loading>
+</view>

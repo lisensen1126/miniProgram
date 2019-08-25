@@ -1,0 +1,63 @@
+<view class="page-poster">
+  <top-bar title="{{page_title}}" home="{{showHome}}"></top-bar>
+    <!-- 生成名片所需要的 canvas -->
+  <view class="canvasY">
+    <canvas canvas-id="myCanvas" bindtap='save' style="width: 690px; height: 980px;"></canvas>
+  </view>
+  <view class="poster-box" style="padding-top: {{top_height}}px" wx:if="{{is_loading}}">
+    <view class="poster-content">
+      <image src="{{bg_pic}}" class="bg-pic"></image>
+      <view class="good-info">
+        <view class="left-img">
+          <image src="{{info.img_pic}}" class="img">
+          </image>
+          <!-- 商品 -->
+          <image wx:if="{{info.type === 1}}" class="tip" src="https://oss1.chedianai.com/images/assets/goods-icon.png">
+          </image>
+          <!-- 服务 -->
+          <image wx:if="{{info.type === 2}}" class="tip" src="https://oss1.chedianai.com/images/assets/service-icon.png">
+          </image>
+          <!-- 养护卡 -->
+          <image wx:if="{{info.type === 3}}"  class="tip" src="https://oss1.chedianai.com/images/assets/card-icon.png">
+          </image>
+        </view>
+        <view class="right-content">
+          <view class="product-name">{{info.name}}</view>
+          <view class="product-tip">
+            <view class="group-num" wx:if="{{type == 2}}">{{info.num}}人团</view>
+          </view>
+          <view class="price-box">
+            <text class="limit-price">{{type == 2 ? '拼团价：' : type == 1 ? '秒杀价：' : ''}}¥{{info.limit_price}}</text>
+            <text class="price">{{type == 5 ? '门市价：' : ''}}¥{{info.price}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="foot-box">
+        <view class="store-info">
+          <view class="store-name">{{store_name}}</view>
+          <view class="store-address">
+            <image class="icon" src="{{local_icon}}"></image>
+            <text class="txt">{{address}}</text>
+          </view>
+          <view class="store-address store-phone">
+            <image class="icon" src="{{phone_icon}}"></image>
+            <text class="txt">{{phone}}</text>
+          </view>
+        </view>
+        <image class="qy-icon" src="{{qy_icon}}"></image>
+      </view>
+    </view>
+  </view>
+  <!-- https://oss2.chedianai.com/down-icon.png -->
+  <view class="share-box form-btn" wx:if="{{is_loading && card_url}}">
+    <view class="btn" bindtap="savesharePicture">
+      <image class="icon" src="https://oss1.chedianai.com/wechat/down-icon.png"></image>
+      <text class="text">保存到手机</text>
+    </view>
+  </view>
+  <view class="share-box form-btn" wx:if="{{!card_url}}">
+    <view class="btn">
+      <text class="text">图片生成中...</text>
+    </view>
+  </view>
+</view>

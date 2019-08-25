@@ -1,0 +1,176 @@
+@import '~@/style/mixin'
+.page-paySuccess
+	background-color: $bg-gray
+	padding-bottom: vw(78)
+	.order-no
+		display: flex
+		justify-content: space-between
+		margin: vw(15) vw(0)
+		line-height: vw(56)
+		background: white
+		padding: vw(0) vw(15)
+		font-size: vw(14)
+		color: #7F7F7F
+		.number
+			color: #404040	
+	.pay-success-header
+		text-align: center
+		width: 100%
+		border-bottom: vw(1) solid $border
+		padding-bottom: vw(60)
+		image
+			width: vw(80)
+			height: vw(80)
+			margin-top: vw(50)
+		.pay-success-header-title
+			margin-top: vw(10)
+			color: #404040
+			font-size: vw(16)
+			font-weight: bloder
+			display: -webkit-box
+			word-break: break-all
+			-webkit-box-orient: vertical
+			-webkit-line-clamp: 2
+			overflow: hidden
+			text-overflow: ellipsis
+		.pay-success-header-order-number
+			margin-top: vw(8)
+			color: #404040
+			font-size: vw(14)
+			font-weight: 400
+	.pay-success-items
+		width: 100%
+		border-bottom: vw(1) solid $border
+		padding: vw(15) 0 vw(15) vw(15)
+		background-color: $bg-white
+		box-sizing: border-box
+		.section-header
+			margin-bottom: vw(15)
+		.pay-success-item:last-child
+			border-bottom: 0
+			padding-bottom: 0
+			border: none
+		.pay-success-item
+			margin-bottom: vw(15)
+			display: flex
+			overflow: hidden
+			padding-bottom: vw(15)
+			padding-right: vw(15)
+			justify-content: space-between
+			align-items: center
+			border-bottom: vw(1) solid #EEEEEE
+			.pay-success-item-thumb
+				width: vw(134)
+				height: vw(84)
+				background-color: $text-white
+				overflow: hidden
+				.item-thumb-img
+					width: vw(134)
+					height: vw(84)
+				.item-type
+					position: absolute
+					left: 0
+					top: 0
+					width: vw(37)
+					height: vw(37)
+			.pay-success-item-content
+				position: relative
+				height: vw(84)
+				padding-left: vw(12)
+				flex: 1
+				.item-title
+					width: vw(201)
+					position: absolute
+					top: 0
+					display: -webkit-box
+					word-break: break-all
+					-webkit-box-orient: vertical
+					-webkit-line-clamp: 2
+					overflow: hidden
+					text-overflow: ellipsis
+					font-size: vw(14)
+					line-height: vw(14)
+					color: #404040
+				.pay-success-item-pm
+					width: vw(201)
+					height: vw(16)
+					line-height: vw(16)
+					position: absolute
+					bottom: vw(3)
+					.pay-success-item-price
+						position: absolute
+						left: 0
+						color: #E50113
+						font-size: vw(16)
+						font-weight: bold
+					.pay-success-item-num
+						position: absolute
+						right: 0
+						color: #7F7F7F
+						font-size: vw(14)
+	.order-info
+		padding: vw(15) 0 0 vw(15)
+		margin-top: vw(15)
+		background-color: $bg-white
+		border-bottom: vw(1) solid $border
+		.section-header
+			padding-bottom: 0
+		.order-info-flex:last-child
+			border-bottom: 0
+		.order-info-flex
+			padding: vw(15) vw(15) vw(15) 0
+			display: flex
+			justify-content: space-between
+			font-size: vw(14)
+			border-bottom: vw(1) solid #eeeeee
+			.label-title
+				color: #7F7F7F
+			.label-info
+				color: #404040
+			.order-info-receive-title
+				color: #404040
+			.order-info-receive-price
+				color: #DD1D21
+				font-size: vw(14)
+	.section-header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    font-weight: bold
+    color: #404040
+    font-size: vw(14)
+    line-height: vw(16)
+	.pay-success-btn-box
+		position: fixed
+		bottom: 0
+		left: 0
+		width: 100%
+		height: vw(58)
+		background: white
+		display: flex
+		align-items: center
+		box-shadow: 0 vw(1) vw(6) 0 rgba(0, 0, 0, .05)
+		padding: vw(4) vw(14)
+		box-sizing: border-box
+		.operation-button
+			flex: 1 1 50%
+			height: vw(40)
+			display: flex
+			justify-content: center
+			align-items: center
+			box-sizing: border-box
+			font-weight: 500
+			font-size: vw(14)
+			line-height: vw(40)
+			&.primary
+				background: #DD1D21
+				color: #ffffff
+				border: #DD1D21 solid vw(1)
+				border-right: none
+			&.default
+				background-color: #ffffff
+				color: #404040
+				border: #F7F7F7 solid vw(1)
+				border-left: none
+
+			

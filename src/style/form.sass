@@ -1,0 +1,132 @@
+@import './mixin'
+
+input
+  padding: 0 vw(5)
+  font-size: vw(13)
+  line-height: vw(16)
+  color: #353535
+  &::placeholder
+    color: #ddd
+
+.form-group
+  margin-bottom: vw(10)
+  padding-left: vw(15)
+  background-color: #fff
+
+.form-item
+  position: relative
+  display: flex
+  justify-content: space-between
+  min-height: vw(50)
+  line-height: vw(50)
+  font-size: vw(16)
+  color: #121212
+  &::after
+    content: ''
+    display: block
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    border-top: vw(1) solid rgba(0, 0, 0, .08)
+  &:last-of-type::after
+    display: none
+  &.last-sp
+    &:last-of-type::after
+      display: block
+
+.form-label
+  flex: 0 0 vw(120)
+
+.form-content,
+input.form-line-input
+  display: flex
+  flex-direction: row-reverse
+  flex: 1 1 auto
+  height: vw(50)
+  padding: 0 vw(15)
+  color: #121212
+  text-align: right
+  font-size: vw(16)
+  line-height: vw(50)
+  &.vehicle-name
+    display: block
+    float: right
+    text-align: left
+    .vehicle-name-content
+      box-sizing: border-box
+      position: relative
+      width: vw(190)
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+      .brand-logo
+        position: absolute
+        right: 0
+        top: 50%
+        transform: translateY(-50%)
+        width: vw(32)
+        height: vw(32)
+        border-radius: vw(3)
+        background-color: #fff
+        box-shadow: 0 vw(2) vw(8) 0 rgba(0, 0, 0, .07)
+  &.has-arrow
+    position: relative
+    padding-right: vw(32)
+    &::after
+      content: ''
+      position: absolute
+      right: vw(15)
+      top: 50%
+      transform: translateY(-50%)
+      width: vw(8)
+      height: vw(12)
+      @include getImage('icons/arrow_right.svg')
+  &.is-disabled
+    color: #ddd
+  &.is-warning
+    color: $text-red
+.form-content-left
+  flex-direction: row
+  padding: 0
+.input-placeholder
+  color: $text-red
+
+.license-content
+  position: relative
+  display: inline-block
+  width: vw(30)
+  height: vw(50)
+  text-align: left
+  color: $text-dark
+  &::after
+    content: ''
+    position: absolute
+    right: 0
+    top: 50%
+    transform: translateY(-50%) rotate(-45deg)
+    display: block
+    width: vw(6)
+    height: vw(6)
+    border: solid #d3d3d3
+    border-width: 0 0 vw(2) vw(2)
+.license-plate-input
+  display: inline-block
+  width: vw(66)
+  padding-left: vw(15)
+  height: vw(50)
+  line-height: vw(50)
+  font-size: vw(16)
+  color: $text-dark
+  text-align: right
+  &.is-left
+    text-align: left 
+  &.is-error,
+  &.is-warning
+    color: $text-red
+.is-license-invalid
+  display: block
+  width: vw(6)
+  height: vw(6)
+  border-radius: 50%
+  background: $bg-yellow-darker

@@ -1,0 +1,192 @@
+<view class="purchase-details active" style="padding-top: {{topbarHeight}}px" wx:if="{{isinitiated}}">
+  <!-- topbar -->
+	<top-bar title="卡详情" home="{{showHome}}"></top-bar>
+  <!-- 赠送好友 -->
+  <give-project list="{{give_list}}" wx:if="{{show_give_project}}" bindtriggercancel="cancelShare"></give-project>
+  <!-- 卡信息 -->
+  <view class="car-list">
+    <view class="card-item" style="background-image: url({{info.image_url}})">
+      <view class="card-name">{{info.name}}<view class="card-give-icon" wx:if="{{info.status != 3 &&info.status != 4 && info.type === 2 && info.from === 2}}">获赠</view><view class="card-give-icon" wx:if="{{info.status === 3}}">过期</view><view class="card-give-icon" wx:if="{{info.status === 4}}">用完</view>
+      </view>
+      <view class="card-item-use" wx:if="{{info.type === 1}}"><view>可使用</view><view class="num-use">{{info.num}}</view><view>次</view></view>
+      <view class="card-time clearfix {{info.type === 2 && info.from === 2 ? '' : 'active'}}">
+        <view class="time fl">
+          有效期至{{info.card_end_time}}
+        </view>
+      </view>
+      <view class="card-order bold">NO.{{info.upkeep_no}}</view>
+    </view>
+    <view class="text">
+      销售价:¥{{info.price/100}}
+    </view>
+  </view>
+  <!-- 核销信息 -->
+  <!-- <view class="order-box" wx:if="{{info.type === 1}}">
+    <view class="item-box">
+      <view class="item-order" bindtap="goWirte" data-status="2" data-id="{{info.upkeep_info_id}}" data-upkeepno="{{info.upkeep_no}}" data-myid="{{info.id}}" data-cdp="card_myCardDetail_1">
+        <view class="item-icon">{{info.waiting_num}}</view>
+        <view class="item-title">待核销</view>
+      </view>
+      <view class="item-order" bindtap="goWirte" data-status="1" data-id="{{info.upkeep_info_id}}" data-upkeepno="{{info.upkeep_no}}" data-myid="{{info.id}}" data-cdp="card_myCardDetail_2">
+        <view class="item-icon">{{info.cancelled_num}}</view>
+        <view class="item-title">已核销</view>
+      </view>
+      <view class="item-order" bindtap="goCode" data-id="{{info.upkeep_no}}" data-cdp="card_myCardDetail_3">
+        <image class="item-icon" src="https://oss1.chedianai.com/images/assets/Rectangle%2018%20Copy%203@2x.png" />
+        <view class="item-title">核销码</view>
+      </view>
+    </view>
+    <view class="button bold" wx:if="{{info.status === 1}}" bindtap="goShopList" data-cdp="card_myCardDetail_4">
+      购买商品激活项目
+    </view>
+    <view class="button bold {{(info.num === 0 || overdue) ? 'active' : ''}}" wx:if="{{info.status === 2}}" bindtap="goShopList" data-cdp="card_myCardDetail_4">
+      购买商品激活项目
+    </view>
+    <view class="button bold delete" wx:if="{{info.status === 3 || info.status === 4}}" bindtap="deleteCard" data-cdp="card_myCardDetail_6">
+      删除此卡
+    </view>
+  </view> -->
+  <!-- 免激活项目 -->
+  <view class="project-item" wx:if="{{info.type === 1 && activation_length !== 0}}">
+    <view class="project-title">
+      <view class="project-name">免激活项目</view>
+    </view>
+    <view class="project-content">
+      <view class="project-content-item {{item.is_invalid === 1 || ((item.num-0)-(item.used_num-0) == 0 && item.num != 0) ? 'bc-font-A7A9AC' : ''}}" wx:for="{{info.list}}" wx:key="{{index}}" wx:if="{{item.type === 2}}">
+        <view class="project-content-name">{{item.name}}</view>
+        <view class="project-content-direction">{{item.description}} </view>
+        <view class="project-content-angle bc-font" wx:if="{{item.is_invalid !== 1 && ((item.num-0)-(item.used_num-0) == 0)}}">已用完</view>
+        <view class="project-content-angle" wx:if="{{item.is_invalid !== 1 && ((item.num-0)-(item.used_num-0) > 0)}}">已用{{item.used_num}}/{{item.num}}次</view>
+        <view class="project-content-angle" wx:if="{{item.is_invalid !== 1 && item.num === 0 && item.used_num === 0}}">无限次</view>
+        <view class="project-content-angle" wx:if="{{item.is_invalid !== 1 && item.num === 0 && item.used_num !== 0}}">已用{{item.used_num}}次</view>
+        <view class="project-content-angle bc-font" wx:if="{{item.is_invalid === 1}}">已过期</view>
+        <view class="project-content-time">截止日期：{{item.deadline}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 需激活项目 -->
+  <view class="project-item" wx:if="{{info.type === 1}}">
+    <view class="project-title">
+      <view class="project-name">需激活项目</view>
+    </view>
+    <view class="project-content">
+      <view class="project-content-item {{((item.num-0)-(item.used_num-0) == 0 && item.num != 0) ? 'bc-font-A7A9AC' : ''}}" wx:for="{{info.list}}" wx:key="{{index}}" wx:if="{{item.type === 1}}">
+        <view class="project-content-name">{{item.name}}</view>
+        <view class="project-content-direction">{{item.description}} </view>
+        <view class="project-content-angle {{(item.is_end == 1 && (item.num - item.used_num - 0) > 0 ) ? 'active' : ''}}" wx:if="{{item.is_end == 1 && info.type === 1}}">终极</view>
+        <view class="project-content-angle bc-font" wx:if="{{(item.num-0)-(item.used_num-0) == 0}}">已用完</view>
+        <view class="project-content-angle" wx:if="{{item.is_end == 2 && ((item.num-0)-(item.used_num-0)) > 0}}">已用{{item.used_num}}/{{item.num}}次</view>
+        <view class="project-content-angle" wx:if="{{item.is_end == 2 && item.num === 0}}">无限次</view>
+      </view>
+    </view>
+  </view>
+  <!-- 项目内容 -->
+  <view class="project-item" wx:if="{{info.type === 2}}">
+    <view class="project-title">
+      <view class="project-name">项目内容</view>
+      <view class="project-button" wx:if="{{info.from === 1}}" bindtap="goGiveRecord" data-cdp="card_myCardDetail_1">
+        查看赠送记录 <image class="allow-right" src="/images/index/arrow_right.png"></image>
+      </view>
+    </view>
+    <view class="project-content">
+      <view class="project-content-item {{((item.num-0)-(item.used_num-0) == 0 && item.num != 0) ? 'bc-font-A7A9AC' : ''}}" wx:for="{{info.list}}" wx:key="{{index}}">
+        <view class="project-content-name">{{item.name}}</view>
+        <view class="project-content-direction">{{item.description}} </view>
+        <view class="project-content-angle bc-font" wx:if="{{(item.num-0)-(item.used_num-0) == 0}}">已用完</view>
+        <view class="project-content-angle" wx:if="{{(item.num-0)-(item.used_num-0) > 0}}">已用{{item.used_num}}/{{item.num}}次</view>
+        <view class="project-content-angle" wx:if="{{item.num === 0 && item.used_num === 0}}">无限次</view>
+        <view class="project-content-angle" wx:if="{{item.num === 0 && item.used_num !== 0}}">已用{{item.used_num}}次</view>
+      </view>
+      <view class="give-card-project" wx:if="{{info.from === 1 && info.status === 1}}">
+        <view class="give-card-project-button {{is_can_give ? '' : 'active'}}" bindtap="giveFriend" data-cdp="card_myCardDetail_2">赠送卡内项目</view>
+      </view>
+    </view>
+  </view>
+  <!-- 指定商品 -->
+  <view class="project-item" wx:if="{{info.type === 1}}">
+    <view class="project-title goods-title">
+      <view class="project-name">指定商品</view>
+      <view class="project-button" bindtap="goShopList" data-cdp="card_myCardDetail_3">
+        更多 <image class="allow-right" src="/images/index/arrow_right.png"></image>
+      </view>
+    </view>
+    <view class="goods-describe">使用此卡需购买指定商品用以激活项目</view>
+    <view class="goods-content">
+      <view class="goods-image" wx:for="{{goods_list}}" wx:if="{{index <= 2}}" wx:key="{{index}}">
+        <image class="goods-img" src="{{item.pic}}"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 使用须知 -->
+  <view class="project-item">
+    <view class="project-title">
+      <view class="project-name">使用须知</view>
+    </view>
+    <view class="project-content">
+      <view class="instructions-item">
+        <view class="instructions-name">卡有效期</view>
+        <view class="instructions-direction">{{info.card_begin_time}} 至 {{info.card_end_time}}（周末、法定节假日通用）</view>
+      </view>
+      <!-- <view class="instructions-item" wx:if="{{info.type === 1}}">
+        <view class="instructions-name">使用时间</view>
+        <view class="instructions-direction">{{info.begin_time}}-{{info.end_time}}</view>
+      </view> -->
+      <view class="instructions-item">
+        <view class="instructions-name">使用规则</view>
+        <view class="instructions-direction">
+			    <rich-text type="text" nodes="{{info.description}}"></rich-text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 图文详情 -->
+  <view class="project-item" wx:if="{{(info.type === 2 && info.from !== 2) || info.type === 1}}">
+    <view class="project-title">
+      <view class="project-name">图文详情</view>
+    </view>
+    <view class="project-content">
+      <view class="instructions-item">
+        <image class="graphic" src="{{info.content}}" mode="widthFix"></image>
+      </view>
+    </view>
+  </view>
+  <!--底部文案-->
+  <view class="detail-list-bottom">
+    <view class="line-left"></view>
+    智慧门店，每天爱车多一点
+    <view class="line-right"></view>
+  </view>
+  <!-- 底部按钮 -->
+  <view class="footer" wx:if="{{info.type === 2}}">
+    <view bindtap="goShare" class="record-list" wx:if="{{!(info.status === 3 || info.status === 4)}}">
+      <image class="record-icon" src="https://oss1.chedianai.com/gray-share-btn.png"></image>
+      <view class="record-text">分享</view>
+    </view>
+    <view class="record-list" data-upkeepno="{{info.upkeep_no}}" bindtap="goRecord" data-cdp="card_myCardDetail_4">
+      <image class="record-icon" src="https://oss1.chedianai.com/images/assets/card-list.png"></image>
+      <view class="record-text">使用记录</view>
+    </view>
+    <view class="record-button" wx:if="{{info.status === 1}}" bindtap="goCode" data-id="{{info.upkeep_no}}" data-cdp="card_myCardDetail_5">立即使用</view>
+    <view class="record-button delete" wx:if="{{info.status === 3 || info.status === 4}}" bindtap="deleteCardConfirm" data-cdp="card_myCardDetail_6">删除此卡</view>
+  </view>
+  <!-- 底部按钮 -->
+  <view class="footer footer-qiao" wx:if="{{info.type === 1}}">
+    <view  bindtap="goShare" class="record-list" wx:if="{{!(info.status === 3 || info.status === 4)}}">
+      <image class="record-icon" src="https://oss1.chedianai.com/gray-share-btn.png"></image>
+      <view class="record-text">分享</view>
+    </view>
+    <view class="record-list" data-upkeepno="{{info.upkeep_no}}" bindtap="goRecord" data-cdp="card_myCardDetail_7">
+      <image class="record-icon" src="https://oss1.chedianai.com/images/assets/card-list.png"></image>
+      <view class="record-text">使用记录</view>
+    </view>
+    <view class="record-button delete" wx:if="{{info.status === 3 || info.status === 4}}" bindtap="deleteCardConfirm" data-cdp="card_myCardDetail_8">删除此卡</view>
+    <view class="button-box" wx:if="{{info.status !== 3 && info.status !== 4}}">
+      <view class="record-button use-active" bindtap="goCode" data-id="{{info.upkeep_no}}" data-cdp="card_myCardDetail_9">立即核销</view>
+      <view class="record-button active"  bindtap="goShopList" data-cdp="card_myCardDetail_10">激活卡项目</view>
+    </view>
+  </view>
+  <!-- 分享弹 框 -->
+	<share-model wx:if="{{go_share}}" 
+							bindclose="closeShare" 
+							bindposter="goPoster"></share-model>
+</view>

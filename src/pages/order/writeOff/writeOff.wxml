@@ -1,0 +1,28 @@
+<view style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+  <top-bar title="核销记录"></top-bar>
+  <!-- topbar end -->
+  <view class="write-off-box">
+    <view class="write-off-section" wx:for="{{write_off_data}}" wx:key="index">
+      <view class="write-off-title">核销项目</view>
+      <view class="write-off-item" wx:for="{{item.write_off_item}}" wx:for-item="proItme" wx:key="index">
+        <view class="info-item">
+          <view class="info-title">{{proItme.item.item_title}}</view>
+          <view class="info-num">×{{proItme.write_off_count}}</view>
+        </view>
+      </view>
+      <view class="info-item info-time">
+        <view class="info-label">核销时间</view>
+        <view class="info-content">{{item.creat_time}}</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">核销门店</view>
+        <view class="info-content">{{item.write_off_store_name}}</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">核销人</view>
+        <view class="info-content">{{item.operator}}</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,56 @@
+<view class="page-chooseCoupons">
+	<!-- topbar -->
+	<top-bar title="选择优惠券"></top-bar>
+	<!-- topbar end -->
+  <!-- 缺省页面 -->
+  <empty-page wx:if="{{currentLevel === '0' && result.data_allow.length === 0}}" class="categroy-content" slogan="暂无可用优惠券" icon="nocoupon"></empty-page>
+  <!-- <empty-page wx:if="{{currentLevel === '1' && result.data_prohibit.length === 0}}" class="categroy-content" slogan="暂无不可使用优惠券" icon="nocoupon"></empty-page> -->
+  <!-- 列表数据 -->
+  <view class="list-wrapper" wx:if="{{currentLevel === '0' && result.data_allow.length > 0}}" style="padding-top: {{top_height}}px">
+    <view wx:for="{{result.data_allow}}" wx:key="{{index}}" wx:for-item="item"
+          class="couponbox" data-id="{{item.cc_id}}"
+          bindtap="chooseCoupon" data-cdp="coupon_chooseCoupons_list">
+      <coupon-t1 coupon="{{item}}" type="select" is-select="{{item.checkOut===2}}" index="{{index}}"></coupon-t1>
+    </view>
+    <view class="submit-layout">
+      <view class="submit" bindtap="getCouponOperation" data-cdp="coupon_chooseCoupons_3">确定</view>
+    </view>
+  </view>
+  <view class="list-wrapper" wx:if="{{currentLevel === '1' && result.data_prohibit.length > 0}}">
+    <view class="couponbox" wx:for="{{result.data_prohibit}}" wx:key="{{index}}" wx:for-item="item">
+      <view class="coupon-item">
+        <!-- <image wx:if="{{item.coupon_type==1}}" class="wallet-icon" src="/images/q-daijin.png" />
+        <image wx:if="{{item.coupon_type==2}}" class="wallet-icon" src="/images/q-duihuan.png" />
+        <image wx:if="{{item.coupon_type==3}}" class="wallet-icon" src="/images/q-manjian.png" />
+        <image wx:if="{{item.coupon_type==4}}" class="wallet-icon" src="/images/q-zhekou.png" /> -->
+        <view class="left-circle"></view>
+        <view class="right-circle"></view>
+        <view class="coupon-title">{{item.coupon_name}}</view>
+        <view class="coupon-address" wx:if="{{item.use_range_name === ''}}">通用</view>
+        <view class="coupon-address" wx:if="{{item.use_range_name !== ''}}">{{item.use_range_name}}</view>
+        <view class="coupon-num">券码：{{item.coupon_code}}</view>
+        <view class="coupon-num">有效日期：{{item.start_time}} -- {{item.end_time}}</view>
+      </view>
+      <view class="coupon-money">
+        <view class="content-box" wx:if="{{item.coupon_type ===4}}">
+          <view class="money-content">{{item.discount_amount_discount/100}}折</view>
+        </view>
+        <view class="content-box" wx:if="{{item.coupon_type !==4}}">
+          <view class="money-content">￥{{item.page_discount_amount}}</view>
+        </view>
+        <view class="money-name" wx:if="{{item.condition_value !== 0 && item.coupon_type == 4}}">
+          满{{item.condition_value/100}}可用
+        </view>
+        <view class="money-name" wx:if="{{item.condition_value !== 0 && item.coupon_type != 4}}">
+          满{{item.condition_value/100}}减{{item.page_discount_amount}}
+        </view>
+        <view class="money-name" wx:if="{{item.condition_value === 0}}">无限制</view>
+      </view>
+      <form bindsubmit="" bindreset="">
+        <button class="coupon-btn-no" type="default" size="defaultSize" data-value="{{item}}">
+          不可使用
+        </button>
+      </form>
+    </view>
+  </view>
+</view>

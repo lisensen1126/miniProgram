@@ -1,0 +1,217 @@
+
+@import '~@/style/mixin'
+.page-orderList
+  position: relative
+  .m-t-0
+    margin-top: 0 !important
+  .status-filter-wrapper
+    white-space: nowrap
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+    position: fixed
+    z-index: 10
+    display: flex
+    width: 100%
+    height: vw(44)
+    background-color: #fff
+    box-shadow: 0 vw(1) vw(6) 0 rgba(0, 0, 0, .05)
+  .scroll-view
+    width: 100%
+    height: vw(44)
+    white-space: nowrap
+  .filter-item
+    position: relative
+    flex: 1 1 25%
+    justify-content: center
+    align-items: center
+    font-weight: bold
+    font-size: vw(14)
+    color: #404040
+    display: inline-block
+    width: vw(83)
+    height: vw(44)
+    line-height: vw(44)
+    text-align: center
+    &.is-active
+      &::after
+        content: ''
+        position: absolute
+        bottom: 0
+        left: 50%
+        transform: translateX(-50%)
+        width: vw(15)
+        height: vw(2)
+        background-color: #FBCE07
+
+  .list-wrapper
+    // padding: vw(15)
+    padding-top: vw(44)
+    padding-bottom: vw(10)
+
+  .order-card
+    margin-top: vw(15)
+    padding: 0 vw(15)
+    background-color: #fff
+    .worker-cost
+      display: flex
+      padding: vw(15)
+      font-size: vw(14)
+      border-bottom: vw(1) solid rgba(240,240,240,1)
+      .wc-l
+        flex: 1
+        font-weight: 500
+        color: #7F7F7F
+      .wc-r
+        color: #404040
+        font-weight: 600
+  // 添加倒计时
+  .order-card-header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    font-size: vw(16)
+    line-height: 1.2
+    border-bottom: vw(1) solid #EEEEEE
+    padding: vw(21) 0
+    .order-no
+      font-size: vw(13)
+      color: #7F7F7F
+  .order-status
+    color: $text-dark
+    font-size: vw(14)
+    font-weight: bold
+    &.primary
+      color: #F70000
+  .order-card-body
+    display: flex
+    padding: vw(15) 0
+    border-bottom: vw(1) solid rgba(240,240,240,1)
+  .order-card-body:last-child
+    border-bottom: 0
+  .item-avatar
+    flex: 0 0 vw(137)
+    width: vw(137)
+    height: vw(85)
+    margin-right: vw(15)
+    background-color: $text-white
+    position: relative
+    .item-avatar-img
+      width: vw(137)
+      height: vw(85)
+    .item-type
+      position: absolute
+      right: vw(-2)
+      top: vw(-2)
+      width: vw(38)
+      height: vw(14)
+  .order-number
+    color: #404040
+    font-size: vw(14)
+    font-weight: normal
+  .order-content
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    flex: auto
+  .order-title
+    font-weight: 500
+    font-size: vw(15)
+    line-height: vw(20)
+    display: -webkit-box
+    word-break: break-all
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 2
+    overflow: hidden
+    text-overflow: ellipsis
+  .item-sku
+    font-size: vw(13)
+    line-height: vw(20)
+    margin-top: vw(4)
+    color: #000000
+  .time-stamp
+    height: vw(28)
+    line-height: 1
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+    .order-amount
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      color: #E50113
+      font-weight: 500
+      .price
+        display: inline-block
+        font-size: vw(16)
+      .order-spike-label
+        width: vw(28)
+        height: vw(12)
+        margin-left: vw(10)
+  .order-card-footer
+    display: flex
+    justify-content: flex-end
+  .actual-payment-box
+    display: flex
+    align-items: center
+    padding: vw(15) 0
+    justify-content: space-between
+    .actual-payment
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      color: #404040
+      font-size: vw(12)
+      .actual-payment-one
+        margin-bottom: vw(1)
+      .actual-payment-text
+        color: #DD1D21
+        font-size: vw(16)
+        font-weight: bold
+  .operator-button
+    box-sizing: border-box
+    margin-left: vw(15)
+    width: vw(80)
+    height: vw(35)
+    text-align: center
+    background-color: #F8F8F8
+    font-weight: 500
+    font-size: vw(12)
+    line-height: vw(35)
+    color: #000000
+    &.primary
+      background-color: #F7D117
+  .share-button
+    border: 0
+    border-radius: 0
+    outline: 0
+  .button-hover
+    border: 0
+    border-radius: 0
+    outline: 0
+  button::after
+    border: none
+// 拼团倒计时
+.assemble-group
+  margin-top: vw(15)
+  .assemble-content
+    color: #58595D
+    line-height: vw(20)
+    font-size: vw(14)
+    .group-num
+      color: #DD1D21
+    .time-default-color
+      color: #96979E
+      margin: 0 vw(2)
+    .time-block
+      display: inline-block
+      margin: 0 vw(10)
+    .time
+      display: inline-block
+      font-weight: lighter
+      font-size: vw(14)
+      padding: 0 vw(2)
+      background: #393940
+      text-align: center
+      line-height: vw(20)
+      color: #ffffff
+      margin: 0

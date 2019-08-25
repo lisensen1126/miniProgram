@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "抽奖结束",
+  "usingComponents": {
+    "empty-page": "../../../components/emptyPage/emptyPage",
+    "top-bar": "../../../components/topbar/topbar"
+	}
+}

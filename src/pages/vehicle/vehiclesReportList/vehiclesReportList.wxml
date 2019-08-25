@@ -1,0 +1,53 @@
+<view class="page-vehicle-report-list" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="{{title}}" home="{{show_home}}"></top-bar>
+	<view class="content-warpper" wx:if="{{list.length > 0}}">
+		<view class="report-item" wx:for="{{list}}" wx:key="{{index}}" bindtap="goDetail" data-item="{{item}}">
+			<view class="vehicle-info">
+				<view class="license_plate">{{item.license_plate}}</view>
+				<view class="vehicle_name">{{item.vehicle_name}}</view>
+				<view class="result-data">
+					<view class="data-item clearfix">
+						<view class="des">异常点</view>
+						<view class="num">
+							<text wx:if="{{item.exception > 99}}">99+</text>
+							<text wx:else>{{item.exception}}</text>
+						</view>
+					</view>
+					<view class="data-item clearfix">
+						<view class="des exception">需关注</view>
+						<view class="num">
+							<text wx:if="{{item.pending > 99}}">99+</text>
+							<text wx:else>{{item.pending}}</text>
+						</view>
+					</view>
+					<view class="data-item clearfix">
+						<view class="des normal">正常点</view>
+						<view class="num">
+							<text wx:if="{{item.normal > 99}}">99+</text>
+							<text wx:else>{{item.normal}}</text>
+						</view>
+					</view>
+					<view class="data-item clearfix">
+						<view class="des noninspect">未检测</view>
+						<view class="num">
+							<text wx:if="{{item.noninspect > 99}}">99+</text>
+							<text wx:else>{{item.noninspect}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="data-info">
+				<view class="left-title">检测时间</view>
+				<view class="right-content">{{item.inspect_time}}</view>
+			</view>
+			<view class="data-info">
+				<view class="left-title">检测门店</view>
+				<view class="right-content">{{item.store_name}}</view>
+			</view>
+		</view>
+	</view>
+	<view class="content-warpper" wx:if="{{list.length == 0}}">
+		<empty-page wx:if="{{!is_loading}}" icon="nosearch" slogan="暂无车检记录"/>
+	</view>
+</view>

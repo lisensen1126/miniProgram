@@ -1,0 +1,35 @@
+@import '~@/style/mixin'
+.province-code
+  width: 100%
+  height: vw(271)
+  position: fixed
+  bottom: 0
+  left: 0
+  background: #D2D5DB
+  padding: vw(10) vw(20) vw(5)
+  box-sizing: border-box
+  z-index: 9999
+  display: flex
+  justify-content: space-between
+  flex-flow: column
+  .key-item
+    display: flex
+    justify-content: space-between
+    .province
+      width: vw(36)
+      height: vw(42)
+      background: white
+      box-shadow: 0 vw(1) 0 0 rgba(0,0,0,0.35)
+      border-radius: vw(5)
+      font-size: vw(22)
+      color: #000000
+      font-weight: 500
+      display: flex
+      align-items: center
+      justify-content: center
+    .is-active
+      background: #FBCE07
+  .last-item
+    justify-content: start
+    .province
+      margin-right: vw(7)

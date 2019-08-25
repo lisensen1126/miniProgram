@@ -1,0 +1,49 @@
+@import '~@/style/mixin'
+.card-write-off
+  padding: vw(28) vw(15)
+  .card-content
+    box-sizing: border-box
+    border-left: vw(1) solid #D9D9D9
+    padding-left: vw(10)
+    .card-item
+      position: relative
+      padding: vw(25) vw(0)
+      .card-time
+        position: absolute
+        line-height: vw(20)
+        color: #404040
+        font-size: vw(14)
+        top: vw(-10)
+        left: 0
+      .card-time::after
+        content: ""
+        width: vw(7)
+        height: vw(7)
+        position: absolute
+        background: #D42E12
+        top: vw(7)
+        left: vw(-14)
+      .item-content
+        box-sizing: border-box
+        background: #ffffff
+        padding: vw(0) vw(15)
+        .items
+          padding: vw(14) vw(0)
+          .title
+            display: flex
+            justify-content: space-between
+            color: #393940
+            font-size: vw(16)
+            font-weight: bolder
+            line-height: vw(22)
+            .item-num
+              color: #DD1D21
+              font-size: vw(14)
+          .cell-time
+            color: #7F7F7F
+            font-size: vw(12)
+            line-height: vw(17)
+        .border-item
+          border-bottom: solid vw(1) #EEEEEE
+    .last-item
+      padding-bottom: vw(0)

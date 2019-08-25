@@ -1,0 +1,16 @@
+<scroll-view scroll-x scroll-y class="table-wrapper">
+  <!--只展示当前将要进行的这一次和之后的保养项目，之前的保养项不展示  milesFilter字段表示当前保养-->
+  <view class="table">
+    <view class="row col-header" wx:if="{{colHeader.length}}">
+      <!--横向表头-->
+      <view wx:for="{{colHeader}}" wx:key="index" class="cell {{index === 0 ? 'block-header' : ''}}" wx:if="{{index >= milesFilter || index === 0}}">
+        {{index === 0 ? item : item + 'km'}}
+      </view>
+    </view>
+    <!--纵向表头，item[colHeader[rowIndex+1]] === 'R'表示需要保养-->
+    <view class="row" wx:if="{{tableData.length}}" wx:for="{{tableData}}" wx:key="index">
+      <view class="cell row-header">{{item.name}}</view>
+      <view wx:for="{{item.mileage}}" wx:for-item="rowData" wx:for-index="rowIndex" wx:key="rowIndex" class="cell row-cell {{rowData === true ? 'with-dot' : '' }}{{rowData === 'false' ? '' : '' }}" wx:if="{{rowIndex + 1 >= milesFilter}}"></view>
+    </view>
+  </view>
+</scroll-view>

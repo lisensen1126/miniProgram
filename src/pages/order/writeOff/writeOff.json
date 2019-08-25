@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "核销记录",
+	"usingComponents": {
+		"top-bar": "../../../components/topbar/topbar"
+	}
+}

@@ -1,0 +1,37 @@
+<view class="page-qrcodeShare" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="好友分享礼" home="{{showHome}}"></top-bar>
+	<view class="qrcode-header">
+		<view class="qrcode-code">
+			<view class="yuan"></view>
+			<view class="text">核销码 {{order.write_off.write_off_code}}</view>
+			<view class="yuan"></view>
+		</view>
+		<view class="content-code">
+			<image class="code-img" src="{{order.write_off.write_off_qrcode}}"></image>
+		</view>
+		<view class="code-text">您的好友分享给您一份好礼</view>
+	</view>
+	<view class="pay-success-items">
+		<view class="section-header">订单详情</view>
+		<view class="info-item special-info" wx:for='{{order.item}}' wx:key='index'>
+			<view class="item-avatar">
+				<image class="item-avatar-img" mode="aspectFit" src="{{item.image_url}}" />
+				<image class="item-type" wx:if='{{item.item_type === 1}}' src="/images/shop.png" />
+				<image class="item-type" wx:if='{{item.item_type === 2}}' src="/images/service.png" />
+			</view>
+			<view class="item-content">
+				<view>
+					<view class="item-title">{{item.item_title}}</view>
+					<view class="item-sku"><text wx:for='{{item.sku_attribute}}' wx:key='index'>{{item.attribute_item_value}} </text></view>
+				</view>
+				<view class="time-stamp">
+					<view class="order-number">
+						x {{item.quantity}}
+					</view>
+					<view class="pay-success-item-detail" data-skuid="{{item.sku_attribute[0].sku_id}}" data-spuid="{{item.item_id}}" data-type="{{item.item_type}}" bindtap="goDeatil" data-cdp="qrcodeShare_1">查看详情<image class="arrow_right" src="/images/index/arrow_right.png"></image></view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

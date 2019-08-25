@@ -1,0 +1,476 @@
+@import '../../../style/mixin';
+page { background-color: #EEEEF0; }
+.page-lucky {
+  .page-box{
+    position: relative;
+  }
+	.back-to-home {
+		position: fixed;
+		left: 0;
+		bottom: vw(200);
+		z-index: 8888;
+	}
+	.back-to-home:before {
+		content: '';
+		display: inline-block;
+		width: vw(42);
+		height: vw(36);
+    background: center no-repeat url('https://oss1.chedianai.com/images/assets/back-to-home3.png');
+    background-size: 100% 100%;
+		margin-bottom: vw(4);
+	}
+	.bg {
+		width: 100%;
+    height: vw(375);
+    display: block;
+    position: absolute;
+    top: vw(76);
+  }
+  .yellow-line{
+    height: vw(14);
+    width: 100%;
+    background: #FFD701;
+    position: absolute;
+    top: vw(450);
+  }
+	.dial-title {
+		position: absolute;
+		top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: vw(76);
+    text-align: center;
+    font-size: vw(24);
+    line-height: vw(76);
+    background: #FFD701;
+		color: #3E3A39;
+		z-index: 4;
+    .text-big {
+      font-size: vw(30);
+      font-weight: 600;
+    }
+	}
+	.dial-help {
+		position: absolute;
+		right: vw(0);
+		top: vw(0);
+		width: vw(89);
+		height: vw(24);
+    z-index: 4;
+    background: url('https://oss1.chedianai.com/images/assets/turnplate-help.png') no-repeat center center;
+    background-size: cover;
+		image {
+			width: vw(15);
+			height: vw(15);
+		}
+		.help-text {
+			position: relative;
+			top: vw(-2);
+			height: vw(20);
+			margin-left: vw(3);
+			color: #F9EAEA;
+			padding-top: 1rpx;
+		}
+	}
+	.dial-bar {
+		position: relative;
+    top: vw(82);
+    .bar-bg{
+      width: vw(360);
+      height: vw(360);
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+		.dial-ul {
+      margin: auto;
+			width: vw(360);
+      height: vw(360);
+      position: relative;
+			.dial-li-bg {
+				background: rgba(132, 5, 0, 0.62) !important;
+			}
+			.dial-li {
+				width: vw(150);
+        height: vw(109);
+        position: absolute;
+        .dial-price{
+          position: absolute;
+          font-size: vw(24);
+          width: 100%;
+          text-align: center;
+          height: vw(24);
+          line-height: vw(24);
+          color: #E70E1D;
+          z-index: 1;
+          top: vw(20);
+          left: 0;
+          font-weight: 600;
+        }
+				.coupon {
+					position: absolute;
+					width: vw(63);
+					height: vw(28);
+          z-index: 1;
+          top: vw(54);
+          left: vw(42);
+        }
+        .dial-thanks{
+          font-size: vw(18);
+          color: #E70E1D;
+          line-height: 1;
+          position: absolute;
+          width: 100%;
+          top: vw(43);
+          left: 0;
+          font-weight: 600;
+          text-align: center;
+        }
+      }
+      .check-coupon {
+        z-index: 2;
+      }
+      .check-coupon:after {
+        content: '';
+        position: relative;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://oss1.chedianai.com/images/assets/turnplate-is-check.png') no-repeat center center;
+        background-size: cover;
+      }
+      .dial-li:first-child{
+        top: vw(42);
+        left: vw(155);
+        transform: rotate(30deg);
+      }
+      .dial-li:nth-child(2){
+        top: vw(126);
+        left: vw(204);
+        transform: rotate(90deg);
+      }
+      .dial-li:nth-child(3){
+        top: vw(211);
+        left: vw(155);
+        transform: rotate(150deg);
+      }
+      .dial-li:nth-child(4){
+        top: vw(213);
+        left: vw(56);
+        transform: rotate(-150deg);
+      }
+      .dial-li:nth-child(5){
+        top: vw(128);
+        left: vw(7);
+        transform: rotate(-90deg);
+      }
+      .dial-li:nth-child(6){
+        top: vw(42);
+        left: vw(56);
+        transform: rotate(-30deg);
+      }
+    }
+    .luck-btn {
+      width: vw(95);
+      height: vw(95);
+      z-index: 0;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+	}
+	.marquee {
+		position: absolute;
+		width: 100%;
+		top: vw(482);
+		text-align: center;
+		.marquee-bg {
+			width: vw(348);
+      height: vw(20);
+      top: vw(139);
+			left: 50%;
+      margin-left: vw(-174);
+      position: absolute;
+		}
+		.share-btn {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: vw(64);
+			button {
+				display: block;
+				width: vw(172);
+				height: 100%;
+				background: #F7D117;
+				margin: 0 auto;
+				color: #000000;
+				font-size: vw(17);
+				font-weight: bold;
+        line-height: vw(64);
+        border-radius: vw(0);
+        opacity: 0;
+        z-index: 1;
+      }
+      button:after{
+        border: none;
+      }
+      .share-image{
+        width: vw(172);
+        height: vw(64);
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+		}
+		.share-text {
+			position: absolute;
+			display: block;
+			top: vw(76);
+			width: 100%;
+      font-size: vw(14);
+      text-align: center;
+      color: #595758;
+    }
+    .luck-defaut{
+      position: absolute;
+			display: block;
+			top: vw(180);
+			width: 100%;
+      font-size: vw(14);
+      text-align: center;
+      color: #595758;
+    }
+		.luck-list {
+			position: absolute;
+			top: vw(184);
+			left: 50%;
+			margin-left: vw(-174);
+			width: vw(348);
+      height: vw(298);
+			.luck-list-title {
+				width: 100%;
+				height: vw(37);
+				.line {
+					position: relative;
+					top: vw(-5);
+					width: vw(37);
+					height: vw(3);
+				}
+				text {
+					position: relative;
+					display: inline-block;
+					font-weight: bold;
+					top: vw(-2);
+					margin: 0 vw(12);
+					height: 100%;
+					color: #8B572A;
+				}
+			}
+			.luck-list-ul {
+				width: 100%;
+				height: vw(256);
+				overflow: hidden;
+				.sroll {
+					position: relative;
+					swiper{
+            height: vw(256);
+            width: vw(321);
+            margin: auto;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+					}
+        }
+        .sroll-item{
+          height: vw(37) !important;
+        }
+        .sroll-item:nth-child(2n+1) {
+          background: #DCDCDC;
+        }
+        .sroll-item-null {
+          background: #EEEEF0 !important;
+        }
+				.item-left {
+					text-align: left;
+					float: left;
+					min-width: vw(56);
+					max-width: vw(85);
+					overflow: hidden;
+					text-overflow:ellipsis;
+					white-space: nowrap;
+					margin-left: vw(25);
+          font-size: vw(18);
+          color: #3E3A39;
+          line-height: vw(37);
+				}
+				.item-right {
+					float: right;
+					margin-right: vw(25);
+					font-size: vw(18);
+					width: vw(140);
+					overflow: hidden;
+					text-overflow:ellipsis;
+					white-space: nowrap;
+          text-align: right;
+          line-height: vw(37);
+          color: #3E3A39;
+				}
+			}
+		}
+	}
+	.mask {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(57,57,57,0.4);
+		z-index: 10;
+	}
+	.get-gift {
+		position: fixed;
+		top: vw(109);
+		left: 50%;
+		width: vw(279);
+		margin-left: vw(-139.5);
+		border-radius: vw(3);
+		height: vw(345);
+		background: white;
+		z-index: 11;
+		.get-gift-title {
+			margin-top: vw(25);
+			display: block;
+			width: 100%;
+			text-align: center;
+			font-weight: bold;
+			font-size: vw(17);
+    }
+    .gift-box {
+      margin: 0 auto;
+      margin-top: vw(15);
+      width: vw(230);
+      height: vw(98);
+      position: relative;
+      image {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .thanks-icon {
+        width: vw(64);
+        height: vw(64);
+        display: block;
+        margin: auto;
+        padding-top: vw(17);
+      }
+      .gift-type{
+        font-size: vw(22);
+        width: vw(22);
+        top: 32rpx;
+        left: 42rpx;
+        line-height: 44rpx;
+        position: absolute;
+      }
+      .gift-price {
+        position: absolute;
+        top: vw(10);
+        left: vw(57);
+        width: vw(168);
+        text-align: center;
+        .price-icon {
+          display: inline-block;
+          font-size: vw(15);
+          font-weight: 600;
+        }
+        .price-num {
+          display: inline-block;
+          font-size: vw(35);
+          line-height: 1;
+          font-weight: 600;
+        }
+      }
+      .gift-name {
+        position: absolute;
+        width: vw(110);
+        height: vw(27);
+        margin: 0 auto;
+        overflow: hidden;
+        background: #FFFFFF;
+        top: vw(58);
+        left: vw(86);
+        color: #000000;
+        text {
+          display: block;
+          width: 100%;
+          height: vw(27);
+          line-height: vw(27);
+          text-align: center;
+        }
+        .scrolltext {
+          width: 340rpx;
+          text-align: center;
+          -webkit-animation: 10s rowup linear infinite normal;
+          animation: 10s rowup linear infinite normal;
+        }
+      }
+    }
+		.get-gift-message {
+			position: relative;
+			top: vw(6);
+			display: block;
+			text-align: center;
+			color: #999;
+			font-size: vw(13);
+		}
+		.again-btn {
+			width: vw(201);
+			height: vw(40);
+			margin: 0 auto;
+			font-weight: bold;
+			text-align: center;
+			line-height: 80rpx;
+			background:#F7D117;
+			margin-top: 25rpx;
+		}
+		.again-btn0 {
+      margin-top: 65rpx;
+      background:RGBA(247, 209, 23, 0.66);
+		}
+	}
+	.close-bar {
+		position: absolute;
+		bottom: -80rpx;
+		width: 48rpx;
+		height: 48rpx;
+		left: 50%;
+		margin-left: -24rpx;
+		image {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+@keyframes rowup {
+	0% {
+		-webkit-transform: translate3d(vw(65), 0, 0);
+		transform: translate3d(vw(65), 0, 0);
+	}
+	100% {
+		-webkit-transform: translate3d(vw(-150), 0, 0);
+		transform: translate3d(vw(-150), 0, 0);
+		display: none;
+	}
+}

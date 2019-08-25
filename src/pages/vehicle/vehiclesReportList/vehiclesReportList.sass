@@ -1,0 +1,71 @@
+@import '~@/style/mixin'
+.page-vehicle-report-list
+  color: #F7F8FA
+  box-sizing: border-box
+  padding: vw(0) vw(15)
+  .clearfix:after
+    content: " "
+    display: block
+    clear: both
+    visibility: hidden
+    height: 0
+    font-size: 0
+  .report-item
+    width: vw(345)
+    height: vw(208)
+    margin-top: vw(10)
+    background: #ffffff
+    margin-bottom: vw(15)
+    .vehicle-info
+      height: vw(105)
+      box-sizing: border-box
+      padding: vw(15)
+      .license_plate
+        color: #3D424C
+        font-size: vw(16)
+        line-height: vw(22)
+        margin-bottom: vw(5)
+      .vehicle_name
+        color: #8A92A2
+        font-size: vw(12)
+        line-height: vw(17)
+      .result-data
+        display: flex
+        justify-content: start
+        color: #3D424C
+        margin-top: vw(11)
+        .data-item
+          width: 25%
+          line-height: vw(18)
+          .des
+            float: left
+            margin-right: vw(3)
+            background: #FF6464
+            color: white
+            width: vw(36)
+            text-align: center
+            font-size: vw(10)
+            border-radius: vw(3)
+          .exception
+            background: #4B86FF
+          .noninspect
+            background: #AEB5C5
+          .normal
+            background: #12C49F
+          .num
+            float: left
+            font-weight: bold
+            font-size: vw(16)
+    .data-info
+      line-height: vw(50)
+      border-top: vw(1) solid #F0F0F0
+      color: #3D424C
+      font-size: vw(14)
+      display: flex
+      justify-content: space-between
+      box-sizing: border-box
+      padding: vw(0) vw(15)
+      .right-content
+        color: #8A92A2
+        max-width: vw(230)
+        @extend %ellipses

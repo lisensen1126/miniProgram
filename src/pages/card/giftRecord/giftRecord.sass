@@ -1,0 +1,39 @@
+@import '~@/style/mixin'
+@import '~@/style/border'
+.gift-record
+  padding: vw(0) vw(15)
+  .record-item
+    width: vw(345)
+    padding: vw(0) vw(15)
+    background: white
+    margin-top: vw(15)
+    box-sizing: border-box
+    .record-time
+      display: flex
+      justify-content: space-between
+      line-height: vw(47)
+      box-sizing: border-box
+      .time
+        color: #7F7F7F
+        font-size: vw(12)
+      .status
+        font-size: vw(12)
+        font-weight: bold
+        .green
+          color: #008443
+        .origin
+          color: #EB8705
+        .gray
+          color: #A6A6A6
+    .project
+      display: flex
+      justify-content: space-between
+      border-bottom: vw(1) solid #eeeeee
+      line-height: vw(50)
+      box-sizing: border-box
+      font-size: vw(14)
+      font-weight: bold
+      .cell-name
+        color: #393940
+      .cell-num
+        color: #DD1D21

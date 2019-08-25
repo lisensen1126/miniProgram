@@ -1,0 +1,18 @@
+<view class="card-write-off" wx:if="{{isinitiated}}" style="padding-top: {{topbarHeight + 27}}px">
+  <top-bar title="使用记录"></top-bar>
+  <view class="card-content">
+    <view class="card-item {{index == list.length -1 ? 'last-item' : ''}}" wx:for="{{list}}" wx:key="index" wx:for-item="card">
+      <view class="card-time">{{card.date}}</view>
+      <view class="item-content">
+        <view class="items {{card.item.length -1 == index ? '' : 'border-item'}}" wx:for="{{card.item}}" wx:for-item="cell" wx:key="index">
+          <view class="title">
+            <view>{{cell.name}}</view>
+            <view class="item-num">x{{cell.number}}</view>
+          </view>
+          <view class="cell-time">{{cell.write_off_time}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <empty-page wx:if="{{list.length === 0 && isinitiated}}" class="categroy-content" slogan="暂无使用记录" icon="nocardrecord"></empty-page>
+</view>

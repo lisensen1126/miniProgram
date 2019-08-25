@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "会员注册",
+    "usingComponents": {
+      "coupon-model": "../../../components/couponModel/couponModel",
+      "top-bar": "../../../components/topbar/topbar",
+      "catch-form": "../../../components/formId/formId"
+    }
+  }

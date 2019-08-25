@@ -1,0 +1,90 @@
+<view class="page-storeEvaluate" style="padding-top: {{topbarHeight}}px">
+		<!-- topbar -->
+		<top-bar title="门店评价" home="{{isShowHome}}"></top-bar>
+		<!-- topbar end -->
+		<view wx:if="{{isLoading}}">
+				<view class="c-top clearfix">
+						<view class="t-left">
+								<image class="img" src="{{sendInfo.storeImg.length>0 ? sendInfo.storeImg : 'https://oss1.chedianai.com/images/assets/category-default.png'}}" mode="aspectFill" />
+						</view>
+						<view class="t-right">
+								<view class="store">{{sendInfo.storeName}}</view>
+								<view class="address">地址：{{sendInfo.storeAddress}}</view>
+						</view>
+				</view>
+				<!-- 评价输入部分 -->
+				<view class="evaluate">
+						<view class="star-text clearfix">
+								<view class="tip fl">总体评价</view>
+								<view class="star fl">
+										<view wx:for="{{[1,2,3,4,5]}}" wx:key="{{index}}" class="star-item" data-type="store" data-num="{{index}}" bindtap="changeStar">
+												<image src="https://oss1.chedianai.com/images/assets/start-y.png" wx:if="{{list.store.gray_star > index}}"></image>
+												<image src="https://oss1.chedianai.com/images/assets/start-g.png" wx:else></image>
+										</view>
+								</view>
+								<view class="count fr">{{scoreNum}}分</view>
+						</view>
+						<view class="comment" wx:if="{{!isTypeComment}}">
+								<view class="list clearfix">
+										<view class="list-item {{item.is_select ? 'avtive' : ''}}" wx:for="{{comment_list}}" wx:key="index" data-index="{{index}}" data-params="{{item}}" catchtap="chooseInfo">
+												{{item.name}}
+										</view>
+								</view>
+						</view>
+						<view class="context" bindtap="openKeyboard" wx:if="{{isTypeComment}}">
+								<textarea wx:if="{{!is_register_show}}" placeholder-class="phcolor" class="{{showText ? '' : 'hide'}} text" maxlength="100" bindinput="getTextarea" value="{{sendInfo.commentText}}" focus="{{focus}}" placeholder="说说您的购买心得，给其他小伙伴参考一下"></textarea>
+								<view wx:if="{{is_register_show}}" class="textarea-text">说说您的购买心得，给其他小伙伴参考一下</view>
+								<view class="tip-num">最多100字</view>
+						</view>
+						<!-- 上传图片 -->
+						<view class="up-image">
+								<view class="get-image" wx:if="{{list && list.item.length > 0}}" wx:for="{{list.item}}" wx:key="{{index}}" wx:for-item="item">
+										<image src="{{item}}" bindlongpress="deleteStore" data-type="store"></image>
+										<image class="close" bindtap="del" data-index="{{index}}" src="/images/my/del.png"></image>
+								</view>
+								<view class="choose-img" catchtap="chooseImageTap" data-type="store" wx:if="{{list.item.length < 3}}">
+										<image src="/images/dianping.png" alt=""></image>
+								</view>
+								<view class="upimg-tip" wx:if="{{list.item.length < 2}}">
+										<view class="f-title">上传照片</view>
+										<view class="s-title">图片最多上传3张</view>
+								</view>
+								<view style="clear:both;height:0"></view>
+						</view>
+				</view>
+				<view class="more" bindtap="hideComment" wx:if="{{!isTypeComment}}">
+						<text>我有其他想说的</text>
+						<view class="arrow-right"></view>
+				</view>
+				<view class="hr"></view>
+				<!-- 技师推荐 -->
+				<view class="technician">
+						<view class="title">推荐技师<text class="title-tip">最多可推荐4位技师</text></view>
+						<view class="scroll_box" wx:if="{{jishi.length > 0}}">
+								<scroll-view class="scroll-view_x" scroll-x="{{true}}" scroll-y="{{false}}" style="width:auto">			
+										<view class="js-list {{!item.checked?'select-js-list':''}}" wx:for='{{jishi}}' wx:key='index' wx:for-item='item' data-lists="{{jishi}}" data-item="{{item}}" bindtap="selectTechnician">
+											<image class="check" wx:if="{{item.checked}}" src="/images/icon-unselected-half.png" />
+											<image class="check" wx:if="{{!item.checked}}" src="/images/icon-selected-half.png" />
+											<image class="avatar" src="{{item.memFace.length > 0? item.memFace: 'https://oss1.chedianai.com/images/assets/avater_default_1.png'}}" />
+											<!-- <view class="name-box"></view> -->
+											<view class="name">{{item.memUsername}}</view>
+											<view class="level">{{item.memJob}}</view>
+											<view class="stars">推荐：{{item.recommend_num}}</view>
+										</view>
+								</scroll-view>
+						</view>
+						<view class="scroll_box_no" wx:if="{{jishi.length === 0}}">该门店暂无技师信息</view>
+				</view>
+				<!-- 提交 -->
+				<view class="bottem">
+						<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+								<button formType="submit" class="submit {{!sendInfo.commentText?'disabled':''}}" bindtap="submit">
+										提交评论
+								</button>
+						</form>
+				</view>
+		</view>
+		<evaluate bindtriggercancel='evaluteCancel' wx:if='{{isEvalute}}'></evaluate>
+		<coupon-model bindtriggercancel="couponCancel" wx:if="{{isShowCoupon && coupon_list.length > 0}}" list="{{coupon_list}}"></coupon-model>
+		<!-- <view class="zhao" wx:if="{{is_register_show}}" catchtap="goRegister"></view> -->
+</view>

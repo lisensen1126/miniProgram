@@ -1,0 +1,31 @@
+<view class="giving-record"  style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="转赠记录" home="showHome"></top-bar>
+  <empty-page wx:if="{{list.length === 0 && isinitiated}}" class="categroy-content" slogan="暂无数据" icon="noorder"></empty-page>
+  <scroll-view class="card-wrapper" wx:if="{{list.length !== 0 && isinitiated}}">
+    <view class="card-item" wx:for="{{list}}" wx:key="{{index}}" data-cdp="card_giveRecord_list">
+      <view class="card-top" data-id="{{item.order_no}}" bindtap="goDetail">
+        <view class="card-left">
+          <image src="{{item.image_url}}"></image>
+        </view>
+        <view class="card-right">
+          <view class="title">{{item.upkeep_name}}</view>
+          <view class="give-people">
+            <view class="give-people-text">获赠手机：{{item.is_received === 1 ? item.give_mobile : '--'}}</view>
+            <view class="give-people-text">{{item.type === 3 ? '赠送时间' : item.is_received === 2|| item.is_received === 3 ? '赠送时间' : '获赠时间' }}：{{item.type === 3 ? '--' : item.is_received === 1 ? item.receive_time : item.give_time}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="card-bottom" data-id="{{item.order_no}}" bindtap="goDetail">
+        <view class="card-order">订单编号：{{item.order_no}}</view>
+        <view class="card-status {{item.type === 3 ? 'active3' : item.is_received === 1 ? 'active' : item.is_received === 2 ? 'active1' : item.is_received === 3 ? 'active2' : ''}}">{{item.type === 3 ? '待赠送' : item.is_received === 1 ? '已领取' : item.is_received === 2 ? '待领取' : item.is_received === 3 ? '已退回' : ''}}</view>
+      </view>
+      <view class="card-bottom-btn-box" wx:if="{{item.is_received !== 1}}">
+        <button class="card-bottom-btn" data-item="{{item}}" catchtap="selfUse">自己使用</button>
+        <button class="card-bottom-btn active" data-item="{{item}}" open-type="share">{{item.type === 3 ? '赠送好友' : '重新赠送'}}</button>
+      </view>
+    </view>
+  </scroll-view>
+  <custom-loading wx:if="{{list.length !== 0 && isinitiated}}" has-more='{{!isAllLoaded}}' is-loading="{{isLoading}}"></custom-loading>
+  <confirm-self-use wx:if="{{show_confrim}}" bindtriggerconfirm="confirm" bindtriggercancel="cancel"></confirm-self-use>
+</view>

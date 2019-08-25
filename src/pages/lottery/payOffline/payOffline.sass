@@ -1,0 +1,221 @@
+@import '~@/style/mixin'
+@import '~@/style/border'
+
+view,form,scroll-view
+  box-sizing: border-box
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+.banner
+  width: vw(345)
+  height: vw(30)
+  background-color: rgba(0,0,0, .06)
+  margin: vw(15) auto
+  margin-bottom: 0
+  .box
+    height: vw(30)
+    background: url('https://oss1.chedianai.com/static/notice-active.png') no-repeat center
+    background-position-x: vw(13)
+    background-size: vw(22) vw(13)
+    .swiper-item
+      height: vw(30)
+      color: #404040
+      font-size: vw(10)
+      line-height: vw(30)
+      padding-left: vw(38)
+.offline-box
+  width: vw(345)
+  margin-left: vw(15)
+  background-color: #ffffff
+  height: 97%
+  position: relative
+  .banner
+    position: relative
+    width: 100%
+    height: vw(85)
+    background-color: #FCFCFC
+    .pay-tip
+      font-size: vw(14)
+      color: #7F7F7F
+      line-height: vw(21)
+      padding-left: vw(20)
+      padding-top: vw(20)
+    .pay-store
+      color: #404040
+      font-size: vw(14)
+      line-height: vw(21)
+      padding-left: vw(20)
+      width: vw(270)
+    .pay-img
+      width: vw(34)
+      height: vw(34)
+      position: absolute
+      top: vw(26)
+      right: vw(20)
+  
+.page-itemDetail
+  width: 100%
+  height: 100vh
+  padding-bottom: vw(20)
+  background-color: #F7F7F7
+.money-input
+  background-color: #ffffff
+  padding: 0 vw(20) vw(10)
+  .tip
+    padding-top: vw(20)
+    font-size: vw(14)
+    color: #404040
+    font-weight: bold
+  .money
+    position: relative
+    .input
+      color: #000000
+      margin-top: vw(18)
+      font-size: vw(28)
+      height: vw(28)
+      line-height: vw(28)
+      min-height: vw(28)
+      width: vw(315)
+      padding-left: vw(18)
+    .default-color
+      color: #D9D9D9
+      line-height: 1
+  .money:after
+    position: absolute
+    content: ''
+    left: 0
+    bottom: vw(-10)
+    width: vw(315)
+    height: vw(1)
+    background: #EEEEEE
+    z-index: 2
+  .money:before
+    position: absolute
+    content: '￥'
+    left: 0
+    bottom: 0
+    z-index: 2
+    font-size: vw(20)
+    line-height: 1
+    color: #404040
+    font-weight: bold
+
+.edit-module
+  background: #ffffff
+  padding: 0 0 0 vw(20) 
+  .edit-item
+    height: vw(51)
+    padding: vw(15) 0
+    padding-right: vw(15)
+    position: relative
+    .item-left
+      font-size: vw(14)
+      color: #7F7F7F
+      float: left
+      // line-height: vw(16)
+    .item-right
+      float: right
+      font-size: vw(14) 
+      // line-height: vw(16)  
+      color: #404040
+      margin-right: vw(15)
+    .m-r-0
+      margin-right: 0
+      font-size: vw(16)
+      color: #404040
+    .arrow_right
+      width: vw(6)
+      height: vw(12)
+      position: absolute  
+      top: vw(25)
+      right: vw(15)
+  .first
+    padding-top: vw(20)
+    padding-bottom: vw(10)
+  .scend
+    padding-top: vw(10)
+.button
+  width: vw(305)
+  height: vw(46)
+  margin: 0 auto
+  line-height: vw(46)
+  font-size: vw(16)
+  color: #404040
+  text-align: center
+  background-color: #EFEFEF
+  position: absolute
+  left: vw(20)
+  bottom: vw(30)
+  font-weight: bold 
+.form-btn .active
+  background-color: #FBCE07
+
+// 支付立减弹框
+.model
+  width: 100%
+  height: 100vh
+  background-color: rgba(0,0,0,.5)
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 99
+  .content
+    width: vw(305)
+    height: vw(340)
+    background-color: #ffffff
+    background: url('https://oss1.chedianai.com/static/reduction-img.png') no-repeat center
+    background-size: vw(305) vw(340)
+    margin: 0 auto
+    position: relative
+    top: 50%
+    margin-top: vw(-170)
+    color: #ffffff
+    .tip
+      font-size: vw(24)
+      line-height: vw(33)
+      padding-top: vw(20)
+      text-align: center
+      font-weight: bold
+    .info
+      line-height: vw(22)
+      font-size: vw(16)
+      text-align: center
+    .info-none
+      width: vw(228)
+      height: vw(122)
+      margin: vw(20) auto 0
+      background-color: #ffffff
+      border-radius: vw(8) vw(8) 0 0
+      padding-top: vw(14)
+      overflow: hidden
+      .info-border
+        width: vw(200)
+        height: vw(108)
+        margin: 0 auto
+        padding-top: vw(38)
+        border-radius: vw(8) vw(8) 0 0
+        border: vw(1) solid #f8d1d2
+        border-bottom: none
+        text-align: center
+        .money-coupon
+          padding-left: vw(18)
+          line-height: 1
+          color: #C00206
+          font-size: vw(40)
+          font-weight: bold
+          position: relative
+        .money-coupon:before
+          position: absolute
+          content: '￥'
+          left: 0
+          bottom: vw(10)
+          z-index: 99
+          font-size: vw(20)
+          color: #C00206
+          font-weight: bold 
+    .pay
+      width: vw(215)
+      line-height: vw(40)
+      background-color: #FBCE07
+      text-align: center
+      margin-top: vw(44)
+      border-radius: vw(40)

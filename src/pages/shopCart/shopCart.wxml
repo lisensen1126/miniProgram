@@ -1,0 +1,94 @@
+<view class="page-shopCart" wx:if="{{pageShow}}" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="购物车" home="{{showHome}}"></top-bar>
+	<!-- topbar end -->
+	<!--购物车列表-->
+	<view wx:if="{{list.length>0}}">
+		<!--编辑按钮-->
+		<view class="edit-box">
+			<view class="items-total">共{{meta.total}}件商品</view>
+			<view class="shop-cart-edit {{isEdit === 2?'cart-edit-active':''}}" bindtap="editFun" data-cdp="shopCart_1">
+				{{isEdit === 1? '编辑' : '完成'}}
+			</view>
+		</view>
+		<!--列表数据-->
+		<view class="shop-cart-list">
+			<view class="shop-cart-item" wx:for="{{list}}" wx:key="id" wx:for-item="listItem">
+				<view class="item" wx:if="{{listItem.is_invalid === 1}}"
+					  data-item="{{listItem}}"
+					  bindtap="changeItemState" data-cdp="shopCart_list">
+					<image class="check-btn"
+						   src="{{listItem.selected===1?images.checkBtnActive:images.checkBtn}}">
+					</image>
+					<view class="item-pic">
+						<image-show mode="aspectFit" src="{{listItem.image_url}}"></image-show>
+					</view>
+					<view class="item-info">
+						<view class="info-title">{{listItem.item_title + '      ' + listItem.content}}</view>
+						<view class="info-price">¥{{listItem.unit_price}}</view>
+						<view class="item-num">
+							<view class="labels" data-item="{{listItem}}"  data-number="{{-1}}" catchtap="changeItemNum">
+								<image class="item-label item-reduce"
+									   src="/images/default/reduce-btn.png"></image>
+							</view>
+
+							<input class="num" value="{{listItem.quantity}}" data-item="{{listItem}}" bindinput="changeItemNumInput" bindblur="blurItemNumInput"/>
+							<view class="labels"  data-number="{{1}}" data-item="{{listItem}}" catchtap="changeItemNum">
+								<image class="item-label item-add"
+									   src="/images/default/add-btn.png"
+									   ></image>
+							</view>
+
+						</view>
+					</view>
+				</view>
+
+				<view class="item" wx:if="{{listItem.is_invalid === 2}}" data-item="{{listItem}}" bindtap="changeItemState" data-cdp="shopCart_list">
+					<image wx:if="{{isEdit === 2}}" class="check-btn"
+						   src="{{listItem.selected===1?images.checkBtnActive:images.checkBtn}}">
+					</image>
+					<view wx:if="{{isEdit === 1}}" class="invalid-title invalid-color">失效</view>
+					<image class="item-pic" mode="aspectFit" src="{{listItem.image_url}}"></image>
+					<view class="invalid-pic"></view>
+					<view class="item-info">
+						<view class="info-title invalid-color">{{listItem.item_title + '      ' + listItem.content}}</view>
+						<view class="info-price invalid-color">¥{{listItem.unit_price}}</view>
+						<view class="item-num">
+							<view class="labels" data-item="{{listItem}}"  data-number="{{-1}}">
+								<image class="item-label item-reduce"
+									   src="/images/default/reduce-gray-btn.png"></image>
+							</view>
+
+							<view class="num color-d">{{listItem.quantity}}</view>
+							<view class="labels"  data-number="{{1}}" data-item="{{listItem}}">
+								<image class="item-label item-add"
+									   src="/images/default/add-gray-btn.png"
+									   ></image>
+							</view>
+
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!--底部按钮-->
+		<view class="shop-bottom">
+			<!--全选按钮-->
+			<view class="check-all" bindtap="allCheck" data-cdp="shopCart_2">
+				<image class="all-btn"
+					   src="{{all_check==1?images.checkBtnActive:images.checkBtn}}">
+				</image>
+				<text>全选</text>
+				<view wx:if="{{isEdit === 1}}" class="item-sum">合计：<text class="sum-money">¥{{total_money}}</text></view>
+			</view>
+			<!--去结算-->
+			<view wx:if="{{isEdit === 1}}" class="sum-btn {{sumProductNum<=0 ? 'disable-bg' : ''}}" bindtap="addOrderSubmit" data-cdp="shopCart_3">去结算（{{sumProductNum}}）</view>
+			<!--删除-->
+			<view wx:if="{{isEdit === 2}}" class="sum-btn" bindtap="goDelete" data-cdp="shopCart_4">删除</view>
+		</view>
+		<!--删除弹窗-->
+		<message-model wx:if="{{isDelete}}" title="确认要删除{{delete_cart_num}}种商品吗？" bindsureAction="deleteItem" bindcancelAction="goDelete"/>
+	</view>
+	<!--缺省-->
+	<empty-page wx:if="{{list.length === 0}}" icon="shopcar" slogan="快去添加心仪商品吧"/>
+</view>

@@ -1,0 +1,258 @@
+<view class="page-itemDetail" wx:if="{{pageShow}}" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="秒杀详情" home="{{showHome}}"></top-bar>
+	<view wx:if="{{isShowDefault === false  && goodsInfo.is_sale == 1}}">
+		<view class="content-box">
+			<!--商品基础信息-->
+			<view class="content-info">
+				<!--商品主图轮播-->
+				<block>
+					<swiper class="swiper-box" indicator-dots="{{false}}"
+							autoplay="{{true}}" interval="5000" duration="1000">
+						<block wx:for="{{skuItem.sku_pics}}" wx:key="index">
+							<swiper-item>
+								<view class="slide-image">
+									<image-show src="{{item}}" quality="95"></image-show>
+								</view>
+								<image src="{{item}}" class="slide-image" mode='aspectFit'/>
+							</swiper-item>
+						</block>
+					</swiper>
+					<!-- <form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+						<button formType="submit" class="share-icon" open-type="share" style="top: {{topbarHeight}}px">
+							<image src="/images/mall/share.png"></image>
+						</button>
+					</form> -->
+				</block>
+				<!-- 秒杀倒计时 -->
+				<view class="count-down {{isOpen === 1 ? 'begin-minute' : 'already-minute'}}">
+					<view class="count-left">
+						{{isOpen === 1?'限时抢购':'限时抢购中'}}
+					</view>
+					<view class="count-right" wx:if="{{isOpen === 1 && count_down && goodsInfo.inventory_total>0}}">
+						<text class="count-word">距开始还有</text>
+						<text class="count-time" wx:if="{{seckill_time_line_day>0}}">{{seckill_time_line_day}}</text>
+						<text class="time-default-color" wx:if="{{seckill_time_line_day>0}}">天</text>
+						<text class="count-time">{{seckill_time_line[0]}}</text>
+						<text class="count-time">:</text>
+						<text class="count-time">{{seckill_time_line[1]}}</text>
+						<text class="count-time">:</text>
+						<text class="count-time">{{seckill_time_line[2]}}</text>
+					</view>
+					<view class="count-right" wx:elif="{{isOpen === 2 && count_down && goodsInfo.inventory_total>0}}">
+						<text class="count-word">距结束仅剩</text>
+						<text class="count-time" wx:if="{{seckill_time_line_day>0}}">{{seckill_time_line_day}}</text>
+						<text class="time-default-color" wx:if="{{seckill_time_line_day>0}}">天</text>
+						<text class="count-time">{{seckill_time_line[0]}}</text>
+						<text class="count-time">:</text>
+						<text class="count-time">{{seckill_time_line[1]}}</text>
+						<text class="count-time">:</text>
+						<text class="count-time">{{seckill_time_line[2]}}</text>
+					</view>
+					<view class="count-right" wx:elif="{{isOpen === 2 && count_down && goodsInfo.inventory_total <= 0}}">
+						<text class="count-word">距结束仅剩</text>
+						<text class="count-time" wx:if="{{seckill_time_line_day>0}}">{{seckill_time_line_day}}</text>
+						<text class="time-default-color" wx:if="{{seckill_time_line_day>0}}">天</text>
+						<text class="count-time">{{seckill_time_line[0]}}</text>
+						<text class="count-time">:</text>
+						<text class="count-time">{{seckill_time_line[1]}}</text>
+						<text class="count-time">:</text>
+						<text class="count-time">{{seckill_time_line[2]}}</text>
+					</view>
+					<view class="count-right" wx:else>
+						<text class="count-word">活动已结束</text>
+					</view>
+				</view>
+				<!--商品介绍-->
+				<block>
+					<view class="info">
+						<view class="goods-title">
+							<view class="title">{{goodsInfo.goods_name}} {{skuInfo}}</view>
+							<view class="share-btn" bindtap="goShare">
+								<image class="share-icon-img" src="/images/mall/share.png"></image>
+								<view>分享</view>
+							</view>
+						</view>
+						<view class="goods-price">
+							<text class="price">¥{{skuItem.limit_price}}</text>
+							<text class="original">¥{{skuItem.sku_price}}</text>
+						</view>
+					</view>
+				</block>
+				<!--sku选择块-->
+				<block>
+					<view class="sku-block border-after" data-place="" bindtap="chooseSku">
+						<view class="sku-info">
+							<text>已选</text>
+							<text class="sku-sys">{{skuInfo}}</text>
+							<text class="sku-num">{{quantity}}件</text>
+						</view>
+						<image class="right-icon" src="/images/icons/arrow_right.png"></image>
+					</view>
+				</block>
+				<!--品牌-->
+				<block>
+					<view class="brand-block">
+						<view class="brand-title">品牌</view>
+						<view class="brand-info">{{goodsInfo.brand_name}}</view>
+					</view>
+				</block>
+				<block wx:if="{{goodsInfo.summary}}">
+					<!--商品详情-->
+					<view class="content-detail">
+						<view class="info-title">商品描述
+						</view>
+						<view class="service-info">
+							<text>{{goodsInfo.summary}}</text>
+						</view>
+					</view>
+				</block>
+			</view>
+			<!--商品详情-->
+			<view class="content-detail">
+				<view class="detail-title">商品详情</view>
+				<view class="detail-pic-list">
+					<view class="description rich-content">
+						<block wx:for="{{skuItem.contents}}" wx:for-item="contentItem" wx:key="index">
+							<image src="{{contentItem}}" mode="widthFix" class="rich-content-img" lazy-load="true"/>
+						</block>
+					</view>
+				</view>
+			</view>
+			<!--底部文案-->
+			<view class="detail-list-bottom">
+				<view class="line-left"></view>
+				智慧门店，每天爱车多一点
+				<view class="line-right"></view>
+			</view>
+		</view>
+		<view class="content-button" wx:if="{{goodsInfo.is_sale == 1 && immediately}}">
+			<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+				<button formType="submit" class="create-order loot-all" wx:if="{{isOpen === 1 && count_down && skuItem.inventory_total>0}}">
+					即将开始
+				</button>
+				<button formType="submit" class="create-order" wx:elif="{{isOpen === 2 && count_down && skuItem.inventory_total>0}}" data-place="1" bindtap="chooseSku">
+					立即下单
+				</button>
+				<button formType="submit" class="create-order loot-all" wx:elif="{{isOpen === 2 && count_down && skuItem.inventory_total <= 0}}">
+					抢光啦
+				</button>
+				<button formType="submit" class="create-order loot-all" wx:else>
+					活动已结束
+				</button>
+			</form>
+		</view>
+		<view class="content-button color-default" wx:if="{{goodsInfo.is_sale == 2}}">
+			商家暂未上架该商品
+		</view>
+		<!--sku浮层-->
+		<view class="sku-cover" wx:if="{{cartCover}}">
+			<view class="cover-content">
+				<view class="sku-content">
+					<!--顶部sku标题-->
+					<view class="sku-title">
+						<view class="close-box" bindtap="closeCartCover">
+							<image class="close" src="/images/default/close-btn.png"></image>
+						</view>
+						<view class="sku-title-info">
+							<view class="item-pic" bindtap="previewImg" data-img="{{skuItem.sku_pics[0]}}" data-imgs="{{[skuItem.sku_pics[0]]}}">
+								<image-show src="{{skuItem.sku_pics[0]}}" quality="95"></image-show>
+							</view>
+							<view class="item-info">
+								<view class="info-title">{{goodsInfo.goods_name}}  {{skuInfo}}</view>
+								<view class="info-price">
+									<text class="price">¥{{skuItem.limit_price}}</text>
+									<text class="original">¥{{skuItem.sku_price}}</text>
+								</view>
+							</view>
+						</view>
+						<!--错误提示-->
+						<view class="sku-err-tip" wx:if="{{sku_err_tip.length>0}}">{{sku_err_tip}}</view>
+					</view>
+					<!--sku参数数组-->
+					<view class="sku-list">
+						<view class="sku-item" wx:for="{{goodsInfo.attribute_data}}"
+							  wx:key="attributeItem.attribute_id"
+							  wx:for-index="index"
+							  wx:for-item="attributeItem"
+							  wx:if="{{attributeItem.is_optional === 1}}">
+							<view class="item-title">{{attributeItem.attribute_name}} <text class="err-tip" wx:if="{{attributeItem.is_enabled_tip === 1}}">请选择{{attributeItem.attribute_name}}</text></view>
+							<view class="item-label-list">
+								<!--只有一条属性，禁用的sku对应的参数不展示-->
+								<view class="item-label {{parameterItem.is_checkout?'item-is-active':''}} {{parameterItem.is_enabled === 3?'bor_dashed':''}}"
+									  wx:for="{{attributeItem.attribute_items}}"
+									  wx:key="parameterItem.parameter_id"
+									  wx:for-index="itemIndex"
+									  data-id="{{parameterItem.attribute_item_id}}"
+									  data-item="{{parameterItem}}"
+									  data-index="{{index}}"
+									  data-enabled="{{parameterItem.is_enabled}}"
+									  wx:for-item="parameterItem"
+									  wx:if="{{parameterItem.is_optional === 1 && parameterItem.is_enabled !== 2 && parameterItem.is_enabled !== 3 && goodsInfo.attribute_data.length === 1}}" bindtap="checkParameterItem">
+									<text class="label-content">{{parameterItem.attribute_item_value}}</text>
+								</view>
+								<!--大于一条属性，禁用的sku对应的参数展示虚线框-->
+								<view class="item-label {{parameterItem.is_checkout?'item-is-active':''}} {{parameterItem.is_enabled === 3?'bor_dashed':''}}"
+									  wx:for="{{attributeItem.attribute_items}}"
+									  wx:key="parameterItem.parameter_id"
+									  wx:for-index="itemIndex"
+									  data-id="{{parameterItem.attribute_item_id}}"
+									  data-item="{{parameterItem}}"
+									  data-index="{{index}}"
+									  data-enabled="{{parameterItem.is_enabled}}"
+									  wx:for-item="parameterItem"
+									  wx:if="{{parameterItem.is_optional === 1 && parameterItem.is_enabled !== 2 && goodsInfo.attribute_data.length > 1}}" bindtap="checkParameterItem">
+									<text class="label-content">{{parameterItem.attribute_item_value}}</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<!--数量-->
+					<view class="sku-num">
+						<view class="sku-num-title">数量</view>
+						<view class="sku-num-limit" wx:if="{{num_limit !== 0}}">限购{{num_limit}}件</view>
+						<view class="btn-block">
+							<view class="labels" data-number="-1" bindtap="changeItemNum">
+								<image class="num-btn-reduce" src="/images/default/reduce-btn.png"></image>
+							</view>
+							<view class="num">{{quantity}}</view>
+							<view class="labels"  data-number="1" bindtap="changeItemNum">
+								<image class="num-btn-add" src="/images/default/add-btn.png"></image>
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="action-button" wx:if="{{goodsInfo.is_sale == 1}}">
+					<!--选择sku-->
+					<view wx:if="{{skuCoverType == 1 && immediately}}">
+						<view class="submit-btn {{show_sku_err ? 'color-default' : ''}} loot-all" wx:if="{{isOpen === 1 && count_down && skuItem.inventory_total>0}}">
+							即将开始
+						</view>
+						<form class="form-btn" bindsubmit="sendFormId" wx:elif="{{isOpen === 2 && count_down && skuItem.inventory_total>0}}" report-submit="true">
+							<button formType="submit" class="submit-btn {{show_sku_err ? 'color-default' : ''}}" bindtap="createOrder">
+								<text wx:if="{{button_copy}}">立即下单</text>	
+								<text wx:else>确定</text>	
+							</button>
+						</form>
+						<view class="submit-btn {{show_sku_err ? 'color-default' : ''}} loot-all" wx:elif="{{isOpen === 2 && count_down && skuItem.inventory_total <= 0}}">
+							抢光啦
+						</view>
+						<view class="submit-btn {{show_sku_err ? 'color-default' : ''}} loot-all" wx:else>
+							活动已结束
+						</view>
+					</view>
+				</view>
+				<view class="action-button color-default" wx:if="{{goodsInfo.is_sale == 2}}">
+					商家暂未上架该商品
+				</view>
+			</view>
+		</view>
+	</view>	
+	<!-- 分享弹框 -->
+	<share-model wx:if="{{go_share}}" 
+							bindclose="closeShare" 
+							bindposter="goPoster"></share-model>
+	<!--缺省-->
+	<empty-page wx:if="{{isShowDefault === true}}" icon="{{err_icon}}" slogan="{{err_tip}}"/>
+</view>
+

@@ -1,0 +1,43 @@
+@import '~@/style/mixin'
+page
+	background-color: $bg-gray
+	// padding-bottom: vw(70)
+.write-off-box
+  font-size: vw(14)
+  .write-off-section
+    .write-off-title
+      margin-bottom: vw(15)
+      color: #7F7F7F
+    margin-bottom: vw(14)
+    padding: vw(20) 0 0 vw(15) 
+    background: #fff
+    .write-off-item
+      line-height: 1
+      margin-bottom: vw(15)
+      & > .info-item
+        display: flex
+        justify-content: space-between
+        align-items: center
+        color: #404040
+        .info-title
+          width: vw(250)
+          overflow: hidden
+          text-overflow: ellipsis
+          white-space: nowrap
+        .info-num
+          padding-right: vw(15)
+    & > .info-item
+      padding: vw(20) 0
+      display: flex
+      justify-content: space-between
+      align-items: center
+      border-top: vw(1) solid #eee
+      .info-label
+        color: #7F7F7F
+      .info-content
+        padding-right: vw(15)
+        color: #404040
+    & > .info-time
+      margin-top: vw(20)
+      
+			

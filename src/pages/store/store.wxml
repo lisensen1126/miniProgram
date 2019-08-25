@@ -1,0 +1,220 @@
+<wxs module="tool">
+  var img = function (src, w, h) {
+		var re_img = src.split('?')[0]
+		return re_img + '?imageMogr2/thumbnail/' + w + 'x' + h + '!'
+  }
+  module.exports = {
+    formatImg : img,
+  }
+</wxs>
+<view class="page-store animation-fade-in">
+  <!-- top-bar -->
+  <top-bar title="门店" wx:if="{{is_top_bar_show}}"></top-bar>
+
+	<!-- 技师弹框 -->
+	<tech-model 
+		wx:if="{{show_tech}}" 
+		techId="{{tech_id}}"
+		bindclose="closeTechModel"></tech-model>
+	<!-- background -->
+	<view class="s-bac {{topbarHeight > 70 ? 's-bac-h' : ''}}">
+		<view class="s-change" wx:if="{{storeInfo.is_chain == 1}}" bindtap="changeStore" data-cdp="store_1">
+		<image class="change-store" src="https://oss1.chedianai.com/images/static/change-store-1.png"></image>切换门店
+		</view>
+	</view>
+
+	<!-- 门店信息 -->
+	<view class="s-base">
+		<!-- 基本信息 -->
+		<view class="s-tit-box">
+			<view class="s-tit">{{storeInfo.store_name}}</view>
+			<!--分享-->
+			<button class="share-btn" open-type="share">
+				<image bindtap="goShare" data-cdp="store_2" class="share-img" src="/images/store/share-icon.png"></image>
+			</button>
+		</view>
+		<view class="s-stars">
+			<score-points-min points='{{points}}' half="{{half}}" inActive="{{inActive}}" showScore='{{false}}'></score-points-min>
+			<text class="s-s-score">{{storeInfo.avg_ratings}}分</text>
+			<view class="s-s-zuan" wx:if='{{storeInfo.authentication.length > 0}}'><image src="https://oss1.chedianai.com/images/assets/zuan.png"></image>{{storeInfo.authentication[0].title}}</view>
+		</view>
+		<!-- 门店相册 -->
+		<scroll-view class="s-photo" scroll-x='{{true}}' scroll-y="{{false}}">
+			<view class="s-p-item" bindtap='goPhotoAlbum' wx:for='{{storeInfo.images}}' data-type='{{item.type}}' wx:key='index' data-cdp="store_goPhotoAlbum">
+				<image wx:if='{{item.type != 1}}' src='{{tool.formatImg(item.image[0].image_url, 208, 134)}}' mode="aspectFill" />
+				<image wx:if='{{item.type == 1}}' src='{{tool.formatImg(item.image[0].picture, 208, 134)}}' mode="aspectFill" />
+				<view class="s-p-item-text">
+					<view>{{item.type == 1 ? '门店视频' : item.type == 2 ? '门店环境' : item.type == 3 ? '门店资质' : item.type == 4 ? '门店设备' : item.type == 5 ? '门店项目': ''}}</view>
+					<view>{{item.image.length}}</view>
+				</view>
+			</view>
+		</scroll-view>
+		<!-- tags -->
+		<view class="s-tags">
+			<text class="s-t-item" wx:for="{{storeInfo.tag}}" wx:key="index">{{item}}</text>
+		</view>
+		<!-- 地址、时间 -->
+		<view class="s-rview">
+			<view class="s-rv-text s-rv-ad">{{storeInfo.province_name}}{{storeInfo.city_name}}{{storeInfo.district_name}}{{storeInfo.address}}</view>
+			<image class="s-rv-icon" bindtap="openMap" src="https://oss1.chedianai.com/images/assets/s-address.png"></image>
+		</view>
+		<view class="s-rview">
+			<view class="s-rv-text s-rv-time">今日营业时间 {{storeInfo.open_time}} - {{storeInfo.close_time}}</view>
+			<image class="s-rv-icon" data-phone='{{storeInfo.business_phone}}' bindtap='makePhoneCall' src="https://oss1.chedianai.com/images/assets/s-phone.png"></image>
+		</view>
+	</view>
+
+	<!-- 爆品推荐 -->
+	<view class="bp-box" wx:if="{{hotcakeList && hotcakeList.length > 0}}">
+		<!-- 标题 -->
+		<view class="box-title">
+			<view class="b-t-l">爆品推荐</view>
+		</view>
+		<!-- 爆品列表 -->
+		<scroll-view class="bp-con" scroll-y='{{false}}' scroll-x="{{true}}">					
+			<view class="bp-item" wx:for='{{hotcakeList}}' wx:key='index' bindtap='goMallDetail' data-sku='{{item.sku_id}}' data-spu='{{item.spu_id}}' data-type='{{item.type}}' data-cdp="store_hotcakeList">
+				<view class="bp-i-pic">
+					<image class="image" src="{{tool.formatImg(item.product_pic, 270, 168)}}" mode='aspectFill' />
+				</view>
+				<view class="bp-i-title">{{item.product_name}}</view>
+				<view class="bp-i-price">¥{{item.sell_price}}</view>
+			</view>				
+		</scroll-view>
+	</view>
+
+	<!-- 优惠来袭 -->
+	<view class="yhj-box" wx:if="{{coupon_list && coupon_list.length > 0}}">
+		<!-- 标题 -->
+		<view class="box-title">
+			<view class="b-t-l">优惠来袭</view>
+			<view class="b-t-r" bindtap='goVoucher' data-cdp="store_5">更多<image src="https://oss1.chedianai.com/images/assets/arrow_right.png"></image></view>
+		</view>
+		<!-- 优惠列表 -->
+		<view class="yhj-list {{coupon_list.length === 3 ? 'yhj-list-thr': ''}}">
+			<view class="yhj-item {{item.receive_status == 3? 'yhj-item-over' : ''}}" wx:for="{{coupon_list}}" wx:key="{{index}}">
+				<view class="yhj-top">
+					<view class="yhj-i-money" wx:if="{{item.coupon_type !== 4}}">
+						<text class="yhj-im-i">¥</text>
+						<text class="yhj-im-m">{{item.discount_amount/100}}</text>
+					</view>
+					<view class="yhj-i-zhe" wx:if="{{item.coupon_type === 4}}">
+						<text class="yhj-im-m">{{item.discount_amount/100}}</text>
+						<text class="yhj-im-z">折</text>
+					</view>
+					<view class="yhj-i-text" wx:if="{{item.condition_value == 0}}">无消费门槛</view>
+					<view class="yhj-i-text" wx:if="{{item.condition_value != 0 && item.coupon_type == 4}}">满{{item.condition_value/100}}可用</view>
+					<view class="yhj-i-text" wx:if="{{item.condition_value != 0 && item.coupon_type != 4}}">满{{item.condition_value/100}}减{{item.discount_amount/100}}</view>
+				</view>
+				<view class="yhj-i-btn">
+					<text wx:if="{{item.receive_status == 1}}" 
+					  data-id="{{item.coupon_id}}"
+					  data-item="{{item}}"
+						bindtap="receiveCoupon" 
+						data-cdp="store_couponList_first">领取</text>
+					<!-- <text wx:if="{{item.receive_status == 2}}" 
+					  data-id="{{item.coupon_id}}"
+					  data-item="{{item}}"
+						bindtap="receiveCoupon" 
+						data-cdp="store_couponList_continue">继续领取</text> -->
+					<text wx:if="{{item.receive_status == 3}}"
+					  data-item="{{item}}"
+						bindtap="goUse" 
+						data-cdp="store_couponList_continue">去使用</text>
+				</view>		
+			</view>
+		</view>
+	</view>
+
+	<!-- 推荐技师 -->
+	<view class="js-box" wx:if="{{technicianList && technicianList.length > 0}}">
+		<!-- 标题 -->
+		<view class="box-title js-title">
+			<view class="b-t-l">推荐技师</view>
+			<view class="b-t-r" bindtap='goTechnicianList' data-cdp="store_6">更多<image src="https://oss1.chedianai.com/images/assets/arrow_right.png"></image></view>
+		</view>
+		<!-- 技师列表 -->
+		<scroll-view class="js-list" scroll-x='{{true}}' scroll-y="{{false}}">
+			<view class="js-item" wx:for='{{technicianList}}' wx:key='index'>
+				<view class="js-photo" bindtap="showTech" data-techniciansid='{{item.technicians_id}}'>
+					<view class="js-p-tx">
+						<!-- <image src='{{item.memFace.length>0 ? item.memFace + "?imageMogr2/thumbnail/196x196!" : "https://oss1.chedianai.com/images/assets/avater_default_1.png?imageMogr2/thumbnail/196x196!"}}' /> -->
+						<image src='{{item.memFace.length>0 ? tool.formatImg(item.memFace, 196, 196) : "https://oss1.chedianai.com/images/assets/avater_default_1.png?imageMogr2/thumbnail/196x196!"}}' mode='aspectFill'/>
+					</view>
+					<text>{{item.memUsername || ''}}</text>
+					<image class="js-p-icon" wx:if="{{index === 0}}" src="https://oss1.chedianai.com/images/assets/s-js01.png"></image>
+					<image class="js-p-icon" wx:if="{{index === 1}}" src="https://oss1.chedianai.com/images/assets/s-js02.png"></image>
+					<image class="js-p-icon" wx:if="{{index === 2}}" src="https://oss1.chedianai.com/images/assets/s-js03.png"></image>
+				</view>
+				<view class="js-bac" bindtap="showTech" data-techniciansid='{{item.technicians_id}}'>
+					<view class="js-job">{{item.memJob || '8'}}</view>
+					<view class="js-num">推荐 {{item.recommend_num}}</view>
+				</view>
+				<view class="js-btn {{item.zan_active ? 'js-btn-active' : ''}}" bindtap='recommendTechnician' data-techniciansid='{{item.technicians_id}}' data-recommendnum='{{item.recommend_num}}' data-index="{{index}}" data-like="{{item.is_like}}"><image class="{{item.zan_active ? 'js-hand-active' : ''}}" src="https://oss1.chedianai.com/images/assets/s-zan.png"></image></view>
+				<view class="js-one {{item.zan_active ? 'js-one-active' : ''}}">+1</view>
+			</view>
+		</scroll-view>		
+	</view>
+
+	<!-- 网友点评 只显示 3 条 -->
+	<view id="comment-box" class="comment-box" wx:if="{{storeInfo.comments && storeInfo.comments.length > 0}}">
+		<!-- 标题 -->
+		<view class="box-title">
+			<view class="b-t-l">网友点评<text class="comment-count">({{storeInfo.commentCount}})</text></view>
+			<view class="b-t-r" bindtap='goStoreEvaluate' data-cdp="store_7">更多<image src="https://oss1.chedianai.com/images/assets/arrow_right.png"></image></view>
+		</view>
+		<!-- 点评 -->
+		<view class="comment-item" wx:for='{{storeInfo.comments}}' wx:key='index'>
+			<!-- left 头像 -->
+			<view class="com-photo">
+				<image src='{{item.avatar.length > 0 ? item.avatar : "https://oss1.chedianai.com/images/assets/avater_default_2.png"}}'></image>
+			</view>
+			<!-- right 评论 -->
+			<view class="com-con">
+				<!-- 评论人信息 -->
+				<view class="com-info">
+					<view class="com-base">
+						<view class="com-b-name">{{item.name.length>0? item.name : '用户昵称'}}</view>
+						<view class="com-b-time">
+							<text>评分</text>
+							<score-points class="start" points='{{item.score}}' showScore='{{false}}'></score-points>
+						</view>
+					</view>
+					<view class="com-stars">
+						<view class="time">{{item.created_at}}</view>
+					</view>
+				</view>
+				<!-- 评论内容 -->
+				<view class="com-des">{{item.comment_content}}</view>
+				<view class="com-pic {{item.comment_image.length === 3 ? 'com-pic-thr': ''}}" wx:if='{{item.comment_image && item.comment_image.length != 0}}'>
+					<view class="com-pic-item" wx:for='{{item.comment_image}}' wx:key='index' wx:for-item='items'>
+						<image bindtap='previewImage' mode="aspectFill" data-index='{{index}}' data-arr='{{item.comment_image}}' src='{{items.image_url}}' />
+					</view>
+				</view>
+				<!-- 推荐技师 -->
+				<view class="recommend clearfix" wx:if='{{item.technicians && item.technicians.length > 0}}'>
+					<view class="technicians-tips">推荐技师</view>
+					<view class="rec-photo" wx:for="{{item.technicians}}" wx:key="t_index" wx:for-item="param">
+						<image src='{{param.memFace.length>0 ? tool.formatImg(param.memFace, 60, 60) : "https://oss1.chedianai.com/images/assets/avater_default_2.png"}}' mode='aspectFill' />
+						<view class="rec-info">
+							<view class='rec-name'>{{param.memUsername}}</view>
+							<view class="rec-job">{{param.memJob}}</view>
+						</view>
+					</view>
+				</view>
+				<!-- 回复内容 -->
+				<view class="hr" wx:if='{{item.sub_comment_content.length > 0}}'></view>
+				<view class="reply" wx:if='{{item.sub_comment_content.length > 0}}'>商家回复：{{item.sub_comment_content}}
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 免责 -->
+	<view class="mianze"><span>免责声明:</span>门店信息由门店发布，具体信息以门店实际为准，平台只负责展示、发布。</view>
+
+	<!-- 悬浮按钮 去点评 -->
+	<view class="s-bj" bindtap='goCreateEvaluate' data-cdp="store_8">
+		<image src="https://oss1.chedianai.com/images/assets/s-bj.png"></image>
+	</view>
+
+</view>

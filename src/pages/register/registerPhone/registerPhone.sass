@@ -1,0 +1,175 @@
+@import '~@/style/mixin'
+
+.old-register
+  .model
+    width: 100%
+    height: 100%
+    z-index: 111
+    background: rgba(57, 57, 57, 0.4)
+    position: fixed
+    top: 0
+    left: 0
+    .content
+      width: vw(298)
+      background: $text-white
+      margin: vw(65) auto
+      text-align: center
+      opacity: 1
+      padding-top: vw(30)
+      padding-bottom: vw(44)
+      .rep-img
+        width: vw(112)
+        height: vw(71)
+        margin: vw(39) auto
+      .rep-user-img
+        width: vw(112)
+        height: vw(112)
+        margin: vw(25) auto
+      .con
+        text-align: center
+        color: #000000
+        font-size: vw(18)
+        font-weight: bolder
+        line-height: 1
+      .con-info
+        line-height: vw(20)
+        font-size: vw(14)
+        margin: vw(8) 0 vw(46) 0
+        text-align: center
+      .goback
+        width: vw(240)
+        height: vw(45)
+        line-height: vw(45)
+        background: $primary
+        font-size: vw(14)
+        border-radius: 0
+        &::after
+          display: none
+  .chang-tap
+    position: fixed
+    font-size: vw(12)
+    color: #B2B2B2
+    text-align: center
+    left: 0
+    right: 0
+    bottom: vw(53)
+    .chang-img
+      width: vw(44)
+      height: vw(44)
+    .go-right
+      position: relative
+      width: vw(4)
+      height: vw(7)
+  .wechat-block
+    position: relative
+    .wechat-btn
+      width: vw(157)
+      height: vw(157)
+      display: inline-block
+      margin: 0 auto
+    .wechat-tip
+      margin-top: vw(14)
+      text-align: center
+      font-size: vw(12)
+      color: #B2B2B2
+    .check-box
+      left: vw(2)
+    .hidden-btn
+      width: vw(157)
+      height: vw(157)
+      opacity: 0
+      position: absolute
+      left: 50%
+      margin-left: vw(-73)
+      z-index: 10
+    .steps
+      text-align: left
+      font-size: vw(18)
+      font-weight: 500
+          
+  .check-hide
+    position: absolute
+    left: vw(30)
+    top: - vw(10)
+    width: vw(30)
+    height: vw(30)
+    opacity: 0
+.fl
+  float: left
+.fr
+  float: right
+.clearfix:after
+  content: ""
+  display: block
+  clear: both
+.register-img
+  width: 100%
+  height: vw(236)
+.tip-name
+  width: 100%
+  box-sizing: border-box
+  padding-top: vw(58)
+  text-align: center
+  font-size: vw(20)
+  color: #404040
+  padding-bottom: vw(20)
+.get-info
+  width: vw(26)
+  height: vw(26)
+  float: left
+  background: url('https://oss1.chedianai.com/images/static/xieyi-default.png') no-repeat
+  background-size: vw(26) vw(26)
+  margin-left: vw(42)
+  margin-top: vw(6)
+.active
+  background: url('https://oss1.chedianai.com/images/static/xieyi-active.png') no-repeat
+  background-size: vw(26) vw(26)
+.user-info
+  width: vw(40)
+  height: vw(40)
+  padding: 0
+  border-radius: 0
+  position: absolute
+  top: vw(25)
+  left: vw(37)
+  z-index: 99
+  border: none
+  background-color: transparent
+.user-info::after
+  border-radius: 0
+  border: none
+.padding-bottom
+  box-sizing: border-box
+  padding-bottom: vw(40)
+  position: relative
+  padding-top: vw(27)
+.xieyi
+  width: vw(240)
+  float: left
+  color: #404040
+  font-size: vw(12)
+  margin-left: vw(15)
+.blue
+  color: #4A90E2
+.register
+  width: vw(327)
+  height: vw(40)
+  border-radius: 0
+  color: #404040
+  font-size: vw(14)
+  line-height: vw(40)
+  background: url('https://oss1.chedianai.com/static/wx-no.png') no-repeat center
+  background-position-x: vw(107)
+  background-size: vw(18) vw(14)
+  background-color: #D9D9D9
+  padding-left: vw(138)
+  text-align: left
+.register::after
+  border-radius: 0
+  border: none
+.r-active
+  background: url('https://oss1.chedianai.com/static/wx-yes.png') no-repeat center
+  background-position-x: vw(107)
+  background-size: vw(18) vw(14)
+  background-color: #52B112
+  color: #ffffff

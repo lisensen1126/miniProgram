@@ -1,0 +1,8 @@
+{
+	"navigationBarTitleText": "购卡中心",
+	"usingComponents": {
+		"top-bar": "../../../components/topbar/topbar",
+		"empty-page": "../../../components/emptyPage/emptyPage",
+		"custom-loading": "../../../components/customLoading/customLoading"
+	}
+}

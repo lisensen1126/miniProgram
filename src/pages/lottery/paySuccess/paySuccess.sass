@@ -1,0 +1,158 @@
+@import '~@/style/mixin'
+
+view,form,scroll-view
+  box-sizing: border-box
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+.page-paySuccess
+	background-color: #fff
+	padding-bottom: vw(78)	
+	.clearfix:after
+		content: ""
+		display: block
+		clear: both
+	.pay-success-header
+		background: #fff
+		text-align: center
+		width: 100%
+		padding-bottom: vw(25)
+		image
+			width: vw(34)
+			height: vw(34)
+			margin-top: vw(20)
+		.pay-success-header-title
+			margin-top: vw(2)
+			color: #404040
+			font-size: vw(14)
+			display: -webkit-box
+			word-break: break-all
+			-webkit-box-orient: vertical
+			-webkit-line-clamp: 2
+			overflow: hidden
+			text-overflow: ellipsis
+		.pay-success-header-order-number
+			margin-top: vw(8)
+			color: #404040
+			font-size: vw(36)
+			font-weight: bold
+			text
+				font-size: vw(20)
+		.pay-success-header-order-del
+			color: #A6A6A6
+			font-size: vw(24)
+			font-weight: 500
+			text-decoration: line-through
+			line-height: 1
+	
+	.order-info
+		padding: vw(5) 0 vw(20) vw(15)
+		background-color: $bg-white
+		border-bottom: vw(1) solid $border
+		.order-info-flex:last-child
+			border-bottom: 0
+		.order-info-flex
+			padding: vw(15) vw(15) 0 0
+			display: flex
+			justify-content: space-between
+			font-size: vw(14)
+			.label-title
+				color: #7F7F7F
+			.label-info
+				color: #404040
+			.order-info-receive-title
+				color: #404040
+			.order-info-receive-price
+				color: #DD1D21
+				font-size: vw(14)
+	.banner
+		width: vw(340)
+		height: vw(88)
+		margin: vw(20) auto
+		.image
+			width: vw(340)
+			height: vw(88)
+	
+	// 评论
+	.comment
+		.title
+			font-size: vw(16)
+			padding-top: vw(30)
+			text-align: center
+			color: #404040
+			font-weight: 600
+		.list
+			padding: vw(5) 0 vw(30) vw(15)
+			.list-item
+				padding: vw(6) vw(15)
+				color: #A6A6A6
+				line-height: vw(16)
+				font-size: vw(12)
+				margin-top: vw(15)
+				margin-right: vw(15)
+				border: vw(1) solid #D9D9D9
+				float: left
+			.avtive
+				background: rgba(251, 206, 7, 0.3)
+				border: vw(1) solid rgba(251, 206, 7, 1)
+				color: #404040
+		.botton
+			width: 100%
+			padding-top: vw(9)
+			.btn
+				width: vw(345)
+				height: vw(40)
+				line-height: vw(40)
+				text-align: center
+				font-weight: 600
+				color: #404040
+				margin: auto
+				background-color: #EFEFEF
+			.avtive
+				background: #FBCE07
+		.more
+			text-align: center
+			color: #DD1D21
+			font-size: vw(12)
+			line-height: vw(46)
+	
+	.tip-modal
+		position: fixed
+		bottom: vw(58)
+		left: vw(15)
+		width: vw(345)
+		height: vw(44)
+		line-height: vw(44)
+		text-align: center
+		font-size: vw(14)
+		color: #FFFFFF
+		background-color: rgba(0,0,0,0.6)
+		.green
+			color: #7ED321
+.animation
+	animation-duration: 3s
+	animation-timing-function: ease-out
+	animation-fill-mode: both
+.animation-slide-top-out
+    animation-name: slide-top-out
+@keyframes slide-top-out
+	0%
+		opacity: 1
+		transform: translateY(0)
+	50%
+		opacity: 1
+	100%
+		opacity: 0
+		transform: translateY(-100%)
+
+.flex-center
+	display: flex
+	justify-content: center
+.bottom-btn
+	width: vw(140)
+	line-height: vw(40)
+	text-align: center
+	color: #404040
+	font-size: vw(12)
+	border: vw(1) solid #a6a6a6
+	border-radius: vw(2)
+	margin: vw(20) vw(10) vw(10) vw(10)

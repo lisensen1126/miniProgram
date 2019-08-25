@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>icons_time</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="12" height="12"></rect>
+    </defs>
+    <g id="聚合首页" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-120.000000, -1377.000000)">
+        <g id="附近门店" transform="translate(0.000000, 1257.000000)">
+            <g id="icons_time" transform="translate(120.000000, 120.000000)">
+                <g id="icons/12px/time">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="nc-rect"></g>
+                    <path d="M6,0.5 C2.975,0.5 0.5,2.975 0.5,6 C0.5,9.025 2.975,11.5 6,11.5 C9.025,11.5 11.5,9.025 11.5,6 C11.5,2.975 9.025,0.5 6,0.5 Z M8.75,6.6875 L5.3125,6.6875 L5.3125,3.25 L6.6875,3.25 L6.6875,5.3125 L8.75,5.3125 L8.75,6.6875 Z" id="Shape" fill="#D1D1D1" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

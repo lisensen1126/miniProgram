@@ -1,0 +1,36 @@
+@import '~@/style/mixin'
+.page-voucher 
+	position: relative
+.status-filter-wrapper
+  position: sticky
+  top: 0
+  display: flex
+  z-index: 20
+  width: 100%
+  height: vw(50)
+  background-color: #fff
+  box-shadow: 0 vw(1) vw(6) 0 rgba(0, 0, 0, .05)
+.filter-item
+  position: relative
+  flex: 1 1 25%
+  display: flex
+  justify-content: center
+  align-items: center
+  font-size: vw(15)
+  line-height: vw(21)
+  color: #999
+  &.is-active
+    color: #353535
+    font-weight: bold
+    &::after
+      content: ''
+      position: absolute
+      bottom: 0
+      left: 50%
+      transform: translateX(-50%)
+      width: vw(75)
+      height: vw(3)
+      background-color: #ffc723
+
+.list-wrapper
+  padding: 0 vw(14) vw(16)

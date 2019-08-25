@@ -1,0 +1,348 @@
+@import '~@/style/mixin'
+.page-Intelligent
+  padding-bottom: vw(50)
+// 爱车
+.maintenance-header
+    width: 100%
+    height: vw(65)
+    display: flex
+    align-items: center
+    padding: vw(10) vw(20)
+    background-color: $bg-white
+    box-sizing: border-box
+    .index_header_line1
+      font-size: vw(11)
+      font-weight: 600
+      color: rgba(0,0,0,1)
+      word-break: break-all
+    .index_header_line2
+      font-size: vw(11)
+      font-weight: 400
+      color: rgba(88,89,91,1)
+    .index_header_car
+      display: flex
+      align-items: center
+      padding-right: vw(7)
+      flex: 1
+      .index_header_car_title
+        .index_header_line1
+          overflow: hidden
+          font-size: vw(12) !important
+          text-overflow: ellipsis
+          -webkit-line-clamp: 2
+          display: -webkit-box
+          -webkit-box-orient: vertical
+          font-weight: bold
+      .index_header_car_image
+        flex-shrink: 0
+        width: vw(46)
+        height: vw(46)
+        image
+          width: 100%
+          height: 100%
+      .index_header_car_title
+        display: flex
+        flex-direction: column
+        justify-content: center
+        margin-left: vw(14)
+        .index_header_line1
+          font-size: vw(11)
+    .index_header_carplate, .index_header_km
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      padding: 0 vw(15)
+    .index_header_km
+      padding-right: 0
+    .index_header_carplate
+      border-left: vw(1) solid rgba(238,238,238,1)
+      border-right: vw(1) solid rgba(238,238,238,1)
+.index_header_null
+    width: 100%
+    height: vw(65)
+    display: flex
+    align-items: center
+    box-sizing: border-box
+    padding: vw(10) vw(20)
+    justify-content: space-between
+    background-color: $bg-white
+    .index_header_addcar
+      display: flex
+      align-items: center
+      image
+        width: vw(43)
+        height: vw(43)
+      .index_header_addcar_title
+        margin-left: vw(15)
+    .index_icon
+      image
+        width: vw(8)
+        height: vw(10)
+    .index_header_line1
+      font-size: vw(11)
+      font-weight: 600
+      color: rgba(0,0,0,1)
+    .index_header_line2
+      font-size: vw(11)
+      font-weight: 400
+      color: rgba(0,0,0,1)
+// tab
+.maintenance-tab
+	.tab-box
+		background: #ffffff
+		margin: vw(15)
+		height: vw(66)
+		line-height: vw(66)       
+		font-size: vw(15)
+		color: #000000
+		display: flex
+		justify-content: space-around
+		align-items: center
+		box-shadow: 0 vw(8) vw(16) 0 rgba(26, 26, 32, 0.04)
+		box-sizing: border-box
+		text-align: center
+		.line
+			border-left: vw(1) solid #EEEEEE
+			height: vw(49)
+		.tab-bar
+			width: 50%
+			font-size: vw(16)
+		.left-img
+			width: vw(16)
+			height: vw(16)
+			vertical-align: middle
+			margin-right: vw(15)
+		.right-img
+			width: vw(6)
+			height: vw(10)
+			vertical-align: middle
+			margin-left: vw(11)
+// 项目列表
+.maintenance-project
+  .model
+    width: 100%
+    .model-list
+      background: #ffffff
+      margin-bottom: vw(10)
+      .worker-cost
+        display: flex
+        padding: vw(15)
+        font-size: vw(16)
+        font-weight: 500
+        .wc-l
+          flex: 1
+          color: #858587
+        .wc-r
+          color: #E50413
+    .model-content
+      height: vw(66)
+      line-height: vw(66)
+      box-sizing: border-box
+      border-bottom: vw(1) solid #EEEEEE
+      display: flex
+      justify-content: space-between
+      align-items: center
+      padding: 0 vw(13) 0 vw(15)
+      .left
+        .left-img
+          width: vw(18)
+          height: vw(18)
+          vertical-align: middle
+          margin-right: vw(9)
+          margin-top: vw(-3)
+      .attribute
+        font-size: vw(16)
+        color: #000000
+      .substance
+        font-size: vw(16)
+        color: #D52F12
+      .disabled
+        font-size: vw(12)
+        color: #858587
+      .recommend
+        color: #000000
+        font-size: vw(14)
+        &.text
+          position: absolute
+          right: vw(75)
+      .image
+        width: vw(44)
+        height: vw(20)
+    .model-detail
+      .version-list
+        flex: 1
+        padding-left: vw(15)
+        padding-top: vw(15)
+        padding-bottom: vw(16)
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        position: relative
+        box-sizing: border-box
+        border-bottom: vw(1) solid #EEEEEE
+        .version-image
+            flex-shrink: 0
+            margin-right: vw(12)
+            width: vw(137)
+            height: vw(85)
+            position: relative
+            .image
+                width: 100%
+                height: 100%
+            .image-top
+                width: vw(65)
+                height: vw(18)
+                position: absolute
+                right: 0
+                top: 0
+        .undercarriage
+          color: #C0C3CC!important
+        .version-describe
+            display: flex
+            justify-content: space-between
+            align-items: left
+            flex-direction: column
+            height: vw(80)
+            .describe-title
+                color: #000000
+                font-weight: 500
+                font-size: vw(15)
+                margin-bottom: vw(5)
+                padding-right: vw(5)
+            .describe-detail
+              color: #E50413
+              font-weight: 500
+              font-size: vw(20)
+              &.text
+                position: absolute
+                right: vw(14)
+                bottom: vw(17)
+        .num
+          position: absolute
+          right: vw(14)
+          bottom: vw(17)
+          font-size: vw(14)
+          color: #000000
+        .lower
+          position: absolute
+          top: 50%
+          right: vw(16)
+          transform: translateY(-50%)
+          width: vw(91)
+          height: vw(69)
+// 温馨提示
+.reminder
+  font-size: vw(12)
+  color: #8E8E8E
+  text-align: center
+  margin: vw(10) 0 vw(34) 0
+// 底部结算
+.maintenance-settlement
+  background: #ffffff
+  position: fixed
+  bottom: 0
+  width: 100%
+  height: vw(46)
+  line-height: vw(46)
+  .model
+    display: flex
+    justify-content: space-between
+    padding: 0
+    .settlement-left
+      flex: 1
+      display: flex
+      justify-content: space-between
+      align-items: center
+      padding: 0 vw(13)
+      box-sizing: border-box
+      .settlement-content
+        .left
+          .left-img
+            width: vw(18)
+            height: vw(18)
+            vertical-align: middle
+            margin-right: vw(9)
+          .attribute
+            font-size: vw(14)
+            color: #332E2E
+            font-weight: 500
+            // margin-right: vw(74)
+      .sub
+        .total
+          display: flex
+          align-items: center
+          justify-content: center
+          color: #393940
+          font-size: vw(15)
+          .money
+            color: #D52F12
+            font-size: vw(20)
+            font-weight: 500
+    .settlement
+      width: vw(125)
+      text-align: center
+      height: vw(46)
+      line-height: vw(46)
+      color: #FFFFFF
+      font-size: vw(14)
+      background: #D52F12
+      text-align: center
+    .settlement-disabled
+      width: vw(115)
+      text-align: center
+      height: vw(46)
+      line-height: vw(46)
+      color: #FFFFFF
+      font-size: vw(14)
+      background: #B3ADAD
+      text-align: center
+.hide
+  display: none
+.show
+  display: block
+
+.pop-modal
+  position: fixed
+  left: 0
+  top: 0
+  right: 0
+  bottom: 0
+  background: rgba(0,0,0,0.5)
+.pop-body
+  background: #ffffff
+  position: fixed
+  height: vw(182)
+  top: 50%
+  left: vw(30)
+  right: vw(30)
+  text-align: center
+  font-size: vw(16)
+  margin-top: vw(-91)
+  .title
+    color: #404040
+    padding-top: vw(40)
+    font-size: vw(16)
+  .content
+    color: #7F7F7F
+    margin-top: vw(5)
+    font-size: vw(14)
+  .btn-box    
+    display: flex
+    justify-content: center
+    margin-top: vw(35)
+    button
+      border-radius: 0
+      margin: 0 vw(12)
+      font-size: vw(14)
+    .back-btn
+      border: vw(1) solid #D9D9D9
+      color: #7F7F7F
+      line-height: vw(32)    
+      width: vw(98)
+    .maintain-btn
+      line-height: vw(34)    
+      width: vw(100)
+      border: none      
+      background: #FBCE07
+      color: #404040

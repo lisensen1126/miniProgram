@@ -1,0 +1,10 @@
+<view style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="{{page_title}}"></top-bar>
+  <empty-page slogan="暂无你的会员卡信息" icon="vipcard" wx:if="{{page === 'CustCardList' && isEmpty === 'off'}}"></empty-page>
+  <empty-page slogan="暂无门店消费记录" icon="consumption" wx:if="{{page === 'PageRecord' && isEmpty === 'off'}}"></empty-page>
+  <empty-page slogan="暂无你的车检报告" icon="carreport" wx:if="{{page === 'PageConsumerCheckCars' && isEmpty === 'off'}}"></empty-page>
+  <view wx:if="{{isEmpty === 'on'}}">
+    <web-view src="{{h5_url}}"></web-view>
+  </view>
+</view>

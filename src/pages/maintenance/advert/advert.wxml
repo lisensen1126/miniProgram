@@ -1,0 +1,7 @@
+<view class="page-advert" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="{{page_title}}"></top-bar>
+	<view wx:for='{{advert_list}}' wx:key='index'>
+		<image src='{{item}}' mode='widthFix'></image>
+	</view>
+</view>

@@ -1,0 +1,17 @@
+{
+  "extEnable": true,
+  "extAppid": "wx354fbe979434a690",
+  "ext": {
+    "host": "https://app.chedianai.com",
+    "shopHash": "622qna8w",
+    "appId": "wx354fbe979434a690",
+    "corpName": "某某企业",
+    "apiRoot": "/app/v1/",
+    "miniProgramName": "aaa",
+    "environment": "",
+    "packageInstructions": [
+      "套餐内洗车卡在全部门店通用",
+      "自购买之日起 {{duration}} 天内有效"
+    ]
+  }
+}

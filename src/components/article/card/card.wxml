@@ -1,0 +1,23 @@
+<view class='collection'>
+  <view class="card-item" style="background-image: url({{image_url}})" data-id="{{id}}" bindtap="goDetail">
+    <view class="card-item-top">
+      <view class="card-item-title">
+        <view class="card-item-name">{{name}}</view>
+        <view class="card-item-use" wx:if="{{content_type === 1}}"><view>可使用</view><view class="num-use">{{num}}</view><view>次</view></view>
+      </view>
+      <!--暂时不显示已售-->
+      <view wx:if="{{false}}" class="card-item-num">已售{{sale}}张</view>
+    </view>
+    <view class="card-item-bottom">
+      <view class="card-item-price">
+        <text class="card-item-nowprice">¥{{price}}</text>
+        <text class="card-item-storeprice">门市价 ¥{{origin_price}}</text>
+      </view>
+      <view class="card-item-button">
+        立即购卡
+      </view>
+    </view>
+  </view>
+  <view class="card-bg-1"></view>
+  <view class="card-bg-2"></view>
+</view>

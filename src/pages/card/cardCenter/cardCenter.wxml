@@ -1,0 +1,26 @@
+<view class="card-center"  style="padding-top: {{topbarHeight}}px">
+  <top-bar title="购卡中心" home="{{showHome}}"></top-bar>
+  <empty-page wx:if="{{list.length === 0 && isinitiated}}" class="categroy-content" slogan="暂无数据" icon="nocard"></empty-page>
+  <scroll-view class="card-wrapper" wx:if="{{list.length !== 0 && isinitiated}}">
+    <view class="card-item" wx:for="{{list}}" wx:key="{{index}}" style="background-image: url({{item.image_url}})" data-id="{{item.id}}" bindtap="goDetail" data-cdp="card_cardCenter_list">
+      <view class="card-item-top">
+        <view class="card-item-title">
+          <view class="card-item-name">{{item.name}}</view>
+          <view class="card-item-use" wx:if="{{item.type === 1}}"><view>可使用</view><view class="num-use">{{item.num}}</view><view>次</view></view>
+        </view>
+        <!--暂时不显示已售-->
+        <view wx:if="{{false}}" class="card-item-num">已售{{item.sale}}张</view>
+      </view>
+      <view class="card-item-bottom">
+        <view class="card-item-price">
+          <text class="card-item-nowprice">¥{{item.price}}</text>
+          <text class="card-item-storeprice">门市价 ¥{{item.origin_price}}</text>
+        </view>
+        <view class="card-item-button">
+          立即购卡
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <custom-loading wx:if="{{list.length !== 0 && isinitiated}}" has-more='{{!isAllLoaded}}' is-loading="{{isLoading}}"></custom-loading>
+</view>

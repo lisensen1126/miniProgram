@@ -1,0 +1,71 @@
+<view class="page-group-success" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="支付成功"></top-bar>
+	<view class="group-content">
+		<!--拼团中-->
+		<view  wx:if="{{group_detail.group_status == 1}}">
+			<view class="group-title" wx:if="{{group_detail.is_open == 1}}">开团成功！</view>
+			<view class="group-title" wx:if="{{group_detail.is_open == 2}}">参团成功！</view>
+			<view class="group-person" wx:if="{{group_detail.group_lack_num > 0}}">还差 <text>{{group_detail.group_lack_num}}</text> 人即可成团</view>
+			<view class="group-person" wx:if="{{group_detail.group_lack_num <= 0 &&group_detail.no_pay_num > 0 }}">
+				还差 <text>{{group_detail.no_pay_num}}</text> 人未付款
+			</view>
+			<view class="group-time">距结束
+				<text class="time" wx:if="{{group_end_time_line_day>0}}">{{group_end_time_line_day}}</text>
+				<text wx:if="{{group_end_time_line_day>0}}">天</text>
+				<text class="time">{{group_end_time_line[0]}}</text> :
+				<text class="time">{{group_end_time_line[1]}}</text> :
+				<text class="time">{{group_end_time_line[2]}}</text>
+			</view>
+		</view>
+
+		<!--拼团成功-->
+		<view class="group-title" wx:if="{{group_detail.group_status == 2}}">
+			<image class="group-success" src="https://oss1.chedianai.com/images/assets/group-success.png"/>
+			<view class="success-text">拼团成功</view>
+		</view>
+
+		<!--拼团失败-->
+		<view class="group-title" wx:if="{{group_detail.group_status == 3}}">拼团失败</view>
+
+		<!--团人员头像、支付状态-->
+		<view class="group-header">
+			<view wx:for="{{group_detail.group_user_data}}" wx:key="index"
+				  class="item-normal {{index == 0 ? 'head' : ''}} {{item.status == 2 ? 'un-pay-head' : ''}}">
+				<image src="{{item.avatar?item.avatar:'https://oss1.chedianai.com/images/assets/default-avatar-icon.png'}}"/>
+				<view wx:if="{{index == 0}}" class="label-head">团长</view>
+				<view wx:if="{{item.status == 2}}" class="label-un-pay">待付款</view>
+			</view>
+			<view wx:for="{{group_detail.group_lack_num}}" wx:key="index" class="item-normal">
+				<image src="https://oss1.chedianai.com/images/assets/default-group-head_new.png"/>
+			</view>
+		</view>
+	</view>
+	<!--拼团中-->
+	<view class="btn font-medium" wx:if="{{group_detail.group_status == 1}}">
+		<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+			<button formType="submit" wx:if="{{group_detail.group_lack_num > 0}}" class="share-btn {{group_detail.group_status == 3?'default-color' : ''}}" open-type="share">邀请好友来参团</button>
+		</form>
+		<form class="form-btn">
+			<button wx:if="{{group_detail.group_lack_num > 0}}" class="share-btn normal-btn" bindtap="goPoster">生成海报图片</button>
+		</form>
+		<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+			<button formType="submit" class="normal-btn" bindtap="goOrderDetail">查看订单</button>
+		</form>
+	</view>
+	<!--拼团成功、失败-->
+	<view class="btn font-medium" wx:if="{{group_detail.group_status == 2 || group_detail.group_status == 3}}">
+		<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+			<button formType="submit" wx:if="{{group_detail.group_status == 2 && type >=3}}" class="share-btn" bindtap="goCardDetail">查看养护卡</button>
+		</form>
+		<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+			<button formType="submit" wx:if="{{group_detail.group_status == 2}}" class="share-btn" bindtap="goOrderDetail">查看订单</button>
+		</form>
+		<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+			<button formType="submit" class="normal-btn" bindtap="goGroupCategoryList">继续逛逛</button>
+		</form>
+	</view>
+
+<!-- 推送优惠券弹框 -->
+	<coupon-model bindtriggercancel="couponCancel" wx:if="{{isShowCoupon && recommend_coupon.length > 0}}" list="{{recommend_coupon}}"></coupon-model>
+</view>

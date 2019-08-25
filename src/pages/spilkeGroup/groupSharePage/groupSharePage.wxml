@@ -1,0 +1,680 @@
+<view wx:if="{{page_show}}" class="page-group-success {{goodsInfo.is_sale == 2?'p-b-50':''}}" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="好友邀你来参团" home="{{true}}"></top-bar>
+	<view wx:if="{{isShowDefault === false}}">
+		<!--商品-->
+		<view wx:if="{{type == 1}}">
+			<view class="goods-info-block">
+				<!--商品-->
+				<view class="goods-info">
+					<view class="item-avatar">
+						<view class="item-image">
+							<image-show src="{{goodsInfo.goods_imgs[0]}}" quality="95"></image-show>
+						</view>
+						<image class="group" src="https://oss1.chedianai.com/images/assets/goods-icon.png"/>
+					</view>
+					<view class="order-content">
+						<view class="order-desc">
+							<view class="order-title font-medium">{{goodsInfo.goods_name}}</view>
+						</view>
+						<!--价格-->
+						<view class="time-stamp">
+							<view class="order-amount">¥{{goodsInfo.group_price}}</view>
+							<image class="order-spike-label" src="https://oss1.chedianai.com/images/assets/order-group-label.png"/>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!--本人参团-->
+			<view class="group-content" wx:if="{{group_detail.is_join == 1}}">
+				<!--拼团人员未满-->
+				<view wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num > 0}}" class="group-person">
+					还差 <text>{{group_detail.group_lack_num}}</text> 人即可成团
+				</view>
+				<!--拼团人员已满，存在人员未付款-->
+				<view wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num <= 0 && group_detail.no_pay_num > 0}}" class="group-person">
+					还差 <text>{{group_detail.no_pay_num}}</text> 人未付款
+				</view>
+				<!--拼团状态-->
+				<view class="group-time" wx:if="{{group_detail.group_status == 1}}">距结束
+					<text class="time" wx:if="{{group_end_time_line_day>0}}">{{group_end_time_line_day}}</text>
+					<text wx:if="{{group_end_time_line_day>0}}">天</text>
+					<text>{{group_end_time_line[0]}}</text> :
+					<text>{{group_end_time_line[1]}}</text> :
+					<text>{{group_end_time_line[2]}}</text>
+				</view>
+				<view wx:if="{{group_detail.group_status == 2}}" class="group-title">拼团成功</view>
+				<view wx:if="{{group_detail.group_status == 3}}" class="group-title">拼团失败～</view>
+				<view class="group-header">
+					<view wx:for="{{group_detail.group_user_data}}"
+						  wx:key="index"
+						  class="item-normal head {{item.status == 2 ? 'un-pay-head' : ''}}">
+						<image src="{{item.avatar}}"/>
+						<view wx:if="{{index == 0}}" class="label-head">团长</view>
+						<view wx:if="{{item.status == 2}}" class="label-un-pay">待付款</view>
+					</view>
+					<view wx:for="{{group_detail.group_lack_num}}" wx:key="index" class="item-normal">
+						<image src="https://oss1.chedianai.com/images/assets/default-group-head_new.png"/>
+					</view>
+				</view>
+				<!--未参团人数<0 或 已参加过该拼团  不可再参团-->
+				<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+					<button formType="submit" wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num > 0}}" class="share-btn font-medium {{(group_detail.group_status != 1 || group_detail.group_lack_num <= 0 || group_detail.is_join == 1) ?'default-color':''}}" bindtap="chooseSku">立即参团</button>
+					<!--发起新拼团-->
+					<button formType="submit" class="share-btn font-medium" wx:if="{{group_detail.group_status == 2 || group_status == 3 || (group_detail.group_status == 1 && group_detail.group_lack_num <= 0)}}" bindtap="goGroupList">发起新拼团</button>
+				</form>
+			</view>
+			<!--本人未参团-->
+			<view class="group-content" wx:if="{{group_detail.is_join == 2}}">
+				<!--拼团人员未满-->
+				<view wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num > 0}}" class="group-person">
+					还差 <text>{{group_detail.group_lack_num}}</text> 人即可成团
+				</view>
+				<!--拼团人员已满，存在人员未付款-->
+				<view wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num <= 0 && group_detail.no_pay_num > 0}}" class="group-person">
+					还差 <text>{{group_detail.no_pay_num}}</text> 人未付款
+				</view>
+				<!--拼团成功-->
+				<view wx:if="{{group_detail.group_status == 2}}" class="group-title">你来晚了，名额已满～</view>
+				<view wx:if="{{group_detail.group_status == 3}}" class="group-title">你来晚了，拼团已结束～</view>
+				<view class="group-time" wx:if="{{group_detail.group_status == 1 && (group_detail.no_pay_num > 0 || group_detail.group_lack_num > 0)}}">距结束
+					<text class="time" wx:if="{{group_end_time_line_day>0}}">{{group_end_time_line_day}}</text>
+					<text wx:if="{{group_end_time_line_day>0}}">天</text>
+					<text>{{group_end_time_line[0]}}</text> :
+					<text>{{group_end_time_line[1]}}</text> :
+					<text>{{group_end_time_line[2]}}</text>
+				</view>
+				<view class="group-header">
+					<view wx:for="{{group_detail.group_user_data}}"
+						  wx:key="index"
+						  class="item-normal head {{item.status == 2 ? 'un-pay-head' : ''}}">
+						<image mode="aspectFill" src="{{item.avatar}}"/>
+						<view wx:if="{{index == 0}}" class="label-head">团长</view>
+						<view wx:if="{{item.status == 2}}" class="label-un-pay">待付款</view>
+					</view>
+					<view wx:for="{{group_detail.group_lack_num}}" wx:key="index" class="item-normal">
+						<image src="https://oss1.chedianai.com/images/assets/default-group-head_new.png"/>
+					</view>
+				</view>
+				<!--未参团人数<0 或 已参加过该拼团  不可再参团-->
+				<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+					<button formType="submit" class="share-btn font-medium"
+							bindtap="chooseSku" wx:if="{{group_detail.group_status == 1 &&  group_detail.group_lack_num > 0}}">立即参团</button>
+					<!--拼团人员已满、拼团已结束、拼团成功 发起新拼团-->
+					<button formType="submit" class="share-btn font-medium"
+							wx:if="{{group_detail.group_status == 2 || group_detail.group_status == 3 || (group_detail.group_status == 1 &&  group_detail.group_lack_num <= 0)}}"
+							bindtap="goGroupList">发起新拼团</button>
+				</form>
+			</view>
+			<!--玩法说明-->
+			<view class="desc-block">
+				<view class="title">玩法说明</view>
+				<view class="desc-step">
+					<view class="desc-step-block">
+						<image class="desc-icon" src="https://oss1.chedianai.com/images/assets/group-step-one.png"/>
+						<text>开团</text>
+						<image class="desc-line" src="https://oss1.chedianai.com/images/assets/group-step-dot.png"/>
+					</view>
+					<view class="desc-step-block">
+						<image class="desc-icon" src="https://oss1.chedianai.com/images/assets/play-icon2.png"/>
+						<text>邀请好友</text>
+						<image class="desc-line" src="https://oss1.chedianai.com/images/assets/group-step-dot.png"/>
+					</view>
+					<view class="desc-step-block">
+						<image class="desc-icon" src="https://oss1.chedianai.com/images/assets/play-icon3.png"/>
+						<view>
+							<view>人满成团</view>
+							<view class="desc-last">不满可退款</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!--商品详情-->
+			<view class="content-detail">
+				<view class="detail-title">图文详情
+				</view>
+				<view class="detail-pic-list">
+					<view class="description rich-content">
+						<block wx:for="{{goodsInfo.goods_imgs}}" wx:for-item="contentItem" wx:key="index">
+							<image src="{{contentItem}}" mode="widthFix" class="rich-content-img" lazy-load="true"/>
+						</block>
+					</view>
+				</view>
+			</view>
+			<view class="sale-down-btn" wx:if="{{goodsInfo.is_sale == 2}}">
+				商品已下架～
+			</view>
+			<!--sku浮层-->
+			<view class="sku-cover" wx:if="{{cartCover}}">
+				<view class="cover-content">
+					<view class="sku-content {{sku_come_type == 2?'p-b-90':''}}">
+						<!--顶部sku标题-->
+						<view class="sku-title">
+							<view class="close-box" bindtap="closeCartCover">
+								<image class="close" src="/images/default/close-btn.png"></image>
+							</view>
+							<view class="sku-title-info">
+								<view class="item-pic" bindtap="previewImg" data-img="{{skuItem.sku_pics[0]}}" data-imgs="{{[skuItem.sku_pics[0]]}}">
+									<image-show src="{{skuItem.sku_pics[0]}}" quality="95"></image-show>
+								</view>
+								<view class="item-info">
+									<view class="info-title">{{goodsInfo.goods_name+skuInfo}}</view>
+									<view class="info-price">¥ {{skuItem.group_price}}<image class="order-spike-label" src="https://oss1.chedianai.com/images/assets/order-group-label.png"/>
+									</view>
+								</view>
+							</view>
+							<!--错误提示-->
+							<view class="sku-err-tip" wx:if="{{sku_err_tip.length>0}}">{{sku_err_tip}}</view>
+						</view>
+						<!--sku参数数组-->
+						<view class="sku-list">
+							<view class="sku-item font-medium" wx:for="{{goodsInfo.attribute_data}}"
+								  wx:key="attributeItem.attribute_id"
+								  wx:for-index="index"
+								  wx:for-item="attributeItem">
+								<view class="item-title">{{attributeItem.attribute_name}} <text class="err-tip" wx:if="{{attributeItem.is_enabled_tip === 1}}">请选择{{attributeItem.attribute_name}}</text></view>
+								<view class="item-label-list font-medium">
+									<!--只有一条属性，禁用的sku对应的参数不展示-->
+									<view class="item-label {{(parameterItem.is_checkout == true)?'item-is-active':''}} {{parameterItem.is_enabled === 3?'bor_dashed':''}}"
+										  wx:for="{{attributeItem.attribute_items}}"
+										  wx:key="parameterItem.parameter_id"
+										  wx:for-index="itemIndex"
+										  data-id="{{parameterItem.attribute_item_id}}"
+										  data-item="{{parameterItem}}"
+										  data-index="{{index}}"
+										  data-enabled="{{parameterItem.is_enabled}}"
+										  wx:for-item="parameterItem"
+										  wx:if="{{parameterItem.is_enabled !== 3 && goodsInfo.attribute_data.length === 1}}" bindtap="checkParameterItem">
+										<text class="label-content">{{parameterItem.attribute_item_value}}</text>
+									</view>
+									<!--大于一条属性，禁用的sku对应的参数展示虚线框-->
+									<view class="item-label font-medium {{(parameterItem.is_checkout == true)?'item-is-active':''}} {{parameterItem.is_enabled === 3?'bor_dashed':''}}"
+										  wx:for="{{attributeItem.attribute_items}}"
+										  wx:key="parameterItem.parameter_id"
+										  wx:for-index="itemIndex"
+										  data-id="{{parameterItem.attribute_item_id}}"
+										  data-item="{{parameterItem}}"
+										  data-index="{{index}}"
+										  data-enabled="{{parameterItem.is_enabled}}"
+										  wx:for-item="parameterItem"
+										  wx:if="{{parameterItem.is_enabled !== 2 && goodsInfo.attribute_data.length > 1}}" bindtap="checkParameterItem">
+										<text class="label-content">{{parameterItem.attribute_item_value}}</text>
+									</view>
+								</view>
+							</view>
+						</view>
+						<!--数量-->
+						<view class="sku-num">
+							<view class="sku-num-title">数量</view>
+							<view class="btn-block">
+								<view class="labels" data-quantity="-1" bindtap="changeItemNum">
+									<image class="num-btn-reduce" src="https://oss2.chedianai.com/images/assets/service-reduce-btn.png"></image>
+								</view>
+								<view class="num">{{quantity}}</view>
+								<view class="labels"  data-quantity="1" bindtap="changeItemNum">
+									<image class="num-btn-add" src="/images/default/add-btn.png"></image>
+								</view>
+
+							</view>
+						</view>
+					</view>
+					<view class="font-medium" wx:if="{{goodsInfo.is_sale == 1}}">
+						<view class="cover-btn-block">
+							<form class="form-btn" bindsubmit="sendFormId" wx:if="{{group_detail.group_status == 1}}" report-submit="true">
+								<button formType="submit" class="cover-btn {{show_sku_err ? 'default' : ''}}" bindtap="isCanJoinGroup">
+									立即参团
+								</button>
+							</form>
+							<view class="cover-btn default" wx:if="{{group_detail.group_status == 2}}">
+								你来晚了，名额已满～
+							</view>
+							<view class="cover-btn default" wx:if="{{group_detail.group_status == 3}}">
+								你来晚了，拼团已结束～
+							</view>
+						</view>
+					</view>
+					<view class="action-button default" wx:if="{{goodsInfo.is_sale == 2}}">
+						商家暂未上架该商品
+					</view>
+				</view>
+			</view>
+		</view>
+		<!--服务-->
+		<view wx:if="{{type == 2}}">
+			<view class="goods-info-block">
+				<!--商品、服务简介-->
+				<view class="goods-info">
+					<view class="item-avatar">
+						<view class="item-image">
+							<image-show src="{{goodsInfo.goods_imgs[0]}}" quality="95"></image-show>
+						</view>
+						<image class="group" src="https://oss1.chedianai.com/images/assets/service-icon.png"/>
+					</view>
+					<view class="order-content">
+						<view class="order-desc">
+							<view class="order-title font-medium">{{goodsInfo.goods_name}}</view>
+						</view>
+						<!--<view class="order-attribute">{{goodsInfo.sku_default}}</view>-->
+						<!--价格-->
+						<view class="time-stamp font-medium">
+							<view class="order-amount">¥{{goodsInfo.group_price}}</view>
+							<image class="order-spike-label" src="https://oss1.chedianai.com/images/assets/order-group-label.png"/>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!--本人参团-->
+			<view class="group-content" wx:if="{{group_detail.is_join == 1}}">
+				<!--拼团人员未满-->
+				<view wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num > 0}}" class="group-person">
+					还差 <text>{{group_detail.group_lack_num}}</text> 人即可成团
+				</view>
+				<!--拼团人员已满，存在人员未付款-->
+				<view wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num <= 0 && group_detail.no_pay_num > 0}}" class="group-person">
+					还差 <text>{{group_detail.no_pay_num}}</text> 人未付款
+				</view>
+				<!--拼团状态-->
+				<view class="group-time" wx:if="{{group_detail.group_status == 1}}">距结束
+					<text class="time" wx:if="{{group_end_time_line_day>0}}">{{group_end_time_line_day}}</text>
+					<text wx:if="{{group_end_time_line_day>0}}">天</text>
+					<text>{{group_end_time_line[0]}}</text> :
+					<text>{{group_end_time_line[1]}}</text> :
+					<text>{{group_end_time_line[2]}}</text>
+				</view>
+				<view wx:if="{{group_detail.group_status == 2}}" class="group-title">拼团成功</view>
+				<view wx:if="{{group_detail.group_status == 3}}" class="group-title">拼团失败～</view>
+				<view class="group-header">
+					<view wx:for="{{group_detail.group_user_data}}"
+						  wx:key="index"
+						  class="item-normal head {{item.status == 2 ? 'un-pay-head' : ''}}">
+						<image src="{{item.avatar}}"/>
+						<view wx:if="{{index == 0}}" class="label-head">团长</view>
+						<view wx:if="{{item.status == 2}}" class="label-un-pay">待付款</view>
+					</view>
+					<view wx:for="{{group_detail.group_lack_num}}" wx:key="index" class="item-normal">
+						<image src="https://oss1.chedianai.com/images/assets/default-group-head_new.png"/>
+					</view>
+				</view>
+				<!--未参团人数<0 或 已参加过该拼团  不可再参团-->
+				<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+					<button formType="submit" class="share-btn font-medium {{(group_detail.group_status != 1 || group_detail.group_lack_num <= 0 || group_detail.is_join == 1) ?'default-color':''}}"
+							wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num > 0}}"
+							bindtap="isCanJoinGroup">立即参团</button>
+					<!--拼团人员已满、拼团已结束、拼团成功 发起新拼团-->
+					<button formType="submit" class="share-btn font-medium"
+							wx:if="{{group_detail.group_status == 2 || group_detail.group_status == 3 || (group_detail.group_status == 1 &&  group_detail.group_lack_num <= 0)}}"
+							bindtap="goGroupList">发起新拼团</button>
+				</form>
+			</view>
+			<!--本人未参团-->
+			<view class="group-content" wx:if="{{group_detail.is_join == 2}}">
+				<!--拼团人员未满-->
+				<view wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num > 0}}" class="group-person">
+					还差 <text>{{group_detail.group_lack_num}}</text> 人即可成团
+				</view>
+				<!--拼团人员已满，存在人员未付款-->
+				<view wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num <= 0 && group_detail.no_pay_num > 0}}" class="group-person">
+					还差 <text>{{group_detail.no_pay_num}}</text> 人未付款
+				</view>
+				<!--拼团成功-->
+				<view wx:if="{{group_detail.group_status == 2}}" class="group-title">你来晚了，名额已满～</view>
+				<view wx:if="{{group_detail.group_status == 3}}" class="group-title">你来晚了，拼团已结束～</view>
+				<view class="group-time" wx:if="{{group_detail.group_status == 1 && (group_detail.no_pay_num > 0 || group_detail.group_lack_num > 0)}}">距结束
+					<text class="time" wx:if="{{group_end_time_line_day>0}}">{{group_end_time_line_day}}</text>
+					<text wx:if="{{group_end_time_line_day>0}}">天</text>
+					<text>{{group_end_time_line[0]}}</text> :
+					<text>{{group_end_time_line[1]}}</text> :
+					<text>{{group_end_time_line[2]}}</text>
+				</view>
+				<view class="group-header">
+					<view wx:for="{{group_detail.group_user_data}}"
+						  wx:key="index"
+						  class="item-normal head {{item.status == 2 ? 'un-pay-head' : ''}}">
+						<image mode="aspectFill" src="{{item.avatar?item.avatar:'https://oss1.chedianai.com/images/assets/default-avatar-icon.png'}}"/>
+						<view wx:if="{{index == 0}}" class="label-head">团长</view>
+						<view wx:if="{{item.status == 2}}" class="label-un-pay">待付款</view>
+					</view>
+					<view wx:for="{{group_detail.group_lack_num}}" wx:key="index" class="item-normal">
+						<image src="https://oss1.chedianai.com/images/assets/default-group-head_new.png"/>
+					</view>
+				</view>
+				<!--未参团人数<0 或 已参加过该拼团  不可再参团-->
+				<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+					<button formType="submit" wx:if="{{group_detail.group_status == 1 &&  group_detail.group_lack_num > 0}}" class="share-btn font-medium {{(group_detail.group_status != 1 || group_detail.group_lack_num <= 0 || group_detail.is_join == 1) ?'default-color':''}}" bindtap="closeCartCover">立即参团</button>
+
+					<!--拼团人员已满、拼团已结束、拼团成功 发起新拼团-->
+					<button formType="submit" class="share-btn font-medium"
+							wx:if="{{group_detail.group_status == 2 || group_detail.group_status == 3 || (group_detail.group_status == 1 &&  group_detail.group_lack_num <= 0)}}"
+							bindtap="goGroupList">发起新拼团</button>
+				</form>
+			</view>
+			<!--玩法说明-->
+			<view class="desc-block">
+				<view class="title">玩法说明</view>
+				<view class="desc-step">
+					<view class="desc-step-block">
+						<image class="desc-icon" src="https://oss1.chedianai.com/images/assets/group-step-one.png"/>
+						<text>开团</text>
+						<image class="desc-line" src="https://oss1.chedianai.com/images/assets/group-step-dot.png"/>
+					</view>
+					<view class="desc-step-block">
+						<image class="desc-icon" src="https://oss1.chedianai.com/images/assets/play-icon2.png"/>
+						<text>邀请好友</text>
+						<image class="desc-line" src="https://oss1.chedianai.com/images/assets/group-step-dot.png"/>
+					</view>
+					<view class="desc-step-block">
+						<image class="desc-icon" src="https://oss1.chedianai.com/images/assets/play-icon3.png"/>
+						<view>
+							<view>人满成团</view>
+							<view class="desc-last">不满可退款</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!--商品详情-->
+			<view class="content-detail">
+				<view class="detail-title">图文详情
+				</view>
+				<view class="detail-pic-list">
+					<view class="description rich-content">
+						<block wx:for="{{goodsInfo.goods_imgs}}" wx:for-item="contentItem" wx:key="index">
+							<image src="{{contentItem}}" mode="widthFix" class="rich-content-img" lazy-load="true"/>
+						</block>
+					</view>
+				</view>
+			</view>
+			<!--sku浮层-->
+			<view class="service-sku-cover" wx:if="{{cartCover}}">
+				<view class="cover-content">
+					<view class="sku-content">
+						<view class="close-box" bindtap="closeCartCover">
+							<image class="close" src="/images/default/close-btn.png"></image>
+						</view>
+						<!--顶部sku标题-->
+						<view class="sku-title">
+							<view class="sku-title-info">
+								<view class="item-pic" bindtap="previewImg" data-img="{{goodsInfo.goods_imgs}}" data-imgs="{{[goodsInfo.goods_imgs]}}">
+									<image-show src="{{goodsInfo.goods_imgs}}" quality="95"></image-show>
+								</view>
+								<view class="item-info">
+									<view class="info-block">
+										<view class="label-type">{{goodsInfo.num}}人团</view>
+										<view class="info-title font-medium">{{goodsInfo.goods_name}}</view>
+									</view>
+									<!--单人购买不展示拼团相关数据-->
+									<view class="price-block"  wx:if="{{skuCoverType != 3}}">
+										<view class="goods-price font-medium">¥{{goodsInfo.group_price}}
+										</view>
+										<view class="default-price font-medium">¥{{goodsInfo.goods_price}}
+										</view>
+									</view>
+								</view>
+							</view>
+						</view>
+						<!--数量-->
+						<block>
+							<view class="sku-cover-btn content-detail-num">
+								<view class="info-title">数量
+								</view>
+								<view class="btn-block">
+									<view class="labels" data-quantity="-1" bindtap="changeItemNum">
+										<image class="num-btn-reduce {{quantity == 1 ? 'disable-num' : ''}}" src="https://oss2.chedianai.com/images/assets/service-reduce-btn.png"></image>
+									</view>
+									<view class="num">{{quantity}}</view>
+									<view class="labels"  data-quantity="1" bindtap="changeItemNum">
+										<image class="num-btn-add" src="/images/default/light-add-btn.png"></image>
+									</view>
+								</view>
+							</view>
+						</block>
+					</view>
+					<view class="action-button" wx:if="{{goodsInfo.is_sale == 1}}">
+						<view class="font-semibold">
+							<form class="form-btn" bindsubmit="sendFormId" wx:if="{{group_detail.group_status == 1}}" report-submit="true">
+								<button formType="submit" class="submit-all-button"
+										bindtap="isCanJoinGroup">确定</button>
+							</form>
+							<view class="submit-all-button submit-all-default" wx:if="{{group_detail.group_status == 2}}">
+								你来晚了，名额已满～
+							</view>
+							<view class="submit-all-button submit-all-default" wx:if="{{group_detail.group_status == 3}}">
+								你来晚了，拼团已结束～
+							</view>
+						</view>
+					</view>
+					<view class="action-button color-default-flex" wx:if="{{goodsInfo.is_sale == 2}}">
+						商家暂未上架该服务
+					</view>
+				</view>
+			</view>
+		</view>
+		<!--养护卡-->
+		<view wx:if="{{type == 3}}">
+			<view class="goods-info-block">
+				<!--商品、服务简介-->
+				<view class="goods-info">
+					<view class="item-avatar">
+						<view class="item-image">
+							<image-show src="{{goodsInfo.image_url}}" quality="95"></image-show>
+						</view>
+						<image class="group" src="https://oss1.chedianai.com/images/assets/card-icon.png"/>
+					</view>
+					<view class="order-content">
+						<view class="order-desc">
+							<view class="order-title font-medium">{{goodsInfo.name}}</view>
+						</view>
+						<!--价格-->
+						<view class="time-stamp font-medium">
+							<view class="order-amount">¥{{goodsInfo.group_price}}</view>
+							<image class="order-spike-label" src="https://oss1.chedianai.com/images/assets/order-group-label.png"/>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!--本人参团-->
+			<view class="group-content" wx:if="{{group_detail.is_join == 1}}">
+				<!--拼团人员未满-->
+				<view wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num > 0}}" class="group-person">
+					还差 <text>{{group_detail.group_lack_num}}</text> 人即可成团
+				</view>
+				<!--拼团人员已满，存在人员未付款-->
+				<view wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num <= 0 && group_detail.no_pay_num > 0}}" class="group-person">
+					还差 <text>{{group_detail.no_pay_num}}</text> 人未付款
+				</view>
+				<!--拼团状态-->
+				<view class="group-time" wx:if="{{group_detail.group_status == 1}}">距结束
+					<text class="time" wx:if="{{group_end_time_line_day>0}}">{{group_end_time_line_day}}</text>
+					<text wx:if="{{group_end_time_line_day>0}}">天</text>
+					<text>{{group_end_time_line[0]}}</text> :
+					<text>{{group_end_time_line[1]}}</text> :
+					<text>{{group_end_time_line[2]}}</text>
+				</view>
+				<view wx:if="{{group_detail.group_status == 2}}" class="group-title">拼团成功</view>
+				<view wx:if="{{group_detail.group_status == 3}}" class="group-title">拼团失败～</view>
+				<view class="group-header">
+					<view wx:for="{{group_detail.group_user_data}}"
+						  wx:key="index"
+						  class="item-normal head {{item.status == 2 ? 'un-pay-head' : ''}}">
+						<image src="{{item.avatar}}"/>
+						<view wx:if="{{index == 0}}" class="label-head">团长</view>
+						<view wx:if="{{item.status == 2}}" class="label-un-pay">待付款</view>
+					</view>
+					<view wx:for="{{group_detail.group_lack_num}}" wx:key="index" class="item-normal">
+						<image src="https://oss1.chedianai.com/images/assets/default-group-head_new.png"/>
+					</view>
+				</view>
+				<!--未参团人数<0 或 已参加过该拼团  不可再参团-->
+				<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+					<button formType="submit" class="share-btn font-medium {{(group_detail.group_status != 1 || group_detail.group_lack_num <= 0 || group_detail.is_join == 1) ?'default-color':''}}"
+							wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num > 0}}"
+							bindtap="isCanJoinGroup">立即参团</button>
+					<!--拼团人员已满、拼团已结束、拼团成功 发起新拼团-->
+					<button formType="submit" class="share-btn font-medium"
+							wx:if="{{group_detail.group_status == 2 || group_detail.group_status == 3 || (group_detail.group_status == 1 &&  group_detail.group_lack_num <= 0)}}"
+							bindtap="goGroupList">发起新拼团</button>
+				</form>
+			</view>
+			<!--本人未参团-->
+			<view class="group-content" wx:if="{{group_detail.is_join == 2}}">
+				<!--拼团人员未满-->
+				<view wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num > 0}}" class="group-person">
+					还差 <text>{{group_detail.group_lack_num}}</text> 人即可成团
+				</view>
+				<!--拼团人员已满，存在人员未付款-->
+				<view wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num <= 0 && group_detail.no_pay_num > 0}}" class="group-person">
+					还差 <text>{{group_detail.no_pay_num}}</text> 人未付款
+				</view>
+				<!--拼团成功-->
+				<view wx:if="{{group_detail.group_status == 2}}" class="group-title">你来晚了，名额已满～</view>
+				<view wx:if="{{group_detail.group_status == 3}}" class="group-title">你来晚了，拼团已结束～</view>
+				<view class="group-time" wx:if="{{group_detail.group_status == 1 && (group_detail.no_pay_num > 0 || group_detail.group_lack_num > 0)}}">距结束
+					<text class="time" wx:if="{{group_end_time_line_day>0}}">{{group_end_time_line_day}}</text>
+					<text wx:if="{{group_end_time_line_day>0}}">天</text>
+					<text>{{group_end_time_line[0]}}</text> :
+					<text>{{group_end_time_line[1]}}</text> :
+					<text>{{group_end_time_line[2]}}</text>
+				</view>
+				<view class="group-header">
+					<view wx:for="{{group_detail.group_user_data}}"
+						  wx:key="index"
+						  class="item-normal head {{item.status == 2 ? 'un-pay-head' : ''}}">
+						<image mode="aspectFill" src="{{item.avatar?item.avatar:'https://oss1.chedianai.com/images/assets/default-avatar-icon.png'}}"/>
+						<view wx:if="{{index == 0}}" class="label-head">团长</view>
+						<view wx:if="{{item.status == 2}}" class="label-un-pay">待付款</view>
+					</view>
+					<view wx:for="{{group_detail.group_lack_num}}" wx:key="index" class="item-normal">
+						<image src="https://oss1.chedianai.com/images/assets/default-group-head_new.png"/>
+					</view>
+				</view>
+				<!--未参团人数<0 或 已参加过该拼团  不可再参团-->
+				<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+					<button formType="submit" wx:if="{{group_detail.group_status == 1 &&  group_detail.group_lack_num > 0}}" class="share-btn font-medium {{(group_detail.group_status != 1 || group_detail.group_lack_num <= 0 || group_detail.is_join == 1) ?'default-color':''}}" bindtap="isCanJoinGroup">立即参团</button>
+					<!--拼团人员已满、拼团已结束、拼团成功 发起新拼团-->
+					<button formType="submit" class="share-btn font-medium"
+							wx:if="{{group_detail.group_status == 2 || group_detail.group_status == 3 || (group_detail.group_status == 1 &&  group_detail.group_lack_num <= 0)}}"
+							bindtap="goGroupList">发起新拼团</button>
+				</form>
+			</view>
+			<!--玩法说明-->
+			<view class="desc-block">
+				<view class="title">玩法说明</view>
+				<view class="desc-step">
+					<view class="desc-step-block">
+						<image class="desc-icon" src="https://oss1.chedianai.com/images/assets/group-step-one.png"/>
+						<text>开团</text>
+						<image class="desc-line" src="https://oss1.chedianai.com/images/assets/play-line.png"/>
+					</view>
+					<view class="desc-step-block">
+						<image class="desc-icon" src="https://oss1.chedianai.com/images/assets/play-icon2.png"/>
+						<text>邀请好友</text>
+						<image class="desc-line" src="https://oss1.chedianai.com/images/assets/play-line.png"/>
+					</view>
+					<view class="desc-step-block">
+						<image class="desc-icon" src="https://oss1.chedianai.com/images/assets/play-icon3.png"/>
+						<view>
+							<view>人满成团</view>
+							<view class="desc-last">不满可退款</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!-- 免激活项目 -->
+			<view class="project-item" wx:if="{{goodsInfo.type === 1 && activation_length !== 0}}">
+				<view class="project-title">
+					<view class="project-name">免激活项目</view>
+				</view>
+				<view class="goods-describe">可直接到店使用</view>
+				<view class="project-content">
+					<view class="project-content-item" wx:for="{{goodsInfo.list}}" wx:key="{{index}}" wx:if="{{item.type === 2}}">
+						<view class="project-content-name">{{item.name}}</view>
+						<view class="project-content-direction">{{item.description}}</view>
+						<view class="project-content-angle" wx:if="{{item.num !== 0}}">可用{{item.num}}次</view>
+						<view class="project-content-angle" wx:if="{{item.num === 0}}">无限次</view>
+						<view class="project-content-time">{{item.expiry}}个月内有效</view>
+					</view>
+				</view>
+			</view>
+			<!-- 需激活项目 -->
+			<view class="project-item" wx:if="{{goodsInfo.type === 1}}">
+				<view class="project-title">
+					<view class="project-name">需激活项目</view>
+				</view>
+				<view class="goods-describe">购买指定商品后使用</view>
+				<view class="project-content">
+					<view class="project-content-item" wx:for="{{goodsInfo.list}}" wx:key="{{index}}" wx:if="{{item.type === 1}}">
+						<view class="project-content-name">{{item.name}}</view>
+						<view class="project-content-direction">{{item.description}}</view>
+						<view class="project-content-angle active" wx:if="{{item.is_end === 1 && goodsInfo.type === 1}}">终极</view>
+						<view class="project-content-angle" wx:if="{{item.is_end === 2}}">可用{{item.num}}次</view>
+						<view class="project-content-angle" wx:if="{{item.is_end == 2 && item.num === 0}}">无限次</view>
+					</view>
+				</view>
+			</view>
+			<!-- 项目内容 -->
+			<view class="project-item" wx:if="{{goodsInfo.type === 2}}">
+				<view class="project-title">
+					<view class="project-name">项目内容</view>
+				</view>
+				<view class="project-content">
+					<view class="project-content-item" wx:for="{{goodsInfo.list}}" wx:key="{{index}}">
+						<view class="project-content-name">{{item.name}}</view>
+						<view class="project-content-direction">{{item.description}}</view>
+						<view class="project-content-angle active" wx:if="{{item.is_end === 1 && goodsInfo.type === 1}}">终极</view>
+						<view class="project-content-angle" wx:if="{{item.is_end === 2}}">可用{{item.num}}次</view>
+						<view class="project-content-angle" wx:if="{{item.is_end == 2 && item.num === 0}}">无限次</view>
+					</view>
+				</view>
+			</view>
+			<!-- 指定商品 -->
+			<view class="project-item" wx:if="{{goodsInfo.type === 1 && list.length>0}}">
+				<view class="project-title goods-title">
+					<view class="project-name">指定商品</view>
+					<view class="project-button" bindtap="productMore">
+						更多 <image class="allow-right" src="/images/index/arrow_right.png"></image>
+					</view>
+				</view>
+				<view class="goods-describe">使用此卡需购买指定商品用以激活项目</view>
+				<view class="goods-content">
+					<view class="goods-image" wx:for="{{list}}" wx:if="{{index <= 2}}" wx:key="{{index}}">
+						<image class="goods-img" src="{{item.pic}}"></image>
+					</view>
+				</view>
+			</view>
+			<!-- 使用须知 -->
+			<view class="project-item">
+				<view class="project-title">
+					<view class="project-name">使用须知</view>
+				</view>
+				<view class="project-content">
+					<view class="instructions-item">
+						<view class="instructions-name">卡有效期</view>
+						<view class="instructions-direction">购卡日起{{goodsInfo.expiry}}个月有效（周末、法定节假日通用）</view>
+					</view>
+					<view class="instructions-item">
+						<view class="instructions-name">使用规则</view>
+						<view class="instructions-direction">
+							<rich-text type="text" nodes="{{goodsInfo.description}}"></rich-text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!-- 图文详情 -->
+			<view class="content-detail">
+				<view class="detail-title">图文详情
+				</view>
+				<view class="detail-pic-list">
+					<view class="description rich-content">
+						<!--<block wx:for="{{goodsInfo.content}}" wx:for-item="contentItem" wx:key="index">-->
+						<image src="{{goodsInfo.content}}" mode="widthFix" class="rich-content-img" lazy-load="true"/>
+						<!--</block>-->
+					</view>
+				</view>
+			</view>
+		</view>
+		<!--拼团提醒-->
+		<group-tips bindtriggercancel='closeStatus' wx:if="{{showCover == true && group_detail.group_status == 2 && group_detail.is_join == 2}}" slogan="你来晚了，名额已满～" icon="offered-quota"/>
+		<group-tips bindtriggercancel='closeStatus' wx:if="{{showCover == true && group_detail.group_status == 3 && group_detail.is_join == 2}}" slogan="你来晚了，拼团已结束～" icon="offered-end"/>
+	</view>
+	<!--缺省-->
+	<empty-page wx:if="{{isShowDefault === true}}" icon="{{err_icon}}" slogan="{{err_tip}}"/>
+</view>

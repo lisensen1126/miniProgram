@@ -1,0 +1,285 @@
+<view class="page-itemDetail" wx:if="{{pageShow}}" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="拼团详情" home="{{showHome}}"></top-bar>
+	<!--商品详情-->
+	<view wx:if="{{isShowDefault === false  && goodsInfo.is_sale == 1}}">
+		<view class="content-box">
+			<!--商品基础信息-->
+			<view class="content-info">
+				<!--商品主图轮播-->
+				<block>
+					<swiper class="swiper-box" indicator-dots="{{false}}"
+							autoplay="{{true}}" interval="5000" duration="1000">
+						<block wx:for="{{skuItem.sku_pics}}" wx:key="index">
+							<swiper-item>
+								<view class="slide-image">
+									<image-show src="{{item}}" quality="95"></image-show>
+								</view>
+							</swiper-item>
+						</block>
+					</swiper>
+					<!-- <form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+						<button formType="submit" class="share-icon" open-type="share" style="top: {{topbarHeight}}px">
+							<image src="/images/mall/share.png"></image>
+						</button>
+					</form> -->
+				</block>
+				<!--商品介绍-->
+				<block>
+					<view class="info">
+						<view class="goods-title">
+							<view class="title">{{goodsInfo.goods_name}} {{skuInfo}}</view>
+							<view class="share-btn" bindtap="goShare">
+								<image class="share-icon-img" src="/images/mall/share.png"></image>
+								<view>分享</view>
+							</view>
+						</view>
+						<view class="price-block">
+							<view class="goods-price font-medium">¥{{skuItem.group_price}}
+							</view>
+							<view class="default-price font-medium">¥{{skuItem.sku_price}}
+							</view>
+							<view class="group-num-btn">{{goodsInfo.num}}人团
+							</view>
+						</view>
+					</view>
+				</block>
+				<!--sku选择块-->
+				<block>
+					<view class="sku-block border-after" data-type="1" bindtap="chooseSku">
+						<view class="sku-info">
+							<text >已选</text>
+							<text class="sku-sys">{{skuInfo}}</text>
+							<text class="sku-num">{{quantity}}件</text>
+						</view>
+						<image class="right-icon" src="/images/icons/arrow_right.png"></image>
+					</view>
+				</block>
+				<!--品牌-->
+				<block>
+					<view class="brand-block">
+						<view class="brand-title">品牌</view>
+						<view class="brand-info">{{goodsInfo.brand_name}}</view>
+					</view>
+				</block>
+				<block wx:if="{{goodsInfo.summary}}">
+					<!--服务详情-->
+					<view class="content-detail">
+						<view class="info-title">商品描述
+						</view>
+						<view class="service-info"><text>{{goodsInfo.summary}}</text>
+						</view>
+					</view>
+				</block>
+			</view>
+			<!--玩法说明-->
+			<block>
+				<view class="desc-block">
+					<view class="info-title">玩法说明
+					</view>
+					<view class="desc-step">
+						<view class="desc-step-block">
+							<image class="desc-icon" src="https://oss1.chedianai.com/images/assets/group-step-one.png"/>
+							<text>开团</text>
+							<image class="desc-line" src="https://oss1.chedianai.com/images/assets/group-step-dot.png"/>
+						</view>
+						<view class="desc-step-block">
+							<image class="desc-icon" src="https://oss1.chedianai.com/images/assets/group-step-two.png"/>
+							<text>邀请好友</text>
+							<image class="desc-line" src="https://oss1.chedianai.com/images/assets/group-step-dot.png"/>
+						</view>
+						<view class="desc-step-block">
+							<image class="desc-icon" src="https://oss1.chedianai.com/images/assets/group-step-three.png"/>
+							<view>
+								<view>人满成团</view>
+								<view class="desc-last">不满可退款</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</block>
+			<!--商品详情-->
+			<view class="content-detail">
+				<view class="detail-title">商品详情
+				</view>
+				<view class="detail-pic-list">
+					<view class="description rich-content">
+						<block wx:for="{{skuItem.contents}}" wx:for-item="contentItem" wx:key="index">
+							<image src="{{contentItem}}" mode="widthFix" class="rich-content-img" lazy-load="true"/>
+						</block>
+					</view>
+				</view>
+			</view>
+			<!--推荐参团-->
+			<view class="join-group-btn" wx:if="{{group_join_data.num}}">
+				<image class="group-header" src="{{group_join_data.avatar?group_join_data.avatar:'https://oss1.chedianai.com/images/assets/default-avatar-icon.png'}}"/>
+				<view class="group-name">{{group_join_data.real_name?group_join_data.real_name:group_join_data.nick_name}}</view>
+				<view class="group-number">还差<text class="days">{{group_join_data.num - group_join_data.order_num}}</text>人可成团</view>
+				<view class="group-go-btn" bindtap="chooseSku" data-type="2">去拼团</view>
+			</view>
+			<!--底部文案-->
+			<view class="detail-list-bottom">
+				<view class="line-left"></view>
+				智慧门店，每天爱车多一点
+				<view class="line-right"></view>
+			</view>
+		</view>
+		<!--底部按钮、上架-->
+		<view class="group-bottom-btn">
+			<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+				<!--单人购买-->
+				<button formType="submit" bindtap="chooseSku" data-type="3" class="btn-single">
+					<view>¥{{skuItem.sku_price}}</view>
+					<view>单人购买</view>
+				</button>
+				<!--开团-->
+				<button formType="submit" bindtap="chooseSku" data-type="4" class="btn-group">
+					<view>¥{{skuItem.group_price}}</view>
+					<view>{{num_array[goodsInfo.num-2]}}人团</view>
+				</button>
+			</form>
+		</view>
+		<!--底部按钮、下架-->
+		<view class="content-button color-default" wx:if="{{goodsInfo.is_sale == 2}}">
+			商家暂未上架该商品
+		</view>
+		<!--sku浮层-->
+		<view class="sku-cover" wx:if="{{cartCover}}">
+			<view class="cover-content">
+				<view class="sku-content">
+					<!--顶部sku标题-->
+					<view class="sku-title">
+						<view class="close-box" bindtap="closeCartCover">
+							<image class="close" src="/images/default/close-btn.png"></image>
+						</view>
+						<view class="sku-title-info">
+							<view class="item-pic" bindtap="previewImg" data-img="{{skuItem.sku_pics[0]}}" data-imgs="{{[skuItem.sku_pics[0]]}}">
+								<image-show src="{{skuItem.sku_pics[0]}}" quality="95"></image-show>
+							</view>
+							<view class="item-info">
+								<view class="info-title">{{goodsInfo.goods_name}}  {{skuInfo}}</view>
+								<!--单人购买不展示拼团相关数据-->
+								<view class="price-block"  wx:if="{{skuCoverType != 3}}">
+									<view class="goods-price font-medium">¥{{skuItem.group_price}}
+									</view>
+									<view class="default-price font-medium">¥{{skuItem.sku_price}}
+									</view>
+								</view>
+								<!--单人购买不展示拼团相关数据-->
+								<view class="price-block"  wx:if="{{skuCoverType == 3}}">
+									<view class="goods-price font-medium">¥{{skuItem.sku_price}}
+									</view>
+								</view>
+							</view>
+						</view>
+						<!--错误提示-->
+						<view class="sku-err-tip" wx:if="{{sku_err_tip.length>0}}">{{sku_err_tip}}</view>
+					</view>
+					<!--sku参数数组-->
+					<view class="sku-list font-semibold">
+						<view class="sku-item" wx:for="{{goodsInfo.attribute_data}}"
+							  wx:key="attributeItem.attribute_id"
+							  wx:for-index="index"
+							  wx:for-item="attributeItem"
+							  wx:if="{{attributeItem.is_optional === 1}}">
+							<view class="item-title">{{attributeItem.attribute_name}} <text class="err-tip" wx:if="{{attributeItem.is_enabled_tip === 1}}">请选择{{attributeItem.attribute_name}}</text></view>
+							<view class="item-label-list">
+								<!--只有一条属性，禁用的sku对应的参数不展示-->
+								<view class="item-label {{parameterItem.is_checkout?'item-is-active':''}} {{parameterItem.is_enabled === 3?'bor_dashed':''}}"
+									  wx:for="{{attributeItem.attribute_items}}"
+									  wx:key="parameterItem.parameter_id"
+									  wx:for-index="itemIndex"
+									  data-id="{{parameterItem.attribute_item_id}}"
+									  data-item="{{parameterItem}}"
+									  data-index="{{index}}"
+									  data-enabled="{{parameterItem.is_enabled}}"
+									  wx:for-item="parameterItem"
+									  wx:if="{{parameterItem.is_optional === 1 && parameterItem.is_enabled !== 2 && parameterItem.is_enabled !== 3 && goodsInfo.attribute_data.length === 1}}" bindtap="checkParameterItem">
+									<text class="label-content">{{parameterItem.attribute_item_value}}</text>
+								</view>
+								<!--大于一条属性，禁用的sku对应的参数展示虚线框-->
+								<view class="item-label {{parameterItem.is_checkout?'item-is-active':''}} {{parameterItem.is_enabled === 3?'bor_dashed':''}}"
+									  wx:for="{{attributeItem.attribute_items}}"
+									  wx:key="parameterItem.parameter_id"
+									  wx:for-index="itemIndex"
+									  data-id="{{parameterItem.attribute_item_id}}"
+									  data-item="{{parameterItem}}"
+									  data-index="{{index}}"
+									  data-enabled="{{parameterItem.is_enabled}}"
+									  wx:for-item="parameterItem"
+									  wx:if="{{parameterItem.is_optional === 1 && parameterItem.is_enabled !== 2 && goodsInfo.attribute_data.length > 1}}" bindtap="checkParameterItem">
+									<text class="label-content">{{parameterItem.attribute_item_value}}</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<!--数量-->
+					<view class="sku-num font-semibold">
+						<view class="sku-num-title">数量</view>
+						<view class="btn-block">
+							<view class="labels" data-number="-1" bindtap="changeItemNum">
+								<image class="num-btn-reduce" src="/images/default/reduce-btn.png"></image>
+							</view>
+							<view class="num">{{quantity}}</view>
+							<view class="labels"  data-number="1" bindtap="changeItemNum">
+								<image class="num-btn-add" src="/images/default/add-btn.png"></image>
+							</view>
+
+						</view>
+					</view>
+				</view>
+				<view class="action-button" wx:if="{{goodsInfo.is_sale == 1}}">
+					<!--选择sku-->
+					<view class="group-bottom-btn"  wx:if="{{skuCoverType == 1}}">
+						<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+							<button formType="submit" bindtap="createOrder" class="btn-single {{show_sku_err ? 'color-default' : ''}}">
+								<view>¥{{skuItem.sku_price}}</view>
+								<view>单人购买</view>
+							</button>
+							<button formType="submit" bindtap="createGroupOrder" class="btn-group {{show_sku_err ? 'color-default' : ''}}">
+								<view>¥{{skuItem.group_price}}</view>
+								<view>{{num_array[goodsInfo.num-2]}}人团</view>
+							</button>
+						</form>
+					</view>
+					<!--底部参团按钮进入-->
+					<view class="font-semibold" wx:if="{{skuCoverType == 2}}">
+						<view class="submit-all-button {{show_sku_err ? 'color-default-flex' : ''}}"
+							  wx:if="{{group_status == 1  && !is_join}}"
+							  bindtap="isCanJoinGroup">确定</view>
+						<view class="submit-all-button submit-all-default" wx:if="{{group_status == 2}}">
+							你来晚了，名额已满～
+						</view>
+						<view class="submit-all-button submit-all-default" wx:if="{{group_status == 3}}">
+							你来晚了，拼团已结束～
+						</view>
+						<view class="submit-all-button submit-all-default" wx:if="{{group_status == 1 && is_join}}">
+							对不起，您已参团
+						</view>
+					</view>
+					<!--底部 X人团、底部单人购买按钮进入-->
+					<view class="font-semibold" wx:if="{{skuCoverType == 3 || skuCoverType == 4}}">
+						<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+							<button formType="submit" wx:if="{{skuCoverType == 3}}"
+									class="submit-all-button  {{show_sku_err ? 'color-default-flex' : ''}}"
+									bindtap="createOrder">确定</button>
+							<button formType="submit" wx:if="{{skuCoverType == 4}}"
+									class="submit-all-button  {{show_sku_err ? 'color-default-flex' : ''}}"
+									bindtap="createGroupOrder">确定</button>
+						</form>
+					</view>
+				</view>
+				<view class="action-button color-default-flex" wx:if="{{goodsInfo.is_sale == 2}}">
+					商家暂未上架该商品
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 分享弹框 -->
+	<share-model wx:if="{{go_share}}" 
+							bindclose="closeShare" 
+							bindposter="goPoster"></share-model>
+	<!--缺省-->
+	<empty-page wx:if="{{isShowDefault === true}}" icon="{{err_icon}}" slogan="{{err_tip}}"/>
+</view>
+

@@ -1,0 +1,40 @@
+<view class="page-groupCategoryList" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="拼团专区" home="{{showHome}}"></top-bar>
+	<!--列表-->
+	<view wx:if="list.length>0 && pageShow">
+		<!--列表项-->
+		<view class="info-item special-info" wx:for='{{list}}' wx:for-item="item" wx:key='index' data-item="{{item}}" bindtap="goDetail">
+			<!--详情-->
+			<view class="item-avatar">
+				<view class="item-avatar-img">
+					<image-show src="{{item.goods_img}}" quality="95"></image-show>
+				</view>
+				<image class="group" wx:if="{{item.type == 1}}" src="https://oss1.chedianai.com/images/assets/goods-icon.png"/>
+				<image class="group" wx:if="{{item.type == 2}}" src="https://oss1.chedianai.com/images/assets/service-icon.png"/>
+				<image class="group" wx:if="{{item.type == 3 || item.type == 4 || item.type == 5}}" src="https://oss1.chedianai.com/images/assets/card-icon.png"/>
+			</view>
+			<!--名称、价格-->
+			<view class="item-content">
+				<view>
+					<view class="item-title">{{item.goods_name}}</view>
+				</view>
+				<view class="group-num-part">{{item.num}}人团</view>
+				<view class="time-stamp">
+					<view class="order-amount">
+						<view class="price font-semibold">¥{{item.group_price}}</view>
+						<view class="old-price">¥{{item.goods_price}}</view>
+					</view>
+					<view class="order-number">
+						<view class="start-group">
+							去开团
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<custom-loading wx:if="{{list.length>0}}" is-loading="{{is_loading}}" has-more="{{!is_all_loaded}}"></custom-loading>
+	</view>
+	<!--缺省-->
+	<empty-page wx:if="{{list.length === 0 && pageShow}}" icon="nosearch" slogan="暂无拼团数据！"/>
+</view>

@@ -1,0 +1,80 @@
+@import '~@/style/mixin'
+.page-storeList 
+  .index-store
+    width: 100%
+    height: auto
+    padding-top: vw(15)
+    .list
+      border-top: vw(1) solid #ffffff
+      width: vw(345)
+      background: #ffffff
+      box-shadow: 0 vw(6) vw(20) 0rgba(231,232,236,0.46)
+      margin-left: vw(15)
+      margin-bottom: vw(15)
+      .top
+        height: vw(88)
+        margin-left: vw(15)
+        margin-right: vw(15)
+        margin-top: vw(15)
+        .left
+          width: vw(116)
+          height: vw(72)
+          image
+            width: vw(116)
+            height: vw(72)
+        .right
+          width: vw(186)
+          margin-left: vw(10)
+          .store-name
+            font-size: vw(16)
+            color: #000000
+            overflow: hidden
+            white-space: nowrap
+            text-overflow: ellipsis
+            line-height: 1
+            font-weight: bold
+          .store-fen
+            margin-top: vw(11)
+            font-size: vw(12)
+            color: #000000
+            .sart
+              height: vw(13)
+              margin-top: vw(5)
+            .text
+              margin-left: vw(10)
+            .num
+              margin-left: vw(10)
+          .store-address
+            margin-top: vw(10)
+            font-size: vw(12)
+            color: #808285
+            .address
+              width: vw(135)
+              overflow: hidden
+              white-space: nowrap
+              text-overflow: ellipsis
+    .current-list
+      border: solid vw(2) #F7D117
+      position: relative
+      .current-icon 
+        width: vw(68)
+        height: vw(28)
+        line-height: vw(28)     
+        font-size: vw(12)
+        background-color: #F7D117
+        text-align: center
+        font-weight: bold
+        position: absolute
+        top: vw(-5)
+        left: vw(-5)
+.fl
+	float: left
+.fr
+	float: right
+.clearfix:after
+	content: " "  
+	display: block
+	clear: both
+	visibility: hidden
+	height: 0
+	font-size: 0

@@ -1,0 +1,200 @@
+<view class="spike-purchase-details" wx:if="{{page_show}}" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="秒杀详情" home="{{showHome}}"></top-bar>
+  <view wx:if="{{!is_show_default}}">
+    <view class="card-wrapper">
+      <view class="card-item" style="background-image: url({{info.image_url}})">
+        <view class="card-item-top">
+          <view class="card-item-title"><view class="card-item-name">{{info.name}}</view></view>
+          <!--暂时不显示已售-->
+          <view class="card-item-num" wx:if="{{false}}">已售{{info.sale}}张</view>
+        </view>
+        <view class="card-item-bottom">
+          <view class="card-item-price">
+            <text class="card-item-nowprice">¥{{info.price}}</text>
+            <text class="card-item-storeprice">门市价 ¥{{info.origin_price}}</text>
+          </view>
+          <view class="card-item-use" wx:if="{{info.type === 1}}">
+            <view>可使用</view><view class="num-use">{{info.num}}</view><view>次</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 秒杀倒计时 -->
+    <view class="count-down-part">
+      <view class="count-down {{isOpen === 1 ? 'begin-minute' : 'already-minute'}}">
+        <view class="count-left">
+          {{isOpen === 1?'限时抢购':'限时抢购中'}}
+        </view>
+        <view class="count-right" wx:if="{{isOpen === 1 && count_down && info.inventory_total>0}}">
+          <text class="count-word">距开始还有</text>
+          <text class="count-time" wx:if="{{seckill_time_line_day>0}}">{{seckill_time_line_day}}</text>
+          <text class="time-default-color" wx:if="{{seckill_time_line_day>0}}">天</text>
+          <text class="count-time">{{seckill_time_line[0]}}</text>
+          <text class="count-time">:</text>
+          <text class="count-time">{{seckill_time_line[1]}}</text>
+          <text class="count-time">:</text>
+          <text class="count-time">{{seckill_time_line[2]}}</text>
+        </view>
+        <view class="count-right" wx:elif="{{isOpen === 2 && count_down && info.inventory_total>0}}">
+          <text class="count-word">距结束仅剩</text>
+          <text class="count-time" wx:if="{{seckill_time_line_day>0}}">{{seckill_time_line_day}}</text>
+          <text class="time-default-color" wx:if="{{seckill_time_line_day>0}}">天</text>
+          <text class="count-time">{{seckill_time_line[0]}}</text>
+          <text class="count-time">:</text>
+          <text class="count-time">{{seckill_time_line[1]}}</text>
+          <text class="count-time">:</text>
+          <text class="count-time">{{seckill_time_line[2]}}</text>
+        </view>
+        <view class="count-right" wx:elif="{{isOpen === 2 && count_down && info.inventory_total <= 0}}">
+          <text class="count-word">距结束仅剩</text>
+          <text class="count-time" wx:if="{{seckill_time_line_day>0}}">{{seckill_time_line_day}}</text>
+          <text class="time-default-color" wx:if="{{seckill_time_line_day>0}}">天</text>
+          <text class="count-time">{{seckill_time_line[0]}}</text>
+          <text class="count-time">:</text>
+          <text class="count-time">{{seckill_time_line[1]}}</text>
+          <text class="count-time">:</text>
+          <text class="count-time">{{seckill_time_line[2]}}</text>
+        </view>
+        <view class="count-right" wx:else>
+          <text class="count-word">活动已结束</text>
+        </view>
+      </view>
+    </view>
+    <!--  秒杀养护卡价格和海报 -->
+    <view class="card-spike-price">
+      <view class="info">
+        <view class="price-info">
+          <view class="spike-price">¥{{info.mini_price}}</view>
+          <view class="spike-de-price">¥{{info.price}}</view>
+        </view>
+      </view>
+      <view class="share-btn" bindtap="goShare">
+        <image class="share-icon-img" src="/images/mall/share.png"></image>
+        <view>分享</view>
+      </view>
+    </view>
+    <!-- 免激活项目 -->
+    <view class="project-item un-active" wx:if="{{info.type === 1 && activation_length !== 0}}">
+      <view class="project-title">
+        <view class="project-name">免激活项目</view>
+      </view>
+      <view class="goods-describe">可直接到店使用</view>
+      <view class="project-content">
+        <view class="project-content-item" wx:for="{{info.list}}" wx:key="{{index}}" wx:if="{{item.type === 2}}">
+          <view class="project-content-name">{{item.name}}</view>
+          <view class="project-content-direction">{{item.description}}</view>
+          <view class="project-content-angle" wx:if="{{item.num !== 0}}">可用{{item.num}}次</view>
+          <view class="project-content-angle" wx:if="{{item.num === 0}}">无限次</view>
+          <view class="project-content-time">{{item.expiry}}个月内有效</view>
+        </view>
+      </view>
+    </view>
+    <!-- 需激活项目 -->
+    <view class="project-item" wx:if="{{info.type === 1}}">
+      <view class="project-title">
+        <view class="project-name">需激活项目</view>
+      </view>
+      <view class="goods-describe">购买指定商品后使用</view>
+      <view class="project-content">
+        <view class="project-content-item" wx:for="{{info.list}}" wx:key="{{index}}" wx:if="{{item.type === 1}}">
+          <view class="project-content-name">{{item.name}}</view>
+          <view class="project-content-direction">{{item.description}}</view>
+          <view class="project-content-angle active" wx:if="{{item.is_end === 1 && info.type === 1}}">终极</view>
+          <view class="project-content-angle" wx:if="{{item.is_end === 2}}">可用{{item.num}}次</view>
+          <view class="project-content-angle" wx:if="{{item.is_end == 2 && item.num === 0}}">无限次</view>
+        </view>
+      </view>
+    </view>
+    <!-- 项目内容 -->
+    <view class="project-item" wx:if="{{info.type === 2}}">
+      <view class="project-title">
+        <view class="project-name">项目内容</view>
+      </view>
+      <view class="project-content">
+        <view class="project-content-item" wx:for="{{info.list}}" wx:key="{{index}}">
+          <view class="project-content-name">{{item.name}}</view>
+          <view class="project-content-direction">{{item.description}}</view>
+          <view class="project-content-angle active" wx:if="{{item.is_end === 1 && info.type === 1}}">终极</view>
+          <view class="project-content-angle" wx:if="{{item.is_end === 2}}">可用{{item.num}}次</view>
+          <view class="project-content-angle" wx:if="{{item.is_end == 2 && item.num === 0}}">无限次</view>
+        </view>
+      </view>
+    </view>
+    <!-- 指定商品 -->
+    <view class="project-item" wx:if="{{info.type === 1 && list.length>0}}">
+      <view class="project-title goods-title">
+        <view class="project-name">指定商品</view>
+        <view class="project-button" bindtap="productMore">
+          更多 <image class="allow-right" src="/images/index/arrow_right.png"></image>
+        </view>
+      </view>
+      <view class="goods-describe">使用此卡需购买指定商品用以激活项目</view>
+      <view class="goods-content">
+        <view class="goods-image" wx:for="{{list}}" wx:if="{{index <= 2}}" wx:key="{{index}}">
+          <image class="goods-img" src="{{item.pic}}"></image>
+        </view>
+      </view>
+    </view>
+    <!-- 使用须知 -->
+    <view class="project-item">
+      <view class="project-title">
+        <view class="project-name">使用须知</view>
+        <!-- <view class="project-button" bindtap="productMore" data-cdp="card_purchaseDetails_1" wx:if="{{info.type === 1}}">
+          购买指定商品激活卡内项目 <image class="allow-right" src="/images/index/arrow_right.png"></image>
+        </view> -->
+      </view>
+      <view class="project-content">
+        <view class="instructions-item">
+          <view class="instructions-name">卡有效期</view>
+          <view class="instructions-direction">购卡日起{{info.expiry}}个月有效（周末、法定节假日通用）</view>
+        </view>
+        <view class="instructions-item">
+          <view class="instructions-name">使用规则</view>
+          <view class="instructions-direction">
+            <rich-text type="text" nodes="{{info.description}}"></rich-text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 图文详情 -->
+    <view class="content-detail">
+      <view class="detail-title">图文详情
+      </view>
+      <view class="detail-pic-list">
+        <view class="description rich-content">
+          <image src="{{info.content}}" mode="widthFix" class="rich-content-img" lazy-load="true"/>
+        </view>
+      </view>
+    </view>
+    <!--底部文案-->
+    <view class="detail-list-bottom">
+      <view class="line-left"></view>
+      智慧门店，每天爱车多一点
+      <view class="line-right"></view>
+    </view>
+    <!-- 底步按钮 -->
+    <view class="content-button">
+      <view class="create-order loot-all" wx:if="{{isOpen === 1 && count_down && info.inventory_total>0}}">
+        即将开始
+      </view>
+      <form class="form-btn" bindsubmit="sendFormId" wx:elif="{{isOpen === 2 && count_down && info.inventory_total>0}}" report-submit="true" >
+        <button formType="submit" class="create-order" bindtap="placeOrder">
+          立即下单
+        </button>
+      </form>
+      <view class="create-order loot-all" wx:elif="{{isOpen === 2 && count_down && info.inventory_total <= 0}}">
+        抢光啦
+      </view>
+      <view class="create-order loot-all" wx:else>
+        活动已结束
+      </view>
+    </view>
+  </view>
+  <!-- 分享弹框 -->
+	<share-model wx:if="{{go_share}}" 
+							bindclose="closeShare" 
+							bindposter="goPoster"></share-model>
+  <!--缺省-->
+	<empty-page wx:if="{{is_show_default}}" icon="nocard" slogan="{{err_tip}}"/>
+</view>

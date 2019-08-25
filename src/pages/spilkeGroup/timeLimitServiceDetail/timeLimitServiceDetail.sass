@@ -1,0 +1,527 @@
+@import '~@/style/mixin'
+@import '~@/style/border'
+
+.m-t-0
+  margin-top: 0!important
+.color-default
+  color: $text-white !important
+  background: #C0C3CC !important
+  display: flex
+  align-items: center
+  justify-content: center
+.page-itemDetail
+  padding-bottom: vw(30)
+  // 商品详情部分
+  .content-info
+    .swiper-box
+      width: vw(375)
+      height: vw(233)
+      background: $text-white
+      swiper-item
+        width: 100%
+        height: 100%
+        text-align: center
+        .slide-image
+          height: 100%
+          width: 100%
+    button::after
+      border: none
+    .share-icon
+      position: absolute
+      top: vw(15)
+      right: vw(15)
+      width: vw(35)
+      height: vw(35)
+      background: transparent
+      padding: 0
+      image
+        width: vw(17)
+        height: vw(17)
+    .info
+      height: vw(110)
+      box-sizing: border-box
+      padding: vw(15)
+      background: $text-white
+      color: #332E2E
+      display: flex
+      justify-content: space-between
+      flex-direction: column
+      .goods-title
+        display: flex
+        justify-content: space-between
+        flex-direction: row
+        .title
+          width: vw(256)
+          font-size: vw(16)
+          line-height: vw(24)
+          padding-right: vw(24)
+          position: relative
+          &::after
+            display: block
+            content: ""
+            width: vw(1)
+            height: vw(22)
+            position: absolute
+            background: #D9D9D9
+            top: vw(12)
+            right: 0
+        .share-btn
+          color: #404040
+          font-size: vw(12)
+          line-height: vw(17)
+          text-align: center
+          margin-right: vw(14)
+          .share-icon-img
+            width: vw(17)
+            height: vw(17)
+            margin-bottom: vw(5)
+      .goods-score
+        margin: vw(10) 0
+        view
+          display: inline-block
+        .score-num
+          display: inline-block
+          margin-left: vw(8)
+          color: #B3ADAD
+      .goods-price
+        margin-top: vw(10)
+        color: #E50015
+        line-height: vw(14)
+        font-size: vw(20)
+        font-weight: bold
+        .price
+          font-size: vw(20)
+        .original
+          font-size: vw(12)
+          color: #A7A9AC
+          text-decoration: line-through
+          margin-left: vw(10)
+    .brand-block
+      height: vw(66)
+      box-sizing: border-box
+      padding: vw(25) vw(15)
+      line-height: vw(16)
+      font-size: vw(14)
+      color: #332E2E
+      background: $text-white
+      margin-top: vw(10)
+      .brand-title
+        color: #B3ADAD
+        display: inline-block
+      .brand-info
+        float: right
+    .evaluate-block
+      margin-top: vw(10)
+      //min-height: vw(221)
+      padding: vw(15)
+      background: $text-white
+      margin-bottom: vw(10)
+      .evaluate-title
+        line-height: 1
+        font-size: vw(14)
+        color: #332E2E
+        .all-evaluate
+          color: #B3ADAD
+          float: right
+          .evaluate-right
+            width: vw(6)
+            height: vw(11)
+        view
+          display: inline-block
+      .evaluate-data
+        margin-top: vw(17)
+        .evaluate-data-title
+          font-size: vw(12)
+          color: #332E2E
+          line-height: vw(30)
+          height: vw(27)
+          view
+            display: inline-block
+          .data-head
+            width: vw(27)
+            height: vw(27)
+            border-radius: 50%
+            display: inline-block
+            float: left
+          .nick-name
+            margin-left: vw(8)
+            margin-right: vw(30)
+          .data-score
+            margin-left: vw(5)
+          .data-time
+            color: #B3ADAD
+            float: right
+        .evaluate-detail
+          margin: vw(11) 0 0 0
+          line-height: 1.2
+          font-size: vw(12)
+        .evaluate-pic
+          margin-bottom: vw(15)
+          .pic-item
+            width: vw(110)
+            height: vw(110)
+            //border: vw(1) solid #f7f7f7
+            border-radius: vw(4)
+            margin-top: vw(8)
+          .pic-item:not(:nth-child(3n))
+            margin-right: vw(5)
+        .other-info
+          line-height: 1
+          font-size: vw(12)
+          color: #B3ADAD
+          height: vw(12)
+          .sku-type
+            float: left
+          .buy-time
+            float: right
+
+  // 商品图文细节
+  .content-detail
+    background: $text-white
+    margin-top: vw(15)
+    .detail-title
+      height: vw(45)
+      line-height: vw(15)
+      font-size: vw(14)
+      color: #332E2E
+      padding: vw(15)
+      box-sizing: border-box
+      font-weight: bolder
+    .info-title
+      height: vw(55)
+      line-height: vw(15)
+      font-size: vw(14)
+      color: #332E2E
+      padding: vw(20) vw(15)
+      box-sizing: border-box
+      font-weight: bolder
+      .sku-num-limit
+        font-size: vw(10)
+        margin-left: vw(11)
+        color: #DD1D21
+    .service-info
+      font-size: vw(13)
+      line-height: vw(19)
+      padding: 0 vw(15) vw(15) vw(15)
+    .detail-pic-list
+      width: 100%
+      box-sizing: border-box
+      .rich-content
+        .rich-content-text
+          font-size: vw(13)
+          line-height: vw(19)
+          padding: vw(10) vw(15)
+          + .rich-content-text
+            margin-top: 0
+        .rich-content-img
+          display: block
+          margin: 0
+          width: 100%
+  .content-detail-num
+    display: flex
+    align-items: center
+    .info-title
+      color: #7F7F7F
+    .btn-block
+      position: absolute
+      right: vw(15)
+      display: inline-flex
+      align-items: center
+      justify-content: center
+      .num-btn-add
+        width: vw(10)
+        height: vw(10)
+      .num-btn-reduce
+        width: vw(10)
+        height: vw(10)
+      .num
+        width: vw(48)
+        height: vw(28)
+        line-height: vw(28)
+        background: #F8F8F8
+        color: #404040
+        font-size: vw(16)
+        text-align: center
+      .labels
+        width: vw(28)
+        height: vw(28)
+        display: inline-flex
+        align-items: center
+        justify-content: center
+        border: 1px solid #F7F7F7
+        box-sizing: border-box
+      .disable-num
+        opacity: 0.25
+  // 底部文案
+  .detail-list-bottom
+    position: relative
+    color: #B3B3B3
+    font-size: vw(12)
+    text-align: center
+    margin: vw(16) 0 vw(60) 0
+    line-height: 1
+    .line-left
+      position: absolute
+      width: vw(65)
+      height: vw(1)
+      background: #B3B3B3
+      top: vw(6)
+      left: vw(43)
+    .line-right
+      position: absolute
+      top: vw(6)
+      width: vw(65)
+      height: vw(1)
+      background: #B3B3B3
+      right: vw(43)
+  // 底部按钮
+  .content-button
+    position: fixed
+    left: 0
+    right: 0
+    bottom: 0
+    height: vw(58)
+    line-height: vw(58)
+    background: $text-white
+    font-size: vw(14)
+    box-sizing: border-box
+    padding: vw(9) vw(15)
+    box-shadow: 0 vw(3) vw(16) 0 rgba(26, 26, 32, 0.09)
+    view
+      display: inline-block
+    .cart-button
+      width: vw(147)
+      height: vw(40)
+      text-align: center
+      image
+        display: inline-block
+        width: vw(17)
+        height: vw(19)
+        position: relative
+        top: vw(3)
+      .button-car
+        margin-left: vw(8)
+    .num
+      display: inline-block
+      background: #F74B49
+      border-radius: 50%
+      position: absolute
+      //text-align: center
+      line-height: vw(9)
+      left: vw(52)
+      font-size: vw(7)
+      top: vw(10)
+      color: $text-white
+    .create-order
+      height: vw(40)
+      line-height: vw(40)
+      font-size: vw(14)
+      position: absolute
+      left: vw(15)
+      right: vw(15)
+      background: #DD1D21
+      color: $text-white
+      text-align: center
+    .loot-all
+      background: #DDDDDD
+      color: #A7A9AC
+
+  // sku浮层
+  .sku-cover
+    position: fixed
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    background: rgba(0, 0, 0, 0.6)
+    z-index: 10
+    .cover-content
+      position: absolute
+      height: vw(455)
+      bottom: 0
+      left: 0
+      right: 0
+      background: $text-white
+      border-top-left-radius: vw(10)
+      border-top-right-radius: vw(10)
+      overflow-y: scroll
+      -webkit-overflow-scrolling: touch
+      .close-box
+        width: vw(23)
+        height: vw(23)
+        text-align: right
+        position: absolute
+        top: vw(8)
+        right: vw(8)
+        z-index: 11
+      .close
+        width: vw(14)
+        height: vw(14)
+      .sku-content
+        color: #666363
+        padding: vw(27) vw(15) vw(45) vw(15)
+        .sku-title
+          height: vw(109)
+          padding: vw(27) vw(15) 0 vw(15)
+          box-sizing: border-box
+          position: fixed
+          left: 0
+          right: 0
+          background: $text-white
+          z-index: 10
+          .sku-title-info
+            .item-pic
+              width: vw(70)
+              height: vw(70)
+              margin: 0 vw(10) 0 0
+            .item-info
+              position: absolute
+              left: vw(113)
+              right: vw(15)
+              height: vw(70)
+              top: 0
+              .info-title
+                color: #332E2E
+                font-size: vw(14)
+                height: 60%
+                overflow: hidden
+                text-overflow: ellipsis
+                display: -webkit-box
+                -webkit-line-clamp: 2
+                -webkit-box-orient: vertical
+                //text-overflow: ellipsis
+                //white-space: nowrap
+              .info-price
+                color: #F74B49
+                font-size: vw(17)
+                line-height: 1
+                position: absolute
+                bottom: 0
+                font-weight: bold
+            position: relative
+            padding-bottom: vw(12)
+            &:after
+              @include Pseudo-border-after()
+        .sku-list
+          padding: vw(124) 0 vw(15) vw(2)
+        .sku-item:not(:first-child)
+          margin-top: vw(21)
+        .sku-item
+          .sku-title
+            font-size: vw(14)
+          .item-title
+            line-height: 1
+            margin-bottom: vw(9)
+          .item-label-list
+            .item-label:not(:nth-child(4n))
+              margin-right: vw(10)
+            .item-label
+              display: inline-block
+              width: vw(76)
+              height: vw(25)
+              line-height: vw(25)
+              color: #332E2E
+              position: relative
+              border-radius: vw(16)
+              border: vw(1) solid #B3ADAD
+              text-align: center
+              margin-top: vw(15)
+              font-weight: bold
+              .label-content
+                position: relative
+                z-index: 1
+              .color-active
+                color: $text-white
+            .label-bg
+              width: vw(87)
+              height: vw(35)
+              position: absolute
+              z-index: 0
+              top: vw(-4)
+              left: vw(-6)
+        .sku-num
+          height: vw(25)
+          line-height: vw(25)
+          margin-bottom: vw(43)
+          view
+            display: inline-block
+          .btn-block
+            position: absolute
+            right: vw(15)
+            image
+              width: vw(25)
+              height: vw(25)
+            .num
+              width: vw(50)
+              height: vw(25)
+              line-height: vw(25)
+              position: relative
+              top: vw(-7)
+              text-align: center
+      .action-button
+        position: fixed
+        bottom: 0
+        left: 0
+        right: 0
+        height: vw(50)
+        z-index: 10
+        .cancel-btn,.submit-btn
+          display: inline-block
+          width: 50%
+          height: vw(50)
+          line-height: vw(50)
+          box-sizing: border-box
+          font-size: vw(17)
+          color: $text-white
+          text-align: center
+        .cancel-btn
+          background: #FFAE46
+          .cart-icon
+            width: vw(24)
+            height: vw(17)
+            position: relative
+            top: vw(3)
+            left: vw(-2)
+        .submit-btn
+          background: #F74B49
+.begin-minute
+  background-repeat: no-repeat
+  -moz-background-size: 100% 100%
+  background-size: 100% 100%
+  background-image: url('https://oss1.chedianai.com/images/assets/begin-in-a-minute.png')
+.already-minute
+  background-repeat: no-repeat
+  -moz-background-size: 100% 100%
+  background-size: 100% 100%
+  background-image: url('https://oss1.chedianai.com/images/assets/panic-buying.png')
+.count-down
+  width: 100%
+  height: vw(40)
+  line-height: vw(40)
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 0 vw(15)
+  box-sizing: border-box
+  .count-left
+    font-size: vw(14)
+    font-weight: 600
+    color: #ffffff
+  .count-right
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    .count-word
+      font-size: vw(12)
+      color: #ffffff
+      margin-right: vw(3)
+    .count-time,.time-default-color
+      font-size: vw(18)
+      color: #FFF9F9
+      font-weight: 500
+      margin-left: vw(4)
+    .time-default-color
+      font-size: vw(14)
+
+
+

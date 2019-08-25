@@ -1,0 +1,11 @@
+{
+	"navigationBarBackgroundColor": "#ffffff",
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "用户协议",
+	"backgroundColor": "#ffffff",
+	"backgroundTextStyle": "light",
+	"enablePullDownRefresh": false,
+	"usingComponents": {
+		"top-bar": "../../../components/topbar/topbar"
+	}
+}

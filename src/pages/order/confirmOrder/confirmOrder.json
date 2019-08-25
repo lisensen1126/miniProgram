@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "确认订单",
+  "usingComponents": {
+		"top-bar": "../../../components/topbar/topbar",
+		"image-show": "../../../components/imageShow/imageShow"
+  }
+}

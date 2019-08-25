@@ -1,0 +1,4 @@
+<view class="empty-page">
+  <view class="empty-icon" style="background-image: url({{background_image}})"></view>
+  <text class="empty-slogan">{{slogan}}</text>
+</view>

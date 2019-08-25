@@ -1,0 +1,77 @@
+@import '~@/style/mixin'
+.collection
+  .c-wrapper
+    display: flex
+    margin-bottom: vw(10)
+    height: vw(112)
+    .c-left
+      position: relative
+      display: flex
+      padding: vw(25) vw(15) vw(20) vw(15)
+      width: vw(284)
+      font-size: vw(12)
+      border-top-left-radius: vw(5)
+      border-bottom-left-radius: vw(5)
+      color: #EBC89E
+      background: linear-gradient(140deg,rgba(58,56,66,1) 0%,rgba(27,26,31,1) 100%)
+      &::before, &::after
+        content: ''
+        width: vw(10)
+        height: vw(10)
+        border: vw(1) solid #F6F0E8
+        position: absolute
+        right: vw(-5)
+        border-radius: 50%
+        background: #F6F0E8
+        z-index: 1
+      &::before
+        top: vw(-5)
+      &::after
+        bottom: vw(-5)
+      .c-money-warpper
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        width: vw(95)
+        color: #EBC89E
+        .c-money
+          display: flex
+        .c-text
+          line-height: 1
+          font-size: vw(35)
+          font-weight: bold
+      .c-term-wrapper
+        padding: 0 vw(12)
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        .c-title
+          color: #E8C18E
+        .c-text-wrapper
+          color: #B29778
+          .c-text-item
+            position: relative
+            padding-left: vw(10)
+            &::before
+              content: ''
+              width: vw(4)
+              height: vw(4)
+              background: #B29778
+              position: absolute
+              left: 0
+              bottom: 50%
+              margin-bottom: vw(-2)
+    .c-right
+      display: flex
+      justify-content: center
+      width: vw(61)
+      font-size: vw(14)
+      border-top-right-radius: vw(5)
+      border-bottom-right-radius: vw(5)
+      color: #1B1A1F
+      background: #E8C18E
+      .c-btn-warpper
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center

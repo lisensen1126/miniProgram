@@ -1,0 +1,118 @@
+<!-- 用来处理金额两位小数 -->
+<wxs module="tool">
+  // 计算实付金额
+  var bar = function (a, b) {
+    var _a = (a*100).toFixed(0), _b = b;
+    var num = (_a - _b) / 100;
+    return num.toFixed(2)
+  }
+  // 立减金保留两位小数
+  var randomMoney = function (money = 0) {
+    var random_money = money / 100;
+    return random_money.toFixed(2)
+  }
+  // 函数导出
+  module.exports = {
+    formatMoney : bar,
+    randomMoney: randomMoney
+  }
+</wxs>
+<view class="page-confirm-order" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="确认订单" home="{{showHome}}"></top-bar>
+	<!-- topbar end -->
+  <view class="order-info">
+    <view class="order-title bold">订单详情</view>
+    <view class="order-list">
+      <view class="order-item" wx:for="{{orderItem.item}}" wx:key="index">
+        <view class="item-image">
+          <image-show src="{{item.listItem.image_url}}" mode="aspectFit"></image-show>
+        </view>
+        <view class="item-info">
+          <view class="item-info-left">
+            <view class="info">{{item.listItem.item_title}} </view>
+            <view class="info attribute">{{item.listItem.sku_detail}} </view>
+          </view>
+          <view class="item-other">
+            <view class="item-price font-medium bold">¥{{item.listItem.unit_price}}</view>
+            <view class="item-quantity">x  {{item.quantity}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--优惠券-->
+  <view class="coupon" bindtap="goCouponList">
+    <image class="item-icon" src="/images/personal/first-icon01.png" />
+    <view class="item-coupon">优惠券</view>
+    <view class="coupon-quantity" wx:if="{{myCouponList.data_allow_count>0}}">{{myCouponList.data_allow_count}}张可用</view>
+    <view class="coupon-quantity default" wx:if="{{myCouponList.data_allow_count<=0}}">暂无优惠券可用</view>
+    <view class="coupon-price">
+      <text wx:if="{{myCouponList.data_allow_count>0}}">- ¥{{data_allow_count}}</text>
+      <text class="arrow-icon"></text>
+    </view>
+  </view>
+  <!--养护卡激活-->
+  <!-- <view class="local-box" bindtap="chooseMaintainCard" data-cdp="order_confirmOrder_2">
+    <view class="local-left">
+      <image class="local-icon" src="https://oss1.chedianai.com/images/assets/maintenance.png" />
+      <text>养护卡</text>
+    </view>
+    <view class="local-right">
+      <text class="local-gray" wx:if="{{card_usable == 0}}">暂无养护卡可用</text>
+      <text class="local-red" wx:if="{{card_usable > 0 && !choosed_item}}">{{card_usable}}</text>
+      <text class="local-block" wx:if="{{card_usable > 0 && !choosed_item}}">张可用</text>
+      <text class="local-red" wx:if="{{card_usable > 0 && choosed_item}}">{{choosed_item.name}}</text>
+      <text class="local-arrow"></text>
+    </view>
+  </view> -->
+
+  <!--支付信息-->
+  <view class="payment-block-info">
+    <view class="payment-title bold">支付信息</view>
+    <view class="payment-info-item">
+      <view class="pay-item-left"> 商品总额 </view>
+      <view class="pay-item-right">¥{{total_amount}}</view>
+    </view>
+    <view class="payment-info-item" wx:if="{{working_time!=0}}">
+      <view class="pay-item-left"> 工时费用 </view>
+      <view class="pay-item-right">¥{{working_time}}</view>
+    </view>
+    <view class="payment-info-item" wx:if="{{random_id != 0}}">
+      <view class="pay-item-left red"> 随机立减 </view>
+      <view class="pay-item-right red">- ¥{{tool.randomMoney(random_money)}}</view>
+    </view>
+    <view class="payment-info-item" wx:if="{{data_allow_count>0}}">
+      <view class="pay-item-left" style="color: #404040"> 优惠 </view>
+      <view class="pay-item-right">- ¥{{data_allow_count}}</view>
+    </view>
+    <view class="payment-info-item">
+      <view class="pay-item-left" style="color: #404040"> 实际金额 </view>
+      <!-- js 做小数的加减时容易精度丢失，最好转成整数做减法运算 -->
+      <view class="pay-item-right real-price">¥{{tool.formatMoney(total_money, random_money)}}</view>
+    </view>
+  </view>
+  <!--底部按钮-->
+  <!--全部上架-->
+  <view class="bottom-button" wx:if="{{is_sale === 1}}">
+    <view class="payment-info">
+      <view class="pay-price">
+        <view class="pay-text">合计:</view>
+        <!-- js 做小数的加减时容易精度丢失，最好转成整数做减法运算 -->
+        <view class="price">¥{{tool.formatMoney(total_money, random_money)}}</view>
+        <!-- <view class="line"></view>
+        <view class="coupon-price" wx:if="{{data_allow_count>0}}">
+          已优惠¥{{(order_total)>0?data_allow_count:((couponTotal_amount>0)?couponTotal_amount:'0')}}
+        </view> -->
+      </view>
+    </view>
+    <form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+      <button formType="submit" class="payment-button" bindtap="confirmOrder">
+        确认支付
+      </button>
+    </form>
+  </view>
+  <!--包含下架商品-->
+  <view class="bottom-button" wx:if="{{is_sale === 2}}">
+  </view>
+</view>

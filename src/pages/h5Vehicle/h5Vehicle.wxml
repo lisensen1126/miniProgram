@@ -1,0 +1,5 @@
+<view class="page-h5Vehicle" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="我的车检报告"></top-bar>
+  <web-view src="{{h5_url}}"></web-view>
+</view>

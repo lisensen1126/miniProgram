@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "选择时间",
+	"usingComponents": {
+		"top-bar": "../../../components/topbar/topbar",
+		"status-action-bar": "../../../components/statusActionBar/statusActionBar"
+	}
+}

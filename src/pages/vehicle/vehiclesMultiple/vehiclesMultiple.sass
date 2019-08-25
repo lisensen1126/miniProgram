@@ -1,0 +1,86 @@
+
+@import '~@/style/form'
+@import '~@/style/mixin'
+.text-right
+  text-align: right
+.carBox
+  margin-bottom: vw(15)
+  background: white
+.car-file
+  width: 100%
+  padding: vw(15)
+  background: white
+  box-sizing: border-box
+  position: relative
+  display: flex
+  justify-content: start
+  .edit
+    height: 100%
+    width: vw(60)
+    position: absolute
+    right: vw(0)
+    top: vw(0)
+    .icon
+      width: vw(16)
+      height: vw(16)
+      position: absolute
+      right: vw(16)
+      top: vw(16)
+  .car-icon
+    margin-top: vw(6)
+    .logo
+      width: vw(34)
+      height: vw(34)
+  .info
+    margin-left: vw(10)
+    .title
+      line-height: vw(22)
+      font-weight: bolder
+      font-size: vw(16)
+      margin-bottom: vw(7)
+      color: #404040
+    .detail
+      width: vw(238)
+      line-height: vw(20)
+      font-size: vw(14)
+      color: #7F7F7F
+.btnBox
+  position: fixed
+  z-index: 9999
+  left: 0 
+  bottom: 0
+  padding: vw(10)
+  box-sizing: border-box
+  width: 100%
+  background: #ffffff
+  .btn
+    width: 100%
+    height: vw(40)
+    line-height: vw(40)
+    text-align: center
+    color: #000000
+    background: #F7D117
+    border-radius: vw(0)
+    font-size: vw(12)
+.vehicle-radio
+  display: flex
+  justify-content: space-between
+  margin-left: vw(15)
+  height: vw(48)
+  align-items: center
+  background-color: #fff
+  position: relative
+  z-index: 2
+  color: #404040
+  border-top: vw(1) solid #EEEEEE
+  .left
+    display: flex
+    height: vw(20)
+    align-items: center
+  .left-img
+    width: vw(18)
+    height: vw(18)
+    margin-right: vw(8)
+  .right-img
+    width: vw(16)
+    height: vw(16)

@@ -1,0 +1,85 @@
+<view class="reveive-card active {{is_show_default ? 'active' : ''}}" wx:if="{{isinitiated}}" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="领取养护卡" home="{{showHome}}"></top-bar>
+  <!-- 领取成功 -->
+  <receive-success wx:if="{{show_model}}" bindtriggercancel="cancelModel" enterPageDate="{{enter_page_date}}"></receive-success>
+  <!-- 卡信息 -->
+  <view wx:if="{{!is_show_default}}">
+    <view class="card-time" wx:if="{{info.is_received === 2}}">
+      请于{{info.receive_effective_time}}前领取 
+    </view>
+    <view class="card-wrapper">
+      <view class="card-item" style="background-image: url({{info.image_url}})">
+        <view class="card-item-top">
+          <view class="card-item-name">{{info.name}}<view class="give-card-icon">获赠</view></view>
+        </view>
+        <view class="card-item-bottom">
+          <view class="card-item-time">有效期至{{info.expire_time}}</view>
+          <view class="card-item-use" wx:if="{{info.is_received === 1 && is_customer_id}}">NO.{{info.upkeep_no}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 项目内容 -->
+    <view class="project-item">
+      <view class="project-title">
+        <view class="project-name">项目内容</view>
+      </view>
+      <view class="project-content">
+        <view class="project-content-item" wx:for="{{info.item}}" wx:key="{{index}}">
+          <view class="project-content-name">{{item.name}}</view>
+          <view class="project-content-direction">{{item.description}}</view>
+          <view class="project-content-angle">可用{{item.num}}次</view>
+        </view>
+      </view>
+    </view>
+    <!-- 使用须知 -->
+    <view class="project-item">
+      <view class="project-title">
+        <view class="project-name">使用须知</view>
+        <!-- <view class="project-button" bindtap="productMore" data-cdp="card_purchaseDetails_1" wx:if="{{info.type === 1}}">
+          购买指定商品激活卡内项目 <image class="allow-right" src="/images/index/arrow_right.png"></image>
+        </view> -->
+      </view>
+      <view class="project-content">
+        <view class="instructions-item">
+          <view class="instructions-name">卡有效期</view>
+          <view class="instructions-direction">截止于{{info.expire_time}}（周末、法定节假日通用）</view>
+        </view>
+        <view class="instructions-item">
+          <view class="instructions-name">使用规则</view>
+          <view class="instructions-direction">
+            <rich-text type="text" nodes="{{info.description}}"></rich-text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 门店信息 -->
+    <view class="project-item store-info">
+      <view class="project-title">
+        <view class="project-name">门店信息</view>
+      </view>
+      <view class="phone-call" bindtap="makePhoneCall" data-cdp="card_receiveCard_1">
+        <image src="https://oss1.chedianai.com/images/assets/phone-call.png"></image>
+      </view>
+      <view class="project-content">
+        <view class="store-title">{{info.store.store_name}}</view>
+        <view class="store-info-detail">
+          <image class="store-icon" src="https://oss1.chedianai.com/images/assets/store-icon2.png"></image><text>营业时间：{{info.store.open_time}} —— {{info.store.close_time}}</text>
+        </view>
+        <view class="store-info-detail">
+          <image class="store-icon" src="https://oss1.chedianai.com/images/assets/store-icon1.png"></image><text>门店地址：{{info.store.address}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 底步按钮 -->
+    <view class="foot-button">
+      <view class="immediately {{info.is_received !== 2 ? 'active' : ''}}" bindtap="receive" data-cdp="card_receiveCard_2">{{info.is_received === 1 ? '卡已领取' : info.is_received === 2 ? '立即领取' : info.is_received === 3 ? '卡已退回' : ''}}</view>
+    </view>
+  </view>
+  <view class="default-card" wx:if="{{is_show_default}}">
+    <image class="default-icon" src="https://oss2.chedianai.com/images/assets/give-card-default.png"></image>
+    <view class="default-title">卡片赠送失败了</view>
+    <view class="default-text">去问问你的好友吧</view>
+    <view class="default-button" bindtap="goIndex">去首页逛逛</view>
+  </view>
+</view>

@@ -1,0 +1,56 @@
+@import '~@/style/mixin'
+.confirm-model
+  position: fixed
+  left: 0
+  top: 0
+  bottom: 0
+  right: 0
+  overflow: hidden
+  z-index: 9999
+  background-color: rgba(0,0,0,0.5)
+  .welfare_center
+    position: absolute
+    left: 50%
+    top: 45%
+    width: vw(298)
+    height: vw(298)
+    background-color: $bg-white
+    text-align: center
+    transform: translate(-50%,-50%)
+    margin: auto
+    .close
+      width: vw(15)
+      height: vw(15)
+      position: absolute
+      right: vw(15)
+      top: vw(15)
+      .close-image
+        width: 100%
+        height: 100%
+    .confirm
+      width: 100%
+      height: vw(46)
+      position: absolute
+      bottom: 0
+      left: 0
+      background: #F7D117
+      color: #000000
+      font-size: vw(14)
+      font-weight: 500
+      text-align: center
+      line-height: vw(46)
+    .title
+      font-size: vw(16)
+      color: #000000
+      font-weight: 500
+      margin-top: vw(90)
+    .form-input
+      width: vw(250)
+      height: vw(35)
+      margin: 0 auto
+      border: vw(1) solid #EEEEEE
+      margin-top: vw(23)
+      .form-input-input
+        width: 100%
+        height: 100%
+        border: 0

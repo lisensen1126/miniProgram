@@ -1,0 +1,261 @@
+<view class="page-orderDetail" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="订单详情" home="{{showHome}}"></top-bar>
+	<!-- topbar end -->
+  <view>
+    <!--拼团订单 && 已开团-->
+    <view wx:if="{{order.order_type == 3 && group_detail.group_user_data[0].status == 1}}">
+      <!--参团后，未在规定时间内付款被剔除-->
+      <view class="order-detail-group" wx:if="{{!group_log_id}}">
+        <view class="group-title">
+          <view class="title">拼团失败</view>
+          <image class="group-success" src="https://oss1.chedianai.com/images/assets/order-group-fail.png" />
+        </view>
+      </view>
+      <!--正常拼团订单数据-->
+      <view class="order-detail-group" wx:if="{{group_log_id>0}}">
+        <view class="group-title font-medium">
+          <view class="title" wx:if="{{group_detail.group_status == 1}}">拼团中</view>
+          <view class="title" wx:if="{{group_detail.group_status == 2}}">拼团成功</view>
+          <view class="title" wx:if="{{group_detail.group_status == 3}}">拼团失败</view>
+          <button wx:if="{{group_detail.group_status == 1 && group_detail.group_lack_num > 0 && (order.status == 2 || order.status == 3)}}"
+                  data-type="group_share"
+                  open-type="share"
+                  class="share-btn font-medium">去邀请</button>
+          <image class="group-success" wx:if="{{group_detail.group_status == 2}}" src="https://oss1.chedianai.com/images/assets/order-group-success.png" />
+          <image class="group-success" wx:if="{{group_detail.group_status == 3}}" src="https://oss1.chedianai.com/images/assets/order-group-fail.png" />
+        </view>
+        <!--拼团中-->
+        <view wx:if="{{group_detail.group_status == 1 || group_detail.group_status == 2}}">
+          <view class="order-group">
+            <view wx:if="{{group_detail.group_status == 1}}">
+              <view wx:if="{{group_detail.group_lack_num > 0 && order.status != 1}}">
+                差<text class="group-lack-num"> {{group_detail.group_lack_num}} </text>人成团，成团倒计时
+                <text class="group-time">
+                  <text class="time" wx:if="{{group_end_time_line_day>0}}">{{group_end_time_line_day}}</text>
+                  <text wx:if="{{group_end_time_line_day>0}}">天</text>
+                  <text>{{group_end_time_line[0]}}:</text>
+                  <text>{{group_end_time_line[1]}}:</text>
+                  <text>{{group_end_time_line[2]}}</text>
+                </text>
+              </view>
+              <view wx:if="{{group_detail.group_lack_num == 0 && group_detail.no_pay_num > 0 && order.status != 1}}">
+                还有<text> {{group_detail.no_pay_num}} </text>人未付款
+                <text class="group-time">
+                  <text class="time" wx:if="{{group_end_time_line_day>0}}">{{group_end_time_line_day}}</text>
+                  <text wx:if="{{group_end_time_line_day>0}}">天</text>
+                  <text>{{group_end_time_line[0]}}:</text>
+                  <text>{{group_end_time_line[1]}}:</text>
+                  <text>{{group_end_time_line[2]}}</text>
+                </text>
+              </view>
+              <view wx:if="{{order.status == 1}}">
+                请您尽快完成支付
+              </view>
+            </view>
+            <view class="success-tip" wx:if="{{group_detail.group_status == 2}}">
+              参团人数已满<text> {{group_detail.group_user_data.length}} </text>人
+            </view>
+          </view>
+          <view class="group-header">
+            <view wx:for="{{group_detail.group_user_data}}" wx:key="index"
+                  class="item-normal {{index == 0 ? 'head' : ''}} {{item.status == 2 ? 'un-pay' : ''}}">
+              <image mode="aspectFill" src="{{item.avatar?item.avatar:'https://oss1.chedianai.com/images/assets/default-avatar-icon.png'}}"/>
+              <view wx:if="{{index == 0}}" class="label-head">团长</view>
+              <view wx:if="{{item.status == 2}}" class="label-un-pay">待付款</view>
+            </view>
+            <view wx:for="{{group_detail.group_lack_num}}" wx:key="index" class="item-normal">
+              <image mode="aspectFill" src="https://oss1.chedianai.com/images/assets/default-group-head_new.png"/>
+            </view>
+          </view>
+        </view>
+        <!--拼团失败-->
+        <view wx:if="{{group_detail.group_status == 3}}">
+          <view class="order-group">
+            <view class="success-tip" wx:if="{{order.status == 6}}">正在退款</view>
+            <view class="success-tip" wx:if="{{order.status == 7}}">退款成功</view>
+            <view class="success-tip" wx:if="{{order.status == 8}}">退款失败</view>
+          </view>
+          <view class="group-header" wx:if="{{group_detail.group_status <= 2}}">
+            <view wx:for="{{group_detail.group_user_data}}" wx:key="index"
+                  class="item-normal {{index == 0 ? 'head' : ''}} {{item.status == 1 ? 'un-pay' : ''}}">
+              <image mode="aspectFill" src="{{item.avatar}}"/>
+              <view wx:if="{{index == 0}}" class="label-head">团长</view>
+              <view wx:if="{{item.status == 1}}" class="label-un-pay">待付款</view>
+            </view>
+            <view wx:for="{{group_detail.group_lack_num}}" wx:key="index" class="item-normal">
+              <image mode="aspectFill" src="https://oss1.chedianai.com/images/assets/default_group_header.png"/>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 订单信息 -->
+    <view class="{{order.order_type == 6 ? 'info-section m-t-0' : 'info-section'}}">
+      <view class="section-header font-bold">订单详情</view>
+      <view class="info-item special-info" wx:for='{{order.item}}' wx:key='index'>
+        <view class="item-avatar">
+          <image class="item-avatar-img" wx:if="{{order.goods_type === 2}}" mode="aspectFill" src="{{order.card && order.card.image_url}}" />
+          <image class="item-avatar-img" wx:if="{{order.goods_type !== 2}}" mode="aspectFill" src="{{item.image_url}}" />
+          <image class="item-type" wx:if="{{item.item_type == 1}}" src="https://oss1.chedianai.com/images/assets/goods-icon.png"/>
+          <image class="item-type" wx:if="{{item.item_type == 2}}" src="https://oss1.chedianai.com/images/assets/service-icon.png"/>
+          <image class="item-type" wx:if="{{item.item_type == 3}}" src="https://oss1.chedianai.com/images/assets/card-icon.png"/>
+        </view>
+        <view class="item-content">
+          <view>
+            <view class="item-title">{{item.item_title}}</view>
+            <view class="item-sku"><text wx:for='{{item.sku_attribute}}' wx:key='index'>{{item.attribute_item_value}} </text></view>
+          </view>
+          <view class="time-stamp">
+            <view class="order-amount font-medium">¥{{item.activity_price}}
+              <!--拼团价-->
+              <image class="order-spike-label" wx:if="{{order.order_type === 3}}" src="https://oss1.chedianai.com/images/assets/order-group-label.png"/>
+              <!--限时价-->
+              <image class="order-spike-label" wx:if="{{order.order_type === 4}}" src="https://oss1.chedianai.com/images/assets/order-spike-label.png"/></view>
+            <view class="order-number">x {{item.quantity}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="worker-cost" wx:if="{{order.order_type==2&&order.maintenance_fee!=0}}">
+        <text class="wc-l">工时费用</text>
+        <text class="wc-r">￥{{order.maintenance_fee/100}}</text>
+      </view>
+    </view>
+    <view class="info-section">
+      <view class="info-item">
+        <view class="info-label">订单编号</view>
+        <view class="info-content">{{order.trade_order_no}}</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">下单时间</view>
+        <view class="info-content">{{creat_time}}</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">下单门店</view>
+        <view class="info-content">{{order.store_name}}</view>
+      </view>
+    </view>
+    <!--预约信息-->
+    <view wx:if="{{(order.status === 2 || order.status === 3) && order.reserve.reserve_status === 2 && (order.order_type != 3 ||(order.order_type == 3 && group_detail.group_status == 2))}}" class="info-section">
+      <view class="info-item">
+        <view class="info-label">预约门店</view>
+        <view class="info-content">
+          <text>{{order.reserve.reserve_store_name}}</text>
+        </view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">预约到店时间</view>
+        <view class="info-content">{{order.reserve.reserve_time}}</view>
+      </view>
+    </view>
+    <!--待核销-->
+    <view class="info-section" wx:if="{{(order.status === 2 || order.status === 3) && order.write_off.status === 1 && (order.order_type != 3 ||(order.order_type == 3 && group_detail.group_status == 2))}}">
+      <view class="section-header flex-code" style="font-weight: 600">
+        核销码
+        <button class="share-btn" data-code="{{order.write_off.write_off_code}}" data-qrcode="{{order.write_off.write_off_qrcode}}" data-id="{{order.trade_order.trade_order_id}}" bindtap="openShare">
+          <image class="share-img" src="/images/mall/share.png"></image>
+        </button>
+      </view>
+      <view class="info-item" style="padding: 0">
+        <view class="info-code">
+          <image class="ercode" src="{{order.write_off.write_off_qrcode}}"></image>
+          <view class="info-content">{{order.write_off.write_off_code}}</view>
+        </view>
+      </view>
+      <view class="info-item" wx:if="{{order.write_off_record.length}}" data-writeOff="{{order.write_off_record}}" bindtap="goWriteOff">
+        <view class="info-label record-text">核销记录</view>
+        <image class='arrow-right' src='https://oss1.chedianai.com/images/assets/personal-right-arrow.png'></image>
+      </view>
+    </view>
+    <!--已核销-->
+    <view wx:if="{{(order.status === 2 || order.status === 3) && order.write_off.status === 2}}" class="info-section">
+      <view class="info-item" wx:if="{{order.write_off_record.length}}" data-writeOff="{{order.write_off_record}}" bindtap="goWriteOff">
+        <view class="info-label record-text">核销记录</view>
+        <image class='arrow-right' src='https://oss1.chedianai.com/images/assets/personal-right-arrow.png'></image>
+      </view>
+    </view>
+    <!--交易详情-->
+    <view class="info-section" wx:if='{{order.status !== 1}}'>
+      <view class="info-item">
+        <view class="info-label">交易流水号</view>
+        <view class="info-content">{{order.payment.third_payment_no}}</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">支付方式</view>
+        <view class="info-content">微信支付</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">支付时间</view>
+        <view class="info-content">{{order.paid_at}}</view>
+      </view>
+    </view>
+    <!--订单费用-->
+    <view class="info-section" wx:if='{{order.status !== 1}}'>
+      <view class="info-item">
+        <view class="info-label" wx:if="{{order.order_type !=3 && order.order_type != 4}}">商品总价</view>
+        <view class="info-label" wx:if="{{order.order_type ==3 || order.order_type == 4}}">
+          <text wx:if="{{order.item[0].item_type != 2}}">商品总价</text>
+          <text wx:if="{{order.item[0].item_type == 2}}">服务原价</text>
+        </view>
+        <view class="info-content">¥{{order.total_amount}}</view>
+      </view>
+      <view class="info-item" wx:if='{{order.preferential_price != 0}}'>
+        <view class="info-label">优惠券</view>
+        <view class="info-content">- ¥{{order.preferential_price}}</view>
+      </view>
+      <view class="info-item" wx:if="{{order.random_coupon > 0}}">
+        <view class="info-label">随机立减</view>
+        <view class="info-content">- ¥{{order.random_coupon / 100}}</view>
+      </view>
+      <view class="info-item" wx:if="{{order.order_type==2&&order.maintenance_fee!=0}}">
+        <view class="info-label">工时费用</view>
+        <view class="info-content">¥{{order.maintenance_fee / 100}}</view>
+      </view>
+      <view class="info-item payment-line">
+        <view class="info-content">
+          <view class="info-label">实付金额:</view>
+          <view class="info-content-payment">¥{{order.final_amount}}</view></view>
+      </view>
+    </view>
+  </view>
+  <!--待付款倒计时-->
+  <view class="count-down-box" wx:if="{{order.status === 1 && cha_time > 0 && (order.order_type!=3 ||(order.order_type == 3 && group_detail.group_status == 1))}}">
+    <view class="count-down-text">
+      付款倒计时
+    </view>
+    <view class="count-down">
+      {{clock}}
+    </view>
+  </view>
+  <!--取消预约-->
+  <view wx:if="{{order.status === 2 && order.reserve.reserve_status === 2}}" class="operation-button-wrapper">
+    <view class="operation-button unresercion" bindtap="cancel">取消预约</view>
+  </view>
+  <!--待预约-->
+  <view wx:if="{{order.status === 2 && order.reserve.reserve_status !== 2 && (order.order_type!=3 ||(order.order_type == 3 && group_detail.group_status == 2))}}" class="operation-button-wrapper">
+    <view class="operation-button reversion" bindtap="postReservation">去预约</view>
+  </view>
+  <!--待付款订单：取消订单、立即支付-->
+  <view wx:if="{{order.status === 1 && cha_time > 0 && (order.order_type != 3 || (order.order_type == 3 && group_detail.group_status == 1))}}" class="operation-button-wrapper">
+    <view class="operation-button cancel-order" bindtap="confirmCancelOrder">取消订单</view>
+    <view class="operation-button payment" bindtap="payment">立即支付</view>
+  </view>
+  <!-- 邀请好友来参团 拼团中、人数未满、订单已支付、已完成 -->
+  <view class="operation-button-wrapper"
+        wx:if="{{order.order_type == 3 && group_detail.group_status == 1 && group_detail.group_lack_num > 0 && (order.status == 2 || order.status == 3)}}">
+    <button class="operation-button reversion" data-type="group_share" open-type="share">邀请好友来参团</button>
+  </view>
+  <!-- 养护卡相关 -->
+  <block wx:if="{{order.goods_type === 2 && order.status === 3}}">
+    <view class="operation-button-wrapper" wx:if="{{order.upkeep_type === 3}}">
+      <button class="operation-button reversion" data-type="card_share" open-type="share">选择赠送好友</button>
+    </view>
+    <view class="operation-button-wrapper success-receive" wx:if="{{order.upkeep_type === 2 && order.is_received === 2}}">
+      <view class="pay-success-text">
+        <view class="timeout">待领取倒计时：{{clock}}</view>
+        <view class="tishi">72小时后好友将无法领取该养护卡</view>
+      </view>
+    </view>
+  </block>
+  <qrcode code="{{code}}" qrcode="{{qrcode}}" order_id="{{order_id}}" wx:if="{{showCode}}" bindtriggercancel="codeCancel"></qrcode>
+</view>

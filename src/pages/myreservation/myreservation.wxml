@@ -1,0 +1,58 @@
+<view class="page-myreservation" wx:if="{{pageShow}}" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="我的预约" home="{{showHome}}"></top-bar>
+	<!-- topbar end -->
+	<empty-page wx:if="{{!list.length}}" class="categroy-content" slogan="暂无预约" icon="nodating"></empty-page>
+	<view class="appointment-list">
+		<view class="appointment-card" wx:for='{{list}}' wx:key='index'>
+			<view class="appointment-time">
+				预约时间: {{item.reserve.reserve_time}}
+			</view>
+			<view class="appointment-item">
+				<view class="appointment-thumb">
+					<image src='{{item.reserve.banner.length>0 ? item.reserve.banner : "https://oss1.chedianai.com/images/assets/category-default.png"}}'></image>
+				</view>
+				<view class="appointment-item-content">
+					<view class="appointment-item-title">{{item.reserve.reserve_store_name}}</view>
+					<view class="appointment-item-address">
+						<!-- <view class="appointment_item_address_icon"><image src='/images/address.png'></image></view> -->
+						<view class="appointment-item-address-text">{{item.reserve.province_name}}{{item.reserve.city_name}}{{item.reserve.district_name}}{{item.reserve.address}}</view>
+					</view>
+				</view>
+			</view>
+			<view class="appointment-bottom">
+				<view class="lookAll" data-id='{{item.trade_order.trade_order_id}}' bindtap='showList'>
+					查看预约明细
+					<image wx:if='{{!item.showall}}' src='/images/down-icon.png'></image>
+					<image wx:if='{{item.showall}}' src='/images/up-icon.png'></image>
+				</view>
+				<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
+					<button formType="submit" class="cancel" data-id='{{item.trade_order.trade_order_id}}' bindtap='cancel'>取消预约</button>
+				</form>
+			</view>
+			<view class="info-section" wx:if='{{item.showall}}'>
+				<view class="info-item special-info" wx:for='{{item.item}}' wx:for-item='items' wx:key='index'>
+					<view class="item-avatar">
+						<image class="item-avatar-img" mode="aspectFit" src="{{items.image_url}}" />
+						<image class="item-type" wx:if='{{items.item_type === 1}}' src="/images/shop.png" />
+						<image class="item-type" wx:if='{{items.item_type === 2}}' src="/images/service.png" />
+					</view>
+					<view class="item-content">
+						<view>
+							<view class="item-title">{{items.item_title}}</view>
+							<view class="item-sku"><text wx:for='{{items.sku_attribute}}' wx:key='index'>{{item.attribute_item_value}} </text></view>
+						</view>
+						<view class="time-stamp">
+							<view class="order-amount">
+								￥{{items.unit_price}}
+							</view>
+							<!-- <view class="order-number">
+								x{{items.quantity}}
+							</view> -->
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

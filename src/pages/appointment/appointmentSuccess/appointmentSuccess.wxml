@@ -1,0 +1,39 @@
+<view class="page-appointmentSuccess" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="预约成功" home="{{showHome}}"></top-bar>
+	<!-- topbar end -->
+	<view class="result-wrapper">
+    <image src='https://oss1.chedianai.com/images/assets/days_2.png'></image>
+    <view class="result-text">您已预约成功</view>
+    <view class="result-text-default">预约时间: {{info.reserveStartTime}}</view>
+  </view>
+  <view>
+    <view class="service-info form-group">
+      <view class="section-header">订单项目</view> 
+      <view class="service-item" wx:if="{{info.itemList}}" wx:for="{{info.itemList}}" wx:key="index">
+        <view class="service-pic">
+          <image class="pic" src="{{item.image_url}}" mode="aspectFill" />
+          <image class="item-type" wx:if='{{item.item_type === 1}}' src="/images/shop.png" />
+          <image class="item-type" wx:if='{{item.item_type === 2}}' src="/images/service.png" />
+        </view>
+        <view class="service-content">
+          <view>
+            <view class="service-title">{{item.item_title}}</view>
+            <view class="service-sku"><text wx:for='{{item.sku_attribute}}' wx:key='index'>{{item.attribute_item_value}} </text></view>
+          </view>
+          <view class="time-stamp">
+            <view class="order-amount">
+              ￥{{item.unit_price}}
+            </view>
+            <!-- <view class="order-number">
+              x{{item.quantity}}
+            </view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="choose-time-group">
+    <view class="choose-btn" bindtap="toIndex" data-cdp="appointment_appointmentSuccess_1">返回首页</view>
+  </view>
+</view>

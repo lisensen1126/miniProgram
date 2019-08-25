@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "生成海报",
+  "usingComponents": {
+    "top-bar": "../../components/topbar/topbar"
+  }
+}

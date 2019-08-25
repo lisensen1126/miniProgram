@@ -1,0 +1,12 @@
+<view class="model-page" wx:if="{{showModel}}">
+    <view class="model-content">
+        <image class="model-icon" src='https://oss1.chedianai.com/images/assets/evaluate1.png'></image>
+        <view class="model-title">
+            <view>感谢你的点评</view>
+            <view>我们会继续努力的</view>
+        </view>
+        <view class="bottom-btn">
+            <image src='/images/index_close.png' bindtap="cancel"></image>
+        </view>
+    </view>
+</view>

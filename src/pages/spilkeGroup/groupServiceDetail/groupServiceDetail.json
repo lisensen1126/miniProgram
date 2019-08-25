@@ -1,0 +1,10 @@
+{
+	"navigationBarTitleText": "拼团详情",
+	"usingComponents": {
+		"empty-page": "../../../components/emptyPage/emptyPage",
+		"group-tips": "../../../components/groupTips/groupTips",
+		"top-bar": "../../../components/topbar/topbar",
+		"share-model": "../../../components/shareModel/shareModel",
+		"image-show": "../../../components/imageShow/imageShow"
+	}
+}

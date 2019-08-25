@@ -1,0 +1,75 @@
+@import '~@/style/mixin'
+  
+.video-item
+  display: flex
+  width: vw(345)
+  height: vw(118)
+  margin: 0 auto
+  background: #ffffff
+  box-shadow: 0 0 vw(8) 0 rgba(168, 168, 168, 0.30)
+  padding: vw(15)
+  box-sizing: border-box
+  border-radius: vw(4)
+  align-items: center
+  flex-direction: row
+  + .video-item
+    margin-top: vw(10)
+
+.video-content
+  flex-grow: 1
+
+.video-image
+  border-radius: vw(4)
+  width: vw(108)
+  height: vw(88)
+  margin-right: vw(20)
+  position: relative
+  flex-shrink: 0
+  &::before
+    content: ''
+    display: block
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    background: rgba(18,18,18,0.40)
+  &::after
+    content: ''
+    display: block
+    width: vw(32)
+    height: vw(32)
+    background: url('../../../images/icons/icon_play_b.svg') no-repeat center center
+    background-size: cover
+    position: absolute
+    left: 50%
+    top: 50%
+    z-index: 10
+    margin-left: vw(-16)
+    margin-top: vw(-16)
+
+.video-title
+  max-width: vw(170)
+  font-size: vw(18)
+  font-weight: bold
+  margin-bottom: vw(6)
+  @extend %ellipses
+
+.video-date,
+.video-duration
+  font-size: vw(12)
+  line-height: vw(16)
+  color: $text-gray
+  padding-left: vw(17)
+
+.video-date + .video-duration
+  margin-top: vw(4)
+
+.video-date
+  background: url('../../../images/icons/icons_time.svg') no-repeat left center
+  background-size: vw(12)
+
+.video-duration
+  background: url('../../../images/icons/icon_play_s.svg') no-repeat vw(1) center
+  background-size: vw(10)
+

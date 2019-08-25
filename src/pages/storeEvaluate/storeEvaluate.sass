@@ -1,0 +1,229 @@
+@import '~@/style/mixin'
+.page-storeEvaluate
+  .clearfix:after
+    content: " "  
+    display: block
+    clear: both
+    visibility: hidden
+    height: 0
+    font-size: 0
+  .index-hotcake-content-title
+    padding: vw(15)vw(15) vw(9) vw(15)
+    background-color: $bg-white
+    display: flex
+    justify-content: space-between
+    .index-hotcake-content-title-border
+      height: vw(16)
+      line-height: vw(16)
+      padding-left: vw(7)
+      font-size: vw(15)
+      font-weight: 600
+      color: #404040
+  .store-evaluate
+    margin-bottom: vw(10) 
+    box-sizing: border-box
+    .index-hotcake-content-title
+      padding-right: 0
+    .store-evaluate-item:first-child
+      margin-top: 0
+    .store-evaluate-item
+      background-color: $bg-white
+      padding: vw(15)
+      display: flex
+      margin-top: vw(10)
+      position: relative
+      .store-evaluate-item-evaluate
+        padding-bottom: vw(15)
+        border-bottom: vw(1) solid #EEEEEE
+      .store-evaluate-item-avater
+        width: vw(30)
+        height: vw(30)
+        border-radius: 50%
+        overflow: hidden
+        image
+          width: 100%
+          height: 100%
+          background-color: #f2f2f2
+      .store-evaluate-item-content
+        padding-left: vw(10)
+        flex: 1
+        box-sizing: border-box
+        .store-evaluate-item-evaluate-header
+          height: vw(30)
+          .store-evaluate-item-evaluate-header-name
+            display: flex
+            justify-content: space-between
+            align-items: center
+            font-size: vw(13)
+            font-weight: 600
+            color: #332E2E
+            .store-evaluate-item-evaluate-header-time
+              font-size: vw(9)
+              color: #3E3939
+              font-weight: 300
+          .store-evaluate-item-evaluate-header-score
+            display: flex
+            align-items: center
+            text
+              font-size: vw(9)
+              font-weight: 500
+              margin-left: vw(4)
+        .store-evaluate-item-evaluate-text
+          font-size: vw(15)
+          color: #393940
+          font-weight: 400
+          margin-top: vw(12)
+          word-break: break-all
+        .store-evaluate-item-evaluate-images
+          display: flex
+          flex-wrap: wrap
+          margin-top: vw(7)
+          .evaluate-image-item:nth-of-type(3n)
+            margin-right: 0
+          .evaluate-image-item
+            width: vw(91)
+            height: vw(91)
+            margin-right: vw(4)
+            margin-top: vw(4)
+            image
+              width: 100%
+              height: 100%
+      .store-evaluate-item-technician
+        margin-top: vw(15)
+        .store-evaluate-item-technician-title
+          font-size: vw(11)
+          font-weight: 400
+          color: #423D3D
+        .store-evaluate-item-technician-staff
+          display: flex
+          align-items: center
+          margin-top: vw(4)
+          .store-evaluate-item-technician-staff-avater
+            width: vw(28)
+            height: vw(28)
+            image
+              width: 100%
+              height: 100%
+              background-color: #f2f2f2
+          .store-evaluate-item-technician-staff-name
+            margin-left: vw(10)
+            .staff-name
+              color: #332E2E
+              font-size: vw(11)
+              font-weight: 600
+            .staff-job
+              color: #D0021B
+              font-weight: 500
+              font-size: vw(11)
+      .store-evaluate-item-store
+        margin-top: vw(15)
+        width: 100%
+        background-color: #F5F5F5
+        padding: vw(15) vw(9)
+        word-break: break-all
+        box-sizing: border-box
+        color: #393940
+        font-weight: 400
+        font-size: vw(13)
+  .comment-item:last-child
+    border-bottom: none
+  .comment-item
+    background: #fff
+    display: flex
+    justify-content: space-between
+    padding: vw(25) vw(15)
+    border-bottom: 1px solid #eee
+    .com-photo
+      width: vw(44)
+      height: vw(44)
+      border-radius: vw(44)
+      overflow: hidden
+      image
+        width: vw(44)
+        height: vw(44)
+    .com-con
+      width: calc(100% - 100rpx)
+      .com-info
+        padding-top: vw(3)
+        display: flex
+        justify-content: space-between
+        .com-base
+          .com-b-name
+            font-size: vw(14)
+            font-weight: 600
+            color: #332E2E
+          .com-b-time
+            height: vw(17)
+            font-size: vw(12)
+            color: #7F7F7F
+            display: flex
+            justify-content: flex-start
+            align-items: center
+            .start
+              margin-left: vw(4)
+        .time
+          font-size: vw(12)
+          color: #7F7F7F
+      .com-des
+        margin-top: vw(12)
+        font-size: vw(16)
+        color: #393940
+      .com-pic
+        margin-top: vw(15)
+        display: flex
+        .com-pic-item
+          margin-right: vw(5)
+          width: calc(100%/3 - 20rpx/3)
+          height: vw(77)
+          image
+            width: 100%
+            height: vw(77)
+      .recommend
+        width: vw(298)
+        height: auto
+        .technicians-tips
+          padding: vw(14) 0 vw(2) 0
+          font-size: vw(12)
+          color: #7F7F7F
+          line-height: vw(17)
+        .rec-photo
+          width: vw(144)
+          height: vw(48)
+          background-color: #F7F7F7
+          margin-right: vw(5)
+          margin-top: vw(5)
+          float: left
+          image
+            width: vw(30)
+            height: vw(30)
+            float: left
+            border-radius: vw(30)
+            margin-top: vw(9)
+            margin-left: vw(15)
+          .rec-info
+            float: left
+            padding-top: vw(8)
+            padding-left: vw(4)
+            .rec-name
+              font-size: vw(12)
+              font-weight: 600
+              color: #332E2E
+              line-height: vw(18)
+              width: vw(90)
+              overflow: hidden
+              text-overflow: ellipsis
+              white-space: nowrap
+            .rec-job
+              font-size: vw(10)
+              color: #A6A6A6
+              line-height: vw(12)
+      .hr
+        width: 100%
+        height: vw(15)
+        border-bottom: vw(1) solid #eeeeee
+      .reply
+        width: 100%
+        margin-top: vw(15)
+        box-sizing: border-box
+        padding: vw(12)
+        background: #F7F7F7

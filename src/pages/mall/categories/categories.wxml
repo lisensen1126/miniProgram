@@ -1,0 +1,128 @@
+<view class="page-categories" style="padding-top: {{topbarHeight}}px">
+	<top-bar title="分类"></top-bar>
+	<!--页面顶部-->
+	<view class="page-top" style="top: {{topbarHeight}}px">
+  <!--搜索框部分-->
+		<view class="search-box">
+			<view class="placeholder-input" bindtap="showSearchBar">
+				<image bindtap="goSear" class="search-icon" src="/images/search.png"></image>
+				快速搜索您想要的商品和服务
+			</view>
+		</view>
+		
+    <!--tab切换部分-->
+		<view class="tab-box">
+			<view class="tab-bar {{tabType === 2?'tab-active':''}}" data-tab="2" bindtap="changeTab">服务
+			</view>
+			<view class="tab-bar pull-right {{tabType===1?'tab-active':''}}" data-tab="1" bindtap="changeTab">商品</view>
+		</view>
+	</view>
+	<view class="page-content" wx:if="{{categoryList.length > 0}}">
+
+		<!--服务分类内容-->
+		<view class="con-serves" wx:if="{{tabType === 2}}">
+			<scroll-view scroll-y="{{true}}" class="content-left pull-left" 
+				style="height: calc(100vh  - 202rpx)">
+				<view class="category-item {{categoryIndex === item.category_id ? 'category-active' : ''}}"
+					  wx:for="{{categoryList}}"
+					  wx:key="{{item.category_id}}"
+					  wx:for-index="index"
+					  bindtap="showSecondCategory"
+					  data-parentId="{{item.category_id}}">{{item.category_name}}</view>
+			</scroll-view>
+			<!--二级分类-->
+			<scroll-view class="content-right" style="height: calc(100vh  - 202rpx)"
+						 scroll-y="true" scroll-with-animation="{{true}}" scroll-into-view="{{scrollPosition}}">
+				<view class="category-second"
+					  bindtouchmove="scorllFun"
+					  wx:for="{{categoryList}}"
+					  wx:key="{{item.category_id}}"
+					  wx:for-index="{{index}}"
+					  data-parentId="{{item.category_id}}">
+					<view class="second-title" id="{{'category' + item.category_id}}">{{item.category_name}}</view>
+					<view class="no-category" wx:if="{{item.son_category_data.length <= 0}}">暂无分类</view>
+					<view wx:for="{{item.son_category_data}}"
+						  wx:for-item="sonItem"
+						  wx:key="{{sonItem.category_id}}"
+						  data-categoryId="{{sonItem.category_id}}"
+							data-parentId="{{item.category_id}}"
+              data-name="{{sonItem.category_name}}"
+						  bindtap="goCategoryList"
+						  class="second-item">
+						<image-show src="{{sonItem.category_logo?sonItem.category_logo:'https://oss1.chedianai.com/images/assets/default_category.png'}}"
+							width="120"
+							height='70'
+							quality="90"
+							format="jpg"></image-show>
+						<view class="item-name">{{sonItem.category_name}}</view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+		<!--商品分类内容-->
+		<view class="con-goods" wx:if="{{tabType === 1}}">
+			<view scroll-y="{{true}}" class="content-left pull-left"
+				style="height: calc(100vh - 202rpx)">
+				<view class="category-item {{categoryIndex === item.category_id ? 'category-active' : ''}}"
+					  wx:for="{{categoryList}}"
+					  wx:key="{{item.category_id}}"
+					  wx:for-index="index"
+					  bindtap="showSecondCategory"
+					  data-parentId="{{item.category_id}}">{{item.category_name}}</view>
+			</view>
+			<!--二级分类、品牌-->
+			<scroll-view class="content-right" style="height: calc(100vh  - 202rpx)"
+						 scroll-y="true" scroll-with-animation="{{true}}"  scroll-into-view="{{scrollPosition}}">
+				<!--分类-->
+				<view wx:for="{{categoryList}}"
+					  wx:key="{{item.category_id}}"
+					  wx:for-index="{{index}}">
+					<view class="second-goods-title" id="{{'category' + item.category_id}}">{{item.category_name}}</view>
+					<view class="category-second" wx:if="{{item.son_brand_data.length>0}}">
+						<view class="second-title">品牌</view>
+						<view wx:for="{{item.son_brand_data}}"
+							  bindtouchmove="scorllFun"
+							  wx:for-item="sonBrandItem"
+							  wx:key="{{sonBrandItem.brand_id}}"
+							  data-brandId="{{sonBrandItem.brand_id}}"
+							  data-soncategoryids="{{item.son_category_ids}}"
+							  data-parentId="{{item.category_id}}"
+                data-name="{{sonBrandItem.brand_name}}"
+							  bindtap="goCategoryList"
+							  class="second-item">
+							<image-show src="{{sonBrandItem.brand_logo?sonBrandItem.brand_logo:'https://oss1.chedianai.com/images/assets/default_category.png'}}"
+								width="120"
+								height='70'
+								quality="90"
+								format="jpg"></image-show>
+							<view class="item-name">{{sonBrandItem.brand_name}}</view>
+						</view>
+					</view>
+					<view class="category-second">
+						<view class="second-title">分类</view>
+						<view class="no-category" wx:if="{{item.son_category_data.length <= 0}}">暂无分类</view>
+						<view wx:for="{{item.son_category_data}}"
+							  bindtouchmove="scorllFun"
+							  wx:for-item="sonItem"
+							  wx:key="{{sonItem.category_id}}"
+							  data-categoryId="{{sonItem.category_id}}"
+							  data-parentId="{{item.category_id}}"
+                data-name="{{sonItem.category_name}}"
+							  bindtap="goCategoryList"
+							  class="second-item">
+							<image-show src="{{sonItem.category_logo?sonItem.category_logo:'https://oss1.chedianai.com/images/assets/default_category.png'}}"
+								width="120"
+								height='70'
+								quality="90"
+								format="jpg"></image-show>
+							<view class="item-name">{{sonItem.category_name}}</view>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+	</view>
+	<!--缺省-->
+	<empty-page wx:if="{{categoryList.length <= 0}}" icon="nosearch" slogan="暂无分类"></empty-page>
+	
+</view>

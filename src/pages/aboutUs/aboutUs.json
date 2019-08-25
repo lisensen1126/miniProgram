@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "壳保养智慧门店小程序",
+	"usingComponents": {
+		"top-bar": "../../components/topbar/topbar"
+  }
+}

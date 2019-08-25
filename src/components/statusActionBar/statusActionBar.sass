@@ -1,0 +1,41 @@
+@import '~@/style/mixin'
+
+.confirm-wrapper
+  position: relative
+  height: vw(45)
+.confirm-group
+  box-sizing: border-box
+  z-index: 5
+  width: vw(375)
+  height: vw(45)
+  position: fixed
+  left: 0
+  bottom: 0
+  display: flex
+  justify-content: space-between
+  align-items: stretch
+  background: #B3ADAD
+  color: $text-white
+  &::before
+    left: 0
+    top: 0
+    @include horizontal-line
+  .cancel-btn,
+  .confirm-btn
+    display: flex
+    flex-grow: 1
+    align-items: center
+    justify-content: center
+    font-size: vw(14)
+    font-weight: 500
+    color: #000000
+    &.is-enable
+      background: $primary
+    &.is-unable
+      background: #dcdee0
+      color: #000000
+  .cancel-btn
+    background-color: #ffffff
+  .confirm-btn
+    background-color: $primary
+

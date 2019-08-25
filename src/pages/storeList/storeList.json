@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "门店列表",
+	"usingComponents": {
+		"top-bar": "../../components/topbar/topbar",    
+    "score-points-min": "../../components/scorePointsMin/scorePoints"
+  }
+}

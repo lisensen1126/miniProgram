@@ -1,0 +1,9 @@
+{
+	"navigationBarTitleText": "拼团专区",
+	"usingComponents": {
+		"custom-loading": "../../../components/customLoading/customLoading",
+		"empty-page": "../../../components/emptyPage/emptyPage",
+		"top-bar": "../../../components/topbar/topbar",
+		"image-show": "../../../components/imageShow/imageShow"
+	}
+}

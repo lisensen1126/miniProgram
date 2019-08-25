@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "养护卡关联商品",
+	"usingComponents": {
+		"empty-page": "../../../components/emptyPage/emptyPage",
+		"top-bar": "../../../components/topbar/topbar"
+	}
+}

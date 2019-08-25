@@ -1,0 +1,8 @@
+{
+	"navigationBarTitleText": "赠送记录",
+	"usingComponents": {
+		"empty-page": "../../../components/emptyPage/emptyPage",
+		"custom-loading": "../../../components/customLoading/customLoading",
+		"top-bar": "../../../components/topbar/topbar"
+	}
+}

@@ -1,0 +1,46 @@
+@import '../../../style/mixin';
+.page-defaultPage {
+	background: #F5F5F5;
+	min-height: 100%;
+	.conetnt {
+		text-align: center;
+		.defaultPage-img {
+			margin-top: vw(109);
+			width: vw(150);
+			height: vw(131);
+		}
+		.defaultPage-text {
+			font-family: PingFangSC;
+			margin-top: vw(37);
+			color: #b2b2b2;
+			font-size: vw(13);
+		}
+  }
+  .back-to-home {
+		position: fixed;
+		left: 0;
+		top: vw(45);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: vw(43);
+		height: vw(49);
+		border-radius: 0 vw(3) vw(3) 0;
+		background-color: rgba(255, 255, 255, .98);
+		box-shadow: 0 vw(2) vw(8) 0 rgba(255, 199, 35, .05), 0 vw(6) vw(16) vw(-3) rgba(0, 0, 0, .15);
+		color: #999;
+		font-size: vw(10);
+		line-height: vw(12);
+		z-index: 9;
+  }
+  .back-to-home:before {
+		content: '';
+		display: inline-block;
+		width: vw(17);
+		height: vw(19);
+    background: center no-repeat url('https://oss1.chedianai.com/images/assets/back-to-home3.png');
+    background-size: cover;
+		margin-bottom: vw(4);
+	}
+}

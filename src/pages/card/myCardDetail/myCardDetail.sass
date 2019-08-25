@@ -1,0 +1,420 @@
+@import '~@/style/mixin'
+  
+.purchase-details
+  background-color: #F5F5F5
+  &.active
+    padding-bottom: vw(58)
+  .bold
+    font-weight: 600
+  .card-wrapper
+    width: 100%
+    padding: vw(15)
+    box-sizing: border-box
+    background: #fff
+  .project-title
+    padding: vw(20) 0 vw(15) 0
+    display: flex
+    justify-content: space-between
+    align-items: center
+    box-sizing: border-box
+    .project-name
+      position: relative
+      font-size: vw(14)
+      color: #404040
+      font-weight: bold
+      // &:before
+      //   content: ''
+      //   display: block
+      //   position: absolute
+      //   left: 0
+      //   top: vw(5)
+      //   width: vw(5)
+      //   height: vw(14)
+      //   background: #F7D117
+    .project-button
+      font-size: vw(12)
+      color: #7F7F7F
+      font-weight: 400
+      display: flex
+      align-items: center
+      .allow-right
+        width: vw(10)
+        height: vw(9)
+        opacity: 0.5
+  .project-item
+    width: 100%
+    height: auto
+    background: #fff
+    padding: 0 vw(15) vw(15)
+    box-sizing: border-box
+    margin-top: vw(15)
+    .give-card-project
+      width: 100%
+      margin-top: vw(15)
+      padding: 0 vw(10)
+      box-sizing: border-box
+      .give-card-project-button
+        width: 100%
+        height: vw(40)
+        text-align: center
+        line-height: vw(40)
+        background: #FBCE07
+        color: #404040
+        font-size: vw(14)
+        font-weight: bold
+        &.active
+          background: #D9D9D9
+          color: #ffffff
+    .project-content-item
+      width: 100%
+      border: vw(1) dashed #F5F5F5
+      padding: vw(13) vw(15)
+      position: relative
+      box-sizing: border-box
+      margin-bottom: vw(15)
+      &:last-child
+        margin-bottom: 0
+      .project-content-time
+        padding-top: vw(15)
+        margin-top: vw(15)
+        line-height: 1
+        border-top: vw(1) solid #EEEEEE
+        color: #7F7F7F
+        font-size: vw(12)
+        font-weight: 400
+      .project-content-name
+        font-size: vw(14)
+        font-weight: bold
+        color: #404040
+      .project-content-direction
+        font-size: vw(12)
+        font-weight: 400
+        color: #808285
+        margin-top: vw(6)
+      .project-content-angle
+        min-width: vw(62)
+        height: vw(20)
+        padding: 0 vw(8)
+        box-sizing: border-box
+        text-align: center
+        line-height: vw(20)
+        position: absolute
+        right: 0
+        top: 0
+        background: #F7D117
+        color: #000000
+        font-size: vw(12)
+        font-weight: 400
+        &.active
+          background: #D42E12
+          color: #ffffff
+      .bc-font
+        background-color: #DDDDDD
+        color: #ffffff
+    .bc-font-A7A9AC
+      background-color: #F5F5F5
+      .project-content-name
+        color: #A7A9AC
+      .project-content-direction
+        color: #A7A9AC
+  .instructions-item
+    width: 100%
+    border-bottom: vw(1) solid #F5F5F5
+    padding: vw(15) 0
+    box-sizing: border-box
+    &:last-child
+      border-bottom: 0
+    &:first-child
+      padding-top: 0
+    .instructions-name
+      font-size: vw(14)
+      font-weight: 400
+      color: #404040
+    .instructions-direction
+      font-size: vw(12)
+      font-weight: 400
+      color: #808285
+      margin-top: vw(6)
+  .graphic
+    width: 100%
+  .goods-title
+    padding-bottom: vw(8)
+  .goods-content
+    width: 100%
+    display: flex
+    margin-top: vw(20)
+    .goods-image
+      width: vw(108)
+      height: vw(66)
+      margin-right: vw(10)
+      .goods-img
+        width: 100%
+        height: 100%
+      &:last-child
+        margin-right: 0
+  .goods-describe
+    color: #7F7F7F
+    font-size: vw(12)
+    font-weight: 400
+    line-height: 1
+  // 底部文案
+  .detail-list-bottom
+    position: relative
+    color: #B3B3B3
+    font-size: vw(12)
+    text-align: center
+    margin: vw(24) 0 vw(30) 0
+    line-height: 1
+    .line-left
+      position: absolute
+      width: vw(75)
+      height: vw(1)
+      background: #CFCFCF
+      top: vw(6)
+      left: vw(21)
+    .line-right
+      position: absolute
+      top: vw(6)
+      width: vw(75)
+      height: vw(1)
+      background: #CFCFCF
+      right: vw(21)
+.fl
+  float: left
+.fr
+  float: right
+.clearfix:after
+  content: " "  
+  display: block
+  clear: both
+  visibility: hidden
+  height: 0
+  font-size: 0
+.back-write
+  background-color: #ffffff
+.m-t-20
+  margin-top: vw(20)
+.car-list
+  width: 100%
+  height: auto
+  background: #ffffff
+  padding-top: vw(20)
+  .text
+    font-size: vw(16)
+    color: #000000
+    line-height: 1
+    padding: vw(16) 0 vw(20) vw(15)
+  .card-item
+    width: vw(345)
+    height: vw(200)
+    margin: 0 auto
+    border-radius: vw(10)
+    background-size: vw(345) vw(214)
+    position: relative
+    .card-give-icon
+      position: absolute
+      width: vw(34)
+      line-height: vw(16)
+      box-sizing: border-box
+      color: #FFF6E1
+      border: 1rpx solid rgba(255,246,225,1)
+      border-radius: vw(2)
+      font-size: vw(11)
+      text-align: center
+      top: 0
+      right: vw(-42)
+      font-size: 500
+    .card-num
+      position: absolute
+      right: vw(20)
+      top: vw(18)
+      color: #FFF6E1
+      .num-bg
+        height: vw(13)
+        line-height: vw(13)
+        font-size: vw(12)
+        background-color: #FFF6E1
+        color: #000000
+        margin-top: vw(5)
+        margin-left: vw(2)
+        margin-right: vw(2)
+        text-align: center
+        padding: 0 vw(4)
+    .card-item-use
+      color: #FFF6E1
+      font-size: vw(12)
+      font-weight: 500
+      display: flex
+      align-items: center
+      position: absolute
+      bottom: vw(34)
+      right: vw(15)
+      .num-use
+        background-color: #FFF6E1
+        color: #000
+        padding: vw(1) vw(4)
+        margin: 0 vw(2)
+        line-height: 1        
+    .card-name
+      color: #FFF6E1
+      font-size: vw(16)
+      line-height: 1
+      font-weight: bold
+      position: absolute
+      bottom: vw(48)
+      left: vw(15)      
+    .card-time
+      font-size: vw(12)
+      color: #FFF6E1
+      line-height: 1
+      position: absolute
+      bottom: vw(16)
+      right: vw(15)      
+      &.active
+        margin-top: vw(108)
+    .card-order
+      color: #FFF6E1
+      font-size: vw(18)
+      line-height: 1
+      position: absolute
+      bottom: vw(15)
+      left: vw(15)        
+    .card-code
+      position: absolute
+      right: vw(15)
+      bottom: vw(20)
+      width: vw(50)
+      height: vw(38)
+    .past-due
+      width: vw(62)
+      height: vw(30)
+      text-align: center
+      line-height: vw(30)
+      border: vw(1) solid #fff6e1
+      border-radius: vw(3)
+      position: absolute
+      right: vw(20)
+      bottom: vw(20)
+      color: #fff6e1
+  .card-item:last-child
+    margin-bottom: 0
+.order-box
+  margin-top: vw(15)
+  background: #ffffff
+  height: vw(168)
+  .item-box
+    padding: vw(28) vw(43) vw(25) vw(43)
+    .item-order
+      display: inline-block
+      width: vw(50) 
+      margin-right: vw(64) 
+      position: relative
+      .item-num
+        width: vw(18)
+        height: vw(18)
+        line-height: vw(18)
+        border-radius: 50%
+        position: absolute
+        left: vw(30)
+        top: vw(-9)
+        background-color: #F7D117
+        font-size: vw(12)
+        text-align: center
+      .num-two
+        width: vw(24)
+        border-radius: vw(24)  
+      .num-three
+        width: vw(36)
+        border-radius: vw(36)    
+      .item-icon
+        width: vw(26)
+        height: vw(27)
+        display: block
+        margin: auto
+        text-align: center
+        line-height: vw(27)
+        font-size: vw(20)
+        color: #000000
+        font-weight: 600
+      .item-title
+        font-size: vw(12)
+        line-height: 1
+        margin-top: vw(10)  
+        text-align: center 
+    .item-order:last-child
+        margin-right: 0
+  .button
+    width: vw(325)
+    height: vw(46)
+    margin: 0 auto
+    line-height: vw(46)
+    text-align: center
+    background-color: #F7D117
+    font-size: vw(14)
+    color: #000000
+    font-weight: 500
+    &.active
+      background: #C0C3CC
+      color: #fff
+    &.delete
+      background: #ffffff
+      color: #DD1D21
+      border: vw(1) solid #DD1D21
+.bc-F5F5F5
+  background-color: #F5F5F5
+.bc-font
+  background-color: #DDDDDD
+  color: #ffffff
+.footer
+  width: 100%;
+  height: vw(58)
+  background: #ffffff
+  position: fixed
+  left: 0
+  bottom: 0
+  padding: vw(9) vw(15)
+  box-sizing: border-box
+  display: flex
+  align-items: center
+  justify-content: space-between
+  .record-button
+    width: vw(188)
+    height: vw(40)
+    background: #DD1D21
+    text-align: center
+    color: #ffffff
+    line-height: vw(40)
+    font-weight: bold
+    font-size: vw(14)
+    &.delete
+      background: #ffffff
+      border: vw(1) solid #DD1D21
+      color: #DD1D21
+  .record-list
+    width: vw(50)
+    text-align: center
+    .record-text
+      color: #404040
+      font-size: vw(12)
+      font-weight: 400
+      line-height: 1
+    .record-icon
+      width: vw(24)
+      height: vw(24)
+.footer-qiao
+  .button-box
+    display: flex
+    align-items: center
+    .record-button
+      width: vw(114)
+      height: vw(40)
+      text-align: center
+      line-height: vw(40)
+      &.active
+        background: #DD1D21
+        color: #ffffff
+      &.use-active
+        background: #FBCE07
+        color: #404040
+
+

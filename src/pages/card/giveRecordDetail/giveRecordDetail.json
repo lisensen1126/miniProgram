@@ -1,0 +1,8 @@
+{
+	"navigationBarTitleText": "赠卡详情",
+	"usingComponents": {
+		"top-bar": "../../../components/topbar/topbar",    
+		"qrcode": "../../../components/qrcode/qrcode",
+		"confirm-self-use": "../../../components/confirmSelfUse/confirmSelfUse"
+  }
+}

@@ -1,0 +1,9 @@
+{
+	"navigationBarTitleText": "购物车",
+	"usingComponents": {
+		"top-bar": "../../components/topbar/topbar",		
+		"message-model": "../../components/messageModel/messageModel",
+		"empty-page": "../../components/emptyPage/emptyPage",
+		"image-show": "../../components/imageShow/imageShow"
+	}
+}

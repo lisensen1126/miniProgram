@@ -1,0 +1,118 @@
+@import '~@/style/mixin'
+
+.page-groupCategoryList 
+  background-color: #fff
+  min-height: 100vh
+  .info-item
+    padding: vw(15)
+    display: flex
+    justify-content: space-between
+    overflow: hidden
+    position: relative
+    &:after
+      content: ''
+      height: vw(1)
+      background-color: #EEEEEE
+      position: absolute
+      bottom: 0
+      left: vw(15)
+      right: vw(15)
+    &.special-info
+      justify-content: flex-start
+    .info-label
+      font-size: vw(16)
+      color: #858587
+      padding: vw(5) 0
+    .info-content
+      font-size: vw(16)
+      padding: vw(5) 0
+      color: #404040
+      display: flex
+      align-items: center
+    .info-content-payment
+      color: #E50413
+  .info-item:last-child
+    &:after
+      height: 0
+  .item-avatar
+    flex: 0 0 vw(165)
+    width: vw(165)
+    height: vw(103)
+    margin-right: vw(9)
+    background-color: $text-white
+    position: relative
+    .item-avatar-img
+      width: vw(164)
+      height: vw(104)
+    .item-type
+      position: absolute
+      left: 0
+      top: 0
+      width: vw(38)
+      height: vw(38)
+    .group
+      position: absolute
+      right: vw(-2)
+      top: vw(-2)
+      width: vw(38)
+      height: vw(14)
+  .item-content
+    display: flex
+    flex: 1 1 auto
+    flex-direction: column
+    justify-content: space-between 
+  .item-price
+    color: #dd1d21
+    font-weight: bold
+    font-size: vw(14)
+    line-height: vw(16)
+  .time-stamp
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+    .order-amount
+      line-height: 1
+      .price
+        color: #DD1D21
+        font-size: vw(16)
+        margin-bottom: vw(3)
+        font-weight: bold
+      .old-price
+        font-size: vw(12)
+        font-weight: normal
+        color: #A7A9AC
+        text-decoration: line-through
+    .order-number
+      .start-group
+        color: #ffffff
+        font-size: vw(12)
+        font-weight: 500
+        width: vw(52)
+        height: vw(25)
+        text-align: center
+        line-height: vw(25)
+        background: #DD1D21
+  .item-title
+    font-size: vw(14)
+    line-height: vw(21)
+    display: -webkit-box
+    word-break: break-all
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 2
+    overflow: hidden
+    text-overflow: ellipsis
+    color: #404040
+  .item-sku
+    font-size: vw(13)
+    line-height: vw(20)
+    margin-top: vw(4)
+    color: #404040
+  .group-num-part
+    font-size: vw(10)
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    color: #DD1D21
+    border: vw(1) solid #E30414
+    width: vw(32)
+    height: vw(14)

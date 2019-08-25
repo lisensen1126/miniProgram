@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "抽奖说明",
+  "usingComponents": {
+    "top-bar": "../../../components/topbar/topbar"
+	}
+}

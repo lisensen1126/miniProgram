@@ -1,0 +1,27 @@
+<view class='collection'>
+  <view class="group-category-wrapper">
+    <view class="header">
+      <view class="icon"></view>
+      <view class="num-wrapper">
+        <view class="num">{{num}}人团</view>
+      </view>
+    </view>
+    <view class="content-wrapper" bindtap="goDetail" data-content-type="{{content_type}}" data-group-product-id="{{group_product_id}}" data-spu-id="{{spu_id}}" data-sku-id="{{sku_id}}">
+      <view class="goods-item">
+        <view class="goods-img">
+          <image class="img" mode="widthFix" src="{{goods_img}}"></image>
+        </view>
+        <view class="goods-content">
+          <view class="title">{{goods_name}}</view>
+          <view class="price">
+            ¥{{group_price}} <text>{{goods_price}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="btn-wrapper">
+        <!-- <view class="text">剩余{{inventory_total}}件</view> -->
+        <view class="btn">马上抢</view>
+      </view>
+    </view>
+  </view>
+</view>

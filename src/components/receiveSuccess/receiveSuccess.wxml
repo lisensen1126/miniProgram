@@ -1,0 +1,15 @@
+<view class="coupon-model">
+  <view class="welfare_center">
+    <view class="welfare_center_content">
+      <image class="welfare_center_img" src="https://oss1.chedianai.com/images/assets/receive-success@2x.png"></image>
+      <view class="welfare_center_text">领取成功</view>
+    </view>
+    <!-- <view class="welfare_center_close" catchtap='cancel'> -->
+      <!-- <image src='/images/default/close-btn.png'></image> -->
+    <!-- </view> -->
+    <view class="welfare_center_button_box">
+      <view class="welfare_center_button back-index" bindtap='backIndex' data-cdp="components_receiveSuccess_1">回到首页</view>
+      <view class="welfare_center_button go-card" bindtap="goCard" data-cdp="components_receiveSuccess_2">去卡包</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,148 @@
+<view class="page-vehicle-report-detail" style="padding-top: {{top_height}}px">
+	<top-bar title="{{title}}" home="{{show_home}}"></top-bar>
+	<!-- 车辆 -->
+	<view class="vehicle-info">
+		<image class="left-logo" src="{{report.logo ? report.logo : 'https://oss1.chedianai.com/images/assets/default_car.png'}}"></image>
+		<view class="right-info">
+			<view class="vehicle_name">
+				<text wx:if="{{report.vehicle_name}}">{{report.vehicle_name}}</text>
+				<text wx:else>暂无</text>
+			</view>
+			<view class="license_plate">
+				<view class="left-license">{{report.license_plate}}</view>
+				<view class="right-km">
+					<text>已行驶 </text>
+					<text wx:if="{{!report.mileage}}">暂无</text>
+					<text wx:else>{{report.mileage}}KM</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 技师门店 -->
+	<view class="store-info">
+		<view class="item-box">
+			<view class="left-title">技师</view>
+			<view class="right-content">{{report.technician_name}}</view>
+		</view>
+		<view class="item-box">
+			<view class="left-title">检测门店</view>
+			<view class="right-content">{{report.store_name}}</view>
+		</view>
+		<view class="item-box last-box">
+			<view class="left-title">检测时间</view>
+			<view class="right-content">{{report.created_at}}</view>
+		</view>
+	</view>
+	<!-- 导航切换 -->
+	<view class="top-nav">
+		<view class="nav-item {{index === 1 ? 'is-active' : ''}}" bindtap="changeTab" data-index='1'>
+			<view class="item-num">
+				{{report.exception_count ? report.exception_count > 99 ? '99+' : report.exception_count : 0}}
+			</view>
+			<view class="item-title">异常点</view>
+		</view>
+		<view class="nav-item {{index === 2 ? 'is-active' : ''}}" bindtap="changeTab" data-index='2'>
+			<view class="item-num">
+				{{report.pending_count ? report.pending_count > 99 ? '99+' : report.pending_count : 0}}
+			</view>
+			<view class="item-title pending">需关注</view>
+		</view>
+		<view class="nav-item {{index === 3 ? 'is-active' : ''}}" bindtap="changeTab" data-index='3'>
+			<view class="item-num">
+				{{report.normal_count ? report.normal_count > 99 ? '99+' : report.normal_count : 0}}
+			</view>
+			<view class="item-title normal">正常点</view>
+		</view>
+		<view class="nav-item {{index === 4 ? 'is-active' : ''}}" bindtap="changeTab" data-index='4'>
+			<view class="item-num">
+				{{report.noninspect_count ? report.noninspect_count > 99 ? '99+' : report.noninspect_count : 0}}
+			</view>
+			<view class="item-title noninspect">未检测</view>
+		</view>
+	</view>
+	<!-- 检测内容 -->
+	<view class="detail-content">
+		<view class="diagnosis-step" wx:for="{{current.category}}" wx:key="{{index}}" wx:for-item="step" wx:key="findex">
+			<view class="diagnosis-step-title">{{step.name}}</view>
+			<image class="diagnosis-step-icon" src="{{step.icon}}"></image>
+			<view class="diagnosis-item" wx:for="{{step.category_item}}" wx:for-item="item" wx:key="sindex">
+				<view class="diagnosis-item-name">{{item.name}}</view>
+				<view class="diagnosis-point-name">检测点</view>
+				<view class="diagnosis-points clearfix">
+					<view
+					 		class="points-item"
+							wx:for="{{item.point}}" 
+							wx:for-item="point" 
+							wx:for-index="tindex"
+							wx:key="tindex"
+						>{{point.name}}</view>
+				</view>
+				<view 
+						class="diagnosis-point-name" 
+						wx:if="{{item.exception && item.exception.length > 0}}"
+					>异常问题</view>
+				<view 
+						class="diagnosis-line" 
+						wx:for="{{item.exception}}" 
+						wx:key="excindex" 
+						wx:for-item="exception_item"
+						wx:for-index="excindex"
+					>{{excindex + 1}}.{{exception_item.name}}</view>
+				<view
+						class="diagnosis-point-name"
+						wx:if="{{item.exception_advice && item.exception_advice.length > 0}}"
+          >异常建议</view>
+				<view
+						class="diagnosis-line"
+						wx:for="{{item.exception_advice}}"
+						wx:for-item="exception_adv"
+						wx:for-index="aindex"
+						wx:key="aindex"
+          >{{aindex + 1}}.{{exception_adv.name}}</view>
+				<view class="diagnosis-point-name" wx:if="{{item.technician_comment}}">技师备注</view>
+				<view class="diagnosis-line">{{item.technician_comment}}</view>
+				<view
+            class="diagnosis-point-name"
+            wx:if="{{item.exception_image && item.exception_image.length > 0}}"
+          >详情图</view>
+				<view class="image-bar clearfix">
+					<view class="img-item" 
+						class="diagnosis-img-box"
+						wx:for="{{item.exception_image}}"
+						wx:for-index="zindex"
+						wx:key="zindex"
+						wx:for-item="url">
+							<image class="diagnosis-img" src="{{url}}" bindtap="lookImage" data-img="{{url}}" data-arr="{{item.exception_image}}"></image>
+					</view>
+				</view>
+				<view
+            class="diagnosis-point-name"
+            wx:if="{{item.exception_video && item.exception_video.length > 0}}"
+          >视频详情</view>
+				<view class="image-bar clearfix">
+					<view class="img-item" 
+						class="diagnosis-img-box video-box"
+						wx:for="{{item.exception_video}}"
+						wx:for-index="vindex"
+						wx:key="vindex"
+						wx:for-item="video">
+							<image class="icon" src="/images/intelligent/icon-play.png" data-video="{{video}}" bindtap="onChangeShowState"></image>
+							<image class="diagnosis-img" src="{{video + '?vframe/jpg/offset/1'}}"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 弹出视频框 -->
+	<view class="video-play-meng" wx:if="{{show_view}}">
+		<view class="video-play">
+			<view class="video-content">
+				<video id="myVideo" autoplay="{{true}}" src="{{paly_video}}">
+				</video>
+				<view class="videoClose" data-url="{{paly_video}}" bindtap='onChangeShowCloseState'>
+					<image class="image" src='/images/index_close.png'></image>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,9 @@
+{
+	"navigationBarTitleText": "门店评价",
+	"usingComponents": {
+		"top-bar": "../../components/topbar/topbar",	    
+    "empty-page": "../../components/emptyPage/emptyPage",
+    "custom-loading": "../../components/customLoading/customLoading",
+    "score-points": "../../components/scorePoints/scorePoints"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "score-points": "../scorePoints/scorePoints",
+    "empty-page": "../emptyPage/emptyPage"
+  }
+}

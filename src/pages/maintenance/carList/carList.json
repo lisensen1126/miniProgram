@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "爱车有道",
+	"usingComponents": {
+    "top-bar": "../../../components/topbar/topbar"
+	}
+}

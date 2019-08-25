@@ -1,0 +1,264 @@
+@import '~@/style/mixin'
+  
+.reveive-card
+  padding-bottom: vw(73)
+  &.active
+    height: 100%;
+    background: #ffffff
+    box-sizing: border-box
+  .card-time
+    width: 100%
+    height: vw(38)
+    background: #FBCE07
+    line-height: vw(38)
+    text-align: center
+    font-size: vw(14)
+    font-weight: 400
+    color: #404040
+  .card-wrapper
+    width: 100%
+    padding: vw(15)
+    box-sizing: border-box
+    background: #fff
+  .card-item
+    width: 100%
+    height: vw(200)
+    background-size: 100% 100%
+    border-radius: vw(10)
+    padding: vw(20)
+    box-sizing: border-box
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    position: relative
+    .card-item-title
+      width: 100%
+      display: flex
+      justify-content: space-between
+      align-items: center
+      line-height: 1
+    .give-card-icon
+      position: absolute
+      width: vw(34)
+      line-height: vw(16)
+      box-sizing: border-box
+      color: #FFF6E1
+      border: 1rpx solid rgba(255,246,225,1)
+      border-radius: vw(2)
+      font-size: vw(11)
+      text-align: center
+      top: 0
+      right: vw(-42)
+      font-size: 500
+    .card-item-name
+      color: #FFF6E1
+      font-size: vw(16)
+      line-height: 1
+      font-weight: bold
+      position: absolute
+      bottom: vw(48)
+      left: vw(15)        
+    .card-item-time
+      font-size: vw(12)
+      color: #FFF6E1
+      line-height: 1
+      position: absolute
+      bottom: vw(16)
+      right: vw(15)      
+    .card-item-use
+      color: #FFF6E1
+      font-size: vw(18)
+      line-height: 1
+      position: absolute
+      bottom: vw(15)
+      left: vw(15)          
+  .project-title
+    padding: vw(20) 0 vw(15) 0
+    display: flex
+    justify-content: space-between
+    align-items: center
+    box-sizing: border-box
+    .project-name
+      position: relative
+      font-size: vw(14)
+      color: #404040
+      font-weight: bold
+    .project-button
+      font-size: vw(12)
+      color: #7F7F7F
+      font-weight: 400
+      display: flex
+      align-items: center
+      .allow-right
+        width: vw(10)
+        height: vw(9)
+        opacity: 0.5
+  .project-item
+    width: 100%
+    height: auto
+    background: #fff
+    padding: 0 vw(15) vw(20)
+    box-sizing: border-box
+    margin-top: vw(15)
+    .project-content-item
+      width: 100%
+      border: vw(1) dashed #eeeeee
+      padding: vw(13) vw(15)
+      position: relative
+      box-sizing: border-box
+      margin-bottom: vw(15)
+      &:last-child
+        margin-bottom: 0
+      .project-content-time
+        padding-top: vw(15)
+        margin-top: vw(15)
+        line-height: 1
+        border-top: vw(1) solid #EEEEEE
+        color: #7F7F7F
+        font-size: vw(12)
+        font-weight: 400
+      .project-content-name
+        font-size: vw(14)
+        font-weight: bold
+        color: #404040
+      .project-content-direction
+        font-size: vw(12)
+        font-weight: 400
+        color: #7F7F7F
+        margin-top: vw(6)
+      .project-content-angle
+        min-width: vw(45)
+        height: vw(20)
+        padding: 0 vw(10)
+        box-sizing: border-box
+        text-align: center
+        line-height: vw(20)
+        position: absolute
+        right: 0
+        top: 0
+        background: #F7D117
+        color: #000000
+        font-size: vw(12)
+        font-weight: 400
+        &.active
+          background: #D42E12
+          color: #ffffff
+  .instructions-item
+    width: 100%
+    border-bottom: vw(1) solid #F5F5F5
+    padding: vw(15) 0
+    box-sizing: border-box
+    &:last-child
+      border-bottom: 0
+    &:first-child
+      padding-top: 0
+    .instructions-name
+      font-size: vw(14)
+      font-weight: 400
+      color: #404040
+    .instructions-direction
+      font-size: vw(12)
+      font-weight: 400
+      color: #808285
+      margin-top: vw(6)
+  .graphic
+    width: 100%
+  // 底部文案
+  .detail-list-bottom
+    position: relative
+    color: #B3B3B3
+    font-size: vw(12)
+    text-align: center
+    margin: vw(24) 0 vw(30) 0
+    line-height: 1
+    .line-left
+      position: absolute
+      width: vw(75)
+      height: vw(1)
+      background: #CFCFCF
+      top: vw(6)
+      left: vw(21)
+    .line-right
+      position: absolute
+      top: vw(6)
+      width: vw(75)
+      height: vw(1)
+      background: #CFCFCF
+      right: vw(21)
+  .foot-button
+    position: fixed
+    bottom: 0
+    left: 0
+    width: 100%
+    height: vw(58)
+    display: flex
+    background: #ffffff
+    padding: vw(9) vw(15)
+    box-sizing: border-box
+    .immediately
+      width: 100%
+      height: 100%
+      font-size: vw(14)
+      font-weight: bold
+      line-height: vw(40)
+      text-align: center
+      color: #ffffff
+      background: #DD1D21
+      &.active
+        background: #D9D9D9
+  .store-info
+    position: relative
+    .phone-call
+      width: vw(24)
+      height: vw(24)
+      position: absolute
+      right: vw(30)
+      top: vw(22)
+      image
+        width: 100%
+        height: 100%
+    .project-content
+      .store-title
+        color: #404040
+        font-size: vw(14)
+        font-weight: 400
+      .store-info-detail
+        color: #7F7F7F
+        font-size: vw(12)
+        display: flex
+        margin-top: vw(10)
+        align-items: center
+        .store-icon
+          width: vw(14)
+          height: vw(14)
+          margin-right: vw(6)
+  .default-card
+    width: 100%
+    height: 100%
+    background: #ffffff
+    text-align: center
+    .default-icon
+      width: vw(112)
+      height: vw(112)
+      margin-top: vw(73)
+    .default-title
+      color: #404040
+      font-size: vw(16)
+      font-weight: bold
+      margin-top: vw(10)
+    .default-text
+      font-weight: 400
+      font-size: vw(14)
+      margin-top: vw(8)
+      color: #404040
+    .default-button
+      width: vw(325)
+      height: vw(40)
+      background: #FBCE07
+      color: #404040
+      font-size: vw(14)
+      font-weight: bold
+      line-height: vw(40)
+      margin-left: vw(25)
+      margin-top: vw(50)
+

@@ -1,0 +1,41 @@
+@import '../../style/mixin.sass'
+
+.model-page
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background: rgba(0,0,0,0.6)
+  z-index: 100
+  .model-content
+    width: vw(298)
+    height: vw(212)
+    background: $text-white
+    position: absolute
+    bottom: vw(227)
+    left: vw(38)
+    .model-title
+      font-size: vw(15)
+      color: #332E2E
+      line-height: 1.2
+      margin: vw(70) vw(38)
+      text-align: center
+    .bottom-btn
+      position: absolute
+      bottom: 0
+      left: 0
+      right: 0
+    .model-btn
+      width: 50%
+      height: vw(46)
+      line-height: vw(46)
+      font-size: vw(14)
+      color: $text-white
+      text-align: center
+      display: inline-block
+    .cancel
+      background: #808285
+    .sure
+      background: #D52F12
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="345px" height="90px" viewBox="0 0 345 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>coupon_bg_b</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="coupon_bg_b">
+            <g>
+                <path d="M96,90 L2,90 C0.8954305,90 1.3527075e-16,89.1045695 0,88 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 L96,0 C96,2.209139 97.790861,4 100,4 C102.209139,4 104,2.209139 104,0 L343,0 C344.104569,-2.02906125e-16 345,0.8954305 345,2 L345,88 C345,89.1045695 344.104569,90 343,90 L104,90 C104,87.790861 102.209139,86 100,86 C97.790861,86 96,87.790861 96,90 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                <path d="M100,4.02783203 L100,85.6821289" id="Path-7" stroke="#DDDDDD" opacity="0.5" stroke-dasharray="2"></path>
+            </g>
+        </g>
+    </g>
+</svg>

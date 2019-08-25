@@ -1,0 +1,10 @@
+<view class="card-self-use-bg">
+  <view class="card-self-use">
+    <view class="card-self-use-title">确定不再赠送?</view>
+    <view class="card-self-use-content">养护卡将放到你的卡包中自己使用</view>
+    <view class="card-self-use-button">
+      <view class="card-self-use-button-left" bindtap="confirm">确定</view>
+      <view class="card-self-use-button-right" bindtap="cancel">取消</view>
+    </view>
+  </view>
+</view>

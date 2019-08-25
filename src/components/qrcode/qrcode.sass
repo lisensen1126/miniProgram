@@ -1,0 +1,58 @@
+@import '~@/style/mixin'
+.coupon-model
+  position: fixed
+  left: 0
+  top: 0
+  bottom: 0
+  right: 0
+  overflow: hidden
+  z-index: 9999
+  background-color: rgba(0,0,0,0.5)
+  .welfare_center
+    position: absolute
+    left: 50%
+    top: 45%
+    width: vw(278)
+    height: vw(405)
+    background: url('https://oss1.chedianai.com/images/assets/bg-qrcode.png')
+    background-size: 100% 100%
+    text-align: center
+    transform: translate(-50%,-50%)
+    margin: auto
+    .hexiao
+      width: vw(224)
+      height: vw(50)
+      background-color: rgba(245,245,245,1)
+      text-align: center
+      line-height: vw(50)
+      font-weight: 500
+      font-size: vw(16)
+      margin-top: vw(28)
+      display: inline-block
+    .welfare_center_text
+      .welfare_center_img
+        width: vw(240)
+        height: vw(240)
+    .welfare_center_btn
+      width: vw(224)
+      height: vw(42)
+      display: inline-block
+      text-align: center
+      line-height: vw(42)
+      background-color: $primary
+      font-size: vw(16)
+      font-weight: 500
+      margin-top: vw(8)
+      border-radius: 0
+      box-shadow: none
+      &:after
+        border: none
+    .welfare_center_close
+      width: vw(23)
+      height: vw(23)
+      position: absolute
+      left: vw(127.5)
+      bottom: vw(-50)
+      image
+        width: 100%
+        height: 100%

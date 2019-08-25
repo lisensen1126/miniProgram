@@ -1,0 +1,46 @@
+@import '~@/style/mixin'
+
+.topbar
+  position: fixed
+  left: 0
+  top: 0
+  z-index: 999
+  width: 100%
+  background: #fff
+  color: #000
+  .titlebar
+    position: relative
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    .t-left
+      position: absolute
+      left: vw(15)
+      font-size: vw(12)
+      display: flex
+      align-items: center
+      .t-back
+        width: 44px
+        height: 32px
+        // border: 1px solid #efefef
+        // border-radius: 20px
+        box-sizing: border-box
+        margin-top: - 2px
+        .t-b-pic
+          width: 44px
+          height: 32px
+      .t-home
+        width: 44px
+        height: 32px
+        .t-h-pic
+          width: 44px
+          height: 32px
+    .t-title
+      font-size: vw(18)
+      font-weight: 600
+      width: 45%
+      text-align: center
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap

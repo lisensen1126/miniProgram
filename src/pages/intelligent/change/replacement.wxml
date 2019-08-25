@@ -1,0 +1,48 @@
+<view class="page-Replacement" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="智能保养"></top-bar>
+	<view class="model" wx:if="{{type === 2}}">
+		<view class="groom">推荐品牌编号: {{groom}} </view>
+		<!-- <view class="groom" wx:if="{{type === 1}}">参考用量：{{resources}}L</view> -->
+	</view>
+	<view class="model-detail" wx:if="{{modelList.length > 0}}" wx:for="{{modelList}}" wx:key="index" bindtap="chooseOil" data-orderId="{{item.order_id}}" data-skuValue="{{item.sku_value}}" data-sku="{{item.basic_sku_id}}" data-skus="{{item.product_id}}">
+		<view class="version-list" wx:if="{{item.is_sale === 1}}">
+			<view class="version-image">
+				<image class="image" src="{{item.image_url}}" mode='aspectFit'></image>
+				<image wx:if="{{type!=3 && item.order_id === 1}}"  class="image-top" src="/images/intelligent/recommend.png"></image>
+				<image wx:elif="{{type!=3 && item.order_id === 2}}"  class="image-top" src="/images/intelligent/quality.png"></image>
+				<image wx:elif="{{type!=3 && item.order_id === 3}}" class="image-top" src="/images/intelligent/economic.png"></image>
+				<!-- 变速箱油标签-->
+				<image wx:if="{{type==3 && item.order_id === 1}}"  class="image-top" src="/images/intelligent/circle.png"></image>
+				<image wx:elif="{{type==3 && item.order_id === 2}}"  class="image-top" src="/images/intelligent/gravity.png"></image>
+			</view>
+			<view class="version-describe">
+				<view class="describe-title">
+					{{item.item_title}}  
+					<!-- {{item.attributes[1].value}} {{item.attributes[0].value}} -->
+				</view>
+				<view class="describe-detail">
+					¥{{item.unit_price/100}}
+				</view>
+			</view>
+		</view>
+		<view class="version-list" wx:else>
+			<view class="version-image">
+				<image class="image" src="{{item.image_url}}" mode='aspectFit'></image>
+				<image wx:if="{{item.order_id === 1}}"  class="image-top" src="/images/intelligent/recommend.png"></image>
+				<image wx:if="{{item.order_id === 2}}"  class="image-top" src="/images/intelligent/quality.png"></image>
+				<image wx:if="{{item.order_id === 3}}" class="image-top" src="/images/intelligent/economic.png"></image>
+			</view>
+			<view class="version-describe">
+				<view class="describe-title undercarriage">
+					{{item.item_title}}  
+					<!-- {{item.attributes[1].value}} {{item.attributes[0].value}} -->
+				</view>
+				<view class="describe-detail undercarriage">
+					¥{{item.unit_price/100}}
+				</view>
+			</view>
+			<image class="lower" src="/images/intelligent/undercarriage.png"></image>
+		</view>
+	</view>
+</view>

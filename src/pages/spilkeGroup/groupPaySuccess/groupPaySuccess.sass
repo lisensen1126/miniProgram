@@ -1,0 +1,127 @@
+@import '~@/style/mixin'
+.page-group-success
+	min-height: 100vh
+	background: #ffffff
+	.tips
+		font-size: vw(12)
+		color: #33363C
+		height: vw(30)
+		box-sizing: border-box
+		padding: vw(7) vw(16)
+		line-height: vw(16)
+		background: #F6F7F9
+		display: flex
+		align-items: center
+		image
+			width: vw(14)
+			height: vw(14)
+			margin-right: vw(3)
+	.group-content
+		box-sizing: border-box
+		padding-top: vw(35)
+		text-align: center
+		.group-title
+			font-size: vw(18)
+			color: #404040
+			display: flex
+			flex-direction: column
+			align-items: center
+			margin-bottom: vw(10)
+		.group-success
+			width: vw(80)
+			height: vw(80)
+		.success-text
+			margin-bottom: vw(40)
+		.group-person
+			font-size: vw(22)
+			color: #404040
+			margin: vw(10) 0 vw(8) 0
+			text
+				color: #DD1D21
+				font-weight: bold
+		.group-time
+			font-size: vw(14)
+			color: #404040
+			display: flex
+			justify-content: center
+			align-items: center
+			.time-default-color
+				color: #96979E
+			.time
+				display: inline-block
+				font-size: vw(12)
+				text-align: center
+				width: vw(20)
+				height: vw(18)
+				background: #404040
+				color: #ffffff
+				margin: 0 vw(3)
+			text:first-child
+				margin-left: vw(10)
+		.group-header
+			display: flex
+			justify-content: center
+			height: vw(50)
+			margin: vw(18) 0 vw(40) 0
+			image
+				width: vw(50)
+				height: vw(50)
+			.item-normal
+				width: vw(50)
+				height: vw(50)
+				border-radius: 100%
+				overflow: hidden
+				float: left
+				box-sizing: border-box
+			.item-normal:not(:first-child)
+				margin-left: vw(15)
+			.head
+				border: vw(1) solid #FBCE07
+				position: relative
+				.label-head
+					position: absolute
+					width: vw(50)
+					height: vw(11)
+					font-size: vw(9)
+					background: #FBCE07
+					color: #404040
+					text-align: center
+					line-height: vw(11)
+					bottom: 0
+			.un-pay-head
+				border: vw(1) solid #EB8705
+				position: relative
+				.label-un-pay
+					position: absolute
+					width: vw(50)
+					height: vw(11)
+					font-size: vw(8)
+					background: #EB8705
+					color: #404040
+					text-align: center
+					line-height: vw(11)
+					bottom: 0
+	.btn
+		padding: vw(0) vw(25)
+		box-sizing: border-box
+		text-align: center
+		button
+			width: 100%
+			color: #404040
+			font-size: vw(14)
+			&::after
+				display: none
+		.share-btn
+			height: vw(46)
+			width: 100%
+			background: #FBCE07
+			margin-bottom: vw(15)
+			line-height: vw(46)
+		.normal-btn
+			height: vw(46)
+			width: 100%
+			line-height: vw(46)
+			background: #F5F5F5
+	.default-color
+		background: #D9D9D9 !important
+			

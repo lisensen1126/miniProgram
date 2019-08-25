@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "新增车辆",
+  "usingComponents": {
+    "coupon-model": "../../../components/couponModel/couponModel",
+    "top-bar": "../../../components/topbar/topbar",
+    "catch-form": "../../../components/formId/formId",
+    "province-code": "../../../components/provinceCode/provinceCode",
+    "plate-number": "../../../components/plateNumber/plateNumber"
+	}
+}

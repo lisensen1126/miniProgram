@@ -1,0 +1,58 @@
+<view class="">
+  <view class="dark" bindtap="close"></view>
+  <view class="tech-detail">
+    <!-- 关闭弹框 -->
+    <view class="close-box" bindtap="close">
+      <image src="/images/default/close-btn.png" class="close-icon"></image>
+    </view>
+    <!-- 技师信息 -->
+    <view class="tech-info">
+      <image wx:if="{{tech_detail}}" class="left-avatar" src='{{tech_detail.avatar.length>0 ? tech_detail.avatar : "https://oss1.chedianai.com/images/assets/avater_default_1.png"}}'></image>
+      <view class="right-content" wx:if="{{tech_detail}}">
+        <view class="name">{{tech_detail.username}}</view>
+        <view class="job">{{tech_detail.jobName}}</view>
+      </view>
+    </view>
+    <!-- 评价内容 -->
+    <view class="evaluate-content">
+      <view class="box-waperr" wx:if="{{tech_detail}}">
+        <view class="title-comment">顾客评价</view>
+        <view class="comment-item" wx:for="{{tech_detail.list}}" wx:key="index">
+          <!-- left 头像 -->
+          <view class="com-photo">
+            <image src='{{item.avatar.length > 0 ? item.avatar : "https://oss1.chedianai.com/images/assets/avater_default_2.png"}}'></image>
+          </view>
+          <!-- right 评论 -->
+          <view class="com-con">
+            <!-- 评论人信息 -->
+            <view class="com-info">
+              <view class="com-base">
+                <view class="com-b-name">{{item.nick_name.length>0? item.nick_name : '用户昵称'}}</view>
+                <view class="com-b-time">{{item.created_at}}</view>
+              </view>
+              <view class="com-stars">
+                <score-points points='{{item.score}}' showScore='{{false}}'></score-points>
+              </view>
+            </view>
+            <!-- 评论内容 -->
+            <view class="com-des">{{item.comment_content}}</view>
+            <view class="com-pic {{item.comment_image.length === 3 ? 'com-pic-thr': ''}}" wx:if='{{item.comment_image && item.comment_image.length != 0}}'>
+              <view class="com-pic-item" wx:for='{{item.comment_image}}' wx:key='index' wx:for-item='items'>
+                <image bindtap='previewImage' data-index='{{index}}' data-arr='{{item.comment_image}}' src='{{items.image_url}}'></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="empty-box" wx:if="{{tech_detail.list.length === 0}}">
+        <image class="icon" src="https://oss1.chedianai.com/wechat/no-commment.png"></image>
+        <view class="text">暂无评论</view>
+      </view>
+      <!-- 没有更多了 -->
+      <view class="bottom-tip" wx:if="{{tech_detail.list.length > 0}}">没有更多了</view>
+    </view>
+  </view>
+  <view class="btn-box" bindtap="recommendTechnician">
+    <view class="btn">推荐 {{tech_detail.recommend_num}}</view>
+  </view>
+</view>

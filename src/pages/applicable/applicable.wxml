@@ -1,0 +1,44 @@
+<view class="page-goodsList">
+	<top-bar title="{{page_title}}" home="false"></top-bar>
+
+	<!-- 搜索框 -->
+	<view class="topSearch change-index" style="top: {{top_height}}px">
+		<view  wx:if="{{is_sear}}" class="input-search-box">
+			<image data-type="2" bindtap="goSear" class="search-icon" src="/images/search.png"></image>
+			<image bindtap="cleanSear" class="clean-search-icon" src="/images/mall/delete-search.png"></image>
+			<input class="sear-input isactive"
+				:placeholder="input_default"
+				focus="{{true}}"
+				value="{{search_value}}"
+				bindinput="changesearch_value"
+				bindfocus="showSearchBar"/>
+		</view>
+		<view class="sear-view {{search_value.length<=0?'color-place, text-center':''}}" bindtap="showSearchBar" wx:if="{{!is_sear}}">
+			<image class="search-icon" src="/images/search.png" wx:if="{{!search_value}}"></image>
+			{{search_value?search_value:input_default}}</view>
+		<view class="go-sear" data-type="1" bindtap="goSear" wx:if="{{is_sear}}">{{search_value?'搜索':'取消'}}</view>
+	</view>
+
+	<!-- 列表数据 -->
+	<view wx:if="{{!is_sear}}" style="padding-top: {{data_list_height}}px">
+		<block wx:if="{{list.length>0}}" >
+			<view class="goods" wx:for="{{list}}" wx:key="{{index}}" data-item="{{item}}" bindtap="goDetail" data-cdp="applicable_list">
+				<view class="g-l">
+					<image wx:if="{{item.type == 1}}" class="type-img" src="https://oss1.chedianai.com/good-active.png" alt="" />
+					<image wx:if="{{item.type == 3}}" class="type-img" src="https://oss1.chedianai.com/card-active.png" alt="" />
+					<image wx:if="{{item.type == 2}}" class="type-img" src="https://oss1.chedianai.com/serve-active.png" alt="" />
+					<image class="img" mode="aspectFit" src="{{item.goods_img}}" />
+				</view>
+				<view class="g-r">
+					<view class="title">{{item.goods_name}}</view>
+					<view class="price">¥{{item.goods_price/100}}</view>
+				</view>
+			</view>
+			<custom-loading has-more='{{!is_all_loaded}}' is-loading="{{is_loading}}"></custom-loading>
+		</block>
+		<block wx:else>
+			<empty-page wx:if="{{!is_loading}}" icon="nosearch" slogan="暂无内容！"/>
+		</block>
+	</view>
+</view>
+

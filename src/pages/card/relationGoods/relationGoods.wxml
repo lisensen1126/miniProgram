@@ -1,0 +1,23 @@
+<view class="relation-goods"  style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="适用商品/服务"></top-bar>
+  <!-- 提示 -->
+  <view class="tips-text">提示：激活卡内项目，请先购买指定商品</view>
+  <!--数据列表-->
+  <view class="goods-wrap" wx:if="{{list.length !== 0 && isinitiated}}">
+    <view class="goods-item" wx:for="{{list}}" wx:key="index" data-item="{{item}}" bindtap="goDetail" data-cdp="card_relationGoods_list">
+      <!-- 商品图片 -->
+      <view class="goods-item-img">
+        <!-- 商品图片 -->
+        <image class="img" mode='aspectFit' src="{{item.pic}}"></image>
+      </view>
+      <!-- 商品信息 -->
+      <view class="goods-item-info">
+        <view class="title">{{item.name}}</view>
+        <view class="price">¥{{item.sku_price / 100}}</view>
+      </view>
+    </view>
+  </view>
+  <!--缺省-->
+  <empty-page wx:if="{{list.length === 0 && isinitiated}}" icon="nosearch" slogan="暂无内容！"/>
+</view>

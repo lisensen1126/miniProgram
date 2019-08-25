@@ -1,0 +1,8 @@
+<view style="padding-top: {{top_height}}px">
+  <!-- topbar -->
+  <top-bar title="爱车有道"></top-bar>
+  <image wx:if="{{type === 0}}" class="image" mode="widthFix" lazy-load="true" src="https://oss1.chedianai.com/images/assets/car_list_1.jpg"></image>
+  <image wx:if="{{type === 1}}" class="image" mode="widthFix" lazy-load="true" src="https://oss1.chedianai.com/images/assets/car_list_4.jpg"></image>
+  <image wx:if="{{type === 2}}" class="image" mode="widthFix" lazy-load="true" src="https://oss1.chedianai.com/images/assets/car_list_3.jpg"></image>
+  <image wx:if="{{type === 3}}" class="image" mode="widthFix" lazy-load="true" src="https://oss1.chedianai.com/images/assets/car_list_2.jpg"></image>
+</view>

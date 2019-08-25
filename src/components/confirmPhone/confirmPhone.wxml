@@ -1,0 +1,14 @@
+<view class="confirm-model">
+    <view class="welfare_center">
+        <view class="close" bindtap="cancel">
+            <image class="close-image" src='/images/default/close-btn.png'></image>
+        </view>
+        <view class="title">
+           请输入好友手机号
+        </view>
+        <view class="form-input">
+           <input class="form-input-input" placeholder="请输入好友手机号" type="text" bindinput="bindKeyInput" maxlength="11" type="number"/>
+        </view>
+        <view class="confirm" bindtap="confirm">确定</view>
+    </view>
+</view>

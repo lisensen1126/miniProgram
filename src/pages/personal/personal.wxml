@@ -1,0 +1,190 @@
+<view class="page-personal animation-fade-in">
+  <top-bar title="我的" wx:if="{{is_top_bar_show}}"></top-bar>
+  <!-- 背景图 -->
+  <block wx:if="{{userInfo.sex !== 2}}">
+    <view class="personal-top-bg" style="{{personal_body_mini}}" wx:if="{{top_height <= 64}}"></view>
+    <view class="personal-top-bg" style="{{personal_body_big}}" wx:else></view>
+  </block>
+  <block wx:else>
+    <view class="personal-top-bg" style="{{personal_girl_mini}}" wx:if="{{top_height <= 64}}"></view>
+    <view class="personal-top-bg" style="{{personal_girl_big}}" wx:else></view>
+  </block>
+  <!-- 用户信息模块 -->
+  <view class="personal-box">
+    <view class="personal-info-box" bindtap="goEdit">
+      <image class="personal-avatar" src="{{userInfo.avatar?userInfo.avatar:'https://oss1.chedianai.com/images/assets/user-avatar.png'}}" />
+      <view class="user-info">
+        <view class="personal-name">
+          {{userInfo.name ? userInfo.name : '登录 / 注册'}}
+        </view>
+        <view class="personal-phone">
+          {{userInfo.phone ? userInfo.phone : ''}}
+        </view>
+      </view>
+    </view>
+    <view class="personal-moudel-box">
+      <view class="personal-item-moudel" bindtap="goMyCoupon">
+        <text class="item-num">{{userInfo.count > 0 ? userInfo.count : 0}}</text>
+        <text class="item-text">优惠券</text>
+      </view>
+      <view class="line"></view>
+      <view class="personal-item-moudel" bindtap="goShopping">
+        <text class="item-num">{{userInfo.cart_num > 0 ? userInfo.cart_num : 0}}</text>
+        <text class="item-text">购物车</text>
+      </view>
+      <view class="line"></view>
+      <view class="personal-item-moudel" bindtap="goVip">
+        <text class="item-num">{{userInfo.CardNum > 0 ? userInfo.CardNum : 0}}</text>
+        <text class="item-text">卡包</text>
+      </view>
+      <!-- 如果后台配置车检报告开启展示 -->
+      <view class="line" wx:if="{{enxtendData.presentation === 'on'}}"></view>
+      <view class="personal-item-moudel" bindtap="goInspection" wx:if="{{enxtendData.presentation === 'on'}}">
+        <!-- 登录有未读消息展示new图片 -->
+        <image class="item-num image-new" wx:if="{{islogin && userInfo.inspect_count && userInfo.inspect_count !== 0}}" src="https://oss1.chedianai.com/images/assets/vehicle-new.png"></image>
+        <!-- 登录没有未读消息显示车检报告总数 -->
+        <text class="item-num" wx:if="{{islogin && userInfo && userInfo.inspect_count === 0}}">{{userInfo.inspect_total}}</text>
+        <!-- 没有注册 0 -->
+        <text class="item-num" wx:if="{{!islogin}}">0</text>
+        <text class="item-text">车检报告</text>
+      </view>
+    </view>
+  </view>
+  <!-- 我的爱车 -->
+  <view class="car-box">
+    <view class="top-item">
+      <view class="left-title">我的爱车</view>
+      <!-- 有车展示 -->
+      <view class="edit-car" bindtap="gomycar" wx:if="{{islogin && userInfo.myCarCount > 0}}">
+        <text class="">爱车管理</text>
+      </view>
+    </view>
+    <!-- 有车点击进列表 -->
+    <view class="car-info" bindtap="gomycar" wx:if="{{islogin && userInfo.myCarCount > 0}}">
+      <image class="brand-icon" src="{{userInfo.carInfo.logo}}" />
+      <view class="bottom-left">
+        <view class="vehicle-num">
+          <view class="province">{{province}}</view>
+          <view>{{plate_num}}</view>
+          <view class="text">默认</view>
+        </view>
+        <view class="vehicle-brand">{{desTxt}}</view>
+      </view>
+    </view>
+    <!-- 没车点击进添加 -->
+    <view class="car-info" bindtap="goAddCar" wx:if="{{!islogin || userInfo.myCarCount == 0}}">
+      <image class="brand-icon" src="https://oss1.chedianai.com/wechat/my-add-car.png" />
+      <view class="bottom-left">
+        <view class="vehicle-num">
+          <text class="province">添加爱车信息</text>
+        </view>
+        <!-- status 后台是否开启完善车辆有礼 1 开启 2未开启 first_vehicle 是否第一次添加车辆 0 是 1 不是 -->
+        <view class="vehicle-brand tip-coupon" wx:if="{{status === 1 && first_vehicle === 0}}">{{ total > 0 ? '添加完成将送您' + total +'元优惠券' : '添加完成将送您优惠券'}}</view>
+        <view class="vehicle-brand tip-coupon" wx:if="{{status === 2 ||  first_vehicle === 1}}">体验更完整的智慧养护</view>
+      </view>
+    </view>
+    <image class="bg-car" src="{{ status === 1 && first_vehicle - 1 !== 0 ? 'https://oss1.chedianai.com/wechat/add-car-coupon-icon02.png' : 'https://oss1.chedianai.com/wechat/my-car-icon02.png'}}"></image>
+  </view>
+  <!-- 订单模块 -->
+  <view class="order-title">我的订单</view>
+  <view class="orders-box">
+    <view class="item-order" bindtap="goOrder" data-status="0">
+      <image class="item-icon" src="https://oss1.chedianai.com/images/assets/order-icon01.png"></image>
+      <view class="item-text">全部订单</view>
+    </view>
+    <view class="item-order" bindtap="goOrder" data-status="1">
+      <view wx-if="{{userInfo.waitPayCount > 0 && islogin}}" class="item-num {{userInfo.waitPayCount>9 ? 'num-two':''}} {{userInfo.waitPayCount>99 ? 'num-three':''}}">{{userInfo.waitPayCount}}</view>
+      <image class="item-icon" src="https://oss1.chedianai.com/images/assets/order-icon02.png" />
+      <view class="item-text">待付款</view>
+    </view>
+    <view class="item-order" bindtap="goOrder" data-status="2">
+      <view wx-if="{{userInfo.waitCheckCount > 0 && islogin}}" class="item-num {{userInfo.waitCheckCount>9 ? 'num-two':''}} {{userInfo.waitCheckCount>99 ? 'num-three':''}}">{{userInfo.waitCheckCount}}</view>
+      <image class="item-icon" src="https://oss1.chedianai.com/images/assets/order-icon03.png" />
+      <view class="item-text">待核销</view>
+    </view>
+    <view class="item-order" bindtap="goComment">
+      <image class="item-icon" src="https://oss1.chedianai.com/images/assets/order-icon04.png" />
+      <view class="item-text">评价</view>
+    </view>
+  </view>
+  <!-- 预约模块 -->
+  <view class="bespeak-box" bindtap="goreservation">
+    <view class="bespeak-title">
+      我的预约 
+      <view class="bespeak-num" wx:if='{{islogin}}'>
+        全部预约(<text>{{(userInfo.myReserveCount >=0 || !islogin) ? userInfo.myReserveCount : 0}}</text>)
+      </view>
+    </view>
+    <scroll-view scroll-x="true" class="bespeak-ul {{userInfo.todayReserveList.length==1?'only_one':''}}" wx:if="{{userInfo.todayReserveList.length>0}}">
+
+      <!-- 兼容UI，当预约只有一个时铺满全屏展示，多个预约半屏展示，此处为多个预约展示 -->
+      <block wx:if="{{userInfo.todayReserveList.length > 1}}" wx:for="{{userInfo.todayReserveList}}" wx:key="{{index}}">
+        <view class="bespeak-li">
+          <view class="decorate-line"></view>
+          <view class="store-msg">
+            <view class="store-date">
+              <view>{{item.reserve_at}}</view>
+            </view>
+            <view class="distance-start" wx:if="{{item.distance_days != 0}}">距现在还有<text class="red">{{item.distance_days}}</text>天</view>
+            <view class="distance-start" wx:if="{{item.distance_days == 0}}">到店享受服务就是<text class="red">今天</text></view>
+            <view class="store-title">{{item.store_name}}</view>
+            <view class="store-address">{{item.province_name}}{{item.city_name}}{{item.district_name}}{{item.address}}
+            </view>
+          </view>
+          <view class="position" data-value="{{item}}" catchtap="openMap">
+            <image src="https://oss1.chedianai.com/images/static/dingwei.png" />
+          </view>
+        </view>
+      </block>
+
+      <!-- 兼容UI，当预约只有一个时铺满全屏展示，多个预约半屏展示，此处为单个预约展示 -->
+      <block wx:if="{{userInfo.todayReserveList.length == 1}}" wx:for="{{userInfo.todayReserveList}}" wx:key="{{index}}">
+        <view class="bespeak-li bespeak-li_spli">
+          <view class="decorate-line"></view>
+          <view class="store-msg">
+            <view class="store-date">
+              <view>{{item.reserve_at}}</view>
+            </view>
+            <view class="distance-start" wx:if="{{item.distance_days != 0}}">距现在还有<text class="red">{{item.distance_days}}</text>天</view>
+            <view class="distance-start" wx:if="{{item.distance_days == 0}}">到店享受服务就是<text class="red">今天</text></view>
+            <view class="store-title">{{item.store_name}}</view>
+            <view class="store-address">{{item.province_name}}{{item.city_name}}{{item.district_name}}{{item.address}}
+            </view>
+          </view>
+          <view class="position" data-value="{{item}}" catchtap="openMap">
+            <image src="https://oss1.chedianai.com/images/static/dingwei.png" />
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+    <view class="no-bespeak" wx:if="{{!userInfo.todayReserveList || userInfo.todayReserveList.length<=0}}">今日没有预约</view>
+  </view>
+  <view class="third-module">
+    <view class="third-item" bindtap="goConsumings" wx:if="{{enxtendData.consumption === 'on'}}">
+      <view class="item-left">门店消费记录</view>
+      <view class="item-right text-gray">
+        <image class='arrow_right' src='https://oss1.chedianai.com/images/assets/personal-right-arrow.png'></image>
+      </view>
+    </view>
+    <!-- 显示正在施工跳转直播页面，没有显示正在直播跳转录播列表 -->
+    <view class="third-item" bindtap="govedio" data-value="{{userInfo.videoStatus}}" wx:if="{{enxtendData.videotape === 'on'}}">
+      <view class="item-left">我的施工录像</view>
+      <view class="item-right text-gray" wx:if="{{islogin}}">
+        <text wx:if="{{userInfo.videoStatus !== 'CLOSED'}}">正在直播</text>
+        <image class='arrow_right' src='https://oss1.chedianai.com/images/assets/personal-right-arrow.png'></image>
+      </view>
+    </view>
+    <view class="third-item" bindtap='makePhoneCall'>
+      <view class="item-left">联系我们{{userInfo.membership}}</view>
+      <view class="item-right text-gray">
+        <image class='arrow_right' src='https://oss1.chedianai.com/images/assets/personal-right-arrow.png'></image>
+      </view>
+    </view>
+    <view class="third-item" bindtap="goAboutUs">
+      <view class="item-left">关于壳保养智慧门店</view>
+      <view class="item-right text-gray">
+        <image class='arrow_right' src='https://oss1.chedianai.com/images/assets/personal-right-arrow.png'></image>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+{
+	"navigationBarBackgroundColor": "#ffffff",
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "",
+	"backgroundTextStyle": "light",
+	"enablePullDownRefresh": false,
+	"usingComponents": {
+		"top-bar": "../../components/topbar/topbar",
+		"index-open": "../../components/indexOpen/indexOpen",
+		"coupon-model": "../../components/couponModel/couponModel",
+		"catch-form": "../../components/formId/formId",
+		"image-show": "../../components/imageShow/imageShow"
+	}
+}

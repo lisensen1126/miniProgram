@@ -1,0 +1,55 @@
+<view class="coupon-model" catchtouchmove="preventTouchMove">
+    <view class="welfare_center">
+        <view class="top">
+            <image src="https://oss1.chedianai.com/static/coupontop-img.png" wx:if="{{offlineType == ''}}"></image>
+            <image src="https://oss1.chedianai.com/static/coupontop-zf.png" wx:if="{{offlineType == 'zf'}}"></image>
+            <image src="https://oss1.chedianai.com/static/coupontop-pj.png" wx:if="{{offlineType == 'pj'}}"></image>
+            <view class="close-box" wx:if="{{!fromPaySuccess}}">
+                <catch-form bind:callback="cancel">
+                    <view class="close"></view>
+                </catch-form>
+            </view>
+        </view>
+        <view class="back">
+            <scroll-view scroll-y class="content">
+                <view class="list clearfix {{item.coupon_type==1&&'dj'}} {{item.coupon_type==2&&'dh'}} {{item.coupon_type==3&&'mj'}} {{item.coupon_type==4&&'zk'}}" wx:for="{{list}}" wx:key="index">
+                    <view class="y-top"></view>
+                    <view class="y-bottom"></view>
+                    <view class="left fl">
+                        <view class="money">
+                            <view class="clearfix margin-auto">
+                                <view class="m fl" wx:if="{{item.coupon_type != 4}}">￥</view>
+                                <view class="n fl">{{item.discount_amount / 100}}</view>
+                                <view class="z fl" wx:if="{{item.coupon_type == 4}}">折</view>
+                            </view>  
+                        </view>
+                        <view class="condition" wx:if="{{item.condition_value == 0}}">无消费门槛</view>
+                        <view class="condition" wx:if="{{item.condition_value != 0}}">满{{item.condition_value/100}}元可用</view>
+                    </view>
+                    <view class="right fl">
+                        <view class="name">{{item.coupon_name}}</view>
+                        <view class="time" wx:if="{{item.end_time == 0}}">无限期</view>
+                        <view class="time" wx:if="{{item.end_time != 0}}">{{item.start_time}} - {{item.end_time}}</view>
+                    </view>
+                </view>
+            </scroll-view>
+            <!-- 不是从线下模块进入的 -->
+            <view class="tip-bottom" wx:if="{{!fromPaySuccess}}">
+                <!-- <catch-form bind:callback="goList">
+                    <view class="btn">立即使用</view>
+                </catch-form> -->
+                <!-- v3.8.8修改，现在所有弹窗都显示‘我知道了’ -->
+                <!-- 注册点击我知道了需要出发注册通知   -->
+                <view class="btn" bindtap="cancel" wx:if="{{!fromRegister}}" >我知道了</view>
+                <!-- 注册点击我知道了需要出发注册通知   -->
+                <catch-form bind:callback="cancel" wx:if="{{fromRegister}}">
+                    <view class="btn">我知道了</view>
+                </catch-form>
+            </view>
+            <!-- 从线下模块进入的 -->
+            <view class="tip-bottom" wx:if="{{fromPaySuccess}}">
+                <view class="btn" bindtap="cancel">我知道了</view>
+            </view>
+        </view>
+    </view>
+</view>

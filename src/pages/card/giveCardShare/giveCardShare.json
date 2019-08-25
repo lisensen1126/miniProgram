@@ -1,0 +1,8 @@
+{
+	"navigationBarTitleText": "卡详情",
+	"usingComponents": {
+		"top-bar": "../../../components/topbar/topbar",
+		"receive-success": "../../../components/receiveSuccess/receiveSuccess",
+		"empty-page": "../../../components/emptyPage/emptyPage"
+	}
+}

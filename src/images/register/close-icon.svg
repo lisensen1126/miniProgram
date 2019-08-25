@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/modal-close</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="注册-成功提示" transform="translate(-176.000000, -502.000000)">
+            <g id="Group" transform="translate(48.000000, 132.000000)">
+                <g id="icons/modal-close" transform="translate(128.000000, 370.000000)">
+                    <g>
+                        <rect id="Rectangle-path" x="0" y="0" width="24" height="24"></rect>
+                        <path d="M19,5 L5,19" id="Shape" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"></path>
+                        <path d="M19,19 L5,5" id="Shape" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,9 @@
+{
+	"navigationBarTitleText": "秒杀",
+	"usingComponents": {
+		"empty-page": "../../../components/emptyPage/emptyPage",
+		"custom-loading": "../../../components/customLoading/customLoading",
+		"top-bar": "../../../components/topbar/topbar",
+		"image-show": "../../../components/imageShow/imageShow"
+	}
+}

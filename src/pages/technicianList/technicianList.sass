@@ -1,0 +1,90 @@
+@import '~@/style/mixin'
+
+.technicianList
+  position: relative
+  .list-wrapper
+    padding: vw(20)
+    padding-bottom: 0
+    background: #ffffff
+    padding-top: 0
+    .list-li
+      height: vw(96)
+      overflow: hidden
+      border-bottom: solid vw(1) #eeeeee
+      .item-index
+        width: vw(23)
+        height: vw(22)
+        line-height: vw(22)
+        font-size: vw(11)
+        color: #332E2E
+        float: left
+        margin-top: vw(37)
+        text-align: center
+        image
+          width: 100%
+          height: 100%
+      .technician-box
+        height: vw(56)
+        margin-top: vw(20) 
+        margin-left: vw(18)
+        float: left
+        overflow: hidden  
+        image
+          width: vw(56)
+          height: vw(56)
+          display: block
+          float: left
+          background-color: #f2f2f2
+        .technician-msg
+          float: left
+          height: vw(56)
+          margin-left: vw(9)
+          .technician-name
+            // line-height: 1
+            font-size: vw(14)
+            margin-top: vw(9)
+            color: #332E2E
+            font-weight: 600
+            width: vw(100)
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+          .technician-job
+            // line-height: 1
+            font-size: vw(12)
+            // margin-top: vw(8)
+            width: vw(100)
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+            color: #332E2E  
+      .like-box
+        float: right
+        margin-top: vw(36)
+        width: vw(86)
+        height: vw(24)
+        line-height: vw(24)
+        background: #F7D117
+        color: #332E2E
+        font-size: vw(10)
+        position: relative
+        image
+          width: vw(14)
+          height: vw(12)
+          position: absolute
+          top: 0
+          bottom: 0
+          margin: auto
+          left: vw(28)
+        text
+          position: absolute
+          top: 0
+          bottom: 0
+          margin: auto
+          right: vw(25)
+          font-weight: 500
+      .is-like
+        background: #808285
+        color: #ffffff
+
+

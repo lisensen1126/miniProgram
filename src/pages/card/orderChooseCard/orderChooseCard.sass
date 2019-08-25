@@ -1,0 +1,122 @@
+@import "~@/style/mixin"
+.card-page
+  min-height: 100vh
+  background: #fff
+.card-swiper
+  height: vw(200)
+  .card-item
+    padding: vw(0) vw(5)
+    height: vw(165)
+    .card-detail
+      position: relative
+      width: vw(266)
+      height: vw(165)
+      border-radius: vw(10)
+      // background: url('https://oss1.chedianai.com/images/assets/card-bac.png')
+      background-size: 100% 100%
+      border: 1px solid #000
+      color: #FFF6E1
+      .d-title
+        position: absolute
+        left: vw(15)
+        top: vw(15)
+        font-weight: 600
+        font-size: vw(16)
+      .d-num
+        position: absolute
+        right: vw(15)
+        top: vw(18)
+        font-size: vw(12)
+        text
+          // display: inline-block
+          background: #FFF6E1
+          color: #000
+          height: vw(10)
+          line-height: vw(10)
+          padding: 0 vw(2)
+          margin: 0 vw(2)
+      .d-time
+        position: absolute
+        left: vw(15)
+        top: vw(118)
+        font-size: vw(10)
+      .d-no
+        position: absolute
+        left: vw(15)
+        top: vw(133)
+        font-weight: bold
+        font-size: vw(14)
+.card-content
+  margin-top: vw(20)
+  padding: 0 vw(15) vw(50)
+  .con-item
+    position: relative
+    border: 1px solid #F5F5F5
+    margin-top: vw(15)
+    padding: vw(13) vw(15)
+    .i-title
+      display: block
+      font-size: vw(14)
+      font-weight: 600
+      color: #000
+    .i-desc
+      display: block
+      margin-top: vw(6)
+      font-size: vw(12)
+      color: #808285
+    .i-status
+      position: absolute
+      right: 0
+      top: 0
+      display: block
+      padding: 0 vw(10)
+      background: #F7D117
+      color: #333
+      height: vw(20)
+      line-height: vw(20)
+      min-width: vw(55)
+      text-align: center
+      font-size: vw(12)
+  .con-wait,.con-over
+    background: #F5F5F5
+  .con-over .i-status
+    background: #DDDDDD
+    color: #fff
+  .con-active
+    border: 1px solid #F7D117
+.footer-box
+  position: fixed
+  left: 0
+  bottom: 0
+  width: 100%
+  height: vw(46)
+  line-height: vw(46)
+  text-align: center
+  background: #C0C3CC
+  color: #fff
+.footer-ok
+  background: #F7D117
+  color: #000
+
+.card-default
+  padding: 0 vw(25)
+  .de-box
+    margin-top: vw(60)
+    text-align: center
+    image
+      width: vw(112)
+      height: vw(112)
+    text
+      display: block
+      font-size: vw(12)
+      color: #A7A9AC
+  .de-btn
+    margin-top: vw(60)
+    width: 100%
+    height: vw(46)
+    line-height: vw(46)
+    background: #F7D117
+    font-size: vw(14)
+    text-align: center
+    font-weight: bold
+    color: #000

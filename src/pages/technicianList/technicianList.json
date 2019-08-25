@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "全部技师",
+  "usingComponents": {
+		"top-bar": "../../components/topbar/topbar",     
+    "empty-page": "../../components/emptyPage/emptyPage",
+    "tech-model": "../../components/techModel/techModel"
+  }
+}

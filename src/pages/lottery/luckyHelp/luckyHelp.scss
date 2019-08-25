@@ -1,0 +1,112 @@
+@import '../../../style/mixin';
+
+.page-luckyHelp {
+	font-family: PingFangSC-Regular;
+  background: center no-repeat url('https://oss1.chedianai.com/images/assets/lottery-bg.png');
+  background-size: cover;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  min-height: 100%;
+  padding-bottom: vw(41);
+	.clearfix {
+		&::after {
+			display: block;
+			content: "";
+			clear: both;
+		}
+	}
+	.content {
+    width: vw(345);
+		margin: auto;
+		margin-top: vw(15);
+		.title {
+			font-family: PingFangSC-Medium;
+			font-size: vw(21);
+			color: #121212;
+			text-align: center;
+			margin-bottom: vw(30);
+		}
+		.content-list {
+      padding-bottom: vw(15);
+      padding-left: vw(15);
+      padding-right: vw(15);
+      padding-top: vw(15);
+      background: #ffffff;
+			.item {
+				margin-bottom: vw(15);
+				.content-sm.time {
+					font-family: PingFangSC-Semibold;
+					color: #58595B;
+					font-weight: 500;
+				}
+				.title-sm {
+					float: left;
+					color: #000000;
+					font-size: vw(14);
+					width: vw(70);
+				}
+				.content-sm {
+					float: right;
+					color: #353535;
+					font-size: vw(14);
+					width: vw(244);
+				}
+				&:last-child {
+					margin-bottom: vw(0);
+				}
+			}
+			&::after {
+				content: "";
+				position: absolute;
+				width: 100%;
+				height: vw(1);
+				bottom: 0;
+				left: 0;
+				background:rgba(0,0,0,0.08);
+			}
+		}
+		// 领奖说明
+		.prize-explain {
+      padding-top: vw(15);
+      background-color: #F5F5F5;
+      padding-left: vw(15);
+      padding-right: vw(15);
+      padding-bottom: vw(15);
+			.title-sm {
+				color: #000000;
+				font-size: vw(14);
+				margin-bottom: vw(9);
+			}
+			.content-sm {
+				color: #58595B;
+				font-size: vw(14);
+				view {
+					line-height: vw(20);
+					font-family: PingFangSC-Regular;
+				}
+      }
+      .text-black {
+        color: #000000;
+      }
+		}
+	}
+	// 返回按钮
+	.button-content {
+		margin-top: vw(41);
+		.back-button {
+			background: #F7D117;
+			color: #000000;
+			font-size: vw(15);
+			height: vw(44);
+			line-height: vw(44);
+			border:none;
+      width: vw(327);
+      margin: auto;
+      border-radius: vw(0);
+    }
+    .back-button:after{
+      border: none;
+    }
+	}
+}

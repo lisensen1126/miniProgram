@@ -1,0 +1,41 @@
+<view class="page-personalEdit" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="个人信息"></top-bar>
+	<!-- topbar end -->
+  <view class="edit-module"> 
+    <view class="edit-item" catchtap="chooseImageTap">
+      <view class="item-left">头像</view>
+      <view class="item-right"><image class="my-avatar" src="{{myInfo.avatar?myInfo.avatar:'https://oss1.chedianai.com/images/assets/user-avatar.png'}}" /><image class='arrow_right' src='/images/personal/arrow-right.png'></image></view>
+    </view>
+    <view class="edit-item">
+      <view class="item-left">昵称</view>
+      <view class="item-right"><text>{{myInfo.name}}</text></view>
+    </view>
+    <view class="edit-item" bindtap="openSexModal">
+      <view class="item-left">性别</view>
+      <view class="item-right"><text>{{myInfo.sex==1?'男':''}}{{myInfo.sex==2?'女':''}}{{myInfo.sex==3?'保密':''}}</text><image class='arrow_right' src='/images/personal/arrow-right.png'></image></view>
+    </view>
+    <view class="edit-item">
+      <view class="item-left">出生日期</view>
+      <view class="item-right"><text>{{myInfo.birthday ? myInfo.birthday : '请选择出生日期'}}</text><image class='arrow_right' src='/images/personal/arrow-right.png'></image></view>
+      <picker class="time-picker" mode="date" value="{{myInfo.birthday}}" bindchange="bindTimeChange" end="{{nowDate}}">
+        <view class="picker">
+          当前选择: {{myInfo.birthday}}
+        </view>
+      </picker>
+    </view>
+    <view class="edit-item">
+      <view class="item-left">注册手机号</view>
+      <view class="item-right"><text>{{myInfo.phone}}</text></view>
+    </view>                
+  </view>
+  <!--选择性别弹框 -->
+  <view class="sex-box" wx:if="{{openSex}}" style="padding-top: {{topbarHeight}}px">
+    <view class="sex-item" wx:for="{{sexlist}}" wx:key="{{ndex}}" data-id="{{item.id}}" catchtap="changeSex">
+      <view class="item-left">{{item.name}}</view>
+      <view class="item-right">
+        <image class="item-check" src="{{item.is_check==0?images.checkBtn:images.checkBtnActive}}"></image>
+      </view>
+    </view>
+  </view>
+</view>

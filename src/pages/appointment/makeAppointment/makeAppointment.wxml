@@ -1,0 +1,65 @@
+<view class="page-makeAppointment" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="预约"></top-bar>
+	<!-- topbar end -->
+	<view class="choose-store form-group">
+    <view class="section-header">
+      <view>门店信息</view>
+      <!-- 连锁店切换门店按钮-->
+      <view wx:if="{{store.is_chain == 1}}" class="store-change" bindtap="changeStore" data-cdp="appointment_makeAppointment_1">
+			  <image src="/images/index/change-store-icon.png" />
+		  </view>
+    </view>
+    <view class="store-box" wx:if="{{store}}">
+      <view class="store-info">
+        <view class="store-logo">
+          <image class="logo" src="{{store.banner.length>0 ? store.banner : 'https://oss1.chedianai.com/images/assets/category-default.png'}}" mode="aspectFill" />
+        </view>
+        <view class="store-detail">
+          <view class="store-name">{{store.store_name}}</view>
+          <view class="store-detail-bar">
+            <view class="store-icon location"></view>{{store.address}}
+          </view>
+          <view class="store-score">
+            <score-points points='{{points}}' half="{{half}}" inActive="{{inActive}}" showScore='{{false}}'></score-points><text class='score-yellow'>{{store.avg_ratings}}分</text>
+          </view>
+        </view>
+        <view class="store-distance" bindtap="openMap" data-lng="{{store.lng}}" data-lat="{{store.lat}}" data-cdp="appointment_makeAppointment_2">
+          <view class="icon"></view>
+          <!-- <view class="distance">{{store.distance}}</view> -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="service-info form-group">
+    <!-- <view class="form-item last-sp">
+      <text class="form-label">订单项目</text>
+      <text class='order-no'>订单编号: {{orderNo}}</text>
+    </view> -->
+    <view class="section-header">订单项目</view>
+    <view class="service-item" wx:if="{{tradeOrderItems}}" wx:for="{{tradeOrderItems}}" wx:key="{{item.item_id}}">
+      <view class="service-pic">
+        <image class="pic" src="{{item.image_url}}" mode='aspectFit' />
+        <image class="item-type" wx:if='{{item.item_type === 1}}' src="/images/shop.png" />
+        <image class="item-type" wx:if='{{item.item_type === 2}}' src="/images/service.png" />
+      </view>
+      <view class="service-content">
+        <view>
+          <view class="service-title">{{item.item_title}}</view>
+          <view class="service-sku"><text wx:for='{{item.sku_attribute}}' wx:key='index'>{{item.attribute_item_value}} </text></view>
+        </view>
+        <view class="time-stamp">
+          <view class="order-amount">
+            ￥{{item.unit_price}}
+          </view>
+          <!-- <view class="order-number">
+            x{{item.quantity}}
+          </view> -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="choose-time-group">
+    <view class="choose-btn" bindtap="toChooseTime" data-cdp="appointment_makeAppointment_3">选择预约时间</view>
+  </view>
+</view>

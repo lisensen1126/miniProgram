@@ -1,0 +1,163 @@
+@import '~@/style/mixin'
+@import '~@/style/border'
+
+.page-shopCart
+  padding-bottom: vw(65)
+  background: #f7f6f2
+  min-height: 100vh
+  box-sizing: border-box
+  .edit-box
+    background: $text-white
+    position: fixed
+    left: 0
+    right: 0
+    z-index: 5
+    padding: vw(10) vw(15) 0 vw(15)
+  .items-total
+    float: left
+    font-size: vw(12)
+    color: #858587
+    line-height: vw(35)
+  .shop-cart-edit
+    width: vw(63)
+    height: vw(35)
+    line-height: vw(35)
+    font-size: vw(12)
+    box-sizing: border-box
+    text-align: center
+    background: #F8F8F8
+    float: right
+  .cart-edit-active
+    background: $primary
+    color: $text-white
+  .shop-cart-list
+    padding-top: vw(55)
+    background: $text-white
+    //margin-top: vw(34)
+    .shop-cart-item
+      padding: 0 vw(15)
+    .shop-cart-item:not(:first-child)
+      position: relative
+      &:before
+        @include Pseudo-border-before()
+        width: auto
+        left: vw(15)
+        right: vw(15)
+    .item
+      height: vw(112)
+      padding: vw(12) 0
+      position: relative
+      box-sizing: border-box
+      .check-btn
+        width: vw(18)
+        height: vw(18)
+        position: absolute
+        top: vw(48)
+      .invalid-title
+        width: vw(36)
+        position: absolute
+        top: vw(48)
+      .item-pic
+        width: vw(137)
+        height: vw(86)
+        margin: 0 vw(10) 0 vw(29)
+      .invalid-pic
+        width: vw(86)
+        height: vw(86)
+        position: absolute
+        top: vw(12)
+        left: vw(47)
+      .item-info
+        position: absolute
+        left: vw(173)
+        right: vw(15)
+        height: vw(86)
+        top: vw(13)
+        .info-title
+          color: #332E2E
+          font-size: vw(16)
+          text-overflow: ellipsis
+          overflow: hidden
+          display: -webkit-box
+          -webkit-line-clamp: 2
+          -webkit-box-orient: vertical
+        .info-price
+          color: #F74B49
+          font-size: vw(17)
+          line-height: 1
+          position: absolute
+          bottom: vw(11)
+        .item-num
+          position: absolute
+          bottom: vw(4)
+          right: vw(-24)
+          height: vw(25)
+          line-height: vw(25)
+          align-items: center
+          display: inline-flex
+          .num
+            display: inline-block
+            width: vw(40)
+            height: vw(22)
+            text-align: center
+            font-size: vw(14)
+            color: #332E2E
+            background: #F8F8F8
+          .color-d
+            color: #dddddd
+          .item-add
+            width: vw(14)
+            height: vw(14)
+          .item-reduce
+            width: vw(14)
+            height: vw(2)
+            background: #666363
+            display: inline-block
+        .labels
+          padding: vw(15)
+          display: inline-flex
+          align-items: center
+    .invalid-color
+      color: #B3ADAD !important
+  .shop-bottom
+    position: fixed
+    bottom: 0
+    height: vw(50)
+    left: 0
+    right: 0
+    background: $text-white
+    z-index: 4
+    .check-all
+      position: absolute
+      left: vw(15)
+      right: vw(150)
+      height: vw(50)
+      line-height: vw(50)
+      font-size: vw(14)
+      color: #666363
+      .all-btn
+        width: vw(18)
+        height: vw(18)
+        position: relative
+        top: vw(4)
+        margin-right: vw(8)
+    .item-sum
+      margin-left: vw(20)
+      display: inline-block
+      font-size: vw(14)
+      color: #332E2E
+      .sum-money
+        color: #D52F12
+        font-size: vw(18)
+    .sum-btn
+      line-height: vw(50)
+      right: 0
+      width: vw(130)
+      height: vw(50)
+      font-size: vw(14)
+      position: absolute
+      color: $text-white
+      background: #D52F12
+      text-align: center
+    .disable-bg
+      background: #ccc

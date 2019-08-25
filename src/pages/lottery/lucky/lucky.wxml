@@ -1,0 +1,78 @@
+<view class="page-lucky" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="转盘抽奖" home="{{sharePage}}"></top-bar>
+  <view class="page-box">
+    <image class="bg" src="https://oss1.chedianai.com/images/assets/lottery-bg.png"></image>
+    <view class="yellow-line"></view>
+    <view class="dial-title" wx:if="{{ canLottery }}">您获得 <text class="text-big" wx:if="{{luckNum >= 0}}">{{luckNum}}</text> 次免费抽奖机会</view>
+    <view class="dial-title" wx:if="{{ !canLottery}}">很抱歉，机会已经用完了哦</view>
+    <view class="dial-help" bindtap="goHelp"></view>
+    <!--抽奖大转盘模块 -->
+    <view class="dial-bar">
+      <image wx:if="{{ dialFlag }}" class="bar-bg" src="https://oss1.chedianai.com/images/assets/turnplate-bg001.png" />
+      <image wx:if="{{ !dialFlag }}" class="bar-bg" src="https://oss1.chedianai.com/images/assets/turnplate-bg002.png" />
+      <view class="dial-ul">  
+        <view wx:for="{{ coupons }}" wx:key="index" class="dial-li {{ item.check ? 'check-coupon':''}}">
+          <view wx:if="{{ item.type === 2 || item.type === 3 }}" class="dial-price">￥{{item.discount_amount}}</view>
+          <image wx:if="{{ item.type === 2 }}" class="coupon" src="https://oss1.chedianai.com/images/assets/coupon-type01.png" />
+          <image wx:if="{{ item.type === 3 }}" class="coupon" src="https://oss1.chedianai.com/images/assets/coupon-type02.png" />
+          <view wx:if="{{ item.type == 0 }}" class="dial-thanks">谢谢参与</view>
+        </view>                             
+      </view>
+      <image wx:if="{{canLottery}}" class="luck-btn" bindtouchstart="start" bindtouchend="end" src="https://oss1.chedianai.com/images/assets/turnplate-start.png" />
+      <image wx:if="{{!canLottery }}" class="luck-btn" src="https://oss1.chedianai.com/images/assets/turnplate-disable.png" />
+    </view>
+    <!--分享按钮和中奖名单模块 -->
+    <view class="marquee">
+      <view class="share-btn">
+        <button  open-type='share'>分享好友</button>
+        <image class="share-image" src="https://oss1.chedianai.com/images/assets/turnplate-share.png" />
+      </view>
+      <text class="share-text" wx:if="{{share_nums == 1}}">活动期间分享，可额外获得1次抽奖机会！</text>
+      <image class="marquee-bg" src="https://oss1.chedianai.com/images/assets/win-title.png"></image>
+      <text class="luck-defaut" wx:if="{{records.length<=0}}">快来试试手气，好奖等着你哦</text>
+      <view class="luck-list">
+        <view class="luck-list-ul">
+          <view class="sroll" >
+            <swiper indicator-dots="{{false}}" circular="{{true}}" display-multiple-items="7"
+              autoplay="{{true}}" vertical="true" interval="{{1000}}" duration="{{500}}">
+                <swiper-item wx:for="{{records}}" wx:key="index" class="sroll-item {{!item.coupon_name ?'sroll-item-null':''}}">
+                  <text class="item-left">{{ item.nickname }}</text>
+                  <text class="item-right">{{ item.coupon_name }}</text>
+                </swiper-item>
+            </swiper>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--抽奖结果弹层 -->
+    <view wx:if="{{ giftBarFlag  }}">
+      <view class="mask" bindtap="close"></view>
+      <view class="get-gift">
+        <text class="get-gift-title" wx:if="{{target != 0}}">哇，你的手气真不错!</text>
+        <text class="get-gift-title" wx:if="{{target == 0}}">很遗憾，这回手气差了点</text>
+        <view class="gift-box" wx:if="{{gift.type != 0}}">
+          <image src="https://oss1.chedianai.com/images/assets/coupon-bg-big.png"></image>
+          <view class="gift-type" wx:if="{{ gift.type === 2 }}">兑换券</view>
+          <view class="gift-type" wx:if="{{ gift.type === 3 }}">满减券</view>
+          <view class="gift-price">
+            <view class="price-icon">￥</view>
+            <view class="price-num">{{gift.discount_amount}}</view>
+          </view>
+          <view wx:if="{{ (gift.name.length < 7 && gift.type === 2) || (gift.condition_value < 100000 && gift.type === 3) }}" class="gift-name"><text>{{gift.type === 2 ?gift.name:'满'+gift.condition_value+'立减'}}</text></view>
+          <view wx:if="{{ (gift.name.length >= 7 && gift.type === 2) || (gift.condition_value >= 100000 && gift.type === 3) }}" class="gift-name">
+            <text class="scrolltext">{{gift.type === 2 ?gift.name:'满'+gift.condition_value+'立减'}}</text>
+            <text class="scrolltext">{{gift.type === 2 ?gift.name:'满'+gift.condition_value+'立减'}}</text>
+          </view>
+        </view>
+        <view class="gift-box" wx:if="{{gift.type == 0}}">
+          <image class="thanks-icon" src="https://oss1.chedianai.com/images/assets/sad_icon.png"></image>
+        </view>
+        <text class="get-gift-message" wx:if="{{target != 0}}">1张优惠券省的都是真金白银啊~</text>
+        <text class="get-gift-message" wx:if="{{target == 0}}">再接再厉就离成功又进了一步~</text>
+        <view class="again-btn again-btn0" bindtap="lookLottery">查看我的优惠券</view>
+        <view class="again-btn" bindtap="lotteryAgain">再挑战下手气</view>
+      </view>
+    </view>
+  </view>
+</view>

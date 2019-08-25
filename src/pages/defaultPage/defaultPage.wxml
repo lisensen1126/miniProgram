@@ -1,0 +1,5 @@
+<view class="default-page" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="{{title}}" home="{{showHome}}"></top-bar>
+  <empty-page icon="{{icon}}" slogan="{{slogan}}"/>
+</view>

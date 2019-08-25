@@ -1,0 +1,27 @@
+<view class="gift-record" wx:if="{{pageShow}}" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+  <top-bar title="赠送记录" home="{{showHome}}"></top-bar>
+  <!-- 赠送  列表  -->
+  <view class="content-list" wx:if="{{list.length > 0}}"> 
+    <view class="record-item" wx:for="{{list}}" wx:key="index" wx:for-item="record">
+      <view class="project" wx:for="{{record.upkeep_item_customer}}" wx:for-item="cell" wx:key="index">
+        <view class="cell-name">{{cell.name}}</view>
+        <view class="cell-num">
+          x{{cell.num}}
+        </view>
+      </view>
+      <view class="record-time">
+        <view class="time">{{record.received_at}}</view>
+        <view class="status">
+          <text class="green" wx:if="{{record.is_received === 1}}">已领取</text>
+          <text class="origin" wx:if="{{record.is_received === 2}}">待领取</text>
+          <text class="gray" wx:if="{{record.is_received === 3}}">已退回</text>
+        </view>
+      </view>
+    </view>
+    <!-- is-loading="{{isLoading}}" has-more="{{!isAllLoaded}} -->
+    <custom-loading has-more='{{!is_all_loaded}}' is-loading="{{is_loading}}"></custom-loading>
+  </view>
+  <empty-page wx:if="{{list.length === 0 && isinitiated}}" class="categroy-content" slogan="暂无数据" icon="noorder"></empty-page>
+</view>
+  

@@ -1,0 +1,6 @@
+<view class="confirm-wrapper">
+  <view class="confirm-group">
+    <view class="cancel-btn" bindtap="cancel">{{concalText}}</view>
+    <view class="confirm-btn {{isEnable ? 'is-enable' : 'is-unable'}}" wx:if="{{showPrimary}}" bindtap="confirm">{{primaryText}}</view>
+  </view>
+</view>

@@ -1,0 +1,11 @@
+{
+	"navigationBarTitleText": "订单列表",
+	"usingComponents": {
+		"top-bar": "../../../components/topbar/topbar",
+    "empty-page": "../../../components/emptyPage/emptyPage",
+    "qrcode": "../../../components/qrcode/qrcode",
+    "custom-loading": "../../../components/customLoading/customLoading",
+    "image-show": "../../../components/imageShow/imageShow",
+    "catch-form": "../../../components/formId/formId"
+  }
+}

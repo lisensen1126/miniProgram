@@ -1,0 +1,67 @@
+<view class="page-paySuccess" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar --> 
+	<top-bar title="支付结果" home="{{true}}"></top-bar>
+	<!-- topbar end -->
+	<view class="pay-success-header" wx:if="{{order.final_amount}}">
+		<image src='https://oss1.chedianai.com/static/pay-success-icon.png'></image>
+		<view class="pay-success-header-title">买单成功</view>
+		<view class="pay-success-header-order-number"><text>￥</text>{{order.final_amount / 100}}</view>
+		<view class="pay-success-header-order-del" wx:if="{{order.final_amount != order.total_amount}}"><text>￥</text>{{order.total_amount / 100}}</view>
+	</view>
+	<view class="order-info">
+
+		<view class="order-info-flex" wx:if="{{order.random_coupon_price > 0}}">
+			<view class="label-title">随机立减</view>
+			<view class="label-info order-info-receive-price">-￥{{order.random_coupon_price / 100}}</view>
+		</view>
+
+		<view class="order-info-flex">
+			<view class="label-title">商家优惠</view>
+			<view class="label-info order-info-receive-price">-￥{{order.preferential_price / 100}}</view>
+		</view>
+
+		<view class="order-info-flex">
+			<view class="label-title">订单编号</view>
+			<view class="label-info">{{order.trade_order_no}}</view>
+		</view>
+
+		<view class="order-info-flex" wx:if="{{order.third_payment_no}}">
+			<view class="label-title">支付时间</view>
+			<view class="label-info">{{order.paid_at}}</view>
+		</view>
+		<view class="order-info-flex">
+			<view class="label-title">下单门店</view>
+			<view class="label-info">{{order.store_name}}</view>
+		</view>
+		<view class="flex-center">
+			<view class="bottom-btn" bindtap="goOrderDetail">查看订单详情</view>
+		</view>
+	</view>
+
+	<!-- 评论 -->
+	<view class="comment">
+		<view class="title">本次消费感受</view>
+		<view class="list clearfix">
+			<view class="list-item {{item.is_select ? 'avtive' : ''}}" wx:for="{{list}}" wx:key="index" data-index="{{index}}" data-params="{{item}}" catchtap="chooseInfo">{{item.name}}</view>
+		</view>
+		<view class="botton">
+			<view class="btn" wx:if="{{comment == ''}}">提交评价</view>
+			<view class="btn avtive" wx:else bindtap="addEvaluate">提交评价</view>
+		</view>
+		<view class="more" bindtap="goCreateEvaluate">发表更多感受</view>
+	</view>
+
+	<!-- 不是首单评论，评论成功之后的提示 -->
+	<view class="tip-modal animation animation-slide-top-out" wx:if="{{tips_modal && recommend_coupon.length == 0}}">
+		<text class="green">评价成功！</text>
+		<text>感谢您对我们的服务做出评价！</text>
+	</view>
+
+	<!-- banner -->
+	<view class="banner" bindtap="goVoucher">
+		<image src="https://oss1.chedianai.com/pay-success.png" class="image" />
+	</view>
+
+	<!-- 首单有礼弹框，评价有礼弹框 -->
+	<coupon-model wx:if="{{is_first && recommend_coupon.length > 0}}" bindtriggercancel="couponCancel" offlineType="{{is_type}}" fromPaySuccess="{{true}}" fromRegister="{{false}}" list="{{recommend_coupon}}"></coupon-model>
+</view>

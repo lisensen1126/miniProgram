@@ -1,0 +1,7 @@
+$unit: 1rpx
+
+@function parseVW($value)
+  @return (($value * $unit) * 2)
+
+@function vw($args)
+  @return parseVW($args)

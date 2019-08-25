@@ -1,0 +1,38 @@
+<view class="card-center" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="养护卡"></top-bar>
+  <view class="status-filter-wrapper">
+    <view class="filter-item{{currentLevel === '1' ? ' is-active' : ''}}" data-level="1" bindtap="switchLevel" data-cdp="card_myCardList_1">可使用</view>
+    <view class="filter-item{{currentLevel === '3' ? ' is-active' : ''}}" data-level="3" bindtap="switchLevel" data-cdp="card_myCardList_2">已过期</view>
+    <view class="filter-item{{currentLevel === '4' ? ' is-active' : ''}}" data-level="4" bindtap="switchLevel" data-cdp="card_myCardList_3">已用完</view>
+  </view>
+  <!-- 转赠记录 -->
+  <view class="give-record" bindtap="goRecord" data-cdp="card_myCardList_4">
+    <image class="record-img" src="https://oss1.chedianai.com/give-card02.svg"></image>
+  </view>
+  <!-- tips -->
+  <view class="car-tips" wx:if="{{currentLevel === '1' && tips > 0}}">Tips：您有养护卡服务可使用</view>
+  <!-- 养护卡 -->
+  <view class="car-list {{ currentLevel === '1' && tips > 0 ? '' : 'm-t-20'}}" wx:if="{{list.length > 0 && isinitiated}}">
+    <view class="card-item" style="background-image: url({{item.image_url}})" wx:for="{{list}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="goDetail" data-cdp="card_myCardList_listGoDetail">
+      <view class="card-name">{{item.name}}<view class="card-give" wx:if="{{item.status != 3 &&item.status != 4 && item.from === 2}}">获赠</view><view class="card-give" wx:if="{{item.status === 3}}">过期</view><view class="card-give" wx:if="{{item.status === 4}}">用完</view></view>
+      <view class="card-item-use" wx:if="{{item.type === 1}}"><view>可使用</view><view class="num-use">{{item.num}}</view><view>次</view></view>
+      <view class="card-time clearfix">
+        <view class="time fl">有效期至{{item.deadline}}</view>
+      </view>
+      <view class="card-order bold">NO.{{item.upkeep_no}}</view>
+      <image class="card-code" wx:if="{{item.status !== 3 && item.status !== 4}}" data-id="{{item.upkeep_no}}" catchtap="goCode" data-cdp="card_myCardList_listGoCode" src="/images/card-code.png"/>
+    </view>
+  </view>
+  <empty-page wx:if="{{list.length === 0 && isinitiated}}" class="categroy-content" slogan="暂无养护卡" icon="nocard"></empty-page>
+  
+  <!-- 购卡中心 -->
+  <!-- <view class="button">
+    <view class="fl btn" bindtap="goBuyCenter">
+      购卡中心
+    </view>
+    <view class="fl btn c-f" bindtap="goRecord">
+      转赠记录
+    </view>
+  </view> -->
+</view>

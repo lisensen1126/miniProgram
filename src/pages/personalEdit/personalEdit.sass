@@ -1,0 +1,89 @@
+@import "~@/style/mixin"
+
+.page-personalEdit
+  view,form,scroll-view
+      box-sizing: border-box
+      -moz-box-sizing: border-box
+      -webkit-box-sizing: border-box  
+  .edit-module
+    background: #ffffff
+    padding: 0 0 0 vw(15) 
+    margin-bottom: vw(56)
+    .edit-item
+      height: vw(66)
+      border-bottom: solid 1px #eeeeee
+      padding: vw(25) 0
+      padding-right: vw(15)
+      position: relative
+      .item-left
+        font-size: vw(16)
+        color: #000000
+        float: left
+        line-height: vw(16)
+      .item-right
+        float: right
+        font-size: vw(14) 
+        line-height: vw(16)  
+        color: #8F8F8F
+        margin-right: vw(15)
+      .arrow_right
+        width: vw(7)
+        height: vw(13)
+        position: absolute  
+        top: vw(0)
+        bottom: vw(0)
+        right: vw(15)
+        margin: auto
+      .my-avatar
+        position: absolute  
+        top: vw(0)
+        bottom: vw(0)
+        right: vw(27)
+        margin: auto
+        border-radius: 50%
+        width: vw(32)
+        height: vw(32)
+        display: block  
+    .edit-item:last-child
+      border-bottom: none
+    .time-picker
+      opacity: 0
+      width: 100%   
+      height: vw(66)
+      position: absolute
+      top: 0 
+      left: 0
+      .picker
+        height: vw(66)
+  .sex-box
+    position: absolute
+    width: 100%
+    height: 100%
+    background-color: #f7f7fa
+    top: 0
+    left: 0 
+    .sex-item
+      height: vw(66)
+      border-bottom: solid 1px #eeeeee
+      padding: vw(25) vw(15)
+      position: relative
+      background: #ffffff
+      .item-left
+        font-size: vw(16)
+        color: #000000
+        float: left
+        line-height: vw(16)
+      .item-right
+        float: right
+        font-size: vw(14) 
+        line-height: vw(16)  
+        color: #8F8F8F
+        margin-right: vw(15)
+        .item-check
+          width: vw(18)
+          height: vw(18)
+          position: absolute  
+          top: vw(0)
+          bottom: vw(0)
+          right: vw(15)
+          margin: auto  

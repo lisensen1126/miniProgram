@@ -1,0 +1,88 @@
+
+<view class="page-article" style="padding-top: {{topbarHeight}}px;padding-bottom: 58px">
+  <!-- topbar -->
+  <top-bar title="详情" home="{{showHome}}"></top-bar>
+  <!-- topbar end -->
+  <view wx:if="{{errPage === false}}">
+    <!-- 平台or门店活动 -->
+    <view class="activity-wrapper" wx:if="{{content_type}}">
+      <view class="banner"></view>
+      <view class="item-wrapper" wx:for="{{data_list.relation}}" wx:key="{{index}}">
+        <coupon wx:if="{{item.type === 8}}"></coupon>
+        <card card="{{item}}" wx:if="{{item.type === 5}}"></card>
+        <goods card="{{item}}" wx:if="{{item.type === 3 || item.type === 4}}"></goods>
+        <timeLimitGoods timeLimitGoods="{{item}}" wx:if="{{item.type === 7}}"></timeLimitGoods>
+        <groupCategory groupCategory="{{item}}" wx:if="{{item.type === 6}}"></groupCategory>
+
+      </view>
+    </view>
+
+    <view wx:else>
+      <view class="header">{{title}}</view>
+      <view class="nav">
+        <view class="brand-nav">{{brand}}</view>
+        <view class="brand-time">{{time}}</view>
+      </view>
+      <view class="content" wx:if="{{type == 1}}">
+        <rich-text type="text" nodes="{{content}}"></rich-text>
+      </view>
+      <!-- type= 2  3  4   超级品牌日跳转的文章详情页 -->
+      <view wx:if="{{type == 2 || type == 3 || type == 4}}">
+        <image class="detail-img" mode="widthFix" src="{{imgUrls}}"></image>
+      </view>
+      <!-- 品牌馆参与活动 -->
+      <view class="btn-group" wx:if="{{is_open == 1}}">
+        <view class="choose-btn {{is_join == 1 ? 'default-btn' : ''}}" bindtap="{{!is_disabled ?  'goJoinActiv' : ''}}">
+          {{is_join == 1 ? '已参与' : '参与活动'}}
+        </view>
+      </view>
+    </view>
+      
+      
+    <!-- <view class="info-section" wx:if='{{product.length > 0 || upkeep.length > 0}}'>
+      <view class="section-header">推荐商品</view>
+    </view>
+    <view class="info-section" wx:if='{{product.length > 0}}'>
+      <view class="info-item special-info" wx:for='{{product}}' wx:key='index' data-type='{{item.type}}' data-productid='{{item.product_id}}' data-skuid='{{item.sku_id}}' bindtap='goDetail' data-cdp="article_1">
+        <view class="item-avatar">
+          <image class="item-avatar-img" mode="aspectFit" src="{{item.pic}}" />
+          <image class="item-type" wx:if='{{item.type === 1}}' src="https://oss1.chedianai.com/images/assets/goods-icon.png" />
+          <image class="item-type" wx:if='{{item.type === 2}}' src="https://oss1.chedianai.com/images/assets/service-icon.png" />
+        </view>
+        <view class="item-content">
+          <view>
+            <view class="item-title">{{item.product_name}}</view>
+            <view class="item-sku" wx:if='item.attribute.length > 0'>
+              <text wx:for='{{item.attribute}}' wx:key='index'>{{item.attribute_item_value}}</text>
+            </view>
+          </view>
+          <view class="time-stamp">
+            <view class="order-amount">￥{{item.sell_price/100}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="info-section" wx:if='{{upkeep.length > 0}}'>
+      <view class="info-item special-info" wx:for='{{upkeep}}' wx:key='index' bindtap='goUpkeepDetail' data-cardid="{{item.id}}">
+        <view class="item-avatar">
+          <image class="item-avatar-img" mode="aspectFit" src="{{item.image_url}}" />
+          <image class="item-type" src="https://oss1.chedianai.com/images/assets/card-icon.png" />
+        </view>
+        <view class="item-content">
+          <view>
+            <view class="item-title">{{item.name}}</view>
+          </view>
+          <view class="time-stamp">
+            <view class="order-amount">￥{{item.price/100}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="btn-group" wx:if="{{sign_up == 1 && content_type == 1}}">
+      <view class="choose-btn {{contents_type == 1 ? 'default-btn' : ''}}" bindtap="{{!is_disabled ?  'goJoinContent' : ''}}">
+        {{contents_type == 1 ? '已参与' : '参与活动'}}
+      </view>
+    </view> -->
+  </view>
+  <empty-page wx:if="{{errPage === true}}" icon="nosearch" slogan="{{errMsg}}" />
+</view>

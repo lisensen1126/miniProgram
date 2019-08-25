@@ -1,0 +1,8 @@
+{
+	"navigationBarTitleText": "卡详情",
+	"usingComponents": {
+		"give-project": "../../../components/giveProject/giveProject",
+		"top-bar": "../../../components/topbar/topbar",
+		"share-model": "../../../components/shareModel/shareModel"
+	}
+}

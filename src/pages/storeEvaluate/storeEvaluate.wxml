@@ -1,0 +1,65 @@
+<view class="page-storeEvaluate" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="门店评价" home="{{showHome}}"></top-bar>
+	<!-- topbar end -->
+	<!-- 评价列表 -->
+	<view wx:if="{{list.length > 0}}" class="list-wrapper">
+		<view class='store-evaluate'>
+			<view class="index-hotcake-content-title" wx:if="{{list.length > 0}}">
+				<view class="index-hotcake-content-title-border">网友点评</view>
+			</view>	
+			<view class="store-evaluate-items">
+			<!-- 评论信息 -->
+				<view class="comment-item" wx:for="{{list}}" wx:key="{{item.comment_id}}">
+					<!-- left 头像 -->
+					<view class="com-photo">
+						<image src='{{item.avatar.length > 0 ? item.avatar : "https://oss1.chedianai.com/images/assets/avater_default_2.png"}}'></image>
+					</view>
+					<!-- right 评论 -->
+					<view class="com-con">
+						<!-- 评论人信息 -->
+						<view class="com-info">
+							<view class="com-base">
+								<view class="com-b-name">{{item.name.length>0? item.name : '用户昵称'}}</view>
+								<view class="com-b-time">
+									<text>评分</text>
+									<score-points class="start" points='{{item.score}}' showScore='{{false}}'></score-points>
+								</view>
+							</view>
+							<view class="com-stars">
+								<view class="time">{{item.created_at}}</view>
+							</view>
+						</view>
+
+						<!-- 评论内容 -->
+						<view class="com-des">{{item.comment_content}}</view>
+						<view class="com-pic {{item.comment_image.length === 3 ? 'com-pic-thr': ''}}" wx:if='{{item.comment_image && item.comment_image.length != 0}}'>
+							<view class="com-pic-item" wx:for='{{item.comment_image}}' wx:key='index' wx:for-item='items'>
+								<image bindtap='previewImage' data-index='{{index}}' data-arr='{{item.comment_image}}' src='{{items.image_url}}' mode="aspectFill"></image>
+							</view>
+						</view>
+
+						<!-- 推荐技师 -->
+						<view class="recommend clearfix" wx:if='{{item.technicians && item.technicians.length > 0}}'>
+							<view class="technicians-tips">推荐技师</view>
+							<view class="rec-photo" wx:for="{{item.technicians}}" wx:key="t_index" wx:for-item="param">
+								<image src='{{param.memFace.length>0?param.memFace:"https://oss1.chedianai.com/images/assets/avater_default_2.png"}}'></image>
+								<view class="rec-info">
+									<view class='rec-name'>{{param.memUsername}}</view>
+									<view class="rec-job">{{param.memJob}}</view>
+								</view>
+							</view>
+						</view>
+
+						<!-- 回复内容 -->
+						<view class="hr" wx:if='{{item.sub_comment_content.length > 0}}'></view>
+						<view class="reply" wx:if='{{item.sub_comment_content.length > 0}}'>商家回复：{{item.sub_comment_content}}
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<custom-loading has-more='{{!isAllLoaded}}' is-loading="{{isLoading}}"></custom-loading>
+	</view>
+	<empty-page wx:if="{{!list.length && isinitiated}}" class="categroy-content" slogan="暂无门店评价" icon='nostore'></empty-page>
+</view>

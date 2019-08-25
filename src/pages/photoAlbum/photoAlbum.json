@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "图册",
+	"usingComponents": {
+    "empty-page": "../../components/emptyPage/emptyPage",
+    "top-bar": "../../components/topbar/topbar"
+  }
+}

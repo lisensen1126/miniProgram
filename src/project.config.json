@@ -1,0 +1,89 @@
+{
+  "description": "项目配置文件。",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.5.0",
+  "appid": "wx02b6797a9ac61669",
+  "projectname": "app",
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": 0,
+      "list": [
+        {
+          "id": 0,
+          "name": "首页",
+          "pathName": "pages/index/index",
+          "query": ""
+        },
+        {
+          "id": 1,
+          "name": "商城",
+          "pathName": "pages/mall/categories/categories",
+          "query": ""
+        },
+        {
+          "id": 2,
+          "name": "分类列表",
+          "pathName": "pages/mall/categoryList/categoryList",
+          "query": ""
+        },
+        {
+          "id": 3,
+          "name": "门店",
+          "pathName": "pages/store/store",
+          "query": ""
+        },
+        {
+          "id": 4,
+          "name": "购物车",
+          "pathName": "pages/shopCart/shopCart",
+          "query": ""
+        },
+        {
+          "id": 5,
+          "name": "注册",
+          "pathName": "pages/register/registerPhone/registerPhone",
+          "query": ""
+        },
+        {
+          "id": 6,
+          "name": "个人中心",
+          "pathName": "pages/personal/personal",
+          "query": ""
+        },
+        {
+          "id": 7,
+          "name": "添加车辆",
+          "pathName": "pages/vehicle/vehicleAdd/vehicleAdd",
+          "query": ""
+        },
+        {
+          "id": 55,
+          "name": "车检详情",
+          "pathName": "pages/vehicle/vehicleReportDetail/vehicleReportDetail",
+          "query": "id=3"
+        },
+        {
+          "id": 55,
+          "name": "车检列表",
+          "pathName": "pages/vehicle/vehiclesReportList/vehiclesReportList",
+          "query": ""
+        }
+      ]
+    }
+  }
+}

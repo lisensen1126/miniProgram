@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "商家收银台",
+  "usingComponents": {
+		"top-bar": "../../../components/topbar/topbar"    
+  }
+}

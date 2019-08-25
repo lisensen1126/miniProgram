@@ -1,0 +1,6 @@
+<view class="loading">
+  <view class="loading-icon" wx:if="{{isLoading}}"></view>
+  <text wx:if="{{isLoading}}">正在加载</text>
+  <text wx:if="{{!isLoading && !hasMore}}">没有更多了</text>
+  <text wx:if="{{!isLoading && hasMore}}">上拉加载更多</text>
+</view>

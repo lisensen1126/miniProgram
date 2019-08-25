@@ -1,0 +1,212 @@
+@import '~@/style/mixin'
+
+.pay-for-success
+	padding-bottom: vw(58)
+	.pay-success-header
+		text-align: center
+		width: 100%
+		border-bottom: vw(1) solid $border
+		image
+			width: vw(80)
+			height: vw(80)
+			margin-top: vw(35)
+		.pay-success-header-title
+			margin-top: vw(10)
+			color: #000000
+			font-size: vw(15)
+			font-weight: 500
+			display: -webkit-box
+			word-break: break-all
+			-webkit-box-orient: vertical
+			-webkit-line-clamp: 2
+			overflow: hidden
+			text-overflow: ellipsis
+		.pay-success-header-order-number
+			margin-top: vw(8)
+			margin-bottom: vw(35)
+			color: #000000
+			font-size: vw(12)
+			font-weight: 400
+	.pay-success-items
+		width: 100%
+		border-bottom: vw(1) solid $border
+		padding: vw(15)
+		background-color: $bg-white
+		box-sizing: border-box
+	.order-info
+		padding: vw(15) 0 0 vw(15)
+		margin-top: vw(15)
+		background-color: $bg-white
+		border-bottom: vw(1) solid $border
+		.section-header
+			padding-bottom: 0
+		.order-info-flex:last-child
+			border-bottom: 0
+		.order-info-flex
+			padding: vw(15) vw(15) vw(15) 0
+			display: flex
+			justify-content: space-between
+			font-weight: 400
+			font-size: vw(14)
+			border-bottom: vw(1) solid #eeeeee
+			.label-title
+				color: #7F7F7F
+			.label-info
+				color: #404040
+			.order-info-receive-title
+				color: #7F7F7F
+			.order-info-receive-price
+				color: #DD1D21
+				font-size: vw(14)
+				font-weight: bold
+	.section-header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: vw(5) 0 vw(15) 0
+    font-weight: bold
+    color: #404040
+    font-size: vw(14)
+    .info-content-color
+      color: #F70000 !important
+      float: right
+      font-size: vw(14) !important
+      font-weight: 500
+.pay-success-btn-box
+  position: fixed
+  bottom: 0
+  left: 0
+  width: 100%
+  height: vw(58)
+  padding: vw(9) vw(15)
+  background: #ffffff
+  display: flex
+  justify-content: center
+  box-shadow: 0 vw(1) vw(6) 0 rgba(0, 0, 0, .05)
+  box-sizing: border-box
+  .operation-button
+    width: 100%
+    height: vw(45)
+    display: flex
+    border-radius: 0
+    box-shadow: none
+    padding: 0
+    margin: 0
+    justify-content: center
+    align-items: center
+    box-sizing: border-box
+    font-weight: bold
+    font-size: vw(14)
+    line-height: vw(45)
+    background: #FBCE07
+    color: #404040
+    border: 0
+.pay-success-btn-box.active
+  background: #DD1D21
+  padding: 0
+  text-align: center
+  .pay-success-text
+    color: #ffffff
+    display: flex
+    flex-direction: column
+    justify-content: center
+    .timeout
+      font-size: vw(14)
+      font-weight: bold
+      line-height: 1
+    .tishi
+      font-size: vw(10)
+      font-weight: 400
+      line-height: 1
+      margin-top: vw(6)
+.pay-success-header
+  background: #fff
+  margin-bottom: vw(15)
+.card-item
+  width: 100%
+  height: vw(200)
+  background-size: 100% 100%
+  border-radius: vw(10)
+  padding: vw(20)
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  position: relative
+  .card-item-title, .card-item-bottom
+    width: 100%
+    display: flex
+    justify-content: space-between
+    align-items: center
+    line-height: 1
+  .card-item-name
+    color: #FFF6E1
+    font-size: vw(18)
+    font-weight: bold
+    position: absolute
+    bottom: vw(48)
+    left: vw(15)
+  .card-item-use
+    color: #FFF6E1
+    font-size: vw(12)
+    font-weight: 500
+    display: flex
+    align-items: center
+    position: absolute
+    bottom: vw(16)
+    right: vw(27)   
+    .num-use
+      background-color: #FFF6E1
+      color: #000
+      padding: vw(1) vw(4)
+      margin: 0 vw(2)
+      line-height: 1
+  .card-item-num
+    font-size: vw(12)
+    font-weight: 400
+    color: #FFF6E1
+    position: absolute
+    top: vw(173)
+    right: vw(15)
+  .card-item-price
+    vertical-align: bottom
+    position: absolute
+    bottom: vw(15)
+    left: vw(15)    
+  .card-item-nowprice
+    color: #FFF6E1
+    font-family: Gotham-Medium
+    font-weight: 600
+    font-size: vw(18)
+  .card-item-storeprice
+    color: #FFF6E1
+    font-weight: 300
+    font-size: vw(12)
+    margin-left: vw(7)
+  .card-item-button
+    width: vw(88)
+    height: vw(30)
+    background-color: #E8CE90
+    text-align: center
+    line-height: vw(30)
+    border-radius: vw(21)
+    color: #2D2F33
+    font-size: vw(12)
+    font-weight: 500
+    position: absolute
+    top: vw(134)
+    right: vw(15)    
+.give-friend
+  margin-top: vw(15)
+  display: flex
+  justify-content: space-between
+  align-items: center
+  box-sizing: border-box
+  background-color: #fff
+  padding: vw(18) vw(15)
+  .section-header
+    padding-bottom: 0
+  .phone
+    font-size: vw(16)
+    color: #A7A9AC
+    font-weight: 400

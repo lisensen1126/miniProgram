@@ -1,0 +1,132 @@
+@import '~@/style/mixin'
+
+.page-poster
+  display: block
+  box-sizing: border-box
+  width: 100%
+  min-height: 100%
+  .canvasY
+    position: fixed
+    top: 1000px
+    left: 1000px
+  .poster-box
+    padding: vw(0) vw(15)
+    .poster-content
+      margin-top: vw(15)
+      width: vw(345)
+      height: vw(490)
+      position: relative
+      .foot-box
+        width: 100%
+        height: vw(90)
+        box-sizing: border-box
+        position: absolute
+        bottom: 0
+        left: 0
+        display: flex
+        justify-content: space-between
+        padding: vw(15)
+        .qy-icon
+          width: vw(60)
+          height: vw(60)
+        .store-info
+          .store-name
+            line-height: vw(23)
+            font-size: vw(16)
+            font-weight: bold
+            color: #FFFFFF
+          .store-address
+            color: #FFFFFF
+            line-height: vw(14)
+            font-size: vw(10)
+            margin-top: vw(4)
+            .icon
+              width: vw(12)
+              height: vw(12)
+              vertical-align: bottom
+          .store-phone
+            margin-top: vw(3)
+            .icon
+              vertical-align: top
+      .bg-pic
+        width: vw(345)
+        height: vw(490)
+        position: absolute
+        top: 0
+        left: 0
+      .good-info
+        width: vw(305)
+        height: vw(95)
+        display: flex
+        justify-content: start
+        box-sizing: border-box
+        padding: vw(15)
+        position: absolute
+        top: vw(139)
+        left: vw(15)
+        .right-content
+          width: vw(179)
+          box-sizing: border-box
+          padding-left: vw(8)
+          .price-box
+            line-height: vw(15)
+            .limit-price
+              color: #E50113
+              font-size: vw(13)
+              font-weight: bold
+            .price
+              color: #A6A6A6
+              padding-left: vw(5)
+              font-size: vw(9)
+              text-decoration: line-through
+          .product-name
+            width: 100%
+            height: vw(33)
+            color: #404040
+            font-weight: bold
+            font-size: vw(11)
+            line-height: vw(16)
+            @extend %double-line-ellipses
+          .product-tip
+            height: vw(12)
+            margin: vw(4) vw(0)
+            .group-num
+              color: #E30414
+              border: vw(1) solid #E30414
+              font-size: vw(8)
+              line-height: vw(10)
+              box-shadow: 0 vw(3) vw(5) 0 rgba(212,46,18,0.1)
+              text-align: center
+              width: vw(28)
+        .left-img
+          position: relative
+          .img
+            width: vw(107)
+            height: vw(67)
+          .tip
+            width: vw(30)
+            height: vw(12)
+            position: absolute
+            top: vw(-2)
+            right: vw(-2)
+  .share-box
+    width: 100%
+    text-align: center
+    margin-top: vw(24)
+    .btn
+      width: vw(344)
+      height: vw(50)
+      text-align: center
+      margin: 0 auto
+      color: #404040
+      font-size: vw(14)
+      line-height: vw(50)
+      background: white
+      .icon
+        width: vw(22)
+        height: vw(22)
+        margin-right: vw(9)
+        margin-top: vw(-1)
+        vertical-align: middle
+
+    

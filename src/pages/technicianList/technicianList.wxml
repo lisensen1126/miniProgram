@@ -1,0 +1,33 @@
+<view class="technicianList" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="全部技师" home="{{showHome}}"></top-bar>
+	<!-- topbar end -->
+  <!-- 技师弹框 -->
+	<tech-model 
+		wx:if="{{show_tech}}" 
+		techId="{{tech_id}}"
+		bindclose="closeTechModel"></tech-model>
+  <empty-page wx:if="{{!list.length && isinitiated}}" slogan="暂无技师数据" icon="technician"></empty-page>
+  <view wx:if="{{list.length}}" class="list-wrapper">
+    <view class="list-li" wx:for="{{list}}" wx:key="{{index}}">
+      <view class="item-index">
+        <image wx:if="{{index == 0}}" src="/images/store/top1.png" />
+        <image wx:if="{{index == 1}}" src="/images/store/top2.png" />
+        <image wx:if="{{index == 2}}" src="/images/store/top3.png" />
+        {{index>2 ? index+1:''}}
+      </view>
+      <view class="technician-box" data-techniciansid="{{item.technicians_id}}" bindtap="showTech">
+        <image src="{{item.memFace.length>0 ? item.memFace : 'https://oss1.chedianai.com/images/assets/avater_default_1.png'}}" />
+        <view class="technician-msg">
+          <view class="technician-name">{{item.memUsername}}</view>
+          <view class="technician-job">{{item.memJob}}</view>
+        </view>
+      </view>
+      <view class="like-box {{false ?'is-like':''}}" data-techniciansid="{{item.technicians_id}}" bindtap="likeTechnician">
+        <image data-techniciansid="{{item.technicians_id}}" wx:if="{{true}}" src="/images/store/can_like.png" />
+        <image data-techniciansid="{{item.technicians_id}}" wx:if="{{false}}" src="/images/store/is_like.png" />
+        <text data-techniciansid="{{item.technicians_id}}">{{item.recommend_num}}</text>
+      </view>
+    </view>
+  </view>
+</view>

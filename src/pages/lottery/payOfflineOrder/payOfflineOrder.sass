@@ -1,0 +1,329 @@
+@import '~@/style/mixin'
+@import '~@/style/border'
+
+.bold
+  font-weight: 600
+.color-default
+  color: $text-white !important
+  background: #C0C3CC !important
+  display: flex
+  align-items: center
+  justify-content: center
+.page-confirm-order
+  min-height: 100vh
+  font-size: vw(16)
+  color: #000000
+  padding-bottom: vw(49)
+  width: 100%
+  overflow-x: hidden
+  box-sizing: border-box
+  .order-info
+    padding: vw(18) vw(15) 0 vw(15)
+    background: $text-white
+    width: 100%
+    .order-title
+      font-size: vw(14)
+      color: #404040
+    .order-list
+      width: vw(345)
+      .order-item
+        padding: vw(15) 0
+        position: relative
+        border-bottom: vw(1) solid #eee
+        height: vw(84)
+        &:last-child
+          border: 0
+        .item-image
+          width: vw(134)
+          height: vw(84)
+          margin-right: vw(10)
+        .item-info
+          position: absolute
+          left: vw(149)
+          top: vw(12)
+          right: vw(30)
+          width: vw(200)
+          min-height: vw(85)
+          overflow: hidden
+          display: flex
+          flex-direction: column
+          justify-content: space-between
+          .info
+            overflow: hidden
+            text-overflow: ellipsis
+            white-space: normal
+            display: -webkit-box
+            -webkit-line-clamp: 2
+            -webkit-box-orient: vertical
+            font-size: vw(14)
+            font-weight: 500
+            word-wrap: break-word
+          .attribute
+            font-size: vw(13)
+            font-weight: 500
+          .item-other
+            height: vw(28)
+            line-height: vw(28)
+          .item-price
+            font-size: vw(16)
+            color: #E50413
+            float: left
+            color: #E50113
+          .item-quantity
+            font-size: vw(14)
+            float: right
+            color: #7F7F7F
+      // .order-item:not(:first-child)
+      //   &::before
+      //     @include Pseudo-border-before()
+  .coupon
+    display: flex
+    background: #ffffff
+    align-items: center
+    height: vw(56)
+    padding-left: vw(15)
+    margin-top: vw(15)
+    color: #000000
+    .item-icon
+      width: vw(26)
+      height: vw(21)
+    .item-coupon
+      margin-left: vw(9)
+      font-size: vw(14)
+      color: #404040
+    .coupon-quantity
+      font-size: vw(12)
+      color: #E50413
+      margin-left: vw(5)
+    .default
+      color: $text-gray
+    .coupon-price
+      position: absolute
+      right: 0
+      height: vw(66)
+      line-height: vw(66)
+      padding: 0 vw(15)
+      display: flex
+      color: #E50413
+      align-items: center
+      font-size: vw(14)
+      line-height: vw(16)
+
+  .payment-block-info
+    margin-top: vw(15)
+    padding: vw(20) vw(15) 0 vw(15)
+    background: $text-white
+    font-size: vw(14)
+    color: #7F7F7F
+    .payment-title
+      color: #404040
+    .payment-info-item:not(:last-child)
+      position: relative
+      &::after
+        @include Pseudo-border-after()
+    .payment-info-item
+      height: vw(56)
+      line-height: vw(56)
+    .pay-item-left
+      float: left
+      color: #858587
+    .pay-item-right
+      float: right
+    .real-price
+      color: #DD1D21
+  .bottom-button
+    display: flex
+    align-items: center
+    position: fixed
+    bottom: 0
+    left: 0
+    box-sizing: border-box
+    width: 100%
+    height: vw(58)
+    background: #ffffff
+    box-shadow: 0 vw(1) vw(6) 0 rgba(0, 0, 0, 0.05), 0 0 0 0 rgba(0, 0, 0, 0.10)
+    z-index: 11
+    .payment-info
+      .pay-price
+        display: flex
+        margin-left: vw(15)
+        line-height: 36rpx
+        .pay-text
+          font-size: vw(16)
+          color: #404040
+        .price
+          margin-left: vw(3)
+          margin-right: vw(19)
+          font-size: vw(18)
+          color: #DD1D21
+        .line
+          width: vw(1)
+          height: vw(20)
+          color: #D9D9D9
+      .coupon-price
+        position: relative
+        display: inline-block
+        font-size: vw(12)
+        color: #7F7F7F
+        padding-left: vw(9)
+        &::before
+          content: ""
+          display: table
+          position: absolute
+          top: 0
+          left: 0
+          width: vw(2)
+          height: vw(21)
+          background: #EEEEEE
+  .payment-button
+    font-size: vw(14)
+    position: absolute
+    right: vw(15)
+    top: 50%
+    bottom: 50%
+    transform: translateY(-50%)
+    background: #D52F12
+    color: $text-white
+    width: vw(114)
+    height: vw(40)
+    line-height: vw(40)
+    text-align: center
+    box-shadow: 0 vw(2) vw(4) 0 rgba(26, 26, 32, 0.24)
+
+
+.arrow-icon
+  display: block
+  width: vw(8)
+  height: vw(12)
+  margin-left: vw(10)
+  @include getImage('arrow_right.svg')
+  background-size: vw(8) vw(12)
+  background-repeat: no-repeat
+  background-position: center center
+
+  
+.local-box
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 0 vw(15)
+  margin-top: vw(15)
+  height: vw(56)
+  background: #fff
+  .local-left.local-right
+    display: flex
+    align-items: center
+  .local-left
+    font-size: vw(14)
+    .local-icon
+      width: vw(26)
+      height: vw(21)
+      margin-right: vw(9)
+      vertical-align: middle
+  .local-right
+    font-size: vw(12)
+    .local-arrow
+      display: inline-block
+      width: vw(8)
+      height: vw(12)
+      margin-left: vw(10)
+      @include getImage('arrow_right.svg')
+      background-size: vw(8) vw(12)
+      background-repeat: no-repeat
+  .local-gray
+    color: #A7A9AC
+  .local-block
+    color: #373737 
+  .local-red
+    color: #DD1D21
+
+.store
+  width: 100%
+  min-height: vw(85)
+  padding-left: vw(60)
+  background: url('https://oss1.chedianai.com/offline-store.png') no-repeat center
+  background-size: vw(34)
+  background-position-x: vw(15)
+  box-sizing: border-box
+  padding-right: vw(15)
+  .tip
+    font-size: vw(14)
+    line-height: vw(21)
+    padding-top: vw(20)
+    padding-bottom: vw(3)
+    color: #7F7F7F
+  .store-name
+    color: #404040
+    font-size: vw(14)
+    line-height: vw(21)
+// 支付立减弹框
+.model
+  width: 100%
+  height: 100vh
+  background-color: rgba(0,0,0,.5)
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 99
+  .content
+    width: vw(305)
+    height: vw(340)
+    background-color: #ffffff
+    background: url('https://oss1.chedianai.com/static/reduction-img.png') no-repeat center
+    background-size: vw(305) vw(340)
+    margin: 0 auto
+    position: relative
+    top: 50%
+    margin-top: vw(-170)
+    color: #ffffff
+    .tip
+      font-size: vw(24)
+      line-height: vw(33)
+      padding-top: vw(20)
+      text-align: center
+      font-weight: bold
+    .info
+      line-height: vw(22)
+      font-size: vw(16)
+      text-align: center
+    .info-none
+      width: vw(228)
+      height: vw(122)
+      margin: vw(20) auto 0
+      background-color: #ffffff
+      border-radius: vw(8) vw(8) 0 0
+      padding-top: vw(14)
+      overflow: hidden
+      .info-border
+        width: vw(200)
+        height: vw(108)
+        margin: 0 auto
+        padding-top: vw(38)
+        border-radius: vw(8) vw(8) 0 0
+        border: vw(1) solid #f8d1d2
+        border-bottom: none
+        text-align: center
+        .money-coupon
+          padding-left: vw(18)
+          line-height: 1
+          color: #C00206
+          font-size: vw(40)
+          font-weight: bold
+          position: relative
+        .money-coupon:before
+          position: absolute
+          content: '￥'
+          left: 0
+          bottom: vw(10)
+          z-index: 99
+          font-size: vw(20)
+          color: #C00206
+          font-weight: bold 
+    .pay
+      width: vw(215)
+      line-height: vw(40)
+      background-color: #FBCE07
+      text-align: center
+      margin-top: vw(44)
+      border-radius: vw(40)
+

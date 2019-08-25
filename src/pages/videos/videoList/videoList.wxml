@@ -1,0 +1,15 @@
+<!-- topbar -->
+<top-bar title="施工录像" home="{{showHome}}"></top-bar>
+<view wx:if="{{list.length}}" style="padding-top: {{top_height}}px">
+  <view style="height: 30rpx"></view>
+  <navigator wx:for="{{list}}" wx:key="{{item.id}}" url="../videoDetail/videoDetail?id={{item.id}}" hover-class="none" class="video-item" data-cdp="videos_videoList_list_{{item.id}}">
+    <image class="video-image" src="{{item.image_url}}" mode="aspectFill" />
+    <view class="video-content">
+      <view class="video-title">{{item.store_name}}</view>
+      <view class="video-date">{{item.arrived_at}}</view>
+      <view class="video-duration">{{item.minutes}} 分钟</view>
+    </view>
+  </navigator>
+  <custom-loading is-loading="{{isLoading && !isAllLoaded}}"></custom-loading>
+</view>
+<empty-page wx:if="{{!list.length && inInit}}" slogan="还没有施工录像哦" icon="novideotape" style="padding-top: {{top_height}}px"></empty-page>

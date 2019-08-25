@@ -1,0 +1,40 @@
+<view class="page-storeList" style="padding-top: {{topbarHeight}}px">
+	<!-- topbar -->
+	<top-bar title="门店列表" home="{{showHome}}"></top-bar>
+	<!-- topbar end -->
+	<!-- 门店列表 -->
+	<view class="index-store">
+		<view class="">
+			<view class="list {{item.is_check ? 'current-list' : ''}}" wx:for="{{store_list}}" wx:key="index">
+				<view wx:if="{{item.is_check}}" class="current-icon">当前门店</view>
+				<view class="top clearfix" bindtap="goBack" data-value="{{item}}">
+					<view class="left fl">
+						<image src="{{item.current_image ? item.current_image : 'https://oss1.chedianai.com/images/assets/category-default.png'}}" mode="aspectFill" />
+					</view>
+					<view class="right fl">
+						<view class="store-name">{{item.store_name}}</view>
+						<view class="store-fen clearfix">
+							<view class="fl sart">
+								<score-points-min class="fl" points='{{item.points}}' half="{{item.half}}" inActive="{{item.inActive}}" mini="{{true}}" showScore='{{false}}'></score-points-min>
+							</view>
+							<view class="fl text">
+								{{item.avg_ratings}}分
+							</view>
+							<view class="fr num">
+								{{item.comment_total}}条
+							</view>
+						</view>
+						<view class="store-address">
+							<view class="fl address">
+								{{item.province_name}}{{item.city_name}}{{item.district_name}}{{item.address}}
+							</view>
+							<view class="fr" wx:if="{{item.distance !== '0.0m'}}">
+								{{item.distance}}
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>	

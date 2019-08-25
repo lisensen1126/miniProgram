@@ -1,0 +1,95 @@
+<view class="coupon-outer{{(c_status!=1&&type=='mine')?' coupon-disabled':''}}">
+  <image wx:if="{{c_status==1&&coupon.expire_soon}}" class="c-s" src="https://oss1.chedianai.com/images/assets/expire_soon.png" />
+  <image wx:elif="{{c_status==1&&coupon.new_received}}" class="c-s" src="https://oss1.chedianai.com/images/assets/new_arrival.png" />
+  <view class="coupon">
+    <view class="c-t">
+      <image wx:if="{{type=='mine'&&c_status!=1}}" class="c-type" src="https://oss1.chedianai.com/images/assets/dis-coupon-t{{c_type}}.png" />
+      <image wx:else class="c-type" src="https://oss1.chedianai.com/images/assets/coupon-t{{c_type}}.png" />
+      <view class="c-t-l">
+        <view class="c-t-l-t">
+          <block wx:for="{{c_price_info}}" wx:key="i">
+            <text class="{{item.c}}">{{item.v}}</text>
+          </block>
+        </view>
+        <view class="c-t-l-b">{{c_condition}}</view>
+      </view>
+      <view class="c-t-r">
+        <view class="c-t-r-l">
+          <view class="c-t-r-l-t">{{c_name}}</view>
+          <view class="c-t-r-l-b">{{c_effective_time}}</view>
+        </view>
+
+        <!-- start 【 处理按钮显示 】 -->
+        <block wx:if="{{showBtn}}">
+          <view wx:if="{{type=='goods'}}" class="c-t-r-r">
+            <!-- 1：立即领取 2：继续领取  3: 不能领取 -->
+            <view wx:if="{{c_receive_status == 1}}" class="c-t-r-r-t">
+              <catch-form bind:callback="receive">领取</catch-form>
+            </view>
+            <block wx:elif="{{c_receive_status == 2}}">
+              <view class="c-t-r-r-t disable"><catch-form bind:callback="toUse">已领取</catch-form></view>
+            </block>
+            <view wx:elif="{{c_receive_status == 3}}" class="c-t-r-r-t disable">已领取</view>
+          </view>
+          <view wx:if="{{type=='center'}}" class="c-t-r-r">
+            <view wx:if="{{c_receive_status == 1}}" class="c-t-r-r-t">
+              <catch-form bind:callback="receive">领取</catch-form>
+            </view>
+            <block wx:elif="{{c_receive_status == 2}}">
+              <view class="c-t-r-r-t go-use"><catch-form bind:callback="toUse">去使用</catch-form></view>
+              <!-- <view class="c-t-r-r-b">已领取</view> -->
+            </block>
+            <view wx:elif="{{c_receive_status == 3}}" class="c-t-r-r-t disable">已领取</view>
+          </view>
+          <view wx:if="{{type=='mine'}}" class="c-t-r-r">
+            <view class="c-t-r-r-t c-t-r-r-a go-use" wx:if="{{status==1}}"><catch-form bind:callback="toUse">去使用</catch-form></view>
+            <view class="c-t-r-r-t disable-bottom" wx:elif="{{status==2}}">已使用</view>
+          </view>
+          <view wx:if="{{type=='select'}}" class="c-t-r-r">
+            <view class="select-btn{{isSelect?' selected':''}}"></view>
+          </view>
+        </block>
+        <!-- end 【 处理按钮显示 】 -->
+
+      </view>
+    </view>
+
+    <!-- start 【 优惠券底部 】 -->
+    <!-- 有核销码 -->
+    <view class="c-b" wx:if="{{c_write_off_code}}">
+      <view class="c-desc">
+        <view>核销编码：{{c_write_off_code}}</view>
+        <view wx:if="{{is_show_more_desc}}">使用范围：{{c_range}}</view>
+        <view wx:if="{{is_show_more_desc && c_remark}}">备注说明：{{c_remark}}</view>
+      </view>
+      <image catchtap="shouwMoreDesc" class="icon-down-angle{{is_show_more_desc?' rotate':''}}" src="https://oss2.chedianai.com/images/assets/icon-down-angle.png"/>
+    </view>
+    <!-- 没有核销码 -->
+    <view class="c-b" wx:else>
+      <view class="c-desc">
+        <view>使用范围：{{c_range}}</view>
+        <view wx:if="{{is_show_more_desc && c_remark}}">备注说明：{{c_remark}}</view>
+      </view>
+      <image wx:if="{{c_remark}}" catchtap="shouwMoreDesc" class="icon-down-angle{{is_show_more_desc?' rotate':''}}" src="https://oss2.chedianai.com/images/assets/icon-down-angle.png"/>
+    </view>
+    <!-- end 【 优惠券底部 】 -->
+
+  </view>
+</view>
+
+<!-- 核销码 浮层 -->
+<view class="code-cover" wx:if="{{show_code_cover}}" bindtap="showCodeCover" catchtouchmove="true">
+  <view class="dialog">
+    <view class="title">兑换码
+      <image class="close" src="/images/default/close-btn.png"></image>
+    </view>
+    <view class="content-box">
+      <view class="content">
+        <view class="qrcode-img">
+          <image class="code" src="{{qrcode_url}}" mode="aspectFit|aspectFill|widthFix" />
+        </view>
+        <view class="qrcode">{{c_write_off_code}}</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,35 @@
+<view class="page-aboutUs" style="padding-top: {{top_height}}px">
+	<!-- topbar -->
+	<top-bar title="壳保养智慧门店小程序" home="{{showHome}}"></top-bar>
+	<!-- topbar end -->
+	<view class="brand-map">
+		<image class="image" lazy-load="true" src="https://oss1.chedianai.com/images/assets/abort.png">
+		</image>
+		<view class="text">
+			<view class="title">壳保养智慧门店小程序</view>
+			<view class="v">V 3.8.10</view>
+		</view>
+	</view>
+	<view class="brand-content">
+		<view class="title">
+			壳保养智慧门店小程序
+		</view>
+		<view class="synopsis">
+			壳保养智慧门店是一款针对汽车后市场的智慧零售产品，通过小程序+企业微信+大数据，为汽车后市场商户提供门店管理、集客营销、内容运营等多维度的智能化数字服务，同时为门店的车主提供多元化、便捷化、精准化的相关汽车服务和资讯。
+		</view>
+	</view>
+	<view class="brand-content">
+		<view class="title">
+			技术支持
+		</view>
+		<view class="changyi">
+			畅移（上海）信息科技有限公司  
+		</view>
+		<view class="changyi">
+			400 860 6961
+		</view>
+		<view class="changyi">
+			周一至周五 9:00 - 18:00
+		</view>
+	</view>
+</view>

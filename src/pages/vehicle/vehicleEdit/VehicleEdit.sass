@@ -1,0 +1,240 @@
+@import '~@/style/mixin'
+
+page
+  background: white
+.warn-tip
+  display: flex
+  justify-content: space-between
+  padding: 0 vw(15)
+  box-sizing: border-box
+  background: rgba(251,206,7,0.15)
+  line-height: vw(30)
+  color: #EB8705
+  font-size: vw(12)
+  .close-box
+    width: vw(30)
+    height: vw(30)
+    box-sizing: border-box
+    padding-right: vw(14)
+    background-image: url('https://oss1.chedianai.com/wechat/cartip-del.png')
+    background-size: vw(12) vw(12)
+    background-repeat: no-repeat
+    background-position: vw(17) vw(9)
+// 光标
+.input-cursor
+  width: vw(3)
+  height: vw(16)
+  border-radius: vw(3)
+  margin-top: 0
+  background: #003C88
+  animation: twinkling 1s infinite
+.has-cursor
+  margin-top: vw(13)
+.animated
+  animation-duration: 2s
+  animation-fill-mode: both
+@-webkit-keyframes twinkling
+  0% { opacity: 0 }
+  25% { opacity: 0.5 }
+  50% { opacity: 1 }
+  75% { opacity: 0.5 }
+  100% { opacity: 0 }
+.step
+  display: flex
+  background: white
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  padding: 0 vw(15)
+  box-sizing: border-box
+.step-content-wapper
+  position: relative
+  width: vw(345)
+  box-sizing: border-box
+  border: none
+  margin-top: vw(20)
+  .selector-box
+    display: flex
+    align-items: center
+    border: vw(1) solid #F7F7F7
+    padding: 0 vw(15)
+    margin-top: vw(10)
+    .step-content-input
+      width: 100%
+      line-height: vw(42)
+      color: #A6A6A6
+      display: flex
+      justify-content: start
+    .has-p
+      color: #404040
+    &.active
+      border: vw(1) solid #DD1D21
+  .car-content
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 0 vw(15)
+    border: vw(1) solid #F7F7F7
+    min-height: vw(42)
+    margin-top: vw(10)
+    .car-content-title
+      color: #A6A6A6
+      font-size: vw(14)
+      font-weight: 400
+    .car-content-right
+      image
+        width: vw(9)
+        height: vw(9)
+  .car-info
+    width: vw(255)
+    color: #404040
+    font-size: vw(14)
+    line-height: vw(42)
+    padding-right: vw(18)
+    @extend %ellipses
+  .image
+    width: vw(25)
+    height: vw(25)
+    margin-right: vw(5)
+    .step-content-image
+      width: 100%
+      height: 100%
+      margin-right: vw(15)
+      flex-shrink: 0
+.required
+  color: #D52F12
+  font-size: vw(16)
+  margin-right: vw(10)
+  display: inline
+.choose
+  color: #A6A6A6
+  font-size: vw(16)
+  .step-content-name
+    .car-model
+      font-weight: normal
+      color: $text-gray
+    color: $text-dark
+    font-size: vw(16)
+    font-weight: bold
+    flex-grow: 1
+    padding-right: vw(18)
+    @extend %ellipses
+  .step-content-input
+    flex-grow: 1
+    padding: vw(0) vw(33)
+    color: #404040
+    font-size: vw(16)
+.down
+  @include getImage('register/down-icon.png')
+  background-size: vw(12) vw(6)
+  background-repeat: no-repeat
+  background-position: vw(40) vw(50)
+.phcolor
+  color: #A6A6A6
+  font-size: vw(14)
+.step-content-wapper-mileage
+  padding: 0 vw(15)
+  position: relative
+  border: vw(1) solid #f7f7ff
+  height: vw(42)
+  margin-top: vw(10)
+  .step-content-input
+    width: 100%
+    height: 100%
+    padding-right: vw(40)
+    box-sizing: border-box
+    font-size: vw(14)
+  .km
+    position: absolute
+    right: vw(15)
+    color: #404040
+    font-size: vw(14)
+    top: vw(8)
+.init-bottom-btn-wapper
+  position: fixed
+  bottom: 0
+  left: 0
+  background: white
+  box-shadow: 0px 3px 16px 0px rgba(26,26,32,0.09)
+  width: vw(375)
+  height: vw(58)
+  box-sizing: border-box
+  padding: vw(9) vw(15)
+  display: flex
+  justify-content: start
+  .del
+    text-align: center
+    line-height: vw(40)
+    font-size: vw(14)
+    color: #7F7F7F
+    width: vw(172)
+    height: vw(40)
+    background: white
+    border: vw(1) solid #D9D9D9
+    border-right: none
+  .save
+    text-align: center
+    line-height: vw(40)
+    font-size: vw(14)
+    color: #404040
+    width: vw(172)
+    height: vw(40)
+    background: #F7D117
+    border: vw(1) solid #F7D117
+    border-left: none
+  .no-save
+    background: #C0C3CC
+    color: #ffffff
+    border: vw(1) solid #C0C3CC
+    border-left: none
+.license-content
+  position: relative
+  display: inline-flex
+  align-items: center
+  font-size: vw(16)
+  width: vw(30)
+  height: vw(50)
+  margin-right: vw(18)
+  text-align: left
+  &::after
+    content: ''
+    position: absolute
+    right: 0
+    top: 50%
+    transform: translateY(-50%) rotate(-45deg)
+    display: block
+    width: vw(9)
+    height: vw(9)
+    border: snone
+    border-width: 0 0 vw(2) vw(2)
+
+.final-interpretation
+  color: $text-gray
+  font-size: vw(12)
+  line-height: vw(17)
+  margin-top: vw(20)
+
+.step-content-wapper-title
+  display: flex
+  justify-content: space-between
+  align-items: flex-end
+  line-height: 1
+  .step-content-wapper-text
+    font-size: vw(12)
+    color: #7F7F7F
+    font-weight: 400
+    display: flex
+    align-items: center
+  .step-content-warn
+    color: #EB8705
+    font-size: vw(10)
+    font-weight: 400
+  .step-content-error
+    color: #DD1D21
+    font-size: vw(12)
+    font-weight: 400
+.step-content-wapper-km
+  padding-left: vw(17)
+  font-size: vw(12)
+  color: #7F7F7F
+  font-weight: 400

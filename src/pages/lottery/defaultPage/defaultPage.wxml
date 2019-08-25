@@ -1,0 +1,6 @@
+<view class="page-defaultPage" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="抽奖结束" home="{{sharePage}}"></top-bar>
+  <empty-page wx:if="{{code == '1015'}}" icon="lottery" slogan="活动奖品已领完！"/>
+  <empty-page wx:else icon="lottery" slogan="对不起，活动已结束或已下架！"/>
+</view>

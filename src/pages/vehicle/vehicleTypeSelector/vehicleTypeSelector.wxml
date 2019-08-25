@@ -1,0 +1,17 @@
+<view class="page-wrapper type" style="padding-top: {{topbarHeight}}px">
+  <!-- topbar -->
+	<top-bar title="选择车型"></top-bar>
+  <view class="model-selection">
+    <image class="brand-avatar" src="{{model.logo}}" />
+    <text class="model-title">{{model.factory.name}} - {{model.name}}</text>
+    <view class="sub-choose" style="background:#F7D117;color:#000000" bindtap="subModel" data-cdp="vehicle_vehicleTypeSelector_1">确认</view>
+  </view>
+  <scroll-view class="selection-list model-list" scroll-y="true" scroll-with-animation="{{true}}">
+    <block wx:for="{{list}}" wx:key="{{index}}">
+      <text wx:if="{{item.isFirstOfGroup}}" class="section-label">{{item.product_year}}款</text>
+      <view class="selection-item" data-vehicle-id="{{item.id}}" data-vehicle-index="{{index}}" bindtap="selectVehicleType" data-cdp="vehicle_vehicleTypeSelector_list">
+        <text class="brand-title">{{item.sales_name}}</text>
+      </view>
+    </block>
+  </scroll-view>
+</view>

@@ -1,0 +1,22 @@
+<view class="topbar" style="padding-top: {{statusBarHeight}}px">
+
+  <view class="titlebar" style="height: {{titleBarHeight}}px">
+    <!-- left -->
+    <view class="t-left" style="height: {{titleBarHeight}}px">
+      <!-- 返回 -->
+      <view class="t-back" wx:if="{{back}}">
+        <catch-form bind:callback="goBack">
+          <image class="t-b-pic" src="https://oss1.chedianai.com/images/assets/topbar-back-y.png"></image>
+        </catch-form>
+      </view>
+      <!-- hone -->
+      <view class="t-home" wx:if="{{home && !back}}" bindtap="goHome">
+        <image class="t-h-pic" src="https://oss1.chedianai.com/images/assets/topbar-home-y.png"></image>
+      </view>
+    </view>
+
+    <!-- middle 标题 -->
+    <view class="t-title">{{title}}</view>
+  </view>
+  
+</view>

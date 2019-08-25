@@ -1,0 +1,206 @@
+@import '~@/style/mixin'
+
+.page-article
+	background: #ffffff
+	min-height: 100%
+	width: 100%
+	.header
+		color: #333333
+		font-size: vw(22)
+		font-weight: 500
+		margin: 0 vw(14) vw(10)
+	.nav
+		margin: 0 vw(14) vw(35)
+		.brand-nav
+			color: #18173E
+			font-size: vw(16)
+			display: inline
+		.brand-time
+			color: #58595B
+			font-size: vw(14)
+			display: inline
+	.detail-img
+		width: 100%
+		padding: 0 vw(15) vw(15) vw(15)
+		box-sizing: border-box
+	.content
+    width: 100%
+    box-sizing: border-box
+    padding: 0 vw(14) vw(10)
+    overflow: hidden
+    img
+      width: 100%
+	.info-section
+    margin-top: vw(10)
+    padding: 0 0
+    border-radius: vw(5)
+    background-color: #fff
+    font-size: vw(14)
+    line-height: vw(20)
+    overflow: hidden
+    &:last-child
+      margin-bottom: vw(20)
+.order-info-header
+  position: relative
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-top: 0
+  padding: vw(21) vw(15)
+  font-weight: bold
+  font-size: vw(20)
+  line-height: vw(28)
+  color: #353535
+  background-color: #ffc723
+.section-header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: vw(15) vw(15) 0 vw(28)
+  font-weight: bold
+  color: #000000
+  font-size: vw(16)
+  line-height: vw(22)
+  position: relative
+  &:before
+    content: ''
+    width: vw(5)
+    height: vw(10)
+    background-color: $primary
+    position: absolute
+    left: vw(15)
+    top: vw(21)
+  .info-content-color
+    color: #F70000 !important
+    float: right
+    font-size: vw(14) !important
+    font-weight: 500
+.info-item 
+  padding: vw(15)
+  display: flex
+  justify-content: space-between
+  overflow: hidden
+  position: relative
+  &:after
+    content: ''
+    width: 100%
+    height: vw(1)
+    background-color: #EEEEEE
+    position: absolute
+    bottom: 0
+    left: vw(15)
+  &.special-info
+    justify-content: flex-start
+  .info-label
+    font-size: vw(16)
+    color: #858587
+    padding: vw(5) 0
+  .info-content
+    font-size: vw(16)
+    padding: vw(5) 0
+    color: #000
+    display: flex
+    align-items: center
+  .info-content-payment
+    color: #E50413
+// .info-item:last-child
+//   &:after
+//     height: 0
+.item-avatar
+  flex: 0 0 vw(137)
+  width: vw(137)
+  height: vw(85)
+  margin-right: vw(15)
+  background-color: $text-white
+  position: relative
+  .item-avatar-img
+    width: vw(137)
+    height: vw(85)
+  .item-type
+    position: absolute
+    right: 0
+    top: 0
+    width: vw(38)
+    height: vw(14)
+.item-content
+  display: flex
+  flex: 1 1 auto
+  flex-direction: column
+  justify-content: space-between 
+.item-price
+  color: #dd1d21
+  font-weight: bold
+  font-size: vw(14)
+  line-height: vw(16)
+.time-stamp
+  display: flex
+  justify-content: space-between
+  align-items: center
+  .order-amount
+    line-height: vw(20)
+    color: #E50413
+    font-size: vw(20)
+    font-weight: 500
+  .order-number
+    color: #858587
+    font-size: vw(14)
+    font-weight: 400
+.item-title
+  font-size: vw(15)
+  line-height: vw(20)
+  font-weight: 500
+  display: -webkit-box
+  word-break: break-all
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: 2
+  overflow: hidden
+  text-overflow: ellipsis
+.item-sku
+  font-size: vw(13)
+  line-height: vw(20)
+  margin-top: vw(4)
+  color: #000000
+  
+.btn-group
+  box-sizing: border-box
+  z-index: 5
+  width: vw(375)
+  height: vw(58)
+  position: fixed
+  left: 0
+  bottom: 0
+  align-items: center
+  box-shadow: 0 0 vw(8) 0 rgba(0,0,0,0.05)
+  padding: vw(9) vw(24)
+  box-sizing: border-box
+  background: $text-white
+  .choose-btn
+    color: #4A4A4A
+    font-size: vw(14)
+    font-weight: 500
+    text-align: center
+    width: 100%
+    height: vw(40)
+    line-height: vw(40)
+    background: #FBCE07
+  .store-score
+    display: flex
+    align-items: center
+  .default-btn
+    background: #D9D9D9
+    color: $text-white
+
+.activity-wrapper
+  background: #F6F0E8
+  .banner
+    width: 100%
+    height: vw(485)
+    background: url('https://oss1.chedianai.com/images/assets/banner.png')
+    background-size: cover
+  .item-wrapper
+    padding: 0 vw(15)
+  .sign-up-wrapper
+    margin-bottom: vw(30)
+    width: vw(345)
+    height: vw(381)
+    background: #fff

@@ -1,0 +1,57 @@
+<view class="plate-number" animation="{{animationData}}">
+  <!-- 第一行 0-9 -->
+  <view class="key-item top-item">
+    <view 
+      wx:for="{{key_one}}" 
+      wx:key="index"
+      data-item="{{item}}"
+      bindtap="clickKey"
+      class="key"
+      hover-class='is-active'
+      hover-stay-time="200"
+      >{{item}}</view>
+  </view>
+  <!-- 第二行 Q-P -->
+  <view class="key-item top-item">
+    <view 
+      wx:for="{{key_two}}" 
+      wx:key="index"
+      data-item="{{item}}"
+      bindtap="clickKey"
+      hover-class='is-active'
+      hover-stay-time="200"
+      class="key">{{item}}</view>
+  </view>
+  <!-- 第三行 A-L -->
+  <view class="key-item bottom-item">
+    <view 
+      wx:for="{{key_three}}" 
+      wx:key="index"
+      data-item="{{item}}"
+      bindtap="clickKey"
+      hover-class='is-active'
+      hover-stay-time="200"
+      class="key">{{item}}</view>
+  </view>
+  <!-- 第四行 Z-del -->
+  <view class="key-item bottom-item">
+    <view 
+      wx:for="{{key_four}}" 
+      wx:key="index"
+      class="data-box">
+        <view hover-class='is-active' hover-stay-time="200" data-item="{{item}}" bindtap="clickKey" class="key" wx:if="{{item}}">{{item}}</view>
+        <view wx:else hover-class='is-active' hover-stay-time="200" class="del-content"  bindtap="delContent" >
+          <image src="https://oss1.chedianai.com/car-del02.png"></image>
+        </view>
+      </view>
+  </view>
+  <!-- 第五行 特殊到-save -->
+  <view class="key-item bottom-item">
+    <view 
+      wx:for="{{key_five}}" 
+      wx:key="index">
+        <view hover-class='is-active' hover-stay-time="200" data-item="{{item}}" bindtap="clickKey" wx:if="{{item}}" class="key key-last">{{item}}</view>
+        <view hover-class='is-active' hover-stay-time="200" wx:else class="key key-last save" bindtap="saveData">完成</view>
+      </view>
+  </view>
+</view>

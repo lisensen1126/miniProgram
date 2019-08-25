@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "选择养护卡",
+	"usingComponents": {
+		"top-bar": "../../../components/topbar/topbar"
+	}
+}

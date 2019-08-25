@@ -1,0 +1,106 @@
+@import '~@/style/mixin'
+
+page
+	background: $bg-white
+.page-chooseTime
+	padding-bottom: vw(45)
+	.choose-time-layout
+		display: flex
+		height: vw(400)
+		flex-direction: column
+
+	.loading
+		padding-top: vw(20)
+		text-align: center
+		color: $text-dark
+
+	.scroll-box
+		width: vw(345)
+		margin: 0 vw(15)
+		height: vw(90)
+		position: relative
+		&::after
+			bottom: 0
+			@include horizontal-line
+		
+	.date-box
+		display: flex
+		position: relative
+		height: vw(90)
+		flex-shrink: 0
+		box-sizing: border-box
+		.date-list
+			display: flex
+			padding: vw(15) 0
+			flex-warp: nowrap
+			flex-shrink: 0
+			justify-content: center
+			.date-item
+				width: vw(65)
+				height: vw(65)
+				margin-right: vw(15)
+				border-radius: vw(4)
+				flex-shrink: 0
+				color: #000000
+				font-weight: bold
+				position: relative
+				.week
+					line-height: vw(26)
+					font-size: vw(16)
+					text-align: center
+				.date
+					line-height: vw(39)
+					font-size: vw(18)
+					font-weight: bold
+					text-align: center
+					position: relative
+				.border-date
+					width: vw(13)
+					height: vw(3)
+					background-color: #D52F12
+					position: absolute
+					bottom: 0
+					left: vw(26)
+					display: none
+				&.is-active				
+					color: #D52F12
+					.border-date
+						display: block
+					.week
+						color: #D52F12
+	.time-section-box
+		display: flex
+		flex-direction: column
+		padding-bottom: vw(10)
+		flex-shrink: 0
+	.time-box
+		display: flex
+		flex-direction: column
+		margin-left: vw(15)
+		.title
+			display: flex
+			line-height: vw(20)
+			font-size: vw(15)
+			color: #000000
+			margin: vw(20) 0 vw(5) 0
+			font-weight: 500
+	.time-zone-wrapper
+		display: flex
+		flex-wrap: wrap
+	.time-zone
+		margin-top: vw(15)
+		margin-right: vw(15)
+		width: vw(75)
+		text-align: center
+		font-weight: 500
+		color: #000000
+		font-size: vw(16)
+		line-height: vw(40)
+		border-radius: vw(4)
+		background: #F5F5F5
+		&.is-active
+			background: #D52F12
+			color: $text-white
+		&.is-unable
+			color: #b4b4b6
+			background: #f7f7fa

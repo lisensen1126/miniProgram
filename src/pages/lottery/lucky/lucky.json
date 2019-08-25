@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "转盘抽奖",
+  "usingComponents": {
+    "top-bar": "../../../components/topbar/topbar"
+	}
+}

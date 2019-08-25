@@ -1,0 +1,146 @@
+@import '~@/style/mixin'
+
+.page-appointmentSuccess
+  padding-bottom: vw(45)
+  .result-wrapper
+    text-align: center
+    background-color: #fff
+    padding-bottom: vw(20)
+    image
+      width: vw(80)
+      height: vw(79)
+      margin-top: vw(50)
+    .result-text
+      font-size: vw(18)
+      font-weight: 500
+      color: #000000
+      margin-top: vw(10)
+    .result-text-default
+      font-size: vw(14)
+      margin-top: vw(8)
+      font-weight: 500
+      color: #000000
+  .service-info
+    border-radius: vw(9)
+    background-color: #fff
+    margin-top: vw(15)
+    .form-item
+      padding: vw(8) vw(15)
+      color: $text-dark
+      font-weight: bold
+      line-height: vw(17)
+      border-bottom: vw(1) solid rgba(240,240,240,1)
+  .service-item
+    position: relative
+    width: 100%
+    display: flex 
+    justify-content: space-between
+    box-sizing: border-box
+    padding: vw(15) vw(15) vw(20) vw(15)
+    &::after
+      content: ''
+      display: block
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 100%
+      // border-top: vw(1) solid rgba(0, 0, 0, .08)
+    &:last-of-type::after
+      display: none
+    .service-pic
+      width: vw(137)
+      height: vw(85)
+      margin-right: vw(15)
+      overflow: hidden
+      position: relative
+      border-radius: vw(2)
+      flex-shrink: 0
+      background-color: #f2f2f2
+      position: relative
+      .pic
+        width: vw(137)
+        height: vw(85)
+      .item-type
+        position: absolute
+        left: 0
+        top: 0
+        width: vw(37)
+        height: vw(37)
+    .service-content
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      flex: 1
+      overflow: hidden
+      .service-title
+        width: 100%
+        font-size: vw(15)
+        font-weight: 500
+        display: -webkit-box
+        word-break: break-all;
+        -webkit-box-orient: vertical
+        -webkit-line-clamp: 2
+        overflow: hidden
+        text-overflow: ellipsis
+      .service-sku
+        color: #000000
+        margin-top: vw(4)
+        font-size: vw(13)
+      .time-stamp
+        display: flex
+        justify-content: space-between
+        align-items: center
+        .order-amount
+          line-height: vw(20)
+          color: #E50413
+          font-size: vw(20)
+          font-weight: 500
+        .order-number
+          color: #000000
+          font-size: vw(14)
+  .choose-time-group
+    box-sizing: border-box
+    z-index: 5
+    width: vw(375)
+    height: vw(45)
+    position: fixed
+    left: 0
+    bottom: 0
+    align-items: center
+    background: $primary
+    box-shadow: 0 vw(2) vw(4) 0 rgba(26,26,32,0.24)
+    &::before
+      left: 0
+      top: 0
+      // @include horizontal-line
+  .choose-btn
+    color: #000000
+    font-size: vw(12)
+    font-weight: 500
+    text-align: center
+    width: 100%
+    height: vw(45)
+    line-height: vw(45)
+  .section-header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: vw(15) vw(15) 0 vw(28)
+    font-weight: bold
+    color: #000000
+    font-size: vw(16)
+    line-height: vw(22)
+    position: relative
+    &:before
+      content: ''
+      width: vw(5)
+      height: vw(10)
+      background-color: $primary
+      position: absolute
+      left: vw(15)
+      top: vw(21)
+    .info-content-color
+      color: #F70000 !important
+      float: right
+      font-size: vw(14) !important
+      font-weight: 500

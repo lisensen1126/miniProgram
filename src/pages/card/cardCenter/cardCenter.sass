@@ -1,0 +1,83 @@
+@import '~@/style/mixin'
+
+.card-center
+  .card-wrapper
+    width: 100%
+    padding: vw(15)
+    box-sizing: border-box
+    background: #fff
+  .card-item
+    width: 100%
+    height: vw(200)
+    border-radius: vw(10)
+    background-size: 100% 100%
+    padding: vw(20)
+    box-sizing: border-box
+    margin-bottom: vw(20)
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    position: relative
+    .card-item-title, .card-item-bottom
+      width: 100%
+      display: flex
+      justify-content: space-between
+      align-items: flex-start
+      line-height: 1
+    .card-item-name
+      color: #FFF6E1
+      font-size: vw(18)
+      font-weight: bold
+      position: absolute
+      bottom: vw(48)
+      left: vw(15)
+    .card-item-use
+      color: #FFF6E1
+      font-size: vw(12)
+      font-weight: 500
+      display: flex
+      align-items: center
+      position: absolute
+      bottom: vw(16)
+      right: vw(27)
+      .num-use
+        background-color: #FFF6E1
+        color: #000
+        padding: vw(1) vw(4)
+        margin: 0 vw(2)
+        line-height: 1
+    .card-item-num
+      font-size: vw(12)
+      font-weight: 400
+      color: #FFF6E1
+      position: absolute
+      top: vw(173)
+      right: vw(15)
+    .card-item-price
+      vertical-align: bottom
+      position: absolute
+      bottom: vw(15)
+      left: vw(15)
+    .card-item-nowprice
+      color: #FFF6E1
+      font-family: Gotham-Medium
+      font-weight: 600
+      font-size: vw(18)
+    .card-item-storeprice
+      color: #FFF6E1
+      font-weight: 300
+      font-size: vw(12)
+      margin-left: vw(7)
+    .card-item-button
+      width: vw(88)
+      height: vw(30)
+      background-color: #E8CE90
+      text-align: center
+      line-height: vw(30)
+      border-radius: vw(21)
+      color: #2D2F33
+      font-size: vw(12)
+      font-weight: bold
+      position: absolute
+      top: vw(134)
+      right: vw(15)

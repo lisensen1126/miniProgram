@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "缺省页",
+	"usingComponents": {
+		"top-bar": "../../components/topbar/topbar",
+		"empty-page": "../../components/emptyPage/emptyPage"
+	}
+}

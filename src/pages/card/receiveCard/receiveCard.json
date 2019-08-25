@@ -1,0 +1,7 @@
+{
+	"navigationBarTitleText": "领取项目",
+	"usingComponents": {
+		"top-bar": "../../../components/topbar/topbar",
+		"receive-success": "../../../components/receiveSuccess/receiveSuccess"
+	}
+}

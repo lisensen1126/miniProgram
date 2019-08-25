@@ -1,0 +1,187 @@
+@import '~@/style/mixin'
+
+.page-wrapper
+  position: relative
+  height: 100%
+  &.type
+    background-color: #fff
+
+.selection-title
+  padding: vw(14) vw(15)
+  font-size: vw(16)
+  font-weight: bold
+  line-height: vw(22)
+  color: #353535
+  background-color: #fff
+.selection-list
+  height: calc(100% - 100rpx)
+  &.brand-list
+    height: calc(100% - 280rpx)
+  &.model-list
+    height: calc(100% - 140rpx)
+
+.section-label
+  display: block
+  height: vw(30)
+  padding: 0 vw(15)
+  font-size: vw(12)
+  line-height: vw(30)
+  color: #999
+  background-color: #f5f5f5
+.hot-brand-list
+  position: relative
+  height: vw(152)
+  padding-left: vw(18)
+  background-color: #fff
+  &::after
+    content: ''
+    display: block
+    position: absolute
+    top: 50%
+    right: 0
+    width: vw(357)
+    border-top: vw(1) solid rgba(0,0,0,.05)
+  .hot-brand-section
+    display: inline-block
+    width: 20%
+    height: vw(76)
+    .hot-brand-title
+      padding: 0 vw(8)
+      font-size: vw(12)
+      line-height: vw(22)
+      color: #353535
+    .hot-brand-avatar
+      display: block
+      width: vw(26)
+      height: vw(26)
+      margin: vw(15) vw(8) vw(4)
+
+.selection-item
+  position: relative
+  display: flex
+  height: vw(50)
+  padding-left: vw(15)
+  font-size: vw(14)
+  line-height: vw(50)
+  color: #353535
+  background-color: #fff
+  &.selected
+    background-color: #f2f2f5
+  + .selection-item
+    &::after
+      content: ''
+      display: block
+      position: absolute
+      top: 0
+      right: 0
+      width: vw(357)
+      border-top: vw(1) solid rgba(0,0,0,.05)
+  .brand-avatar
+    width: vw(26)
+    height: vw(26)
+    padding: vw(12) 0
+    margin-right: vw(15)
+
+.alphabet-wrapper
+  position: fixed
+  top: vw(120)
+  right: 0
+  width: vw(36)
+  display: flex
+  flex-direction: column
+  justify-content: center
+  .letter
+    position: relative
+    display: block
+    height: vw(16)
+    width: vw(36)
+    font-size: vw(12)
+    line-height: vw(20)
+    text-align: center
+    cursor: pointer
+    user-select: none
+    .letter-inner
+      display: block
+      margin: 0 auto
+      width: vw(16)
+      height: vw(16)
+      line-height: vw(16)
+      border-radius: vw(16)
+    &.active
+      color: #fff
+      .letter-inner
+        background-color: #F55B4D
+
+.type-wrapper
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-color: rgba(0, 0, 0, .2)
+  box-sizing: border-box
+.type-list-pannel
+  position: absolute
+  right: vw(-320)
+  top: 0
+  width: vw(320)
+  height: 100%
+  background-color: #fff
+  box-shadow: 0 0 vw(12) 0 rgba(168, 168, 168, .4)
+  transition: right .3s ease
+  &.show
+    right: 0
+.brand-selection
+  height: vw(49)
+  border-top: vw(1) solid #d9d9d9
+  font-size: vw(14)
+  line-height: vw(50)
+  position: relative
+  .brand-avatar
+    display: inline-block
+    vertical-align: middle
+    margin: vw(12) vw(15)
+    width: vw(26)
+    height: vw(26)
+  .sub-choose
+    background-color: #F55B4D
+    color: #ffffff
+    padding: vw(5) vw(10)
+    border-radius: vw(2)
+    position: absolute
+    top: vw(13)
+    right: vw(15)
+    font-weight: 500
+    line-height: 1
+    font-size: vw(14)
+
+.model-selection
+  height: vw(70)
+  font-size: vw(16)
+  line-height: vw(70)
+  border-bottom: vw(1) solid #f5f5f5
+  position: relative
+  .brand-avatar
+    display: inline-block
+    vertical-align: middle
+    width: vw(32)
+    height: vw(32)
+    margin: 0 vw(12) 0 vw(15)
+  .model-title
+    display: inline-block
+    vertical-align: middle
+    width: vw(250)
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+  .sub-choose
+    background-color: #F55B4D
+    color: #ffffff
+    padding: vw(5) vw(10)
+    border-radius: vw(2)
+    position: absolute
+    top: vw(27)
+    right: vw(15)
+    font-weight: 500
+    line-height: 1
+    font-size: vw(14)

@@ -1,0 +1,59 @@
+<view class='collection'>
+  <view class="time-limit-goods-wrapper">
+    <view class="header">
+      <view class="icon"></view>
+      <view class="countdown">
+        <view class="count-right" wx:if="{{isOpen === 1 && count_down && inventory_total>0}}">
+          <text class="count-word">距开始还有</text>
+          <text class="count-time" wx:if="{{seckill_time_line_day>0}}">{{seckill_time_line_day}}</text>
+          <text class="time-default-color" wx:if="{{seckill_time_line_day>0}}">天</text>
+          <text class="count-time">{{seckill_time_line[0]}}</text>
+          <text>:</text>
+          <text class="count-time">{{seckill_time_line[1]}}</text>
+          <text>:</text>
+          <text class="count-time">{{seckill_time_line[2]}}</text>
+        </view>
+        <view class="count-right" wx:elif="{{isOpen === 2 && count_down && inventory_total>0}}">
+          <text class="count-word">距结束仅剩</text>
+          <text class="count-time" wx:if="{{seckill_time_line_day>0}}">{{seckill_time_line_day}}</text>
+          <text class="time-default-color" wx:if="{{seckill_time_line_day>0}}">天</text>
+          <text class="count-time">{{seckill_time_line[0]}}</text>
+          <text>:</text>
+          <text class="count-time">{{seckill_time_line[1]}}</text>
+          <text>:</text>
+          <text class="count-time">{{seckill_time_line[2]}}</text>
+        </view>
+        <view class="count-right" wx:elif="{{isOpen === 2 && count_down && inventory_total <= 0}}">
+          <text class="count-word">距结束仅剩</text>
+          <text class="count-time" wx:if="{{seckill_time_line_day>0}}">{{seckill_time_line_day}}</text>
+          <text class="time-default-color" wx:if="{{seckill_time_line_day>0}}">天</text>
+          <text class="count-time">{{seckill_time_line[0]}}</text>
+          <text>:</text>
+          <text class="count-time">{{seckill_time_line[1]}}</text>
+          <text>:</text>
+          <text class="count-time">{{seckill_time_line[2]}}</text>
+        </view>
+        <view class="count-right" wx:else>
+          <text class="count-word">活动已结束</text>
+        </view>
+      </view>
+    </view>
+    <view class="content-wrapper" bindtap="goDetail" data-content-type="{{content_type}}" data-seckill-id="{{seckill_id}}" data-spu-id="{{spu_id}}" data-sku-id="{{sku_id}}">
+      <view class="goods-item">
+        <view class="goods-img">
+          <image class="img" mode="widthFix" src="{{pic}}"></image>
+        </view>
+        <view class="goods-content">
+          <view class="title">{{name}}</view>
+          <view class="price">
+            ¥{{seckill_sku_price}} <text>{{sku_price}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="btn-wrapper">
+        <view class="text">剩余{{inventory_total}}件</view>
+        <view class="btn">马上抢</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+<view class="coupon-model">
+    <view class="welfare_center">
+        <image class="welfare_center_img" mode="widthFix" src='{{img}}' bindtap='skip' data-cdp="components_indexOpen_1"></image>
+        <view class="welfare_center_close" catchtap='cancel'>
+            <image src='/images/index_close.png'></image>
+        </view>
+    </view>
+</view>

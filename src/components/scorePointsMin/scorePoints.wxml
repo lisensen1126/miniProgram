@@ -1,0 +1,13 @@
+<view class="score-points {{mini ? 'mini' : ''}}">
+  <view wx:if="{{half<=0}}">
+    <view wx:for="{{5}}" wx:key="index" style="width:{{width +'px'}};height: {{height + 'px'}}" class="star{{points > index ? ' star-active' : ''}}"></view>
+    <view class="points" wx:if="{{showScore}}">{{points}}</view>
+  </view>
+  <view wx:if="{{half>0}}">
+    <view wx:for="{{points}}" wx:key="index" class="star star-active"></view>
+    <view class="star star-half"></view>
+    <view wx:for="{{inActive}}" wx:key="index" class="star"></view>
+    <view class="points" wx:if="{{showScore}}">{{points}}</view>
+  </view>
+
+</view>

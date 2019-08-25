@@ -1,0 +1,110 @@
+<wxs module="tool">
+  var img = function (src, w, h) {
+		var re_img = src.split('?')[0]
+		return re_img + '?imageMogr2/thumbnail/' + w + 'x' + h + '!'
+  }
+  module.exports = {
+    formatImg : img,
+  }
+</wxs>
+<view class="page-goodsList" wx:if="{{pageShow}}">
+	<!-- 自定义菜单 -->
+  <top-bar title="{{page_title}}" home="{{showHome}}"></top-bar>
+	<!-- 搜索框 -->
+	<view class="topSearch" style="top: {{top_height}}px">
+		<view class="search-input">
+			<view class="input-search-box"  wx:if="{{!isSear}}">
+				<image class="search-icon" src="/images/search.png"></image>
+				<image data-type="clear" bindtap="showSearchBar" class="clean-search-icon" src="/images/mall/delete-search.png"></image>
+				<text class="sear-input isactive" bindtap="showSearchBar">{{searchValue ? searchValue : '快速搜索您想要的商品和服务'}}</text>
+			</view>
+			<view class="go-sear gray" data-type="back" bindtap="goSear" wx:if="{{!isSear}}">取消</view>
+		</view>
+
+		<!-- 搜索框 - 输入状态 -->
+		<view class="search-input">
+			<view  wx:if="{{isSear}}" class="input-search-box">
+				<image bindtap="goSear" class="search-icon" src="/images/search.png"></image>
+				<image bindtap="cleanSear" class="clean-search-icon" src="/images/mall/delete-search.png"></image>
+				<input class="sear-input isactive"
+						placeholder="快速搜索您想要的商品和服务"
+						focus="{{true}}"
+						value="{{searchValue}}"
+						bindinput="changeSearchValue"
+						bindfocus="showSearchBar"/>
+			</view>
+			<view class="go-sear {{searchValue ? '' : 'gray'}}" bindtap="goSear" wx:if="{{isSear}}">{{searchValue?'搜索':'取消'}}</view>
+		</view>
+	</view>
+	<!-- 搜索历史浮层 -->
+	<view class="sear-history" wx:if="{{isSear}}" style="padding-top: {{top_height + 40}}px">
+		<view class="title other-label-icon">搜索历史</view>
+		<view class="sear-content">
+			<view wx:for="{{historyList}}" wx:key="{{index}}" class="item" bindtap="goSear" data-item="{{item}}" >{{item}}</view>
+		</view>
+	</view>
+	<!--内容区域-->
+	<view class="data-list" wx:if="{{!isSear}}" style="padding-top: {{data_list_height}}px">
+		<!-- tap栏 -->
+		<view class="top-nav change-index" style="top: {{top_nav_height}}px">
+			<view class="item {{chooseNav===1?'item-isactive':''}}" data-nav="1" bindtap="changeClassify">
+				推荐
+			</view>
+			<view class="item {{chooseNav===2?'item-isactive':''}}" data-nav="2" bindtap="chooseBrand">
+				品牌
+				<image class="brand" wx:if="{{!brandCover}}" src="/images/mall/down-icon.png"></image>
+				<image class="brand" wx:if="{{brandCover}}" src="/images/mall/up-active.png"></image>
+			</view>
+			<view class="item {{chooseNav===3?'item-isactive':''}}" data-nav="3" bindtap="changeClassify">销量</view>
+			<view class="item {{chooseNav===4?'item-isactive':''}}" data-nav="4" bindtap="changeClassify">
+				价格
+				<image class="pai" wx:if="{{!sort_up}}" src="/images/mall/price-up.png"></image>
+				<image class="pai" wx:if="{{sort_up}}" src="/images/mall/price-down.png"></image>
+			</view>
+		</view>
+
+		<!--数据列表-->
+    <view class="goods-wrap" wx:if="{{list.length !== 0}}">
+      <catch-form wx:for="{{list}}" wx:key="index" data-item="{{item}}" bind:callback="goDetail">
+				<view class="goods-item {{index === list.length - 1 ? 'no-border' : ''}}">
+					<!-- 商品图片 -->
+					<view class="goods-item-img">
+						<!--推荐角标-->
+						<image class="img-top" wx:if="{{item.is_recommend === 1}}" src="/images/intelligent/recommend.png" mode='aspectFit'></image>
+						<!-- 商品图片 -->
+						<image class="img" mode="aspectFill" lazy-load="true" src="{{tool.formatImg(item.goods_img, 268, 168) }}"></image>
+					</view>
+					<!-- 商品信息 -->
+					<view class="goods-item-info">
+						<view class="title">{{item.goods_name}}</view>
+						<view class="price">¥{{item.goods_price}}</view>
+					</view>
+				</view>
+      </catch-form>
+
+			<custom-loading is-loading="{{isLoading}}" has-more="{{!isAllLoaded}}"></custom-loading>
+		</view>
+    
+		<!--缺省-->
+		<empty-page wx:if="{{list.length === 0 && isAllLoaded}}" icon="nosearch" slogan="暂无内容！"/>
+	</view>
+	<!-- 品牌浮层 -->
+	<view class="catecell" wx:if="{{brandCover && !isSear}}">
+		<view class="cell-content" style="padding-top: {{top_height}}px">
+			<view class="contents"  wx:if="{{brandList.length>0}}">
+				<view wx:for="{{brandList}}"
+					  wx:key="{{index}}"
+					  class="item-cate {{item.is_check === 2?'other-label-icon':''}}"
+					  data-index="{{index}}" bindtap="checkBrand">
+					{{item.brand_name}}
+				</view>
+			</view>
+			<view class="no-brand" wx:if="{{brandList.length<=0}}">暂无品牌</view>
+			<view class="btns">
+				<button class="reset" bindtap="reset">重置</button>
+				<button class="sure" bindtap="sure">确定</button>
+			</view>
+		</view>
+	</view>
+
+</view>
