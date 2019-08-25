@@ -3,13 +3,13 @@
 	<top-bar title="{{page_title}}"></top-bar>
 	<!-- 头部简介图 -->
 	<view class="maintenance-header">
-		<view class="shell-image" bindtap="goDetail">
+		<view class="shell-image" bindtap="goDetail" data-cdp="maintenance_maintenance_1">
 			<image class="shell" src="{{heard_image}}"></image>
 		</view>
 	</view>
 	<!-- 爱车 -->
 	<view wx:if="{{textCombination.is_open_vehicle === 1}}">
-		<view class="maintenance-car" wx:if='{{indexInfo && indexInfo.length != 0}}' bindtap='goManagecar'>
+		<view class="maintenance-car" wx:if='{{indexInfo && indexInfo.length != 0}}' bindtap='goManagecar' data-cdp="maintenance_maintenance_2">
 			<view class='index_header_car'>
 				<view class="index_header_car_image">
 					<image src='{{indexInfo.logo}}'></image>
@@ -28,7 +28,7 @@
 				<view class="index_header_line2">{{indexInfo.mileage}}KM</view>
 			</view>
 		</view>
-		<view class="index_header_null" wx:if='{{!indexInfo || indexInfo.length == 0}}' bindtap='goAddcar'>
+		<view class="index_header_null" wx:if='{{!indexInfo || indexInfo.length == 0}}' bindtap='goAddcar' data-cdp="maintenance_maintenance_3">
 			<view class="index_header_addcar">
 				<image src='/images/addcar.png'></image>
 				<view class="index_header_addcar_title">
@@ -57,7 +57,7 @@
 						<view class="viedo-list">
 							<image class="myVideo" src="{{item.video_cover}}">
 							</image>
-							<image class="icon" src="/images/intelligent/icon-play.png" data-id="{{item.id}}" data-url="{{item.video_address}}" bindtap="onChangeShowState">
+							<image class="icon" src="/images/intelligent/icon-play.png" data-id="{{item.id}}" data-url="{{item.video_address}}" bindtap="onChangeShowState" data-cdp="maintenance_maintenance_videoList">
 							</image>
 						</view>
 						<view class="word"><text class="text">{{item.video_name}}</text></view>
@@ -73,7 +73,7 @@
 		</view>
 		<view class="meal-content">
 			<scroll-view scroll-x="{{true}}">
-				<view class="meal" bindtap="goMallDetail" wx:for="{{imgList}}" wx:key="index" data-spu='{{item.product_id}}' data-type='{{item.type}}' data-sku='{{item.sku_id}}'>
+				<view class="meal" bindtap="goMallDetail" wx:for="{{imgList}}" wx:key="index" data-spu='{{item.product_id}}' data-type='{{item.type}}' data-sku='{{item.sku_id}}' data-cdp="maintenance_maintenance_mallList">
 					<view class="image">
 						<image class="project" src="{{item.product_cover}}" mode="aspectFill"></image>
 					</view>
@@ -87,7 +87,7 @@
 	</view>
 	<!-- 壳保养品牌日 -->
 	<view class="maintenance-brand" wx:if="{{brandImage && brandImage.length !== 0}}">
-		<view class="brand" bindtap="goBrandDetail">
+		<view class="brand" bindtap="goBrandDetail" data-cdp="maintenance_maintenance_4">
 			<image class="brand-image" src="{{brandImage}}"></image>
 			<image class="brand-more" src="/images/intelligent/see-more.png"></image>
 		</view>
@@ -98,7 +98,7 @@
 		<view class="title-word">
 			<view class="left">{{textCombination.content_title}}</view>
 		</view>
-		<view class="car-list" wx:for="{{carList}}" wx:key="index" data-name="{{textCombination.name}}" data-at="{{item.created_at}}"  data-title="{{item.content_name}}" data-content="{{item.content}}" data-index="{{index}}" data-id="{{item.id}}" data-isopen="{{item.is_open}}" data-isjoin="{{item.is_join}}" bindtap="goCarDetail">
+		<view class="car-list" wx:for="{{carList}}" wx:key="index" data-name="{{textCombination.name}}" data-at="{{item.created_at}}"  data-title="{{item.content_name}}" data-content="{{item.content}}" data-index="{{index}}" data-id="{{item.id}}" data-isopen="{{item.is_open}}" data-isjoin="{{item.is_join}}" bindtap="goCarDetail" data-cdp="maintenance_maintenance_contentList">
 			<view class="car-image">
 				<image class="image" mode="aspectFill" src="{{item.content_cover}}"></image>
 			</view>

@@ -1,14 +1,14 @@
 import {allBrands} from '@/libs/modules/index'
 
 // 获取全局应用程序实例对象
-const {globalData} = getApp()
+const {globalData,cdpReport} = getApp()
 
 // 创建页面实例对象
 Page({
   // 页面的初始数据
   data: {
     list: [], // 列表
-    page: 1, // 分页：当前页
+    page: 1,  // 分页：当前页
     per_page: 10, // 分页：每页数据
     pageShow: false, // 页面是否可渲染
     isAllLoaded: false, // 接口是否已经加载完
@@ -61,6 +61,14 @@ Page({
     wx.navigateTo({
       url: '/pages/maintenance/maintenance/maintenance?id='+e.currentTarget.dataset.id
     })
+    // cdp-点击跳转页面事件
+    let customize = {
+      brandHousesId: e.currentTarget.dataset.id ? parseInt(e.currentTarget.dataset.id) : '',
+    }   
+    let target = {
+      url: '/pages/maintenance/maintenance/maintenance',
+    }
+    cdpReport(1, e.currentTarget.dataset.cdp, 99, customize, '', target, this.data.enter_page_date)
   },
 
   // 上拉加载
@@ -72,20 +80,19 @@ Page({
     this.getBrandList()
   },
   // 生命周期函数--监听页面加载
-  onLoad () {
+  onLoad() {
   },
-  async onShow () {
+  async onShow() {
     // 初始化字段
-    this.data.per_page = 10 // 分页：每页数据
     this.setData({
-      enter_page_date: new Date() / 1, // 进入页面的时间，上报用
+      enter_page_date: new Date() / 1, // 进入页面的时间，cdp上报用
       list: [], // 列表
-      page: 1, // 分页：当前页
-      // per_page: 10, // 分页：每页数据
+      page: 1,  // 分页：当前页
+      per_page: 10, // 分页：每页数据
       pageShow: false, // 页面是否可渲染
       isAllLoaded: false, // 接口是否已经加载完
     })
     // 品牌列表
     this.getBrandList()
-  },
+  },  
 });

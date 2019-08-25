@@ -228,10 +228,9 @@ Page({
       }
       lib_temp.push(...list)
     })
-    // this.setData({
-    //   sku_lib: Array.from(new Set(lib_temp))
-    // })
-    this.data.sku_lib = Array.from(new Set(lib_temp))
+    this.setData({
+      sku_lib: Array.from(new Set(lib_temp))
+    })
   },
 
   /********************图片预览**********************/
@@ -391,7 +390,7 @@ Page({
   },
   // sku选择属性
   async checkParameterItem(e) {
-    let self = this
+    let _this = this
     let event = e.currentTarget.dataset, // 点击的对象
       item_value = event.item.attribute_item_value, // 点击的属性的value值
       item_id = event.id, // 点击的属性的id
@@ -407,7 +406,7 @@ Page({
       })
     }
     setTimeout(function () {
-      self.setData({
+      _this.setData({
         sku_err_tip: '',
       })
     }, 2000)
@@ -423,10 +422,9 @@ Page({
     })
 
 
-    // this.setData({
-    //   sku_def: sku_def
-    // })
-    this.data.sku_def = sku_def
+    this.setData({
+      sku_def: sku_def
+    })
     // 格式化属性参数
     this.initAttr()
 
@@ -637,11 +635,11 @@ Page({
     if (current_store_id) {
       url = url + '&current_store_id=' + current_store_id
     }
-    // 分享带上用户id,用于分享参数上报
+    // 分享带上用户id,用于cdp分享参数上报
     if (globalData.current_customer_id) {
       url = url + '&share_from_id=' + globalData.current_customer_id
     }
-    // 分享带上门店名称,用于参数上报
+    // 分享带上门店名称,用于cdp参数上报
     if (globalData.ep_store_name) {
       url = url + '&current_store_name=' + globalData.ep_store_name
     }
@@ -654,10 +652,9 @@ Page({
   },
   // 关闭分享有礼
   couponCancel(params) {
-    // this.setData({
-    //   isShowCoupon: false
-    // })
-    this.data.isShowCoupon = false
+    this.setData({
+      isShowCoupon: false
+    })
   },
 
   /********************生命周期函数--监听页面加载**********************/
@@ -667,24 +664,18 @@ Page({
     if (pages.length === 1) {
       this.setData({
         showHome: true,
-        // spu_id: option.spu_id,
-        // sku_id: option.sku_id ? option.sku_id : '',    // 3.8.10如果存在sku给后台传递，如果不存在传空
+        spu_id: option.spu_id,
+        sku_id: option.sku_id ? option.sku_id : '',    // 3.8.10如果存在sku给后台传递，如果不存在传空
         top_height: globalData.topbarHeight,
-        // go_type: option.go_type ? option.go_type : null,
+        go_type: option.go_type ? option.go_type : null,
       })
-      this.data.go_type = option.go_type ? option.go_type : null
-      this.data.sku_id = option.sku_id ? option.sku_id : ''
-      this.data.spu_id = option.spu_id
     } else {
       this.setData({
-        // spu_id: option.spu_id,
-        // sku_id: option.sku_id ? option.sku_id : '',
+        spu_id: option.spu_id,
+        sku_id: option.sku_id ? option.sku_id : '',
         top_height: globalData.topbarHeight,
-        // go_type: option.go_type ? option.go_type : null,
+        go_type: option.go_type ? option.go_type : null,
       })
-      this.data.go_type = option.go_type ? option.go_type : null
-      this.data.sku_id = option.sku_id ? option.sku_id : ''
-      this.data.spu_id = option.spu_id
     }
 
     // 判断是否判断过注册
@@ -700,10 +691,9 @@ Page({
     // 判断是否存在全局sku,存在sku则默认选中该sku
     let global_sku_item = globalData.sku_default_Item
     if (global_sku_item && global_sku_item.sku_id) {
-      // this.setData({
-      //   sku_id: global_sku_item.sku_id,
-      // })
-      this.data.sku_id = global_sku_item.sku_id
+      this.setData({
+        sku_id: global_sku_item.sku_id,
+      })
     }
     // 缓存中的技师id
     let scene = wx.getStorageSync('scene')

@@ -4,7 +4,7 @@
 	<view class="page-top" style="top: {{topbarHeight}}px">
   <!--搜索框部分-->
 		<view class="search-box">
-			<view class="placeholder-input" bindtap="showSearchBar">
+			<view class="placeholder-input" bindtap="showSearchBar" data-cdp="mall_categories_1">
 				<image bindtap="goSear" class="search-icon" src="/images/search.png"></image>
 				快速搜索您想要的商品和服务
 			</view>

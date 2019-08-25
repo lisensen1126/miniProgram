@@ -2,7 +2,7 @@
 // const app = getApp();
 import {getLotteryCoupons} from '@/libs/modules/lottery'
 
-const {showMessage, globalData} = getApp()
+const {showMessage, globalData, cdpReport } = getApp()
 
 // 创建页面实例对象
 Page({
@@ -40,7 +40,7 @@ Page({
   },
   onShow () {
     this.setData({
-      enter_page_date: new Date() / 1, // 进入页面的时间，上报用
+      enter_page_date: new Date() / 1, // 进入页面的时间，cdp上报用
     })     
     this.getCoupons()
   },

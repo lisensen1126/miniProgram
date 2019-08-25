@@ -509,26 +509,9 @@ Page({
   openMap (e) {
     const lng = parseFloat(this.data.storeInfo.lng)
     const lat = parseFloat(this.data.storeInfo.lat)
-    wx.getSetting({
-      success (res) {
-        if (res.authSetting['scope.userLocation']) {
-          wx.openLocation({
-            latitude: lat,
-            longitude: lng,
-          })
-        } else {
-          wx.openSetting({
-            success (res) {
-              if (res.authSetting['scope.userLocation']) {
-                wx.openLocation({
-                  latitude: lat,
-                  longitude: lng,
-                })
-              }
-            },
-          })
-        }
-      },
+    wx.openLocation({
+        latitude: lat,
+        longitude: lng,
     })
   },
   // 爆款

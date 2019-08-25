@@ -2,7 +2,7 @@
 // const app = getApp();
 import { getMyReserve, cancelReservation } from '@/libs/modules/order'
 const {
-  changeDateTime, globalData, isRegistered
+  changeDateTime,cdpReport , globalData, isRegistered
 } = getApp()
 import { sendFormId } from '@/utils/formid'
 // 创建页面实例对象

@@ -5,7 +5,7 @@
 		<view class="groom">推荐品牌编号: {{groom}} </view>
 		<!-- <view class="groom" wx:if="{{type === 1}}">参考用量：{{resources}}L</view> -->
 	</view>
-	<view class="model-detail" wx:if="{{modelList.length > 0}}" wx:for="{{modelList}}" wx:key="index" bindtap="chooseOil" data-orderId="{{item.order_id}}" data-skuValue="{{item.sku_value}}" data-sku="{{item.basic_sku_id}}" data-skus="{{item.product_id}}">
+	<view class="model-detail" wx:if="{{modelList.length > 0}}" wx:for="{{modelList}}" wx:key="index" bindtap="chooseOil" data-orderId="{{item.order_id}}" data-skuValue="{{item.sku_value}}" data-sku="{{item.basic_sku_id}}" data-skus="{{item.product_id}}" data-cdp="intelligent_replacement_list">
 		<view class="version-list" wx:if="{{item.is_sale === 1}}">
 			<view class="version-image">
 				<image class="image" src="{{item.image_url}}" mode='aspectFit'></image>

@@ -149,9 +149,8 @@ Page({
       })
       return
     }
-    this.data.cc_id = 0
-    this.setData({data_allow_count: 0})
-    globalData.cc_id = null
+    this.setData({cc_id: 0, data_allow_count: 0})
+    globalData.cc_id = null 
     globalData.is_choose_coupon = null
     // 金额大于0时，请求优惠券列表，获取最大优惠金额
     if(this.data.input_value > 0) {
@@ -231,8 +230,7 @@ Page({
   goCouponList(e) {
     if(!this.data.cc_id) return
     globalData.is_choose_coupon = false
-    this.data.is_hide = false
-    // this.setData({is_hide: false})
+    this.setData({is_hide: false})
     wx.navigateTo({
       url: '/pages/coupon/chooseCoupons/chooseCoupons'
     })    
@@ -248,8 +246,7 @@ Page({
       })
       if (statusCode === 200 && code === 0) {
         // 将订单编号存储起来
-        this.data.trade_order_no = data.trade_order_no
-        // this.setData({trade_order_no: data.trade_order_no})
+        this.setData({trade_order_no: data.trade_order_no})
         // random_coupon_id = 0时，不能使用随机立减金额，直接走支付, !=0时弹出立减金弹框
         if (data.random_coupon_id == 0) {
           this.getPayment(data.trade_order_no)
@@ -284,8 +281,7 @@ Page({
           success: () => {
             globalData.cc_id = null 
             globalData.is_choose_coupon = null
-            self.data.pay_success = true
-            // self.setData({pay_success: true})
+            self.setData({pay_success: true})
             self.fetchDetail(this.data.trade_order_no)
           },
           fail: (err) => {
@@ -299,8 +295,7 @@ Page({
             if (self.data.use_coupon && info.errMsg && info.errMsg == 'requestPayment:fail cancel') {
               globalData.cc_id = null 
               globalData.is_choose_coupon = null
-              // self.setData({cc_id: 0})
-              self.data.cc_id = 0
+              self.setData({cc_id: 0})
               self.getCouponList()
             }
           }
@@ -328,17 +323,17 @@ Page({
       const {statusCode, data, message, code} = await judgePayCouponApi()
       if (statusCode === 200 && code === 0) {
         wx.hideLoading()
-        this.data.page_init = true
         this.setData({
           use_coupon: data.is_open_coupon == 1 ? true : false,
+          page_init: true,
           title: data.store_name
         })
       } else {
         wx.hideLoading()
         this.setData({
           use_coupon: false,
+          page_init: true,
         })
-        this.data.page_init = true
       }
     } catch (err) {
       wx.hideLoading()
@@ -354,8 +349,7 @@ Page({
         trade_order_no: order
       })
       if (statusCode === 200 && code === 0) {
-        // this.setData({resquest_num: this.data.resquest_num + 1 })
-        this.data.resquest_num = this.data.resquest_num + 1
+        this.setData({resquest_num: this.data.resquest_num + 1 })
         if(this.data.resquest_num == 6) {
           wx.hideLoading()
           showMessage({
@@ -400,10 +394,10 @@ Page({
     try {
       const {statusCode, data, message, code} = await randomUserListApi()
       if (statusCode === 200 && code === 0) {
-        this.data.page_init = true
         wx.hideLoading()
         this.setData({
           wx_name: data,
+          page_init: true,
         })
       } else {
         wx.hideLoading()

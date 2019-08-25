@@ -1,5 +1,5 @@
 // 获取全局应用程序实例对象
-const { globalData } = getApp();
+const {cdpReport, globalData } = getApp();
 
 // 创建页面实例对象
 Page({

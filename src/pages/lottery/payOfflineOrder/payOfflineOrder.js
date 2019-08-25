@@ -94,9 +94,8 @@ Page({
       }
       this.data.coupon_list.data_allow.forEach(item=> {
         if(item.cc_id == globalData.cc_id) {
-          self.data.cc_id = globalData.cc_id
           self.setData({
-            // cc_id: globalData.cc_id,
+            cc_id: globalData.cc_id,
             data_allow_count: item.actual_discount_amount,
             actual_payment: (self.data.order_info.total_amount - item.actual_discount_amount).toFixed(2)
           })
@@ -152,10 +151,9 @@ Page({
         // 更新选中的优惠券ID
         globalData.cc_id = data.cc_id
         // 更新页面数据
-        self.data.cc_id = data.cc_id
         self.setData({
-          // cc_id: data.cc_id,
-          coupon_list: data,
+          cc_id: data.cc_id,
+          coupon_list: data, 
           data_allow_count: data.max_price,
           actual_payment: (this.data.order_info.total_amount - data.max_price).toFixed(2),
           page_init: true,
@@ -188,8 +186,7 @@ Page({
       })
       if (statusCode === 200 && code === 0) {
         // 将订单编号存储起来
-        this.data.trade_order_no = data.trade_order_no
-        // this.setData({trade_order_no: data.trade_order_no})
+        this.setData({trade_order_no: data.trade_order_no})
         // random_coupon_id = 0时，不能使用随机立减金额，直接走支付, !=0时弹出立减金弹框
         if (data.random_coupon_id == 0) {
           this.getPayment(data.trade_order_no)
@@ -222,8 +219,7 @@ Page({
           success: () => {
             globalData.cc_id = null 
             globalData.is_choose_coupon = null
-            // self.setData({pay_success: true})
-            self.data.pay_success = true
+            self.setData({pay_success: true})
             self.fetchDetail(this.data.trade_order_no)
           },
           fail: (err) => {
@@ -235,8 +231,7 @@ Page({
           },
           complete: (info) => {
             if (info.errMsg && info.errMsg == 'requestPayment:fail cancel') {
-              self.data.cc_id = 0
-              // self.setData({cc_id: 0})
+              self.setData({cc_id: 0})
               self.getCouponList()
             }
           }
@@ -262,8 +257,7 @@ Page({
         trade_order_no: order
       })
       if (statusCode === 200 && code === 0) {
-        this.data.resquest_num = this.data.resquest_num + 1
-        // this.setData({resquest_num: this.data.resquest_num + 1 })
+        this.setData({resquest_num: this.data.resquest_num + 1 })
         if(this.data.resquest_num == 6) {
           wx.hideLoading()
           showMessage({

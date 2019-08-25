@@ -3,6 +3,7 @@ import { getChangeList, changeOil2, changeGearBoxOil2 } from '@/libs/modules/int
 
 const {
 	showMessage,
+  cdpReport,
   globalData
 } = getApp()
 
@@ -70,7 +71,7 @@ Page({
 
 	// 选中机油发送请求
 	async clickOil() {
-		let self = this
+		let _this = this
 		wx.showLoading({
 			title: '加载中'
 		})
@@ -100,7 +101,7 @@ Page({
 						title: '更换未成功',
 						content: `很抱歉，所选商品门店已下架`,
 						resolve() {
-							self.changeList()
+							_this.changeList()
 						},
 					})
 				}
@@ -121,7 +122,7 @@ Page({
 
 	// 选中变速箱油发送请求
 	async clickGearBoxOil() {
-		let self = this
+		let _this = this
 		wx.showLoading({
 			title: '加载中'
 		})
@@ -149,7 +150,7 @@ Page({
 						title: '更换未成功',
 						content: `很抱歉，所选商品门店已下架`,
 						resolve() {
-							self.changeList()
+							_this.changeList()
 						},
 					})
 				}

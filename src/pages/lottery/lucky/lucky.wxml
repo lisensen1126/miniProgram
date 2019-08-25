@@ -6,7 +6,7 @@
     <view class="yellow-line"></view>
     <view class="dial-title" wx:if="{{ canLottery }}">您获得 <text class="text-big" wx:if="{{luckNum >= 0}}">{{luckNum}}</text> 次免费抽奖机会</view>
     <view class="dial-title" wx:if="{{ !canLottery}}">很抱歉，机会已经用完了哦</view>
-    <view class="dial-help" bindtap="goHelp"></view>
+    <view class="dial-help" bindtap="goHelp" data-cdp="lottery_lucky_1"></view>
     <!--抽奖大转盘模块 -->
     <view class="dial-bar">
       <image wx:if="{{ dialFlag }}" class="bar-bg" src="https://oss1.chedianai.com/images/assets/turnplate-bg001.png" />
@@ -47,7 +47,7 @@
     </view>
     <!--抽奖结果弹层 -->
     <view wx:if="{{ giftBarFlag  }}">
-      <view class="mask" bindtap="close"></view>
+      <view class="mask" bindtap="close" data-cdp="lottery_lucky_2"></view>
       <view class="get-gift">
         <text class="get-gift-title" wx:if="{{target != 0}}">哇，你的手气真不错!</text>
         <text class="get-gift-title" wx:if="{{target == 0}}">很遗憾，这回手气差了点</text>
@@ -70,8 +70,8 @@
         </view>
         <text class="get-gift-message" wx:if="{{target != 0}}">1张优惠券省的都是真金白银啊~</text>
         <text class="get-gift-message" wx:if="{{target == 0}}">再接再厉就离成功又进了一步~</text>
-        <view class="again-btn again-btn0" bindtap="lookLottery">查看我的优惠券</view>
-        <view class="again-btn" bindtap="lotteryAgain">再挑战下手气</view>
+        <view class="again-btn again-btn0" bindtap="lookLottery" data-cdp="lottery_lucky_3">查看我的优惠券</view>
+        <view class="again-btn" bindtap="lotteryAgain" data-cdp="lottery_lucky_4">再挑战下手气</view>
       </view>
     </view>
   </view>

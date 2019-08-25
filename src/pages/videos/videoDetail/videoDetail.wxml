@@ -1,7 +1,7 @@
 <view style="padding-top: {{top_height}}px">
   <!-- topbar -->
 	<top-bar title="施工录像" home="{{showHome}}"></top-bar>
-  <video class="video-screen" src="{{liveInfo.video_url}}" danmu-list="{{danmuList}}" show-progress="true" poster="{{liveInfo.image_url}}" controls></video>
+  <video wx:if="{{show}}" class="video-screen" autoplay="true"  src="{{liveInfo.video_url}}"  bindwaiting="videowaiting" binderror="videoerror"   poster="{{liveInfo.image_url}}"  controls></video>
   <view class="video-info">
     <image src="{{liveInfo.image_url}}" class="store-image" mode="aspectFill" />
     <view>
@@ -14,8 +14,9 @@
   </view>
 
   <view class="bottom-wrapper">
-    <navigator class="back-button" open-type="navigateBack" hover-class="back-button-hover">
-      返回
-    </navigator>
+    <view class="back-button"  bindtap="bindplay" hover-class="back-button-hover">
+      视频出不来？点我试试
+    </view>
   </view>
+
 </view>

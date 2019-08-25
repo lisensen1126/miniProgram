@@ -51,25 +51,23 @@ Page({
     globalData.goods_option = options
     let option = globalData.goods_option
     wx.hideShareMenu()          // 关闭分享
-    this.data.brand_ids = option.brand_id ? option.brand_id : '' // 品牌ID
     this.setData({
       top_height: globalData.topbarHeight,
       top_nav_height: globalData.top_nav_height,
       data_list_height: globalData.data_list_height,
       // 品牌ID
-      // brand_ids: option.brand_id ? option.brand_id : '',
+      brand_ids: option.brand_id ? option.brand_id : '',
       // 商品、服务的二级分类ID集合
       category_ids: option.category_id ? option.category_id : (option.soncategoryids ? option.soncategoryids : ''),
       // 商品、服务的一级分类ID
       parent_id: option.parent_id ? option.parent_id : '',
       isSear: option.search_bar == 1,
       option: option,
-      // is_option: true,
+      is_option: true,
       searchValue: option.name ? option.name : '',
-      // is_search_goods_name: option.is_search ? Boolean(option.is_search * 1) : true,
+      is_search_goods_name: option.is_search ? Boolean(option.is_search * 1) : true,
     })
-    this.data.is_search_goods_name = option.is_search ? Boolean(option.is_search * 1) : true
-    this.data.is_option = true
+    
     if (!this.data.searchValue && !this.data.category_ids) {
       this.showSearchBar()
     }
@@ -92,10 +90,9 @@ Page({
     } else {
       this.getGoodsList()
       // 非机油和滤清器的分类时，推荐列表的isRecommendAllLoaded = true
-      // this.setData({
-      //   isRecommendAllLoaded: true,
-      // })
-      this.data.isRecommendAllLoaded = true
+      this.setData({
+        isRecommendAllLoaded: true,
+      })
     }
 
     // 商品、服务列表、品牌列表
@@ -146,21 +143,18 @@ Page({
     }
 
     // 隐藏搜索历史浮层
-    this.data.category_ids = ''
-    this.data.brand_ids = ''
     this.setData({
-      // brand_ids: '',
-      // category_ids: '',
+      brand_ids: '',
+      category_ids: '',
       brandCover: false,
       isSear: false,
       page: 1,
-      // recommend_page: 1,
+      recommend_page: 1,
       list: [],
       page_title: '搜索列表',
       is_search_goods_name: true
     })
-    this.data.is_search_goods_name = true
-    this.data.recommend_page = 1
+
     if (itemValue) {
       this.setData({
         searchValue: itemValue,
@@ -168,12 +162,10 @@ Page({
     }
     // 判断当前是否取消搜索操作
     if (this.data.searchValue.length <= 0) {
-      // this.setData({
-      //   brand_ids: this.data.option.brand_id ? this.data.option.brand_id : '',
-      //   category_ids: this.data.option.category_id ? this.data.option.category_id : '',
-      // })
-      this.data.brand_ids = this.data.option.brand_id ? this.data.option.brand_id : ''
-      this.data.category_ids = this.data.option.category_id ? this.data.option.category_id : ''
+      this.setData({
+        brand_ids: this.data.option.brand_id ? this.data.option.brand_id : '',
+        category_ids: this.data.option.category_id ? this.data.option.category_id : '',
+      })
     }
     // 更新历史记录
     this.changeHistory()
@@ -280,16 +272,14 @@ Page({
     })
     // 非品牌以为的数据、关闭品牌浮层、初始化列表数据和请求参数、获取列表
     if (this.data.chooseNav !== 2) {
-      this.data.isRecommendAllLoaded = false
       this.setData({
         brandCover: false,
         list: [],
-        // isRecommendAllLoaded: false,
+        isRecommendAllLoaded: false,
         isAllLoaded: false,
         page: 1,
-        // recommend_page: 1,
+        recommend_page: 1,
       })
-      this.data.recommend_page = 1
       // 机油、滤清器； 用户有车辆；用户已注册；
       if ((parseInt(this.data.category_ids) === 201 || parseInt(this.data.category_ids) === 220) && globalData.default_vehicle && parseInt(globalData.is_registered) === 1) {
         await this.getGoodsRecommendList()
@@ -299,10 +289,9 @@ Page({
       } else {
         this.getGoodsList()
         // 非机油和滤清器的分类时，推荐列表的isRecommendAllLoaded = true
-        // this.setData({
-        //   isRecommendAllLoaded: true,
-        // })
-        this.data.isRecommendAllLoaded = true
+        this.setData({
+          isRecommendAllLoaded: true,
+        })
       }
     }
   },
@@ -384,42 +373,38 @@ Page({
   },
   // 重置
   async reset() {
-    let self = this
+    let _this = this
     const list = this.data.brandList
     for (let i in list) {
       list[i].is_check = 1
     }
-    this.data.brand_ids = ''
     this.setData({
       brandList: list,
       brandCover: false,
-      // brand_ids: '',
+      brand_ids: '',
       list: [],
-      // isRecommendAllLoaded: false,
+      isRecommendAllLoaded: false,
       isAllLoaded: false,
       page: 1,
-      // recommend_page: 1,
+      recommend_page: 1,
     })
-    this.data.recommend_page = 1
-    this.data.isRecommendAllLoaded = false
     // 机油、滤清器； 用户有车辆；用户已注册；
     if ((parseInt(this.data.category_ids) === 201 || parseInt(this.data.category_ids) === 220) && globalData.default_vehicle && parseInt(globalData.is_registered) === 1) {
       await this.getGoodsRecommendList()
-      if (self.data.isRecommendAllLoaded) {
-        self.getGoodsList()
+      if (_this.data.isRecommendAllLoaded) {
+        _this.getGoodsList()
       }
     } else {
       this.getGoodsList()
       // 非机油和滤清器的分类时，推荐列表的isRecommendAllLoaded = true
-      // this.setData({
-      //   isRecommendAllLoaded: true,
-      // })
-      this.data.isRecommendAllLoaded = true
+      this.setData({
+        isRecommendAllLoaded: true,
+      })
     }
   },
   // 确定
   async sure() {
-    let self = this
+    let _this = this
     let brand_ids = []
     const list = this.data.brandList
     for (let i in list) {
@@ -428,31 +413,27 @@ Page({
       }
     }
     // 关闭品牌浮层、整合品牌ID、初始化列表数据
-    this.data.brand_ids = brand_ids.join(',')
     this.setData({
       brandCover: false,
-      // brand_ids: brand_ids.join(','),
+      brand_ids: brand_ids.join(','),
       list: [],
-      // isRecommendAllLoaded: false,
+      isRecommendAllLoaded: false,
       isAllLoaded: false,
       page: 1,
-      // recommend_page: 1,
+      recommend_page: 1,
     })
-    this.data.recommend_page = 1
-    this.data.isRecommendAllLoaded = false
     // 机油、滤清器； 用户有车辆；用户已注册；
     if ((parseInt(this.data.category_ids) === 201 || parseInt(this.data.category_ids) === 220) && globalData.default_vehicle && parseInt(globalData.is_registered) === 1) {
       await this.getGoodsRecommendList()
-      if (self.data.isRecommendAllLoaded) {
-        self.getGoodsList()
+      if (_this.data.isRecommendAllLoaded) {
+        _this.getGoodsList()
       }
     } else {
       this.getGoodsList()
       // 非机油和滤清器的分类时，推荐列表的isRecommendAllLoaded = true
-      // this.setData({
-      //   isRecommendAllLoaded: true,
-      // })
-      this.data.isRecommendAllLoaded = true
+      this.setData({
+        isRecommendAllLoaded: true,
+      })
     }
   },
 
@@ -581,13 +562,11 @@ Page({
         this.setData({
           list: lastData,
           loading: false,
-          // recommend_page: this.data.recommend_page + 1,
+          recommend_page: this.data.recommend_page + 1,
           isRecommendAllLoaded: (meta.total === 0 || parseInt(lastData.length) === parseInt(meta.total)),
           recommend_meta: meta,
-          // recommend_sku_ids: data.sku_ids,
+          recommend_sku_ids: data.sku_ids,
         })
-        this.data.recommend_sku_ids = data.sku_ids
-        this.data.recommend_page = this.data.recommend_page + 1
         // 推荐列表的所有数据未请求完成，不隐藏加载中浮层
         if (!this.data.isRecommendAllLoaded) {
           this.setData({

@@ -21,13 +21,13 @@
 				</view>
 			</view>
 			<view class="appointment-bottom">
-				<view class="lookAll" data-id='{{item.trade_order.trade_order_id}}' bindtap='showList'>
+				<view class="lookAll" data-id='{{item.trade_order.trade_order_id}}' bindtap='showList' data-cdp="myreservation_1">
 					查看预约明细
 					<image wx:if='{{!item.showall}}' src='/images/down-icon.png'></image>
 					<image wx:if='{{item.showall}}' src='/images/up-icon.png'></image>
 				</view>
 				<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
-					<button formType="submit" class="cancel" data-id='{{item.trade_order.trade_order_id}}' bindtap='cancel'>取消预约</button>
+					<button formType="submit" class="cancel" data-id='{{item.trade_order.trade_order_id}}' bindtap='cancel' data-cdp="myreservation_2">取消预约</button>
 				</form>
 			</view>
 			<view class="info-section" wx:if='{{item.showall}}'>

@@ -109,11 +109,10 @@ Page({
     try {
       let {statusCode, data, code, message} = await userCarDetailApi()
       if (statusCode === 200 && parseInt(code) === 0) {
-        this.data.has_vehicle = data.has_vehicle
         this.setData({
           default_vehicle: data.default_vehicle,
           has_complete: data.has_complete,
-          // has_vehicle: data.has_vehicle,
+          has_vehicle: data.has_vehicle,
           has_show_tip: data.has_complete === 1 && data.has_vehicle === 1 ? 0 : 1
         })
       } else {
@@ -331,7 +330,7 @@ Page({
 
   // 确定
   async sure() {
-    let self = this
+    let _this = this
     let brand_ids = []
     const list = this.data.brandList
     for (let i in list) {

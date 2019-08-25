@@ -1,7 +1,7 @@
 import { serviceDetail, addShop, getServiceCouponList } from '@/libs/modules/shopMall'
 import { getCoupon } from '@/libs/modules/coupon'
 // 获取全局应用程序实例对象
-const { showMessage, isRegistered, globalData } = getApp()
+const { showMessage, isRegistered, globalData, cdpReport } = getApp()
 import { sendFormId } from '@/utils/formid'
 // 创建页面实例对象
 Page({
@@ -124,6 +124,15 @@ Page({
       console.error('服务详情-receiveCoupon', err)
       wx.hideLoading()
     }
+    // cdp-领取优惠券上报
+    let customize = {
+      couponId: item.detail.coupon.coupon_id ? parseInt(item.detail.coupon.coupon_id) : '',
+      couponName: item.detail.coupon.coupon_name,
+      couponType: item.detail.coupon.coupon_type ? parseInt(item.detail.coupon.coupon_type) : '',
+      couponValue: item.detail.coupon.condition_value ? parseInt(item.detail.coupon.condition_value) : 0,
+      couponAmount: item.detail.coupon.discount_amount ? parseInt(item.detail.coupon.discount_amount) : '',
+    }
+    cdpReport(1, item.currentTarget.dataset.cdp, 99, customize)
   },
 
   /*****************服务详情**************************/
@@ -169,6 +178,21 @@ Page({
             goodsInfo: data,
             pageShow: true
           })
+          // cdp-查看商品详情上报
+          let customize = {
+            spuId: this.data.goodsInfo.spu_id ? this.data.goodsInfo.spu_id : '',
+            oneCategoryId: this.data.goodsInfo.category_parent_ids[0] ? this.data.goodsInfo.category_parent_ids[0] : '',
+            twoCategoryId: this.data.goodsInfo.category_id ? this.data.goodsInfo.category_id * 1 : '',
+            productName: this.data.goodsInfo.goods_name ? this.data.goodsInfo.goods_name : '',
+            productPrice: this.data.goodsInfo.goods_price ? this.data.goodsInfo.goods_price * 100 : '',
+            productStatus: this.data.goodsInfo.is_sale ? this.data.goodsInfo.is_sale : '',
+          }
+          let is_share = 0
+          let currentPages = getCurrentPages()[(getCurrentPages().length) - 1]
+          if (currentPages.options && currentPages.options.share) {
+            is_share = 1
+          }
+          cdpReport(2, '', 99, customize, is_share)
         } else if (parseInt(code) === 10011025) {
           showMessage({
             title: '获取服务详情失败',
@@ -277,6 +301,13 @@ Page({
       wx.hideLoading()
       console.error('服务详情-addGoods', err)
     }
+    // cdp-加入购物车上报
+    let customize = {
+      spuId: this.data.goodsInfo.spu_id ? this.data.goodsInfo.spu_id : '',
+      productName: this.data.goodsInfo.goods_name ? this.data.goodsInfo.goods_name : '',
+      productPrice: this.data.goodsInfo.goods_price ? this.data.goodsInfo.goods_price * 100 : '',
+    }
+    cdpReport(1, e.currentTarget.dataset.cdp, 99, customize)
   },
 
   /********************立即下单**********************/
@@ -318,6 +349,16 @@ Page({
     wx.navigateTo({
       url: `/pages/order/confirmOrder/confirmOrder`,
     })
+    // cdp-点击立即下单按钮上报
+    let customize = {
+      spuId: this.data.goodsInfo.spu_id ? this.data.goodsInfo.spu_id : '',
+      productName: this.data.goodsInfo.goods_name ? this.data.goodsInfo.goods_name : '',
+      productStatus: this.data.goodsInfo.is_sale ? this.data.goodsInfo.is_sale : '',
+    }
+    let target = {
+      url: `/pages/order/confirmOrder/confirmOrder`,
+    }
+    cdpReport(1, e.currentTarget.dataset.cdp, 99, customize, '', target, this.data.enter_page_date)
   },
 
   /********************去购物车**********************/
@@ -330,6 +371,11 @@ Page({
     wx.navigateTo({
       url: '/pages/shopCart/shopCart'
     })
+    // cdp-点击查看购物车
+    let target = {
+      url: '/pages/shopCart/shopCart',
+    }
+    cdpReport(1, e.currentTarget.dataset.cdp, 99, '', '', target, this.data.enter_page_date)
   },
 
   // 判断用户是否注册
@@ -353,11 +399,11 @@ Page({
     if (current_store_id) {
       url = url + '&current_store_id=' + current_store_id
     }
-    // 分享带上用户id,用于分享参数上报
+    // 分享带上用户id,用于cdp分享参数上报
     if (globalData.current_customer_id) {
       url = url + '&share_from_id=' + globalData.current_customer_id
     }
-    // 分享带上门店名称,用于参数上报
+    // 分享带上门店名称,用于cdp参数上报
     if (globalData.ep_store_name) {
       url = url + '&current_store_name=' + globalData.ep_store_name
     }

@@ -2,11 +2,6 @@
 	"navigationBarTitleText": "详情",
 	"usingComponents": {
 		"top-bar": "../../components/topbar/topbar",
-    "empty-page": "../../components/emptyPage/emptyPage",
-    "coupon": "../../components/article/coupon/coupon",
-    "card": "../../components/article/card/card",
-    "goods": "../../components/article/goods/goods",
-    "timeLimitGoods": "../../components/article/timeLimitGoods/timeLimitGoods",
-    "groupCategory": "../../components/article/groupCategory/groupCategory"
+		"empty-page": "../../components/emptyPage/emptyPage"
 	}
 }

@@ -103,20 +103,20 @@ Page({
     // 判断是否判断过注册
     if (globalData.is_registered === 2) {
       await isRegistered()
-      // 门店后台已开启展示推荐公众号功能且用户未关注公众号，则展示推荐公众号组件
-      if (globalData.official_is_open == 1 && globalData.official_is_follow == 0) {
-        if (wx.getLaunchOptionsSync().scene === 1047 || wx.getLaunchOptionsSync().scene === 1124) {
-          this.setData({
-            openOfficial: true
-          })
-        }
-      }
       if (globalData.is_registered == 1) {
         this.getMaintainSuggest() // 保养建议
         this.getDefaultCarData() // 默认车辆
         this.fetchCouponList() // 推送优惠卷
       }
       this.getCouponList() // 优惠卷列表
+    }
+     // 门店后台已开启展示推荐公众号功能，则展示推荐公众号组件
+    if (globalData.official_is_open == 1) {
+      if (wx.getLaunchOptionsSync().scene === 1047 || wx.getLaunchOptionsSync().scene === 1011) {
+        this.setData({
+          openOfficial: true
+        })
+      }
     }
     this.getBrandFun() // 品牌专区列表
 		this.getCardList() // 养护卡列表

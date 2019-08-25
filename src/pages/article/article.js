@@ -4,7 +4,6 @@ import {
   contentJoin
 } from '@/libs/modules/contentBlock'
 import { getParamsApi} from '@/libs/modules/common'
-import { getCardCenterListApi } from '@/libs/modules/mycard'  // 待删除
 // 解码二维码scene
 import queryScene from '@/utils/queryScene'
 // 获取全局应用程序实例对象
@@ -14,146 +13,22 @@ const { globalData, changeDate, showMessage, queryURL, isRegistered, getAccessId
 Page({
 	// 页面的初始数据
 	data: {
-    // sign_up: 0,
-    // contents_type: 1,           // 平台内容-报名状态   1：已报名 2：未报名
-    // product: [], // 商品
-    // upkeep: [], // 养护卡
-    card_list: [], // 养护卡数据 (待删除)
-
-    data_list: {
-      title: '',
-      brand_id: '',
-      brand_name: '',
-      cover: '',
-      description: '',
-      // 1、内容，2、报名，3、商品，4、服务，5、养护卡，6、拼团，7、秒杀，8、优惠券
-      relation: [
-        {
-          type: 6,
-          goods_img: "https://oss1.chedianai.com/test/images/other/15580738992646.png?imageMogr2/auto-orient",
-          goods_name: "左木专用(次",
-          goods_price: 1,
-          group_price: 1,
-          group_product_id: 110,
-          num: 2,
-          sku_id: 0,
-          spu_id: 34,
-          content_type: 5,
-        },
-        {
-          type: 6,
-          goods_img: "https://oss1.chedianai.com/test/images/other/15639659303229.png?imageMogr2/auto-orient",
-          goods_name: "左木专用 5W-40 1",
-          goods_price: 1,
-          group_price: 1,
-          group_product_id: 112,
-          num: 2,
-          sku_id: 25292,
-          spu_id: 1352,
-          content_type: 1,
-        },
-        {
-          type: 7,
-          end_time: 1567267140,
-          inventory_total: 18,
-          mini_price: 1,
-          mini_price_sku: 25292,
-          name: "秒杀111",
-          pic: "https://oss1.chedianai.com/test/images/other/15639659303229.png?imageMogr2/auto-orient",
-          sales_total: 5,
-          seckill_id: 352,
-          seckill_sku_price: 1,
-          sku_id: 25292,
-          sku_price: 1,
-          spu_id: 1352,
-          start_time: 1564761600,
-          content_type: 1,
-        },
-        {
-          type: 7,
-          end_time: 1567267140,
-          inventory_total: 222,
-          mini_price: 1200,
-          mini_price_sku: 0,
-          name: "秒杀222",
-          pic: "https://oss1.chedianai.com/test/images/other/15580738564447.png?imageMogr2/auto-orient",
-          sales_total: 0,
-          seckill_id: 350,
-          seckill_sku_price: 1200,
-          sku_id: 0,
-          sku_price: 10000,
-          spu_id: 29,
-          start_time: 1566576000,
-          content_type: 5,
-        },
-        {
-          type: 3,
-          goods_img: "https://oss1.chedianai.com/test/images/other/15547940500943.png?imageMogr2/auto-orient",
-          goods_name: "（智能保养测试）壳牌极净超凡喜力机油 ECT C2/C3 0W-30 4L",
-          goods_price: 76800,
-          is_recommend: 2,
-          sales: 1,
-          shop_id: 235,
-          sku_id: 25058,
-          source: 1,
-          spu_id: 1143,
-          store_id: 306,
-          content_type: 1,
-        },
-        {
-          type: 5,
-          id: 29,
-          image_url: "https://oss1.chedianai.com/test/images/other/15580738564447.png?imageMogr2/auto-orient",
-          name: "朱云强新增次卡",
-          num: 0,
-          origin_price: "1000.00",
-          price: "100.00",
-          sale: 7,
-          content_type: 2,
-        },
-        {
-          type: 8,
-        },
-        {
-          type: 5,
-          id: 63,
-          image_url: "https://oss1.chedianai.com/test/images/other/15580738992646.png?imageMogr2/auto-orient",
-          name: "1",
-          num: 1,
-          origin_price: "1.00",
-          price: "0.01",
-          sale: 5,
-          content_type: 1,
-        },
-        {
-          type: 4,
-          goods_img: "https://oss1.chedianai.com/test/images/other/15405529026771.jpg",
-          goods_name: "壳牌喜力HX7深度养护服务",
-          goods_price: 64800,
-          is_recommend: 2,
-          sales: 7,
-          shop_id: 235,
-          sku_id: 0,
-          source: 1,
-          spu_id: 341,
-          store_id: 306,
-          content_type: 2,
-        }
-      ]
-    },
-
-
     topbarHeight: 64, // 默认菜单栏高度
 		title: '',								// 标题
 		brand: '',								// 品牌名
 		time: '',								  // 时间
 		content: '',							// 内容
 		type: 1,
-    content_type: 0,           // 内容类型 1: 平台 2: 门店
-    errPage: false, // 错误页面控制字段
+    content_type: 0,           // 内容类型
+    contents_type: 1,           // 平台内容-报名状态   1：已报名 2：未报名
+    // 错误页面控制字段
+    errPage: false,
     errMsg: '暂无内容',
+    product: [],
+    upkeep: [], // 养护卡
     showHome: false,
     top_height: 0, // padding高度
+    sign_up: 0,
     is_open: 2, // 是否开启参与活动 1: 开启参与活动 2: 关闭参与活动
     is_join: 2, // 用户是否过参与活动 1: 已参与 2: 未参与
     is_brand: '', // 判断是否从品牌馆进入文章详情的
@@ -162,7 +37,6 @@ Page({
   },
   // 生命周期函数--监听页面加载
 	async onLoad(option) {
-    // 判断是否从品牌馆进入文章详情的
     if (option.is_brand) {
       this.setData({
         is_brand: option.is_brand,
@@ -171,17 +45,8 @@ Page({
     if (option.access_id) {
       this.data.access_id = option.access_id
     }
-    // 如果是扫码进入
     if (option.scene) {
       const scene = decodeURIComponent(option.scene)
-      if (scene.indexOf(',') !== -1) {
-        let obj = queryScene(scene)
-        if (obj.scene.store_id) wx.setStorageSync('current_store_id', obj.scene.store_id)
-        if (obj.qr_code_rid) {
-          await this.getParams(obj.qr_code_rid)
-          await getAccessId(obj)
-        }
-      }
       if (scene.indexOf('?') !== -1) {
         let obj = queryURL(scene)
         if (obj.s) wx.setStorageSync('current_store_id', obj.s)
@@ -253,17 +118,25 @@ Page({
         // this.getContentFun()
       }
     }
-    // 判断是否注册
     if(globalData.is_registered === 2 && !this.data.is_brand) {
       await isRegistered()
-      this.getContentFun() // 获取活动详情
-      this.getCardList() // 待删除
+      this.getContentFun()
+    }
+    if (option.scene) {
+      const scene = decodeURIComponent(option.scene)
+      if (scene.indexOf(',') !== -1) {
+        let obj = queryScene(scene)
+        if (obj.scene.store_id) wx.setStorageSync('current_store_id', obj.scene.store_id)
+        if (obj.qr_code_rid) {
+          await this.getParams(obj.qr_code_rid)
+          await getAccessId(obj)
+        }
+      }
     }
   },
   onShow() {
     if(globalData.is_registered !== 2 && this.data.id && !this.data.is_brand) {
-      this.getContentFun() // 获取活动详情
-      this.getCardList() // 待删除
+      this.getContentFun()
     }
   },
   /**
@@ -294,19 +167,19 @@ Page({
             title: data.title,
             brand: data.brand_name,
             time: changeDate(data.created_at),
-            // product: data.product,
-            // upkeep: data.upkeep,
+            product: data.product,
+            upkeep: data.upkeep,
             content: content,
-            // contents_type: parseInt(data.contents_type), // 报名状态
-            // sign_up: data.sign_up, // 是否开启报名状态
+            contents_type: parseInt(data.contents_type), // 报名状态
+            sign_up: data.sign_up, // 是否开启报名状态
           })
         } else {
           this.setData({
             title: data.title,
             brand: data.brand_name,
             time: changeDate(data.created_at),
-            // product: data.product,
-            // upkeep: data.upkeep,
+            product: data.product,
+            upkeep: data.upkeep,
             content: content
           })
         }
@@ -334,6 +207,106 @@ Page({
       console.error('详情-getContentFun', err)
     }
     wx.hideLoading()
+  },
+
+  // 平台内容参与活动
+  async goJoinContent() {
+    if(globalData.is_registered === 0) {
+      wx.navigateTo({
+        url: '/pages/register/registerPhone/registerPhone',
+      })
+      return
+    }
+    // 已参与的不再请求接口
+    if (this.data.contents_type == 1){
+      return
+    }
+    wx.showLoading({
+      title: '加载中'
+    })
+    this.setData({
+      is_disabled: true,
+    })
+    try {
+      const {
+        statusCode,
+        data,
+        code,
+        message,
+      } = await contentJoin({
+        id: this.data.id,
+      })
+      if (statusCode === 200 && code === 0) {
+        wx.hideLoading()
+        wx.showToast({
+          title: '参与成功',
+          icon: 'success',
+          duration: 1000,
+        })
+        this.setData({
+          contents_type: 1
+        })
+      } else {
+        showMessage({
+          title: '参与失败',
+          content: message
+        })
+      }
+    } catch (err) {
+      wx.hideLoading()
+      console.error('详情-goJoinContent', err)
+    }
+    wx.hideLoading()
+    this.setData({
+      is_disabled: false,
+    })
+  },
+  // 品牌馆参与活动
+  async goJoinActiv() {
+    // 未注册或已参与的不再请求接口
+    if (!this.isLogging() || this.data.is_join == 1) {
+      return
+    }
+    wx.showLoading({
+      title: '加载中'
+    })
+    this.setData({
+      is_disabled: true,
+    })
+    try {
+      const {
+        statusCode,
+        data,
+        code,
+        message,
+      } = await contentJoin({
+        id: Number(this.data.id),
+        type: 2,
+      })
+      if (statusCode === 200 && code === 0) {
+        wx.hideLoading()
+        wx.showToast({
+          title: '参与成功',
+          icon: 'success',
+          duration: 1000,
+        })
+        this.setData({
+          is_join: 1
+        })
+      } else {
+        showMessage({
+          title: '参与失败',
+          content: message
+        })
+      }
+    } catch (err) {
+      wx.hideLoading()
+      console.error('详情-goJoinActiv', err)
+    }
+    wx.hideLoading()
+    this.setData({
+      is_disabled: false,
+    })
   },
   // 跳转商品/服务详情
   goDetail(e) {
@@ -385,55 +358,8 @@ Page({
       console.error('请求参数-getParams:', err)
     }
   },
-  // 品牌馆参与活动
-  async goJoinActiv() {
-    // 未注册或已参与的不再请求接口
-    if (!this.isLogging() || this.data.is_join == 1) {
-      return
-    }
-    wx.showLoading({
-      title: '加载中'
-    })
-    this.setData({
-      is_disabled: true,
-    })
-    try {
-      const {
-        statusCode,
-        data,
-        code,
-        message,
-      } = await contentJoin({
-        id: Number(this.data.id),
-        type: 2,
-      })
-      if (statusCode === 200 && code === 0) {
-        wx.hideLoading()
-        wx.showToast({
-          title: '参与成功',
-          icon: 'success',
-          duration: 1000,
-        })
-        this.setData({
-          is_join: 1
-        })
-      } else {
-        showMessage({
-          title: '参与失败',
-          content: message
-        })
-      }
-    } catch (err) {
-      wx.hideLoading()
-      console.error('详情-goJoinActiv', err)
-    }
-    wx.hideLoading()
-    this.setData({
-      is_disabled: false,
-    })
-  },
-  // 判断是否注册
-  isLogging() {
+   // 判断是否注册
+   isLogging() {
     // is_registered 0 未注册 1 注册、登录 2 未判断
     if (globalData.is_registered === 0) {
       wx.navigateTo({
@@ -443,94 +369,4 @@ Page({
     }
     return true
   },
-
-  // 获取购卡列表 (待删除)
-  async getCardList() {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true,
-    })
-    try {
-      const {
-        statusCode,
-        data,
-        code,
-        message,
-        meta
-      } = await getCardCenterListApi()
-      if (statusCode === 200) {
-				if (code === 0) {
-          data.forEach(element => {
-            element.price = (element.price / 100).toFixed(2)
-            element.origin_price = (element.origin_price / 100).toFixed(2)
-          })
-					this.setData({
-						card_list: data,
-          })
-          console.log('data', data)
-				}
-      } else {
-        showMessage({
-          title: '获取购卡列表失败',
-          content: `${message}`,
-        })
-      }
-    } catch (err) {
-      console.error('购卡中心-getCardList', err)
-    }
-    wx.hideLoading()
-  },
-
-  // 平台内容参与活动
-  // async goJoinContent() {
-  //   if(globalData.is_registered === 0) {
-  //     wx.navigateTo({
-  //       url: '/pages/register/registerPhone/registerPhone',
-  //     })
-  //     return
-  //   }
-  //   // 已参与的不再请求接口
-  //   if (this.data.contents_type == 1){
-  //     return
-  //   }
-  //   wx.showLoading({
-  //     title: '加载中'
-  //   })
-  //   this.setData({
-  //     is_disabled: true,
-  //   })
-  //   try {
-  //     const {
-  //       statusCode,
-  //       data,
-  //       code,
-  //       message,
-  //     } = await contentJoin({
-  //       id: this.data.id,
-  //     })
-  //     if (statusCode === 200 && code === 0) {
-  //       wx.hideLoading()
-  //       wx.showToast({
-  //         title: '参与成功',
-  //         icon: 'success',
-  //         duration: 1000,
-  //       })
-  //       this.setData({
-  //         contents_type: 1
-  //       })
-  //     } else {
-  //       showMessage({
-  //         title: '参与失败',
-  //         content: message
-  //       })
-  //     }
-  //   } catch (err) {
-  //     wx.hideLoading()
-  //     console.error('详情-goJoinContent', err)
-  //   }
-  //   wx.hideLoading()
-  //   this.setData({
-  //     is_disabled: false,
-  //   })
-  // },
 });

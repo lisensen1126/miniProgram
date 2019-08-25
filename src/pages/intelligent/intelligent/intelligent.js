@@ -1,7 +1,7 @@
 // 获取全局应用程序实例对象
 import { shopCar, engineOil, oilList, filterList, gearBoxListApi } from '@/libs/modules/intelligent'
 const {
-	showMessage, globalData
+	showMessage, globalData, cdpReport
 } = getApp()
 import checkBtnActive from '../../../images/intelligent/tick.png'
 import checkBtn from '../../../images/intelligent/check-btn.png'
@@ -181,6 +181,11 @@ Page({
 		wx.navigateTo({
 			url: '../../vehicle/vehicleAdd/vehicleAdd?index=true&is_first=1'
 		})
+		// cdp-点击引导添加车辆
+    let target = {
+      url: '/pages/vehicle/vehicleAdd/vehicleAdd',
+		}
+    cdpReport(1, e.currentTarget.dataset.cdp, 99, '', '', target, this.data.enter_page_date)		
 	},
 
 	// 跳转管理车辆
@@ -188,6 +193,11 @@ Page({
 		wx.navigateTo({
 			url: '../../vehicle/vehiclesMultiple/vehiclesMultiple'
 		})
+		// cdp-点击跳转页面事件
+		let target = {
+			url: '/pages/vehicle/vehiclesMultiple/vehiclesMultiple',
+		}
+		cdpReport(1, e.currentTarget.dataset.cdp, 99, '', '', target, this.data.enter_page_date)		
 	},
 
 	/*** 机油列表部分 ***/
@@ -340,7 +350,7 @@ Page({
 	 * @list 列表数据
 	 */
 	async checkedAll() {
-    let self = this
+    let _this = this
 		this.setData({
 			allCheckd: !this.data.allCheckd,
 		})
@@ -352,7 +362,7 @@ Page({
       if (e.list.length && !e.reference_amount) {
         return
       }
-      self.setData({
+      _this.setData({
         [`showView[${i}].status`]: e.isCheck
       })
 		})
@@ -397,6 +407,11 @@ Page({
 		wx.navigateTo({
 			url: '../modelParameters/modelParameters?tab=' + e.currentTarget.dataset.tab
 		})
+		// cdp-点击跳转页面事件
+		let target = {
+			url: '/pages/intelligent/modelParameters/modelParameters',
+		}
+		cdpReport(1, e.currentTarget.dataset.cdp, 99, '', '', target, this.data.enter_page_date)		
 	},
 
 	// 跳转机油列表
@@ -404,6 +419,11 @@ Page({
 		wx.navigateTo({
 			url: '../change/replacement?type=' + e.target.dataset.type
 		})
+		// cdp-点击跳转页面事件
+		let target = {
+			url: '/pages/intelligent/change/replacement',
+		}
+		cdpReport(1, e.currentTarget.dataset.cdp, 99, '', '', target, this.data.enter_page_date)		
 	},
 
 	// 跳转商品（机油/滤清器）详情
@@ -413,6 +433,15 @@ Page({
 		wx.navigateTo({
 			url: `/pages/mall/goodsDetail/goodsDetail?spu_id=${spu}&sku_id=${sku}`
 		})
+		// cdp-点击跳转页面事件
+    let customize = {
+      spuId: e.currentTarget.dataset.spu ? parseInt(e.currentTarget.dataset.spu) : '',
+      skuId: e.currentTarget.dataset.sku ? parseInt(e.currentTarget.dataset.sku) : '',
+    } 		
+		let target = {
+			url: '/pages/mall/goodsDetail/goodsDetail',
+		}
+		cdpReport(1, e.currentTarget.dataset.cdp, 99, customize, '', target, this.data.enter_page_date)
 	},
 
 	/*** 结算部分 ***/
@@ -483,6 +512,11 @@ Page({
 				wx.navigateTo({
 					url: '../../order/confirmOrder/confirmOrder'
 				})
+				// cdp-点击跳转页面事件
+				let target = {
+					url: '/pages/order/confirmOrder/confirmOrder',
+				}
+				cdpReport(1, e.currentTarget.dataset.cdp, 99, '', '', target, this.data.enter_page_date)	
 			}
 		}
   },

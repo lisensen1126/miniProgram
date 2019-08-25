@@ -2,7 +2,7 @@
 	<!-- topbar -->
 	<top-bar title="智能保养"></top-bar>
 	<!-- 爱车简介 -->
-	<view class="maintenance-header" wx:if='{{indexInfo && indexInfo.length != 0}}' bindtap='goManagecar'>
+	<view class="maintenance-header" wx:if='{{indexInfo && indexInfo.length != 0}}' bindtap='goManagecar' data-cdp="intelligent_intelligent_1">
 		<view class='index_header_car'>
 			<view class="index_header_car_image">
 				<image src='{{indexInfo.logo}}'></image>
@@ -21,7 +21,7 @@
 			<view class="index_header_line2">{{indexInfo.mileage}}KM</view>
 		</view>
 	</view>
-	<view class="index_header_null" wx:if='{{!indexInfo || indexInfo.length == 0}}' bindtap='goAddcar'>
+	<view class="index_header_null" wx:if='{{!indexInfo || indexInfo.length == 0}}' bindtap='goAddcar' data-cdp="intelligent_intelligent_2">
 		<view class="index_header_addcar">
 			<image src='/images/addcar.png'></image>
 			<view class="index_header_addcar_title">
@@ -37,13 +37,13 @@
 	<view class="maintenance-tab">
 		<!--tab切换部分-->
 		<view class="tab-box">
-			<view class="tab-bar" data-tab="1" bindtap="skipTab">
+			<view class="tab-bar" data-tab="1" bindtap="skipTab" data-cdp="intelligent_intelligent_3">
 				<image class="left-img" src="/images/intelligent/group.png"></image>
 				<text class="center-word">保养手册</text> 
 				<image class="right-img" src="/images/intelligent/right.png"></image>
 			</view>
 			<view class="line"></view>
-			<view class="tab-bar" data-tab="2" bindtap="skipTab">
+			<view class="tab-bar" data-tab="2" bindtap="skipTab" data-cdp="intelligent_intelligent_4">
 				<image class="left-img" src="/images/intelligent/shape.png"></image>
 				<text class="center-word">车型参数</text> 
 				<image class="right-img" src="/images/intelligent/right.png"></image>
@@ -77,10 +77,10 @@
 						<text wx:if="{{item.list.length && index === 0 && item.reference_amount > 0}}" class="recommend hide{{showView[index].status?'show':''}} text">参考用量：{{item.reference_amount}}L</text>
 
 						<text wx:if="{{item.list.length > 0 && index === 1}}" class="recommend hide{{showView[index].status?'show':''}}"></text>
-						<image wx:if="{{item.list.length > 0}}" class="image hide{{showView[index].status?'show':''}}" bindtap="skipChange" data-type="{{index+1}}" src="/images/intelligent/change1.png"></image>
+						<image wx:if="{{item.list.length > 0}}" class="image hide{{showView[index].status?'show':''}}" bindtap="skipChange" data-type="{{index+1}}" data-cdp="intelligent_intelligent_jiyou" src="/images/intelligent/change1.png"></image>
 					</view>
 					<!-- 二级 -->
-					<view class="model-detail hide{{showView[index].status?'show':''}}" bindtap="goGoodsDetail" data-sku="{{listItem.basic_sku_id}}" data-spu="{{listItem.product_id}}" wx:for-index="idx" wx:for="{{item.list}}" wx:key="index" wx:for-item="listItem">
+					<view class="model-detail hide{{showView[index].status?'show':''}}" bindtap="goGoodsDetail" data-sku="{{listItem.basic_sku_id}}" data-spu="{{listItem.product_id}}" wx:for-index="idx" wx:for="{{item.list}}" wx:key="index" wx:for-item="listItem" data-cdp="intelligent_intelligent_jiyou_list">
             <!-- 状态（1:上架，2:下架） -->
 						<view wx:if="{{listItem.is_sale === 1}}" class="version-list">
 							<view class="version-image">
@@ -142,10 +142,10 @@
 						<text wx:else class="substance disabled">暂无匹配{{item.name}}</text>
 						<text wx:if="{{item.list.length > 0 && index === 0}}" class="recommend hide{{showView[index].status?'show':''}}">参考用量：{{item.reference_amount}}L</text>
 						<text wx:if="{{item.list.length > 0 && index === 1}}" class="recommend hide{{showView[index].status?'show':''}}"></text>
-						<image wx:if="{{item.list.length > 0}}" class="image hide{{showView[index].status?'show':''}}" bindtap="skipChange" data-type="{{index+1}}" src="/images/intelligent/change1.png"></image>
+						<image wx:if="{{item.list.length > 0}}" class="image hide{{showView[index].status?'show':''}}" bindtap="skipChange" data-type="{{index+1}}" data-cdp="intelligent_intelligent_lvqingqi" src="/images/intelligent/change1.png"></image>
 					</view>
 					<!-- 二级 -->
-					<view class="model-detail hide{{showView[index].status?'show':''}}" bindtap="goGoodsDetail" data-sku="{{listItem.basic_sku_id}}" data-spu="{{listItem.product_id}}" wx:for-index="idx" wx:for="{{item.list}}" wx:key="index" wx:for-item="listItem" >
+					<view class="model-detail hide{{showView[index].status?'show':''}}" bindtap="goGoodsDetail" data-sku="{{listItem.basic_sku_id}}" data-spu="{{listItem.product_id}}" wx:for-index="idx" wx:for="{{item.list}}" wx:key="index" wx:for-item="listItem" data-cdp="intelligent_intelligent_lvqingqi_list">
 						<view wx:if="{{listItem.is_sale === 1}}" class="version-list">
 							<view class="version-image">
 								<image class="image" src="{{listItem.image_url}}" mode='aspectFit'></image>
@@ -205,10 +205,10 @@
 						<text wx:else class="substance disabled">暂无匹配{{item.name}}</text>
 						<text wx:if="{{item.list.length > 0 && index === 0}}" class="recommend hide{{showView[index].status?'show':''}}">参考用量：{{item.reference_amount}}L</text>
 						<text wx:if="{{item.list.length > 0 && index === 1}}" class="recommend hide{{showView[index].status?'show':''}}"></text>
-						<image wx:if="{{item.list.length > 0}}" class="image hide{{showView[index].status?'show':''}}" bindtap="skipChange" data-type="{{index+1}}" src="/images/intelligent/change1.png"></image>
+						<image wx:if="{{item.list.length > 0}}" class="image hide{{showView[index].status?'show':''}}" bindtap="skipChange" data-type="{{index+1}}" data-cdp="intelligent_intelligent_biansuxiangyou" src="/images/intelligent/change1.png"></image>
 					</view>
 					<!-- 二级 -->
-					<view class="model-detail hide{{showView[index].status?'show':''}}" bindtap="goGoodsDetail" data-sku="{{listItem.basic_sku_id}}" data-spu="{{listItem.product_id}}" wx:for-index="idx" wx:for="{{item.list}}" wx:key="index" wx:for-item="listItem">
+					<view class="model-detail hide{{showView[index].status?'show':''}}" bindtap="goGoodsDetail" data-sku="{{listItem.basic_sku_id}}" data-spu="{{listItem.product_id}}" wx:for-index="idx" wx:for="{{item.list}}" wx:key="index" wx:for-item="listItem" data-cdp="intelligent_intelligent_biansuxiangyou_list">
 						<view wx:if="{{listItem.is_sale === 1}}" class="version-list">
 							<view class="version-image">
 								<image class="image" src="{{listItem.image_url}}" mode='aspectFit'></image>
@@ -282,7 +282,7 @@
 					</view>
 				</view>
 				<form class="form-btn" bindsubmit="sendFormId" report-submit="true">
-					<button formType="submit" class="settlement {{totalMum == 0 ? 'settlement-disabled' : 'settlement'}}" bindtap="goSettlement" >
+					<button formType="submit" class="settlement {{totalMum == 0 ? 'settlement-disabled' : 'settlement'}}" bindtap="goSettlement" data-cdp="intelligent_intelligent_5">
 						去结算（{{totalMum}}）
 					</button>
 				</form>

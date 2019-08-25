@@ -8,6 +8,7 @@
               wx:key="index"
               data-item="{{item}}"
               data-id="{{item.brand_houses_id}}"
+              data-cdp="maintenance_brandAreaList_list"
               bindtap="goBrandDetail">
             <!-- 品牌图片 -->
             <image class="item-img" mode='aspectFit' src="{{item.brand_houses_cover}}"/>

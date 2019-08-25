@@ -7,6 +7,24 @@ Page({
     liveInfo: {},
     showHome: false,
     top_height: 0, // padding高度
+    show:true
+  },
+  
+  videowaiting(e) {
+    console.log('加载中',e)
+    //this.bindplay()
+  },
+  videoerror(e) {
+    console.log('错误',e)
+  },
+  
+  bindplay (e) {
+      let _this=this
+      _this.setData({ show:false})
+      setTimeout(function(){
+        console.log(22222);
+        _this.setData({ show: true })
+      },10)
   },
   async getVideoRecord (id) {
     this.setData({
@@ -38,6 +56,9 @@ Page({
     })
   },
   onLoad (option) {
+
+
+   
     this.setData({
       top_height: globalData.topbarHeight,
     })
@@ -49,6 +70,7 @@ Page({
     }
     wx.hideShareMenu()
     this.getVideoRecord(option.id)
+    //this.bindplay();    
   },
   
   onHide () {

@@ -34,6 +34,6 @@
 	</view>
 	<!--返回按钮-->
 	<view class="button-content">
-		<button type="default" size="defaultSize" bindtap="goLucky" class="back-button">返回</button>
+		<button type="default" size="defaultSize" bindtap="goLucky" class="back-button" data-cdp="lottery_luckyHelp_1">返回</button>
 	</view>
 </view>

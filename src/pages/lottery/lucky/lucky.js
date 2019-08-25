@@ -1,7 +1,7 @@
 // 创建页面实例对象
 import {doLottery, doShare, getLotteryCoupons, getLotteryList} from '@/libs/modules/lottery'
 
-const {showMessage, globalData, isRegistered } = getApp()
+const {showMessage, globalData, cdpReport, isRegistered } = getApp()
 
 Page({
   data: {
@@ -102,14 +102,11 @@ Page({
             coupons[i].check = 0
           }
           self.setData({coupons: coupons})
-          self.data.reLottery = true
-          // self.setData({reLottery: true})
+          self.setData({reLottery: true})
           self.setData({giftBarFlag: true})
-          self.data.speed = 120
-          // self.setData({speed: 120})
+          self.setData({speed: 120})
           self.setData({index: 0})
-          self.data.current = null
-          // self.setData({current: null})
+          self.setData({current: null})
           self.getLotteryList()
         }, 600)
         return
@@ -140,8 +137,7 @@ Page({
     }
     // 已注册
     if (self.data.reLottery) {
-      self.data.btnUP = !self.data.btnUP
-      // self.setData({btnUP: !self.data.btnUP})
+      self.setData({btnUP: !self.data.btnUP})
       self.lottery()
     }
   },
@@ -149,8 +145,7 @@ Page({
   end () {
     let self = this
     setTimeout(function () {
-      self.data.btnUP = !self.data.btnUP
-      // self.setData({btnUP: !self.data.btnUP})
+      self.setData({btnUP: !self.data.btnUP})
     }, 300)
   },
   // 转盘闪烁灯
@@ -178,12 +173,22 @@ Page({
     wx.navigateTo({
       url: '/pages/lottery/luckyHelp/luckyHelp?' + 'activity_id=' + this.data.activity_id + '&share=' + (this.data.sharePage ? 1 : 0),
     })
+    // cdp-点击跳转页面事件
+    let target = {
+      url: '/pages/lottery/luckyHelp/luckyHelp',
+    }
+    cdpReport(1, e.currentTarget.dataset.cdp, 99, '', '', target, this.data.enter_page_date)     
   },
   // 跳转优惠券列表
   lookLottery (e) {
     wx.navigateTo({
       url: '/pages/coupon/my/myCoupon',
     })
+    // cdp-点击跳转页面事件
+    let target = {
+      url: '/pages/coupon/my/myCoupon',
+    }
+    cdpReport(1, e.currentTarget.dataset.cdp, 99, '', '', target, this.data.enter_page_date)    
   },
   // 获取礼券列表
   async getCoupons () {
@@ -242,20 +247,18 @@ Page({
     if (self.data.isLotterying === true) {
       return false
     }
-    self.data.isLotterying = true
-    // self.setData({
-    //   isLotterying: true,
-    // })
+    self.setData({
+      isLotterying: true,
+    })
     let resultTimeFun = setTimeout(() => {
       showMessage({
         title: '你的网络好像罢工了',
         content: '我不喜欢网络罢工，快去检查下吧',
         resolve: function () {
           resultTime = true
-          self.data.isLotterying = false
-          // self.setData({
-          //   isLotterying: false,
-          // })
+          self.setData({
+            isLotterying: false,
+          })
         },
       })
     }, 11000)
@@ -270,17 +273,15 @@ Page({
       }
       self.setData({luckNum: res.data.count})
       self.setData({target: res.data.id})
-      self.data.reLottery = false
-      // self.setData({reLottery: false})
+      self.setData({reLottery: false})
       if (self.data.luckNum <= 0) {
         self.setData({canLottery: false})
       } else {
         self.setData({canLottery: true})
       }
-      self.data.isLotterying = false
-      // self.setData({
-      //   isLotterying: false,
-      // })
+      self.setData({
+        isLotterying: false,
+      })
     } else {
       clearTimeout(resultTimeFun)
       if (resultTime) {
@@ -294,10 +295,9 @@ Page({
           content: `${res.message}`,
         })
       }
-      self.data.isLotterying = false
-      // self.setData({
-      //   isLotterying: false,
-      // })
+      self.setData({
+        isLotterying: false,
+      })
     }
   },
   // 再次抽奖
@@ -371,11 +371,11 @@ Page({
 		if (current_store_id) {
 			url = url + '&current_store_id=' + current_store_id
     }
-    // 分享带上用户id,分享参数上报
+    // 分享带上用户id,用于cdp分享参数上报
     if (globalData.current_customer_id) {
       url = url + '&share_from_id=' + globalData.current_customer_id
     }
-		// 分享带上门店名称,用参数上报
+		// 分享带上门店名称,用于cdp参数上报
 		if (globalData.ep_store_name) {
 			url = url + '&current_store_name=' + globalData.ep_store_name
 		}     
@@ -401,7 +401,7 @@ Page({
   async onShow () {
     var self = this
     this.setData({
-      enter_page_date: new Date() / 1, // 进入页面的时间，上报用
+      enter_page_date: new Date() / 1, // 进入页面的时间，cdp上报用
     })     
     // 跑马灯控制方法
     self.filckerControl()

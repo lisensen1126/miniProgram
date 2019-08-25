@@ -1,6 +1,6 @@
 // 获取全局应用程序实例对象
 import {maintain, carParament} from '@/libs/modules/intelligent'
-const {  showMessage, globalData } = getApp()
+const {  showMessage, cdpReport, globalData } = getApp()
 // 创建页面实例对象
 Page({
 	// 页面的初始数据

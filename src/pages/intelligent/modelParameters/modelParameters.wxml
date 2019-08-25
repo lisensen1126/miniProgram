@@ -5,13 +5,13 @@
 	<view class="maintenance-tab">
 		<!--tab切换部分-->
 		<view class="tab-box">
-			<view class="tab-bar {{tabType === 1?'tab-active':''}}" data-tab="1" bindtap="changeTab">
+			<view class="tab-bar {{tabType === 1?'tab-active':''}}" data-tab="1" bindtap="changeTab" data-cdp="intelligent_modelParameters_1">
 				<image class="left-img" src="/images/intelligent/group.png"></image>
 				保养手册
 				<image class="right-img" src="/images/intelligent/right.png"></image>
 			</view>
 			<view class="line"></view>
-			<view class="tab-bar {{tabType === 2?'tab-active':''}}" data-tab="2" bindtap="changeTab">
+			<view class="tab-bar {{tabType === 2?'tab-active':''}}" data-tab="2" bindtap="changeTab" data-cdp="intelligent_modelParameters_2">
 				<image class="left-img" src="/images/intelligent/shape.png"></image>
 				车型参数
 				<image class="right-img" src="/images/intelligent/right.png"></image>
